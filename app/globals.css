@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-navy: #17324D;
+  --color-brand-blue: #2563EB;
+  --color-brand-gold: #E8B44B;
+  --color-brand-mist: #F6F8FB;
+  --shadow-soft: 0 20px 60px rgba(15, 23, 42, 0.08);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: #e8b44b55;
+}
