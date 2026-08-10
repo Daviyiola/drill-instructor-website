@@ -1,0 +1,212 @@
+{"kind":"deck","id":"pr/llbo3n","name":"Deck"}
+{"kind":"layout","layoutId":"a532e811-386a-4750-9b9d-0a7acf253fbc","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"cc10b9b8-9528-4057-9594-cdb9f12868d0","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/m724ep","slide":1,"title":"DRILL INSTRUCTOR","textShapes":6}
+{"kind":"shape","id":"sh/futorqhw","slide":1,"bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/gf250vih","slide":1,"bbox":[742,0,538,720]}
+{"kind":"shape","id":"sh/1gv6t0zm","slide":1,"bbox":[770,42,510,638]}
+{"kind":"textbox","id":"sh/sr25wvi5","slide":1,"text":"DRILL INSTRUCTOR","textPreview":"DRILL INSTRUCTOR","textChars":16,"textLines":1,"bbox":[150,69,390,32]}
+{"kind":"textbox","id":"sh/tsb6pgzq","slide":1,"text":"Practice. Review.\nImprove.","textPreview":"Practice. Review. | Improve.","textChars":26,"textLines":2,"bbox":[72,172,590,126]}
+{"kind":"textbox","id":"sh/al4n650j","slide":1,"text":"Practice smarter for the tests that matter.","textPreview":"Practice smarter for the tests that matter.","textChars":43,"textLines":1,"bbox":[72,322,565,76]}
+{"kind":"textbox","id":"sh/bmdozah4","slide":1,"text":"A structured exam-preparation platform for students, educators, and schools.","textPreview":"A structured exam-preparation platform for students, educators, and schools.","textChars":76,"textLines":1,"bbox":[72,422,540,74]}
+{"kind":"shape","id":"sh/zex8rap8","slide":1,"bbox":[72,550,184,5]}
+{"kind":"textbox","id":"sh/edo7y5o3","slide":1,"text":"SCHOOL PARTNERSHIP","textPreview":"SCHOOL PARTNERSHIP","textChars":18,"textLines":1,"bbox":[72,574,340,25]}
+{"kind":"textbox","id":"sh/1gfqtk7e","slide":1,"text":"2026","textPreview":"2026","textChars":4,"textLines":1,"bbox":[72,610,120,22]}
+{"kind":"image","id":"im/zapkjuxg","slide":1,"name":"","geometry":"roundRect","alt":"Drill Instructor product and analytics preview","bbox":[790,62,490,598]}
+{"kind":"image","id":"im/e9g3apwv","slide":1,"name":"","alt":"Drill Instructor logo","bbox":[72,56,62,62]}
+{"kind":"notes","id":"nt/m724ep","slide":1,"text":"[Sources]\n- First-party product screenshot: public-home-hero.png."}
+{"kind":"slide","id":"sl/w7vdlm","slide":2,"title":"THE PREPARATION GAP","textShapes":12}
+{"kind":"textbox","id":"sh/r2xkz690","slide":2,"text":"THE PREPARATION GAP","textPreview":"THE PREPARATION GAP","textChars":19,"textLines":1,"bbox":[72,52,420,24]}
+{"kind":"textbox","id":"sh/c36lsbal","slide":2,"text":"Practice generates answers. Schools need insight.","textPreview":"Practice generates answers. Schools need insight.","textChars":49,"textLines":1,"bbox":[72,82,1136,70]}
+{"kind":"textbox","id":"sh/d4f21gr6","slide":2,"text":"The work is happening—but the signal is often lost.","textPreview":"The work is happening—but the signal is often lost.","textChars":51,"textLines":1,"bbox":[72,152,720,38]}
+{"kind":"shape","id":"sh/e5o3ulsr","slide":2,"bbox":[72,226,536,328]}
+{"kind":"shape","id":"sh/z6xk3q9c","slide":2,"bbox":[642,226,566,328]}
+{"kind":"textbox","id":"sh/076lwbax","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[104,254,70,58]}
+{"kind":"textbox","id":"sh/18z25gr2","slide":2,"text":"Students practice blindly","textPreview":"Students practice blindly","textChars":25,"textLines":1,"bbox":[104,330,430,44]}
+{"kind":"textbox","id":"sh/u94jihs7","slide":2,"text":"They answer questions without a clear view of which topics to revisit, where pacing breaks down, or why the same mistakes repeat.","textPreview":"They answer questions without a clear view of which topics to revisit, where pacing breaks down, or why the same mistakes repeat.","textChars":129,"textLines":1,"bbox":[104,389,438,116]}
+{"kind":"textbox","id":"sh/fadkrmts","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[676,254,70,58]}
+{"kind":"textbox","id":"sh/z29sby58","slide":2,"text":"Educators see too little","textPreview":"Educators see too little","textChars":24,"textLines":1,"bbox":[676,330,450,44]}
+{"kind":"textbox","id":"sh/e10riton","slide":2,"text":"Assignments create more grading, yet still may not reveal who is stuck, which concept needs reteaching, or how students used their time.","textPreview":"Assignments create more grading, yet still may not reveal who is stuck, which concept needs reteaching, or how students used their time.","textChars":136,"textLines":1,"bbox":[676,389,452,116]}
+{"kind":"textbox","id":"sh/1orad8ne","slide":2,"text":"The opportunity: turn every practice session into useful next steps.","textPreview":"The opportunity: turn every practice session into useful next steps.","textChars":68,"textLines":1,"bbox":[228,590,824,40]}
+{"kind":"textbox","id":"sh/03i9k36t","slide":2,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/ryps7ypc","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"notes","id":"nt/w7vdlm","slide":2,"text":"[Sources]\n- Problem framing supplied by the product founder; no external statistics used."}
+{"kind":"slide","id":"sl/uiqxoi","slide":3,"title":"THE PLATFORM","textShapes":15}
+{"kind":"textbox","id":"sh/3mxgvep0","slide":3,"text":"THE PLATFORM","textPreview":"THE PLATFORM","textChars":12,"textLines":1,"bbox":[72,52,420,24]}
+{"kind":"textbox","id":"sh/4n6xoj6l","slide":3,"text":"Preparation works best as a disciplined training loop.","textPreview":"Preparation works best as a disciplined training loop.","textChars":54,"textLines":1,"bbox":[72,82,1136,70]}
+{"kind":"textbox","id":"sh/5ofyxo7q","slide":3,"text":"Exam preparation is serious work. Drill Instructor makes the repetition purposeful, visible, and easier to sustain.","textPreview":"Exam preparation is serious work. Drill Instructor makes the repetition purposeful, visible, and easier to sustain.","textChars":115,"textLines":1,"bbox":[72,154,1000,58]}
+{"kind":"textbox","id":"sh/qp8fqtob","slide":3,"text":"PRACTICE","textPreview":"PRACTICE","textChars":8,"textLines":1,"bbox":[72,278,300,62]}
+{"kind":"textbox","id":"sh/rqhgzypw","slide":3,"text":"Focused, timed drills","textPreview":"Focused, timed drills","textChars":21,"textLines":1,"bbox":[72,350,300,42]}
+{"kind":"textbox","id":"sh/srqxsj6h","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[390,292,52,48]}
+{"kind":"textbox","id":"sh/dczy1o72","slide":3,"text":"REVIEW","textPreview":"REVIEW","textChars":6,"textLines":1,"bbox":[442,278,300,62]}
+{"kind":"textbox","id":"sh/6t4fep87","slide":3,"text":"Corrections and explanations","textPreview":"Corrections and explanations","textChars":28,"textLines":1,"bbox":[442,350,300,42]}
+{"kind":"textbox","id":"sh/7udwnups","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[760,292,52,48]}
+{"kind":"textbox","id":"sh/b2xgvyxs","slide":3,"text":"IMPROVE","textPreview":"IMPROVE","textChars":7,"textLines":1,"bbox":[812,278,300,62]}
+{"kind":"textbox","id":"sh/q14fmtw7","slide":3,"text":"Analytics guide the next session","textPreview":"Analytics guide the next session","textChars":32,"textLines":1,"bbox":[812,350,300,42]}
+{"kind":"shape","id":"sh/dofyx8fi","slide":3,"bbox":[72,462,1136,118]}
+{"kind":"textbox","id":"sh/c36xo3ex","slide":3,"text":"Why “Drill Instructor”?","textPreview":"Why “Drill Instructor”?","textChars":23,"textLines":1,"bbox":[102,490,320,38]}
+{"kind":"textbox","id":"sh/3ydgryxg","slide":3,"text":"The military is an enduring symbol of discipline. Students may not love every repetition—but structured repetition builds readiness.","textPreview":"The military is an enduring symbol of discipline. Students may not love every repetition—but structured repetition builds readiness.","textChars":132,"textLines":1,"bbox":[424,484,726,70]}
+{"kind":"textbox","id":"sh/2x4fitwv","slide":3,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/p0vyt8fm","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"notes","id":"nt/uiqxoi","slide":3,"text":"[Sources]\n- Product positioning and naming rationale supplied by the founder."}
+{"kind":"slide","id":"sl/npfcrc","slide":4,"title":"STUDENT EXPERIENCE","textShapes":8}
+{"kind":"textbox","id":"sh/kja9srat","slide":4,"text":"STUDENT EXPERIENCE","textPreview":"STUDENT EXPERIENCE","textChars":18,"textLines":1,"bbox":[72,44,420,24]}
+{"kind":"textbox","id":"sh/ji18zmt8","slide":4,"text":"Students can build the right practice—and learn from every miss.","textPreview":"Students can build the right practice—and learn from every miss.","textChars":64,"textLines":1,"bbox":[72,74,1136,70]}
+{"kind":"shape","id":"sh/ihsrqhsn","slide":4,"bbox":[60,160,570,410]}
+{"kind":"shape","id":"sh/s7u9wbap","slide":4,"bbox":[650,160,570,410]}
+{"kind":"textbox","id":"sh/6lcru1sj","slide":4,"text":"BUILD TARGETED DRILLS","textPreview":"BUILD TARGETED DRILLS","textChars":21,"textLines":1,"bbox":[90,590,400,28]}
+{"kind":"textbox","id":"sh/1cnq9gb6","slide":4,"text":"Subjects, modules, practice tests, and subject-specific timers.","textPreview":"Subjects, modules, practice tests, and subject-specific timers.","textChars":63,"textLines":1,"bbox":[90,620,480,42]}
+{"kind":"textbox","id":"sh/gbe90ba1","slide":4,"text":"REVIEW WITH CONTEXT","textPreview":"REVIEW WITH CONTEXT","textChars":19,"textLines":1,"bbox":[680,590,400,28]}
+{"kind":"textbox","id":"sh/qpo3udw7","slide":4,"text":"Correct answer, explanation, reference material, and bookmarks.","textPreview":"Correct answer, explanation, reference material, and bookmarks.","textChars":63,"textLines":1,"bbox":[680,620,480,42]}
+{"kind":"textbox","id":"sh/bqxknids","slide":4,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/cr6lwned","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"image","id":"im/sfi5wjql","slide":4,"name":"","geometry":"roundRect","alt":"Student drill builder","bbox":[76,176,538,378]}
+{"kind":"image","id":"im/6dgnu98f","slide":4,"name":"","geometry":"roundRect","alt":"Student correction review with explanation","bbox":[666,176,538,378]}
+{"kind":"notes","id":"nt/npfcrc","slide":4,"text":"[Sources]\n- First-party screenshots: student-drill-builder.png and student-review-full.png."}
+{"kind":"slide","id":"sl/bl8u2r","slide":5,"title":"SOCIAL MOTIVATION","textShapes":10}
+{"kind":"textbox","id":"sh/10bm90jq","slide":5,"text":"SOCIAL MOTIVATION","textPreview":"SOCIAL MOTIVATION","textChars":17,"textLines":1,"bbox":[72,44,420,24]}
+{"kind":"textbox","id":"sh/ex0nylkz","slide":5,"text":"Progress becomes visible—and practice becomes social.","textPreview":"Progress becomes visible—and practice becomes social.","textChars":53,"textLines":1,"bbox":[72,74,1136,70]}
+{"kind":"textbox","id":"sh/fy947q1k","slide":5,"text":"Every graded answer earns points.","textPreview":"Every graded answer earns points.","textChars":33,"textLines":1,"bbox":[72,160,420,36]}
+{"kind":"textbox","id":"sh/o3254v21","slide":5,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[72,220,90,70]}
+{"kind":"textbox","id":"sh/p4bmd0jm","slide":5,"text":"points for a correct answer","textPreview":"points for a correct answer","textChars":27,"textLines":1,"bbox":[152,238,300,34]}
+{"kind":"textbox","id":"sh/21kn2lkb","slide":5,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[72,300,90,70]}
+{"kind":"textbox","id":"sh/n2t4bq1w","slide":5,"text":"point for an incorrect attempt—because trying still counts","textPreview":"point for an incorrect attempt—because trying still counts","textChars":58,"textLines":1,"bbox":[152,302,335,74]}
+{"kind":"textbox","id":"sh/c7m58f2d","slide":5,"text":"Students rise from Recruit to General, build squads with friends, and compare progress across squad, battalion, and corps.","textPreview":"Students rise from Recruit to General, build squads with friends, and compare progress across squad, battalion, and corps.","textChars":122,"textLines":1,"bbox":[72,414,420,128]}
+{"kind":"shape","id":"sh/x8vmhkjy","slide":5,"bbox":[518,144,690,230]}
+{"kind":"shape","id":"sh/8nadknel","slide":5,"bbox":[518,394,690,230]}
+{"kind":"textbox","id":"sh/m1svidwv","slide":5,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/hs3ehsvi","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"image","id":"im/mdk3epcj","slide":5,"name":"","geometry":"roundRect","alt":"Rank progression","bbox":[532,158,662,202]}
+{"kind":"image","id":"im/of2lgzu9","slide":5,"name":"","geometry":"roundRect","alt":"Squad leaderboard","bbox":[532,408,662,202]}
+{"kind":"notes","id":"nt/bl8u2r","slide":5,"text":"[Sources]\n- First-party screenshots: student-ranks.png and student-leaderboards.png.\n- Point system is implemented product behavior supplied by the founder."}
+{"kind":"slide","id":"sl/pwwagu","slide":6,"title":"EDUCATOR EXPERIENCE","textShapes":10}
+{"kind":"textbox","id":"sh/pkrqlkf2","slide":6,"text":"EDUCATOR EXPERIENCE","textPreview":"EDUCATOR EXPERIENCE","textChars":19,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/2h0rq5gr","slide":6,"text":"Assign focused practice without inheriting continuous grading.","textPreview":"Assign focused practice without inheriting continuous grading.","textChars":62,"textLines":1,"bbox":[72,72,1136,70]}
+{"kind":"shape","id":"sh/3i98jaxc","slide":6,"bbox":[60,154,728,478]}
+{"kind":"textbox","id":"sh/hgrqh0f6","slide":6,"text":"Browse the question bank","textPreview":"Browse the question bank","textChars":24,"textLines":1,"bbox":[824,174,350,42]}
+{"kind":"textbox","id":"sh/ud0rm5gf","slide":6,"text":"Filter by subject, module, and practice test. Inspect questions and explanations before assigning.","textPreview":"Filter by subject, module, and practice test. Inspect questions and explanations before assigning.","textChars":98,"textLines":1,"bbox":[824,226,350,96]}
+{"kind":"textbox","id":"sh/fe98fqx0","slide":6,"text":"Set the assignment rules","textPreview":"Set the assignment rules","textChars":24,"textLines":1,"bbox":[824,354,350,42]}
+{"kind":"textbox","id":"sh/sbypkvyp","slide":6,"text":"Choose recipients, due date, score release, correction release, and question-order shuffling.","textPreview":"Choose recipients, due date, score release, correction release, and question-order shuffling.","textChars":93,"textLines":1,"bbox":[824,406,350,96]}
+{"kind":"textbox","id":"sh/tc7qd0fu","slide":6,"text":"Review—without re-grading","textPreview":"Review—without re-grading","textChars":25,"textLines":1,"bbox":[824,534,350,42]}
+{"kind":"textbox","id":"sh/lcfih872","slide":6,"text":"Submission summaries and corrections are generated from the same server-owned results.","textPreview":"Submission summaries and corrections are generated from the same server-owned results.","textChars":86,"textLines":1,"bbox":[824,578,350,68]}
+{"kind":"textbox","id":"sh/kb6h836h","slide":6,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/zqxgfypw","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"image","id":"im/t4ni18fe","slide":6,"name":"","geometry":"roundRect","alt":"Educator question browser","bbox":[76,170,696,446]}
+{"kind":"notes","id":"nt/pwwagu","slide":6,"text":"[Sources]\n- First-party screenshot: educator-question-browser.png."}
+{"kind":"slide","id":"sl/p7v0h8","slide":7,"title":"ACTIONABLE VISIBILITY","textShapes":7}
+{"kind":"textbox","id":"sh/ny107ap4","slide":7,"text":"ACTIONABLE VISIBILITY","textPreview":"ACTIONABLE VISIBILITY","textChars":21,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/ozahgf6p","slide":7,"text":"Zoom from group trends to one answer choice.","textPreview":"Zoom from group trends to one answer choice.","textChars":44,"textLines":1,"bbox":[72,72,1136,70]}
+{"kind":"shape","id":"sh/p0ji9k7a","slide":7,"bbox":[54,150,760,500]}
+{"kind":"shape","id":"sh/fahg3qp8","slide":7,"bbox":[784,248,444,336]}
+{"kind":"textbox","id":"sh/1czi507y","slide":7,"text":"WHOLE GROUP","textPreview":"WHOLE GROUP","textChars":11,"textLines":1,"bbox":[842,164,300,24]}
+{"kind":"textbox","id":"sh/q5oz6l8b","slide":7,"text":"→ subject → module → question → answer choice","textPreview":"→ subject → module → question → answer choice","textChars":45,"textLines":1,"bbox":[842,194,350,42]}
+{"kind":"textbox","id":"sh/r6xgzqpw","slide":7,"text":"Know who needs support—and the concept that needs reteaching.","textPreview":"Know who needs support—and the concept that needs reteaching.","textChars":61,"textLines":1,"bbox":[800,606,410,42]}
+{"kind":"textbox","id":"sh/fidkra5w","slide":7,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/ex4jy54b","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"image","id":"im/3eto3ypk","slide":7,"name":"","geometry":"roundRect","alt":"Group analytics and comprehension thresholds","bbox":[68,164,732,472]}
+{"kind":"image","id":"im/5gb65onq","slide":7,"name":"","geometry":"roundRect","alt":"Per-answer-choice performance","bbox":[796,260,420,312]}
+{"kind":"notes","id":"nt/p7v0h8","slide":7,"text":"[Sources]\n- First-party screenshots: educator-group-analytics.png and educator-question-performance.png."}
+{"kind":"slide","id":"sl/vro8nd","slide":8,"title":"SCHOOL TRUST","textShapes":16}
+{"kind":"textbox","id":"sh/dgre5kjy","slide":8,"text":"SCHOOL TRUST","textPreview":"SCHOOL TRUST","textChars":12,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/qd0va5k7","slide":8,"text":"Privacy is a foundation—not an afterthought.","textPreview":"Privacy is a foundation—not an afterthought.","textChars":44,"textLines":1,"bbox":[72,72,1136,70]}
+{"kind":"textbox","id":"sh/0j2dgf29","slide":8,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[72,186,42,28]}
+{"kind":"textbox","id":"sh/1kbe9kju","slide":8,"text":"Private by choice","textPreview":"Private by choice","textChars":17,"textLines":1,"bbox":[122,188,420,34]}
+{"kind":"textbox","id":"sh/ehkvepkj","slide":8,"text":"Students can keep their profile out of public leaderboards.","textPreview":"Students can keep their profile out of public leaderboards.","textChars":59,"textLines":1,"bbox":[122,226,430,62]}
+{"kind":"textbox","id":"sh/fitw7u14","slide":8,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[72,316,42,28]}
+{"kind":"textbox","id":"sh/o72dkz2l","slide":8,"text":"Scoped educator access","textPreview":"Scoped educator access","textChars":22,"textLines":1,"bbox":[122,318,420,34]}
+{"kind":"textbox","id":"sh/p8ved4j6","slide":8,"text":"Limit access by exam, subject, student, or group.","textPreview":"Limit access by exam, subject, student, or group.","textChars":49,"textLines":1,"bbox":[122,356,430,62]}
+{"kind":"textbox","id":"sh/9kfm9gv2","slide":8,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[72,446,42,28]}
+{"kind":"textbox","id":"sh/8jml0buh","slide":8,"text":"Approval before access","textPreview":"Approval before access","textChars":22,"textLines":1,"bbox":[122,448,420,34]}
+{"kind":"textbox","id":"sh/7id476dw","slide":8,"text":"Educators require school authorization; approval can be withdrawn.","textPreview":"Educators require school authorization; approval can be withdrawn.","textChars":66,"textLines":1,"bbox":[122,486,430,62]}
+{"kind":"textbox","id":"sh/mx43ylcr","slide":8,"text":"School controls","textPreview":"School controls","textChars":15,"textLines":1,"bbox":[662,338,380,38]}
+{"kind":"textbox","id":"sh/hofmd0ve","slide":8,"text":"• School-wide educator codes\n• Admin approval and audit history\n• Flexible permission boundaries\n• Aggregate solo-practice visibility\n• No sale of analytics data","textPreview":"• School-wide educator codes | • Admin approval and audit history | • Flexible permission boundaries | • Aggregate solo-practice visibili...","textChars":161,"textLines":5,"bbox":[662,390,470,176]}
+{"kind":"shape","id":"sh/wn6l4vut","slide":8,"bbox":[612,596,596,4]}
+{"kind":"textbox","id":"sh/vmx4bqd8","slide":8,"text":"Challenge participants see summary performance—not another student’s per-question answers.","textPreview":"Challenge participants see summary performance—not another student’s per-question answers.","textChars":90,"textLines":1,"bbox":[612,614,596,44]}
+{"kind":"textbox","id":"sh/ulo32lcn","slide":8,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/xsvm1wvu","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"image","id":"im/21072pgr","slide":8,"name":"","geometry":"roundRect","alt":"School administration summary","bbox":[612,146,596,138]}
+{"kind":"notes","id":"nt/vro8nd","slide":8,"text":"[Sources]\n- First-party screenshot: educator-admin-summary.png.\n- Privacy and permission statements are based on the implemented product requirements supplied by the founder."}
+{"kind":"slide","id":"sl/14hbua","slide":9,"title":"A SHARED SUPPORT SYSTEM","textShapes":14}
+{"kind":"textbox","id":"sh/5cr61wze","slide":9,"text":"A SHARED SUPPORT SYSTEM","textPreview":"A SHARED SUPPORT SYSTEM","textChars":23,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/i9076h03","slide":9,"text":"Parents can reinforce consistency without hovering over every question.","textPreview":"Parents can reinforce consistency without hovering over every question.","textChars":71,"textLines":1,"bbox":[72,72,1136,70]}
+{"kind":"shape","id":"sh/3a9ozm18","slide":9,"bbox":[676,150,532,460]}
+{"kind":"textbox","id":"sh/dgb65gzq","slide":9,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[72,190,42,28]}
+{"kind":"textbox","id":"sh/qd07u10z","slide":9,"text":"See the effort","textPreview":"See the effort","textChars":14,"textLines":1,"bbox":[122,192,420,34]}
+{"kind":"textbox","id":"sh/re9o36hk","slide":9,"text":"Sessions, questions, and timing make practice visible.","textPreview":"Sessions, questions, and timing make practice visible.","textChars":54,"textLines":1,"bbox":[122,230,430,62]}
+{"kind":"textbox","id":"sh/8jy507il","slide":9,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[72,326,42,28]}
+{"kind":"textbox","id":"sh/tk76tcj6","slide":9,"text":"See the direction","textPreview":"See the direction","textChars":17,"textLines":1,"bbox":[122,328,420,34]}
+{"kind":"textbox","id":"sh/5wrqdsne","slide":9,"text":"Accuracy, coverage, and suggested practice clarify what comes next.","textPreview":"Accuracy, coverage, and suggested practice clarify what comes next.","textChars":67,"textLines":1,"bbox":[122,366,430,62]}
+{"kind":"textbox","id":"sh/kvy9kn6t","slide":9,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[72,462,42,28]}
+{"kind":"textbox","id":"sh/jup8b258","slide":9,"text":"Support the habit","textPreview":"Support the habit","textChars":17,"textLines":1,"bbox":[122,464,420,34]}
+{"kind":"textbox","id":"sh/ytgrixon","slide":9,"text":"A parent can use the student’s account to follow progress at home.","textPreview":"A parent can use the student’s account to follow progress at home.","textChars":66,"textLines":1,"bbox":[122,502,430,62]}
+{"kind":"textbox","id":"sh/t0rqhcna","slide":9,"text":"One practice record. Multiple adults supporting the same goal.","textPreview":"One practice record. Multiple adults supporting the same goal.","textChars":62,"textLines":1,"bbox":[72,610,540,42]}
+{"kind":"textbox","id":"sh/szi9o765","slide":9,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/7y98f25k","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"image","id":"im/dob6p4ve","slide":9,"name":"","geometry":"roundRect","alt":"Student progress analytics preview","bbox":[692,166,500,428]}
+{"kind":"notes","id":"nt/14hbua","slide":9,"text":"[Sources]\n- First-party screenshot: public-home-hero.png.\n- Parent use case supplied by the founder; no external claims used."}
+{"kind":"slide","id":"sl/y34f2c","slide":10,"title":"ACCESS","textShapes":33}
+{"kind":"textbox","id":"sh/9wby98nq","slide":10,"text":"ACCESS","textPreview":"ACCESS","textChars":6,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/mt0zetoz","slide":10,"text":"Start free. Add student and educator access as needed.","textPreview":"Start free. Add student and educator access as needed.","textChars":54,"textLines":1,"bbox":[72,72,1136,70]}
+{"kind":"textbox","id":"sh/7utg7ypk","slide":10,"text":"FREE","textPreview":"FREE","textChars":4,"textLines":1,"bbox":[72,182,310,30]}
+{"kind":"textbox","id":"sh/wz2hkn61","slide":10,"text":"$0","textPreview":"$0","textChars":2,"textLines":1,"bbox":[72,230,310,72]}
+{"kind":"textbox","id":"sh/h0bidsnm","slide":10,"text":"Explore the platform","textPreview":"Explore the platform","textChars":20,"textLines":1,"bbox":[72,302,310,34]}
+{"kind":"textbox","id":"sh/uxkzidob","slide":10,"text":"•","textPreview":"•","textChars":1,"textLines":1,"bbox":[72,370,20,24]}
+{"kind":"textbox","id":"sh/vytgbi5g","slide":10,"text":"Practice Tests 1–2","textPreview":"Practice Tests 1–2","textChars":18,"textLines":1,"bbox":[100,368,276,34]}
+{"kind":"textbox","id":"sh/c3ih8j6x","slide":10,"text":"•","textPreview":"•","textChars":1,"textLines":1,"bbox":[72,424,20,24]}
+{"kind":"textbox","id":"sh/x4ry1o7i","slide":10,"text":"Basic review tools","textPreview":"Basic review tools","textChars":18,"textLines":1,"bbox":[100,422,276,34]}
+{"kind":"textbox","id":"sh/dcjqtobu","slide":10,"text":"•","textPreview":"•","textChars":1,"textLines":1,"bbox":[72,478,20,24]}
+{"kind":"textbox","id":"sh/sba90ju9","slide":10,"text":"Limited progress tracking","textPreview":"Limited progress tracking","textChars":25,"textLines":1,"bbox":[100,476,276,34]}
+{"kind":"shape","id":"sh/rq18reto","slide":10,"bbox":[434,174,2,382]}
+{"kind":"textbox","id":"sh/qp8ry9c3","slide":10,"text":"PREMIUM STUDENT","textPreview":"PREMIUM STUDENT","textChars":15,"textLines":1,"bbox":[458,182,310,30]}
+{"kind":"textbox","id":"sh/1gjqxobq","slide":10,"text":"$6.99","textPreview":"$6.99","textChars":5,"textLines":1,"bbox":[458,230,310,72]}
+{"kind":"textbox","id":"sh/0fa943u5","slide":10,"text":"monthly · $49.99 yearly","textPreview":"monthly · $49.99 yearly","textChars":23,"textLines":1,"bbox":[458,302,310,34]}
+{"kind":"textbox","id":"sh/fe18vytk","slide":10,"text":"•","textPreview":"•","textChars":1,"textLines":1,"bbox":[458,370,20,24]}
+{"kind":"textbox","id":"sh/edsr2tcz","slide":10,"text":"One selected exam program","textPreview":"One selected exam program","textChars":25,"textLines":1,"bbox":[486,368,276,34]}
+{"kind":"textbox","id":"sh/pk3q18bm","slide":10,"text":"•","textPreview":"•","textChars":1,"textLines":1,"bbox":[458,424,20,24]}
+{"kind":"textbox","id":"sh/oju983ah","slide":10,"text":"Full practice and explanations","textPreview":"Full practice and explanations","textChars":30,"textLines":1,"bbox":[486,422,276,34]}
+{"kind":"textbox","id":"sh/8n2t47id","slide":10,"text":"•","textPreview":"•","textChars":1,"textLines":1,"bbox":[458,478,20,24]}
+{"kind":"textbox","id":"sh/9obaxcjy","slide":10,"text":"Bookmarks and challenges","textPreview":"Bookmarks and challenges","textChars":24,"textLines":1,"bbox":[486,476,276,34]}
+{"kind":"shape","id":"sh/mlkb2h0n","slide":10,"bbox":[820,174,2,382]}
+{"kind":"textbox","id":"sh/nmtsv21s","slide":10,"text":"EDUCATOR","textPreview":"EDUCATOR","textChars":8,"textLines":1,"bbox":[844,182,310,30]}
+{"kind":"textbox","id":"sh/wr2t8rip","slide":10,"text":"$99","textPreview":"$99","textChars":3,"textLines":1,"bbox":[844,230,310,72]}
+{"kind":"textbox","id":"sh/xsba1wja","slide":10,"text":"yearly","textPreview":"yearly","textChars":6,"textLines":1,"bbox":[844,302,310,34]}
+{"kind":"textbox","id":"sh/apkb6h0j","slide":10,"text":"•","textPreview":"•","textChars":1,"textLines":1,"bbox":[844,370,20,24]}
+{"kind":"textbox","id":"sh/vqtszm14","slide":10,"text":"One selected exam program","textPreview":"One selected exam program","textChars":25,"textLines":1,"bbox":[872,368,276,34]}
+{"kind":"textbox","id":"sh/cvitwni5","slide":10,"text":"•","textPreview":"•","textChars":1,"textLines":1,"bbox":[844,424,20,24]}
+{"kind":"textbox","id":"sh/dwrapsjq","slide":10,"text":"Unlimited linked students","textPreview":"Unlimited linked students","textChars":25,"textLines":1,"bbox":[872,422,276,34]}
+{"kind":"textbox","id":"sh/faxwvql8","slide":10,"text":"•","textPreview":"•","textChars":1,"textLines":1,"bbox":[844,478,20,24]}
+{"kind":"textbox","id":"sh/e9ov2lkn","slide":10,"text":"Groups, assignments, and monitoring","textPreview":"Groups, assignments, and monitoring","textChars":35,"textLines":1,"bbox":[872,476,276,34]}
+{"kind":"shape","id":"sh/1czex03e","slide":10,"bbox":[72,584,1136,70]}
+{"kind":"textbox","id":"sh/gb6d4v2t","slide":10,"text":"For schools","textPreview":"For schools","textChars":11,"textLines":1,"bbox":[96,604,150,28]}
+{"kind":"textbox","id":"sh/rmxwrqlc","slide":10,"text":"Student premium access and educator access are licensed separately. Schools can distribute student access through codes or an approved roster.","textPreview":"Student premium access and educator access are licensed separately. Schools can distribute student access through codes or an approved ro...","textChars":142,"textLines":1,"bbox":[242,598,920,42]}
+{"kind":"textbox","id":"sh/6lovylkr","slide":10,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/t8fet03i","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"notes","id":"nt/y34f2c","slide":10,"text":"[Sources]\n- Pricing from the first-party /pricing page captured on 2026-08-10."}
+{"kind":"slide","id":"sl/xbqldp","slide":11,"title":"BUILT FOR ADOPTION","textShapes":11}
+{"kind":"textbox","id":"sh/v6dgja1g","slide":11,"text":"BUILT FOR ADOPTION","textPreview":"BUILT FOR ADOPTION","textChars":18,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/w7mxsf21","slide":11,"text":"A school can start focused—and expand when the routine works.","textPreview":"A school can start focused—and expand when the routine works.","textChars":61,"textLines":1,"bbox":[72,72,1136,70]}
+{"kind":"textbox","id":"sh/x8fylkjm","slide":11,"text":"WEB + MOBILE","textPreview":"WEB + MOBILE","textChars":12,"textLines":1,"bbox":[72,190,330,28]}
+{"kind":"textbox","id":"sh/itofupkr","slide":11,"text":"Students practice where they already study.","textPreview":"Students practice where they already study.","textChars":43,"textLines":1,"bbox":[72,226,330,58]}
+{"kind":"textbox","id":"sh/juxgna1c","slide":11,"text":"ONE SHARED RECORD","textPreview":"ONE SHARED RECORD","textChars":17,"textLines":1,"bbox":[452,190,330,28]}
+{"kind":"textbox","id":"sh/kv6xwf2x","slide":11,"text":"Results and analytics stay consistent across platforms.","textPreview":"Results and analytics stay consistent across platforms.","textChars":55,"textLines":1,"bbox":[452,226,330,58]}
+{"kind":"textbox","id":"sh/5wfypkji","slide":11,"text":"FLEXIBLE ACCESS","textPreview":"FLEXIBLE ACCESS","textChars":15,"textLines":1,"bbox":[832,190,330,28]}
+{"kind":"textbox","id":"sh/6xofypk3","slide":11,"text":"Start with one exam, one group, or one educator.","textPreview":"Start with one exam, one group, or one educator.","textChars":48,"textLines":1,"bbox":[832,226,330,58]}
+{"kind":"shape","id":"sh/7yxgru1o","slide":11,"bbox":[60,306,560,300]}
+{"kind":"shape","id":"sh/i9wj6h0f","slide":11,"bbox":[660,306,560,300]}
+{"kind":"textbox","id":"sh/kbe18ril","slide":11,"text":"A familiar product across roles—without forcing the same workflow on everyone.","textPreview":"A familiar product across roles—without forcing the same workflow on everyone.","textChars":78,"textLines":1,"bbox":[220,624,840,36]}
+{"kind":"textbox","id":"sh/bm50v21o","slide":11,"text":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textPreview":"DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP","textChars":39,"textLines":1,"bbox":[72,682,450,18]}
+{"kind":"textbox","id":"sh/alcj2x03","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1170,680,38,18]}
+{"kind":"image","id":"im/4n6tob2l","slide":11,"name":"","geometry":"roundRect","alt":"Student bootcamp landing page","bbox":[76,322,528,268]}
+{"kind":"image","id":"im/2lobm1kf","slide":11,"name":"","geometry":"roundRect","alt":"Educator bootcamp landing page","bbox":[676,322,528,268]}
+{"kind":"notes","id":"nt/xbqldp","slide":11,"text":"[Sources]\n- First-party screenshots: student-bootcamps.png and educator-bootcamps.png."}
+{"kind":"slide","id":"sl/ht8wcu","slide":12,"title":"DRILL INSTRUCTOR","textShapes":6}
+{"kind":"shape","id":"sh/p83al8ni","slide":12,"bbox":[0,0,24,720]}
+{"kind":"textbox","id":"sh/36lsjy5c","slide":12,"text":"DRILL INSTRUCTOR","textPreview":"DRILL INSTRUCTOR","textChars":16,"textLines":1,"bbox":[184,91,450,38]}
+{"kind":"textbox","id":"sh/gju98j6l","slide":12,"text":"Questions?","textPreview":"Questions?","textChars":10,"textLines":1,"bbox":[92,232,700,86]}
+{"kind":"textbox","id":"sh/143ahon6","slide":12,"text":"Let’s walk through a live student and educator demo.","textPreview":"Let’s walk through a live student and educator demo.","textChars":52,"textLines":1,"bbox":[92,340,760,58]}
+{"kind":"shape","id":"sh/ehsr6tov","slide":12,"bbox":[92,456,220,5]}
+{"kind":"textbox","id":"sh/filsfy50","slide":12,"text":"drillinstructorprep.com","textPreview":"drillinstructorprep.com","textChars":23,"textLines":1,"bbox":[92,488,520,38]}
+{"kind":"textbox","id":"sh/sfa94j6p","slide":12,"text":"Practice. Review. Improve.","textPreview":"Practice. Review. Improve.","textChars":26,"textLines":1,"bbox":[92,548,520,38]}
+{"kind":"textbox","id":"sh/tgjadona","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1160,660,48,24]}
+{"kind":"image","id":"im/bqhkfa50","slide":12,"name":"","alt":"Drill Instructor logo","bbox":[92,76,72,72]}
+{"kind":"notes","id":"nt/ht8wcu","slide":12,"text":"[Sources]\n- First-party Drill Instructor brand and product domain."}

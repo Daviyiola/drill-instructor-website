@@ -5,7 +5,6 @@ import {
   deleteUser,
 } from "firebase/auth";
 import Link from "next/link";
-import {useRouter} from "next/navigation";
 import {FormEvent, useState} from "react";
 import BrandLogo from "@/components/BrandLogo";
 import {useAuth} from "@/components/app/AuthProvider";
@@ -35,7 +34,6 @@ function friendlyError(error: unknown) {
 }
 
 export default function SignUpPage() {
-  const router = useRouter();
   const {configured, missingConfig} = useAuth();
   const [role, setRole] = useState<Role>("student");
   const [firstName, setFirstName] = useState("");
@@ -103,7 +101,11 @@ export default function SignUpPage() {
       void callFunction(createdUser, "sendAccountVerificationHttps", {
         reason: "signup",
       }).catch(() => undefined);
-      router.replace("/app");
+      // Firebase signs the user in before the server bootstrap has finished.
+      // Start the authenticated shell in a fresh document only after the
+      // profile and UID mapping are durable, so AuthProvider cannot race the
+      // bootstrap request and cache ACCOUNT_PROFILE_NOT_FOUND.
+      window.location.replace("/app");
     } catch (reason) {
       setError(friendlyError(reason));
       if (createdUser) {

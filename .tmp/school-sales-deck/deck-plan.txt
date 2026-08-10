@@ -1,0 +1,18 @@
+Communication job: By the end, school leaders should want a live pilot conversation because Drill Instructor combines focused student practice, educator visibility, and privacy-conscious school controls in one coherent mobile-and-web experience.
+
+Narrative arc:
+1. Title: serious, structured test preparation.
+2. Problem: students practice blindly; educators lack actionable visibility.
+3. Product: practice, review, improve as a disciplined training loop.
+4. Student experience: targeted drills, explanations, bookmarks, offline-capable native practice.
+5. Motivation: ranks, points, squads, and larger unit leaderboards.
+6. Educator workflow: select questions, assign once, remove continuous grading.
+7. Insight depth: class -> subject/module -> question -> answer choice.
+8. School trust: privacy, scoped access, approvals, and revocation.
+9. Parent partnership: a shared view of effort and progress.
+10. Pricing: free, premium student, educator; school-supported access is licensed by seat.
+11. Why it fits schools: low-friction rollout across web and mobile.
+12. Close: questions and live demo.
+
+Visual route: custom Drill Instructor brand; mist background, brand green, restrained gold, real product screenshots, generous whitespace, large typography.
+

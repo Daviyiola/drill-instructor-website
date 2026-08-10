@@ -81,8 +81,20 @@ async function performFunctionCall<ResponseBody, RequestBody = object>(
 
     if (response.ok) return payload as ResponseBody;
 
+    // Firebase signs a newly created user in before bootstrapAccountHttps has
+    // necessarily finished writing uidToCustom. Account resolution may
+    // therefore see a short-lived 404 even though signup is progressing
+    // normally (especially while the bootstrap Function cold-starts). Treat
+    // only these account-not-ready responses as retryable; unrelated 404s
+    // still fail immediately.
+    const accountBootstrapPending = name === "resolveSignInAccountHttps" &&
+      response.status === 404 &&
+      ["ACCOUNT_PROFILE_NOT_FOUND", "PROFILE_RECORD_MISSING"]
+        .includes(String(payload.error || ""));
+
     if (
-      attempt + 1 < attempts && TRANSIENT_STATUSES.has(response.status)
+      attempt + 1 < attempts &&
+      (TRANSIENT_STATUSES.has(response.status) || accountBootstrapPending)
     ) {
       await delay(600 * 2 ** attempt);
       continue;

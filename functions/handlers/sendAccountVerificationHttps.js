@@ -6,7 +6,10 @@ const {getDatabase} = require("firebase-admin/database");
 const {allowCors, requireBearerToken} = require("./_auth");
 const {displayName, emailShell, escapeHtml, sendResendEmail} = require("./_email");
 
-const APP_URL = "https://drillinstructorprep.com/app/sign-in";
+// Firebase validates the continue URL against Authentication > Settings >
+// Authorized domains. Production is served from the www host, so keep the
+// generated verification link on that authorized origin.
+const APP_URL = "https://www.drillinstructorprep.com/app/sign-in";
 
 function maskEmail(email) {
   const [name, domain] = String(email || "").split("@");

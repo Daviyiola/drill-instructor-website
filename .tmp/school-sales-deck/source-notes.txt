@@ -1,0 +1,9 @@
+All screenshots are first-party Drill Instructor product captures from the local development application at http://localhost:3000 on 2026-08-10.
+
+Visible pricing is taken from the current first-party /pricing page and product implementation:
+- Free: $0, Practice Tests 1-2.
+- Premium Student: $6.99 monthly or $49.99 yearly for one selected exam program.
+- Educator: $99 yearly for one selected exam program; student premium access is separate.
+
+Product capability and privacy statements are based on the application's implemented workflows and the user's supplied product requirements. No external claims or third-party imagery are used.
+

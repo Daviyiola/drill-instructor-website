@@ -22,7 +22,7 @@ const drillImages = [
 
 export default function StudentAppPage() {
   const router = useRouter();
-  const {account, appDataLoading, user, refreshAccount} = useAuth();
+  const {account, appDataLoading, appDataError, user, refreshAccount} = useAuth();
   const [drillImageIndex, setDrillImageIndex] = useState(0);
   const [checkingApproval, setCheckingApproval] = useState(false);
   const [approvalNotice, setApprovalNotice] = useState("");
@@ -40,8 +40,16 @@ export default function StudentAppPage() {
     }
   }, [account, router]);
 
-  if (!user || appDataLoading || !account) {
+  if (!user || appDataLoading) {
     return <BrandedLoadingOverlay label="Loading your account" />;
+  }
+
+  // StudentHome owns the account-load error and retry UI. Previously this
+  // page intercepted a failed account resolution first and left the branded
+  // loading overlay visible forever because `account` remained null.
+  if (!account) {
+    return appDataError ? <StudentHome /> :
+      <BrandedLoadingOverlay label="Loading your account" />;
   }
 
   if (account.role === "educator") {

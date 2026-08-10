@@ -1,0 +1,757 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/pwwagu",
+    "id": "pwwagu",
+    "slide": 6,
+    "layoutId": "cc10b9b8-9528-4057-9594-cdb9f12868d0",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "a532e811-386a-4750-9b9d-0a7acf253fbc",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F6F8FB",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "cc10b9b8-9528-4057-9594-cdb9f12868d0",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "a532e811-386a-4750-9b9d-0a7acf253fbc",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "a532e811-386a-4750-9b9d-0a7acf253fbc",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pkrqlkf2",
+      "id": "1",
+      "bbox": [
+        72,
+        42,
+        420,
+        24
+      ],
+      "geometry": "rect",
+      "text": "EDUCATOR EXPERIENCE",
+      "textPreview": "EDUCATOR EXPERIENCE",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#4B5320",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "EDUCATOR EXPERIENCE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "EDUCATOR EXPERIENCE",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#4B5320",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "EDUCATOR EXPERIENCE",
+              "fontSize": 14,
+              "color": "#4B5320",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2h0rq5gr",
+      "id": "2",
+      "bbox": [
+        72,
+        72,
+        1136,
+        70
+      ],
+      "geometry": "rect",
+      "text": "Assign focused practice without inheriting continuous grading.",
+      "textPreview": "Assign focused practice without inheriting continuous grading.",
+      "resolvedFontSize": 42,
+      "resolvedTextStyle": {
+        "fontSize": 42,
+        "typeface": "+mn-lt",
+        "color": "#101828",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Assign focused practice without inheriting continuous grading."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Assign focused practice without inheriting continuous grading.",
+          "resolvedTextStyle": {
+            "fontSize": 42,
+            "color": "#101828",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Assign focused practice without inheriting continuous grading.",
+              "fontSize": 42,
+              "color": "#101828",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3i98jaxc",
+      "id": "3",
+      "bbox": [
+        60,
+        154,
+        728,
+        478
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/t4ni18fe",
+      "id": "4",
+      "bbox": [
+        76,
+        170,
+        696,
+        446
+      ],
+      "geometry": "roundRect",
+      "alt": "Educator question browser",
+      "contentType": "image/jpeg",
+      "imageFit": "contain",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 2691"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "6cb589db-c720-4dd7-9604-eb5b61f9ec12",
+        "contentType": "image/jpeg",
+        "byteLength": 52741
+      }
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hgrqh0f6",
+      "id": "5",
+      "bbox": [
+        824,
+        174,
+        350,
+        42
+      ],
+      "geometry": "rect",
+      "text": "Browse the question bank",
+      "textPreview": "Browse the question bank",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "fontSize": 26,
+        "typeface": "+mn-lt",
+        "color": "#4B5320",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Browse the question bank"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Browse the question bank",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "color": "#4B5320",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Browse the question bank",
+              "fontSize": 26,
+              "color": "#4B5320",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ud0rm5gf",
+      "id": "6",
+      "bbox": [
+        824,
+        226,
+        350,
+        96
+      ],
+      "geometry": "rect",
+      "text": "Filter by subject, module, and practice test. Inspect questions and explanations before assigning.",
+      "textPreview": "Filter by subject, module, and practice test. Inspect questions and explanations before assigning.",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#475467",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Filter by subject, module, and practice test."
+          },
+          {
+            "index": 2,
+            "text": "Inspect questions and explanations before"
+          },
+          {
+            "index": 3,
+            "text": "assigning."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Filter by subject, module, and practice test. Inspect questions and explanations before assigning.",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#475467",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Filter by subject, module, and practice test. Inspect questions and explanations before assigning.",
+              "fontSize": 18,
+              "color": "#475467",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fe98fqx0",
+      "id": "7",
+      "bbox": [
+        824,
+        354,
+        350,
+        42
+      ],
+      "geometry": "rect",
+      "text": "Set the assignment rules",
+      "textPreview": "Set the assignment rules",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "fontSize": 26,
+        "typeface": "+mn-lt",
+        "color": "#4B5320",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Set the assignment rules"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Set the assignment rules",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "color": "#4B5320",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Set the assignment rules",
+              "fontSize": 26,
+              "color": "#4B5320",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sbypkvyp",
+      "id": "8",
+      "bbox": [
+        824,
+        406,
+        350,
+        96
+      ],
+      "geometry": "rect",
+      "text": "Choose recipients, due date, score release, correction release, and question-order shuffling.",
+      "textPreview": "Choose recipients, due date, score release, correction release, and question-order shuffling.",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#475467",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Choose recipients, due date, score release,"
+          },
+          {
+            "index": 2,
+            "text": "correction release, and question-order"
+          },
+          {
+            "index": 3,
+            "text": "shuffling."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Choose recipients, due date, score release, correction release, and question-order shuffling.",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#475467",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Choose recipients, due date, score release, correction release, and question-order shuffling.",
+              "fontSize": 18,
+              "color": "#475467",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tc7qd0fu",
+      "id": "9",
+      "bbox": [
+        824,
+        534,
+        350,
+        42
+      ],
+      "geometry": "rect",
+      "text": "Review—without re-grading",
+      "textPreview": "Review—without re-grading",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "fontSize": 26,
+        "typeface": "+mn-lt",
+        "color": "#4B5320",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Review—without re-grading"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Review—without re-grading",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "color": "#4B5320",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Review—without re-grading",
+              "fontSize": 26,
+              "color": "#4B5320",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lcfih872",
+      "id": "10",
+      "bbox": [
+        824,
+        578,
+        350,
+        68
+      ],
+      "geometry": "rect",
+      "text": "Submission summaries and corrections are generated from the same server-owned results.",
+      "textPreview": "Submission summaries and corrections are generated from the same server-owned results.",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#475467",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Submission summaries and corrections are"
+          },
+          {
+            "index": 2,
+            "text": "generated from the same server-owned"
+          },
+          {
+            "index": 3,
+            "text": "results."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Submission summaries and corrections are generated from the same server-owned results.",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#475467",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Submission summaries and corrections are generated from the same server-owned results.",
+              "fontSize": 18,
+              "color": "#475467",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kb6h836h",
+      "id": "11",
+      "bbox": [
+        72,
+        682,
+        450,
+        18
+      ],
+      "geometry": "rect",
+      "text": "DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP",
+      "textPreview": "DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#667085",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#667085",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "DRILL INSTRUCTOR  •  SCHOOL PARTNERSHIP",
+              "fontSize": 11,
+              "color": "#667085",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zqxgfypw",
+      "id": "12",
+      "bbox": [
+        1170,
+        680,
+        38,
+        18
+      ],
+      "geometry": "rect",
+      "text": "06",
+      "textPreview": "06",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#667085",
+        "bold": true,
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "06"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "06",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#667085",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "06",
+              "fontSize": 11,
+              "color": "#667085",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}
