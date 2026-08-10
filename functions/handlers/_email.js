@@ -3,13 +3,18 @@
 
 function escapeHtml(value) {
   return String(value || "").replace(/[&<>"']/g, (character) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;",
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#39;",
   })[character]);
 }
 
-function emailShell(title, body, action) {
+function emailShell(title, body, action, closing) {
   const button = action ? `<p style="margin:28px 0"><a href="${escapeHtml(action.url)}" style="display:inline-block;background:#4B5320;color:#fff;text-decoration:none;padding:13px 22px;border-radius:10px;font-weight:700">${escapeHtml(action.label)}</a></p>` : "";
-  return `<!doctype html><html><body style="margin:0;background:#F6F8FB;font-family:Arial,sans-serif;color:#172033"><div style="max-width:620px;margin:0 auto;padding:32px 18px"><div style="background:#4B5320;color:white;padding:18px 24px;border-radius:18px 18px 0 0;font-weight:700;letter-spacing:.04em">DRILL INSTRUCTOR</div><div style="background:white;padding:28px 24px;border:1px solid #e2e8f0;border-top:0;border-radius:0 0 18px 18px"><h1 style="font-size:25px;margin:0 0 18px">${escapeHtml(title)}</h1>${body}${button}<p style="margin:28px 0 0;color:#667085;font-size:13px">Stay sharp. Stay focused.<br>— The Drill Instructor Team</p></div></div></body></html>`;
+  const footer = closing || "Practice. Review. Improve.<br>— The Drill Instructor Team";
+  return `<!doctype html><html><body style="margin:0;background:#F6F8FB;font-family:Arial,sans-serif;color:#172033"><div style="max-width:620px;margin:0 auto;padding:32px 18px"><div style="background:#4B5320;color:white;padding:18px 24px;border-radius:18px 18px 0 0;font-weight:700;letter-spacing:.04em">DRILL INSTRUCTOR</div><div style="background:white;padding:28px 24px;border:1px solid #e2e8f0;border-top:0;border-radius:0 0 18px 18px"><h1 style="font-size:25px;margin:0 0 18px">${escapeHtml(title)}</h1>${body}${button}<p style="margin:28px 0 0;color:#667085;font-size:13px">${footer}</p></div></div></body></html>`;
 }
 
 async function sendResendEmail({apiKey, from, to, subject, html, text, idempotencyKey}) {

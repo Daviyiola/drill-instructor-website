@@ -6,6 +6,7 @@ import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import StudentHome from "@/components/app/StudentHome";
 import BrandedLoadingOverlay from "@/components/app/BrandedLoadingOverlay";
+import SignupWelcomeModal from "@/components/app/SignupWelcomeModal";
 import {useAuth} from "@/components/app/AuthProvider";
 import {callFunction} from "@/lib/api/client";
 import {getFirebaseAuth} from "@/lib/firebase/client";
@@ -26,6 +27,9 @@ export default function StudentAppPage() {
   const [drillImageIndex, setDrillImageIndex] = useState(0);
   const [checkingApproval, setCheckingApproval] = useState(false);
   const [approvalNotice, setApprovalNotice] = useState("");
+  const [signupWelcomeRole, setSignupWelcomeRole] = useState<
+    "student" | "educator" | null
+  >(null);
 
   useEffect(() => {
     const rotation = window.setInterval(() => {
@@ -33,6 +37,18 @@ export default function StudentAppPage() {
     }, 2800);
     return () => window.clearInterval(rotation);
   }, []);
+
+  useEffect(() => {
+    const savedRole = sessionStorage.getItem("di.signupWelcomeRole");
+    if (savedRole === "student" || savedRole === "educator") {
+      setSignupWelcomeRole(savedRole);
+    }
+  }, []);
+
+  function closeSignupWelcome() {
+    sessionStorage.removeItem("di.signupWelcomeRole");
+    setSignupWelcomeRole(null);
+  }
 
   useEffect(() => {
     if (account?.role === "educator" && account.approvalStatus === "approved" && account.emailVerified) {
@@ -89,6 +105,7 @@ export default function StudentAppPage() {
     }
 
     return (
+      <>
       <main className="di-app min-h-screen overflow-hidden bg-brand-mist px-5 py-10 sm:grid sm:place-items-center">
         <section className="mx-auto flex w-full max-w-2xl flex-col items-center text-center">
           <div className="relative h-64 w-full sm:h-80">
@@ -173,8 +190,17 @@ export default function StudentAppPage() {
           </div>
         </section>
       </main>
+      {signupWelcomeRole === "educator" && (
+        <SignupWelcomeModal role="educator" onClose={closeSignupWelcome} />
+      )}
+      </>
     );
   }
 
-  return <StudentHome />;
+  return <>
+    <StudentHome />
+    {signupWelcomeRole === "student" && (
+      <SignupWelcomeModal role="student" onClose={closeSignupWelcome} />
+    )}
+  </>;
 }

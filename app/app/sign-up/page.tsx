@@ -109,6 +109,7 @@ export default function SignUpPage() {
       } catch {
         // Do not roll back a valid account because email delivery failed.
       }
+      sessionStorage.setItem("di.signupWelcomeRole", role);
       // Firebase signs the user in before the server bootstrap has finished.
       // Start the authenticated shell in a fresh document only after the
       // profile and UID mapping are durable, so AuthProvider cannot race the
