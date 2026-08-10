@@ -8,7 +8,7 @@ const schoolFeatures = [
   "Practice assignments for individuals or groups",
   "Submission and score visibility",
   "Access codes for school-supported rollout",
-  "Mobile and desktop app access",
+  "Mobile and web app access",
 ];
 
 export const metadata = {

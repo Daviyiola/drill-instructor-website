@@ -26,6 +26,13 @@ export interface ResolvedAccount {
   emailVerified: boolean;
   approvalStatus?: string;
   schoolName?: string;
+  entitlements?: Record<string, {
+    hasActiveLicense: boolean;
+    plan: string;
+    activationDate: string;
+    expirationDate: string;
+    source: string;
+  }>;
 }
 
 export interface BootcampSummary {

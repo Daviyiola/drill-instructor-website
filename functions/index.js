@@ -110,6 +110,7 @@ exports.resolveSignInAccountHttps = onRequest(
       cpu: 1,
       concurrency: 40,
       maxInstances: 5,
+      secrets: [LICENSE_SALT],
     },
     require("./handlers/resolveSignInAccountHttps").handler,
 );

@@ -10,6 +10,10 @@ const {
   editableProfile,
 } = require("../handlers/updateStudentProfileHttps");
 const {
+  publicProfile,
+  publicEntitlement,
+} = require("../handlers/resolveSignInAccountHttps");
+const {
   studentMembershipPath,
 } = require("../handlers/deleteAccountHttps");
 
@@ -36,9 +40,55 @@ test("student account resolution includes Firebase verification state", () => {
       handler,
       new RegExp(
           "role:\\s*\"student\",[\\s\\S]*?customUserId," +
-          "[\\s\\S]*?emailVerified,[\\s\\S]*?profile,",
+          "[\\s\\S]*?emailVerified,[\\s\\S]*?profile," +
+          "[\\s\\S]*?entitlements,",
       ),
   );
+});
+
+test("sign-in profile excludes database branches and server secrets", () => {
+  const profile = publicProfile({
+    firstName: "Ada",
+    lastName: "Lovelace",
+    email: "ada@example.test",
+    totalPoints: 50,
+    currentRank: "RECRUIT",
+    uid: "firebase-secret",
+    stats: {session: {correct: 10}},
+    statsIndex: {session: true},
+    testdata: {act: {license: {code: "RAW-CODE", licenseHash: "hash"}}},
+    userChallenges: {challenge: {status: "accepted"}},
+    assignedDrills: {assignment: true},
+  });
+  assert.deepEqual(profile, {
+    firstName: "Ada",
+    lastName: "Lovelace",
+    email: "ada@example.test",
+    currentRank: "RECRUIT",
+    totalPoints: 50,
+  });
+  assert.equal(JSON.stringify(profile).includes("RAW-CODE"), false);
+  assert.equal(JSON.stringify(profile).includes("licenseHash"), false);
+});
+
+test("sign-in entitlement excludes code and license signature", () => {
+  const entitlement = publicEntitlement({
+    code: "RAW-CODE",
+    licenseHash: "server-signature",
+    planType: "monthly",
+    activationDate: "2026-08-01T00:00:00.000Z",
+    expirationDate: "2026-09-01T00:00:00.000Z",
+    source: "access_code",
+  }, true);
+  assert.deepEqual(entitlement, {
+    hasActiveLicense: true,
+    plan: "monthly",
+    activationDate: "2026-08-01T00:00:00.000Z",
+    expirationDate: "2026-09-01T00:00:00.000Z",
+    source: "access_code",
+  });
+  assert.equal("code" in entitlement, false);
+  assert.equal("licenseHash" in entitlement, false);
 });
 
 test("editable student profile exposes only profile-editor fields", () => {

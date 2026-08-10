@@ -3,6 +3,28 @@
 const {getAuth} = require("firebase-admin/auth");
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {assertLicenseActive} = require("./_license");
+
+const PROFILE_FIELDS = Object.freeze([
+  "firstName",
+  "lastName",
+  "email",
+  "avatarNumber",
+  "avaterNumber",
+  "currentRank",
+  "currentRankNum",
+  "points",
+  "totalPoints",
+  "platoonName",
+  "battalionName",
+  "corpsName",
+  "profilePermissions",
+  "platoonPermissions",
+  "parentPermissions",
+  "schoolID",
+  "schoolName",
+  "approvalStatus",
+]);
 
 /**
  * Send a standardized error response.
@@ -52,14 +74,73 @@ function cleanPreferredRole(v) {
 }
 
 /**
- * Remove fields the client should not cache directly.
+ * Project only the scalar identity fields used by the app shell and profile.
+ * Database branches such as stats, testdata, challenges and assignments are
+ * deliberately absent and are served by their dedicated endpoints.
  * @param {Object} obj Raw profile object
  * @return {Object}
  */
-function stripPrivateFields(obj) {
-  const out = Object.assign({}, obj || {});
-  delete out.uid;
+function publicProfile(obj) {
+  const source = obj && typeof obj === "object" ? obj : {};
+  const out = {};
+  PROFILE_FIELDS.forEach((field) => {
+    const value = source[field];
+    if (["string", "number", "boolean"].includes(typeof value)) {
+      out[field] = value;
+    }
+  });
   return out;
+}
+
+/**
+ * Return the safe entitlement fields consumed by native sign-in caching.
+ * The raw code and license signature never leave the server.
+ *
+ * @param {Object} license Stored license
+ * @param {boolean} active Whether signature and expiry validation passed
+ * @return {Object}
+ */
+function publicEntitlement(license, active) {
+  const value = license && typeof license === "object" ? license : {};
+  return {
+    hasActiveLicense: active === true,
+    plan: String(value.planType || ""),
+    activationDate: String(value.activationDate || ""),
+    expirationDate: String(value.expirationDate || ""),
+    source: String(value.source || "access_code"),
+  };
+}
+
+/**
+ * Validate and project each bootcamp license stored on a student profile.
+ *
+ * @param {Object} db Admin database
+ * @param {string} studentId Custom student id
+ * @param {Object} rawProfile Stored student profile
+ * @return {Promise<Object>}
+ */
+async function studentEntitlements(db, studentId, rawProfile) {
+  const testdata = rawProfile && rawProfile.testdata &&
+    typeof rawProfile.testdata === "object" ? rawProfile.testdata : {};
+  const entitlements = {};
+
+  for (const [rawBootcamp, row] of Object.entries(testdata)) {
+    const bootcamp = String(rawBootcamp || "").trim().toLowerCase();
+    const license = row && typeof row === "object" && row.license &&
+      typeof row.license === "object" ? row.license : null;
+    if (!license || !/^[a-z0-9_-]{2,40}$/.test(bootcamp)) continue;
+
+    let active = false;
+    try {
+      await assertLicenseActive(db, studentId, bootcamp);
+      active = true;
+    } catch (error) {
+      const status = Number(error && error.code);
+      if (![400, 403, 409].includes(status)) throw error;
+    }
+    entitlements[bootcamp] = publicEntitlement(license, active);
+  }
+  return entitlements;
 }
 
 exports.handler = async (req, res) => {
@@ -135,17 +216,15 @@ exports.handler = async (req, res) => {
       return bad(res, 403, "PROFILE_UID_MISMATCH");
     }
 
-    const profile = stripPrivateFields(rawProfile);
+    const profile = publicProfile(rawProfile);
 
     // 4) Student response
     if (role === "student") {
-      let stats = null;
-
-      if (body.includeStats === true) {
-        const statsSnap = await db.ref(
-            `users/${customUserId}/stats`).once("value");
-        stats = statsSnap.val() || null;
-      }
+      const entitlements = await studentEntitlements(
+          db,
+          customUserId,
+          rawProfile,
+      );
 
       return res.status(200).json({
         ok: true,
@@ -153,7 +232,7 @@ exports.handler = async (req, res) => {
         customUserId,
         emailVerified,
         profile,
-        stats,
+        entitlements,
         route: "Shared/Bootcamps.qml",
       });
     }
@@ -215,3 +294,7 @@ exports.handler = async (req, res) => {
     });
   }
 };
+
+exports.publicProfile = publicProfile;
+exports.publicEntitlement = publicEntitlement;
+exports.studentEntitlements = studentEntitlements;
