@@ -97,10 +97,18 @@ export default function SignUpPage() {
       }
 
       // A single server-owned welcome + verification message serves both
-      // clients and keeps branding/delivery behavior consistent.
-      void callFunction(createdUser, "sendAccountVerificationHttps", {
-        reason: "signup",
-      }).catch(() => undefined);
+      // clients and keeps branding/delivery behavior consistent. Await the
+      // request before replacing the document; otherwise navigation can
+      // cancel the POST after its CORS preflight. Email delivery remains
+      // non-fatal because the account is already durable and the app exposes
+      // a resend action for unverified users.
+      try {
+        await callFunction(createdUser, "sendAccountVerificationHttps", {
+          reason: "signup",
+        });
+      } catch {
+        // Do not roll back a valid account because email delivery failed.
+      }
       // Firebase signs the user in before the server bootstrap has finished.
       // Start the authenticated shell in a fresh document only after the
       // profile and UID mapping are durable, so AuthProvider cannot race the
