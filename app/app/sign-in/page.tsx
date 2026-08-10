@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import {signInWithEmailAndPassword} from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
@@ -28,6 +25,7 @@ export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [resetting, setResetting] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -57,11 +55,22 @@ export default function SignInPage() {
       setError("Enter your email first, then choose “Forgot password?”");
       return;
     }
+    setResetting(true);
     try {
-      await sendPasswordResetEmail(getFirebaseAuth(), email.trim());
+      const base = process.env.NEXT_PUBLIC_FIREBASE_FUNCTIONS_BASE_URL?.replace(/\/+$/, "") ||
+        `https://${process.env.NEXT_PUBLIC_FIREBASE_FUNCTIONS_REGION}-${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.cloudfunctions.net`;
+      const response = await fetch(`${base}/sendPasswordResetHttps`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({email: email.trim()}),
+      });
+      const payload = await response.json().catch(() => ({})) as {error?: string};
+      if (!response.ok) throw new Error(payload.error || "RESET_FAILED");
       setMessage("Password reset instructions have been sent if that account exists.");
-    } catch (resetError) {
-      setError(friendlyAuthError(resetError));
+    } catch {
+      setError("We couldn’t send the reset email right now. Check your connection and try again.");
+    } finally {
+      setResetting(false);
     }
   }
 
@@ -164,7 +173,7 @@ export default function SignInPage() {
 
                 <button
                   type="submit"
-                  disabled={submitting}
+                  disabled={submitting || resetting}
                   className="min-h-12 w-full rounded-2xl bg-brand-green px-5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-darkolive disabled:cursor-wait disabled:opacity-65"
                 >
                   {submitting ? "Signing in…" : "Sign in"}
@@ -172,9 +181,10 @@ export default function SignInPage() {
                 <button
                   type="button"
                   onClick={resetPassword}
-                  className="w-full text-sm font-semibold text-brand-green underline-offset-4 hover:underline"
+                  disabled={submitting || resetting}
+                  className="w-full text-sm font-semibold text-brand-green underline-offset-4 hover:underline disabled:cursor-wait disabled:opacity-60"
                 >
-                  Forgot password?
+                  {resetting ? "Sending reset email…" : "Forgot password?"}
                 </button>
               </form>
             )}

@@ -56,9 +56,10 @@ export const sections = [
   {
     title: "7. Content and Question Banks",
     body: [
-      "Drill Instructor may include question banks, explanations, passages, images, diagrams, metadata, modules, topics, and other practice materials.",
-      "Unless otherwise stated, Drill Instructor and its licensors own or control the platform content, software, designs, workflows, databases, question structures, analytics systems, branding, and other protected materials.",
-      "You may use Drill Instructor content only through the service and only for permitted educational purposes. You may not scrape, copy, export, resell, publish, distribute, reverse engineer, or create competing datasets from Drill Instructor content without written permission.",
+      "Drill Instructor may include original question banks, explanations, passages, images, diagrams, metadata, modules, topics, analytics, and other educational or practice materials.",
+      "Unless otherwise stated, Drill Instructor and its licensors own or control the rights to the platform software, branding, designs, original educational content, compilations, databases, analytics systems, and other proprietary materials provided through the service.",
+      "You may access and use Drill Instructor content only through the service and for permitted personal or educational purposes. You may not, without written permission, systematically scrape, reproduce, export, republish, distribute, or resell Drill Instructor’s proprietary content or datasets.",
+      "Nothing in these Terms claims ownership over general educational concepts, subject matter, standardized testing formats, or other materials that are not proprietary to Drill Instructor.",
     ],
   },
   {
@@ -169,10 +170,10 @@ export default function TermsPage() {
 
         <div className="mt-10 space-y-6 text-slate-700">
           <p className="leading-7">
-            These Terms of Use govern your access to and use of Drill Instructor,
-            including our website, mobile applications, desktop applications,
-            services, content, question banks, assignments, analytics, and
-            related features.
+            These Terms of Use govern your access to and use of Drill
+            Instructor, including our website, mobile applications, desktop
+            applications, services, content, question banks, assignments,
+            analytics, and related features.
           </p>
 
           <p className="leading-7">
@@ -183,7 +184,10 @@ export default function TermsPage() {
           </p>
 
           {sections.map((section) => (
-            <section key={section.title} className="border-t border-slate-200 pt-6">
+            <section
+              key={section.title}
+              className="border-t border-slate-200 pt-6"
+            >
               <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
                 {section.title}
               </h2>

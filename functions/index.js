@@ -47,6 +47,14 @@ exports.sendAccountVerificationHttps = onRequest(
     require("./handlers/sendAccountVerificationHttps").handler,
 );
 
+exports.sendPasswordResetHttps = onRequest(
+    {
+      ...publicStudentOptions,
+      secrets: [RESEND_API_KEY, SUPPORT_FROM_EMAIL],
+    },
+    require("./handlers/sendPasswordResetHttps").handler,
+);
+
 exports.createChallengeHttps = onRequest(
     {secrets: [CHALLENGE_SIGNING_SECRET,
       LICENSE_SALT],
