@@ -5,7 +5,7 @@ export const metadata = {
   description: "Terms of Use for Drill Instructor.",
 };
 
-const sections = [
+export const sections = [
   {
     title: "1. What Drill Instructor Is",
     body: [
@@ -139,14 +139,14 @@ const sections = [
   {
     title: "18. Governing Law",
     body: [
-      "These Terms are governed by the laws of Texas, United States of America, without regard to conflict-of-law rules, unless applicable law requires otherwise.",
-      "Any dispute will be handled in the courts or dispute forum located in Texas, USA, unless a separate written agreement states otherwise or applicable law requires a different venue.",
+      "These Terms are governed by the laws of Tennessee, United States of America, without regard to conflict-of-law rules, unless applicable law requires otherwise.",
+      "Any dispute will be handled in the courts or dispute forum located in Tennessee, USA, unless a separate written agreement states otherwise or applicable law requires a different venue.",
     ],
   },
   {
     title: "19. Contact",
     body: [
-      "For questions about these Terms, contact Davola Technologies LLC at hello@drillinstructor.app",
+      "For questions about these Terms, contact Davola Technologies LLC at hello@davolatechnologies.com",
     ],
   },
 ];
@@ -155,7 +155,7 @@ export default function TermsPage() {
   return (
     <PageShell>
       <section className="mx-auto max-w-3xl px-5 py-16 sm:px-6">
-        <div className="text-sm font-semibold text-brand-blue">
+        <div className="text-sm font-semibold text-brand-olive">
           Terms of Use
         </div>
 

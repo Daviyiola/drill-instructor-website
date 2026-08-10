@@ -81,7 +81,7 @@ export default function PricingPage() {
       <section className="bg-gradient-to-b from-brand-mist to-white">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 lg:py-20">
           <div className="max-w-3xl">
-            <div className="text-sm font-semibold text-brand-blue">Pricing</div>
+            <div className="text-sm font-semibold text-brand-olive">Pricing</div>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
               Simple access for students, educators, and schools.
             </h1>
@@ -101,17 +101,17 @@ export default function PricingPage() {
               key={plan.title}
               className={`relative rounded-[2rem] border p-7 shadow-sm ${
                 plan.highlighted
-                  ? "border-brand-blue bg-white ring-4 ring-brand-blue/10"
+                  ? "border-brand-olive bg-white ring-4 ring-brand-olive/10"
                   : "border-slate-200 bg-white"
               }`}
             >
               {plan.highlighted && (
-                <div className="absolute right-5 top-5 rounded-full bg-brand-blue px-3 py-1 text-xs font-semibold text-white">
+                <div className="absolute right-5 top-5 rounded-full bg-brand-olive px-3 py-1 text-xs font-semibold text-white">
                   Popular
                 </div>
               )}
 
-              <div className="text-sm font-semibold text-brand-blue">
+              <div className="text-sm font-semibold text-brand-olive">
                 {plan.eyebrow}
               </div>
 
@@ -120,7 +120,7 @@ export default function PricingPage() {
               </h2>
 
               <div className="mt-5">
-                <span className="text-3xl font-semibold text-brand-navy">
+                <span className="text-3xl font-semibold text-brand-green">
                   {plan.price}
                 </span>
                 {plan.cadence && (
@@ -148,8 +148,8 @@ export default function PricingPage() {
                 href="/contact"
                 className={`mt-7 inline-flex rounded-2xl px-5 py-3 text-sm font-semibold ${
                   plan.highlighted
-                    ? "bg-brand-blue text-white hover:bg-blue-700"
-                    : "bg-brand-navy text-white hover:bg-slate-800"
+                    ? "bg-brand-olive text-white hover:bg-olive-700"
+                    : "bg-brand-green text-white hover:bg-brand-darkolive"
                 }`}
               >
                 {plan.cta}

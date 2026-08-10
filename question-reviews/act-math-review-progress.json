@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "datasetVersion": "2026.08.3",
+  "bootcamp": "act",
+  "subject": "Mathematics",
+  "reviewer": "Codex",
+  "reviewMethod": "Blind independent solution before inspecting each configured answer and explanation",
+  "batchSize": 20,
+  "questionCount": 370,
+  "status": "complete",
+  "applicationStatus": {
+    "status": "applied",
+    "appliedToDatasetVersion": "2026.08.4",
+    "source": "functions/data/actData.js",
+    "published": false
+  },
+  "independentAnswerBatches": [
+    {"firstQuestion": 1, "answerIndexes": [0, 0, 0, 0, 1, 2, 2, 3, 0, 1, 1, 2, 2, 0, 1, 3, 0, 1, 0, 1]},
+    {"firstQuestion": 21, "answerIndexes": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 1, 3, null, null, 2, 3, 0, 0, 2, 3]},
+    {"firstQuestion": 41, "answerIndexes": [0, 0, 0, 2, 0, 1, 2, 0, 0, 3, 2, 3, 0, 3, 0, 3, 0, 1, 2, 3]},
+    {"firstQuestion": 61, "answerIndexes": [0, 0, 2, 3, 0, 1, 2, 3, 0, 1, 3, 3, 2, 3, 3, 1, 3, 3, 2, 3]},
+    {"firstQuestion": 81, "answerIndexes": [3, 1, 2, 1, 1, 1, 0, 1, 0, 1, 3, 3, 2, 0, 2, 3, 0, 1, 1, 1]},
+    {"firstQuestion": 101, "answerIndexes": [0, 1, 1, 2, 3, 0, 2, 3, 0, 0, 0, 0, 1, 2, 2, 3, 1, 2, 3, 2]},
+    {"firstQuestion": 121, "answerIndexes": [3, 3, 2, 3, 3, 1, 3, 3, 0, 1, 2, 3, 3, 1, 1, 3, 0, 2, 2, 3]},
+    {"firstQuestion": 141, "answerIndexes": [0, 0, 2, 2, 0, 1, null, 2, 0, null, 2, 2, 0, 1, 2, 3, 1, 3, 0, 1]},
+    {"firstQuestion": 161, "answerIndexes": [3, 2, 0, 1, 2, 3, 0, 1, 2, 3, 2, 2, 1, 3, 0, 1, 2, 3, 3, 1]},
+    {"firstQuestion": 181, "answerIndexes": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]},
+    {"firstQuestion": 201, "answerIndexes": [0, 1, 2, 3, 0, 0, 0, 1, 0, 0, 1, 1, 2, 3, 0, 1, 2, 3, 2, 1]},
+    {"firstQuestion": 221, "answerIndexes": [2, 3, 3, 1, 0, 1, 2, 2, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]},
+    {"firstQuestion": 241, "answerIndexes": [3, 0, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 0, 1, 2, 1, 2, 3]},
+    {"firstQuestion": 261, "answerIndexes": [2, 2, 3, 3, 1, 2, 2, 0, 1, 1, 2, 3, 0, null, 0, 1, null, 3, 0, 1]},
+    {"firstQuestion": 281, "answerIndexes": [0, 1, 2, 3, 2, 3, 3, 3, 2, 2, 0, 1, 2, 1, 0, 1, 0, 1, 0, 3]},
+    {"firstQuestion": 301, "answerIndexes": [0, 1, 2, 3, 0, 1, 0, 0, 2, 1, 0, 1, 2, 1, 0, 1, 2, 3, 0, 1]},
+    {"firstQuestion": 321, "answerIndexes": [0, 1, null, 3, 0, 2, 2, 3, 0, 1, 2, 3, 0, 1, 0, 0, 1, 1, 2, 2]},
+    {"firstQuestion": 341, "answerIndexes": [3, 1, 1, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 0, 1, 2, 3, 0, 1]},
+    {"firstQuestion": 361, "answerIndexes": [3, 2, 2, 2, 1, 2, 0, 0, 0, 3]}
+  ],
+  "findings": [
+    {"legacyId": "Mathematics#21", "type": "explanation_error", "notes": "The key 4i is correct, but Step 1 incorrectly rewrites the equation as d² = −6 instead of d² = −16."},
+    {"legacyId": "Mathematics#33", "type": "invalid_item", "notes": "The system gives x = 18/5, which the explanation also derives, but no option matches and the configured key is 6."},
+    {"legacyId": "Mathematics#34", "type": "invalid_item", "notes": "The system gives x + y = 54/7, which the explanation also derives, but no option matches and the configured key is 6."},
+    {"legacyId": "Mathematics#67", "type": "explanation_error", "notes": "The configured key 50 is correct. The explanation incorrectly halves the outside-circle portion below diagonal QS; that whole region has area 50 - 12.5pi, so adding the upper semicircle gives exactly 50."},
+    {"legacyId": "Mathematics#68", "type": "explanation_error", "notes": "The configured key 43.7 is correct. The explanation incorrectly computes the outside-circle region above diagonal PR as 3/8 of the outside area; it is the upper triangle minus a semicircle, 72 - 18pi. Adding the southeast quarter-circle gives 72 - 9pi, approximately 43.7."},
+    {"legacyId": "Mathematics#72", "type": "answer_key_error", "notes": "The L-shaped area is 152 square feet, so a 5-inch depth requires 63 1/3 cubic feet. At 0.8 cubic feet per bag, the least whole number is 80 (option index 3), not the configured 67 (index 1). The explanation already reaches 80."},
+    {"legacyId": "Mathematics#147", "type": "duplicate_correct_options", "notes": "The average moving speed is 12/30 = 2/5 mile per minute. Both option 0 (2/5) and option 2 (6/15) are equivalent, so the item has two correct choices."},
+    {"legacyId": "Mathematics#150", "type": "duplicate_correct_options", "notes": "Options 0 and 2 are algebraically identical: option 2 simplifies from (3z^2 + 2z^2 - 9z - 4)/z^3 to option 0, so the item has two correct choices."},
+    {"legacyId": "Mathematics#241", "type": "answer_key_and_wording_error", "notes": "The diagram places ray VW between VY and VZ. Since angle WVY is 180 - 128 = 52 degrees and angle YVZ is 90 degrees, angle WVZ is 90 - 52 = 38 degrees (option index 3), not 142 degrees. The sentence saying VY lies between VX and VZ is also geometrically ambiguous/inconsistent with the conventional smaller-angle interpretation and should be rewritten to match the diagram."},
+    {"legacyId": "Mathematics#274", "type": "invalid_item", "notes": "Solving gives w = (4 - 6i)/(2 - i) = 14/5 - (8/5)i. The explanation derives that value, but no option matches; configured option 0 incorrectly uses -16/5 as the imaginary coefficient."},
+    {"legacyId": "Mathematics#277", "type": "duplicate_correct_options", "notes": "Option indexes 1 and 2 are equivalent because cos(145 degrees) = -cos(35 degrees). Both represent the correct direct distance, so the item has two correct choices."},
+    {"legacyId": "Mathematics#323", "type": "invalid_item", "notes": "The footprint area is 110 square feet and the 8-inch depth gives 220/3 cubic feet. At 3 cubic feet per bag, 220/9 is approximately 24.44, so 25 bags are required. The explanation reaches 25, but 25 is absent from the options and the configured key is 28."},
+    {"legacyId": "Mathematics#339", "type": "explanation_typo", "notes": "The answer a = 4 is correct, but Step 2 says 'b = 4' instead of 'a = 4'."}
+  ],
+  "summary": {
+    "answerVerdicts": {"correct": 361, "incorrect_key": 2, "invalid": 4, "ambiguous": 3},
+    "explanationVerdicts": {"adequate": 365, "incorrect": 4, "minor_edit": 1},
+    "formattingVerdicts": {"legacy_markup_cleanup": 370},
+    "missingIndependentAnswers": 0
+  }
+}

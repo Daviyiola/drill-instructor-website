@@ -6,7 +6,7 @@ export default function BrandLogo({ size = 42 }: { size?: number }) {
       aria-label="Drill Instructor logo"
     >
       <img
-        src="/boots.png"
+        src="/DI_logo.png"
         alt="Drill Instructor logo"
         className="h-full w-full object-contain"
       />

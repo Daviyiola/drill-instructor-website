@@ -1,0 +1,52 @@
+{
+  "formatVersion": 1,
+  "datasetVersion": "2026.08.4",
+  "bootcamp": "act",
+  "subject": "Science",
+  "reviewer": "Codex",
+  "reviewMethod": "Full consistency review against each passage, visual data, answer choices, configured key, and explanation, followed by a separate adversarial ambiguity pass",
+  "blindReviewStatus": "not_independently_blinded",
+  "batchSize": 20,
+  "questionCount": 168,
+  "status": "complete",
+  "applicationStatus": {
+    "status": "no_corrections_required",
+    "source": "functions/data/actData.js",
+    "published": false
+  },
+  "secondPass": {
+    "status": "complete_no_additional_findings",
+    "method": "Adversarial verification of calculations, visual-data claims, interpolation assumptions, experimental design, scientific conclusions, and conflicting viewpoints; configured keys were already known",
+    "blindReviewStatus": "not_independently_blinded",
+    "verifiedAgainstDatasetVersion": "2026.08.5",
+    "keyMismatches": 0,
+    "duplicateOptionQuestions": 0,
+    "inconsistentStimulusAssetGroups": 0,
+    "missingAssets": 0
+  },
+  "independentAnswerBatches": [
+    {"firstQuestion": 1, "answerIndexes": [2, 1, 0, 0, 1, 0, 1, 0, 2, 1, 3, 1, 1, 1, 2, 1, 0, 2, 1, 0]},
+    {"firstQuestion": 21, "answerIndexes": [1, 2, 2, 0, 2, 1, 2, 1, 0, 0, 2, 2, 1, 0, 2, 0, 0, 2, 1, 3]},
+    {"firstQuestion": 41, "answerIndexes": [2, 2, 1, 0, 1, 1, 1, 2, 1, 1, 1, 0, 0, 1, 1, 0, 2, 1, 1, 0]},
+    {"firstQuestion": 61, "answerIndexes": [1, 0, 1, 0, 1, 0, 0, 2, 2, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1]},
+    {"firstQuestion": 81, "answerIndexes": [1, 0, 0, 2, 2, 0, 0, 1, 2, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1]},
+    {"firstQuestion": 101, "answerIndexes": [1, 1, 3, 1, 1, 1, 0, 0, 2, 2, 0, 1, 1, 1, 2, 2, 2, 1, 1, 1]},
+    {"firstQuestion": 121, "answerIndexes": [1, 1, 1, 3, 1, 1, 0, 0, 0, 1, 0, 2, 1, 0, 0, 1, 0, 2, 2, 2]},
+    {"firstQuestion": 141, "answerIndexes": [1, 1, 1, 0, 2, 1, 2, 2, 1, 0, 2, 2, 0, 2, 2, 0, 2, 1, 1, 2]},
+    {"firstQuestion": 161, "answerIndexes": [2, 0, 3, 1, 3, 2, 1, 0]}
+  ],
+  "findings": [],
+  "formattingNotes": [
+    {
+      "type": "outer_whitespace",
+      "questions": ["Science#121", "Science#122", "Science#123", "Science#124", "Science#125", "Science#126", "Science#139", "Science#140", "Science#141", "Science#142", "Science#143", "Science#144", "Science#145", "Science#146", "Science#147", "Science#148", "Science#149", "Science#150"],
+      "notes": "Shared passage text has leading or trailing whitespace; this is non-academic and does not affect grading or meaning."
+    }
+  ],
+  "summary": {
+    "answerVerdicts": {"correct": 168, "incorrect_key": 0, "invalid": 0, "ambiguous": 0},
+    "explanationVerdicts": {"adequate": 168, "incorrect": 0, "minor_edit": 0},
+    "missingIndependentAnswers": 0,
+    "academicCorrectionsRequired": 0
+  }
+}

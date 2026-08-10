@@ -1,0 +1,61 @@
+{
+  "formatVersion": 1,
+  "datasetVersion": "2026.08.4",
+  "bootcamp": "act",
+  "subject": "English",
+  "reviewer": "Codex",
+  "reviewMethod": "Full contextual review followed by an adversarial ambiguity pass over rhetoric and organization items; configured keys were visible during the initial consistency pass",
+  "blindReviewStatus": "not_independently_blinded",
+  "batchSize": 20,
+  "questionCount": 100,
+  "status": "complete",
+  "applicationStatus": {
+    "status": "applied",
+    "appliedToDatasetVersion": "2026.08.5",
+    "source": "functions/data/actData.js",
+    "published": false
+  },
+  "reviewAnswerBatches": [
+    {"firstQuestion": 1, "answerIndexes": [1, 1, 1, 2, 3, 2, 2, 2, 0, 1, 1, 1, 1, 3, 2, 1, 0, 0, 1, 1]},
+    {"firstQuestion": 21, "answerIndexes": [2, 3, 1, 3, 0, 3, 2, 0, 1, 3, 2, 3, 0, 1, 1, 2, 2, 2, 3, 1]},
+    {"firstQuestion": 41, "answerIndexes": [0, 1, 2, 1, 3, 2, 1, 0, 1, 0, 1, 0, 2, 1, 2, 3, 1, 2, 1, 1]},
+    {"firstQuestion": 61, "answerIndexes": [3, 3, 1, 2, 2, 3, 1, 1, 1, 1, 1, 2, 0, 1, 1, 1, 1, 2, 1, 1]},
+    {"firstQuestion": 81, "answerIndexes": [3, 2, 0, 1, 1, 2, 2, 2, 1, 1, 2, 3, 0, 1, 1, 1, 2, 1, 3, 3]}
+  ],
+  "findings": [
+    {
+      "legacyId": "English#8",
+      "type": "invalid_item",
+      "notes": "The controlled storage temperature is relevant to the paragraph's procedures for making returned seeds dependable, but none of the current No choices states that rationale. The configured deletion rationale is therefore not defensible."
+    },
+    {
+      "legacyId": "English#35",
+      "type": "ambiguous_relationship",
+      "notes": "Both but and so can logically connect the detailed design with residents' concern about its narrow lines. The current context does not make the configured contrast uniquely best."
+    },
+    {
+      "legacyId": "English#74",
+      "type": "ambiguous_placement",
+      "notes": "The diagram-label sentence works coherently at Point A before the mechanism is explained and at Point B after the separate motions are described."
+    },
+    {
+      "legacyId": "English#79",
+      "type": "wording_redundancy",
+      "notes": "The intended keyed replacement nearly restates the preceding sentence about transforming a private collection into evidence residents can use to study neighborhood change."
+    }
+  ],
+  "formattingNotes": [
+    {
+      "type": "outer_whitespace",
+      "questions": ["English#85"],
+      "field": "option2",
+      "notes": "The option has leading or trailing whitespace; this is non-academic and does not affect grading or meaning."
+    }
+  ],
+  "summary": {
+    "answerVerdicts": {"correct": 97, "incorrect_key": 0, "invalid": 1, "ambiguous": 2},
+    "explanationVerdicts": {"adequate": 97, "incorrect": 0, "minor_edit": 3},
+    "missingIndependentAnswers": 0,
+    "academicCorrectionsRequired": 4
+  }
+}

@@ -5,7 +5,7 @@ export const metadata = {
   description: "Privacy Policy for Drill Instructor.",
 };
 
-const sections = [
+export const sections = [
   {
     title: "1. Scope of This Policy",
     body: [
@@ -151,7 +151,7 @@ const sections = [
   {
     title: "17. Contact Us",
     body: [
-      "For privacy questions or requests, contact Davola Technologies LLC at hello@drillinstructor.app.",
+      "For privacy questions or requests, contact Davola Technologies LLC at hello@davolatechnologies.com.",
     ],
   },
 ];
@@ -160,7 +160,7 @@ export default function PrivacyPage() {
   return (
     <PageShell>
       <section className="mx-auto max-w-3xl px-5 py-16 sm:px-6">
-        <div className="text-sm font-semibold text-brand-blue">
+        <div className="text-sm font-semibold text-brand-olive">
           Privacy Policy
         </div>
 

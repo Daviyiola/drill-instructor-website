@@ -87,8 +87,8 @@ export default function HomePage() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-2xl bg-brand-navy px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+                href="/app/sign-in"
+                className="inline-flex items-center justify-center rounded-2xl bg-brand-green px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-darkolive"
               >
                 Get Started
               </Link>
@@ -158,7 +158,7 @@ export default function HomePage() {
                       key={item.subject}
                       className="flex items-center justify-between rounded-2xl bg-slate-50 px-3 py-2"
                     >
-                      <div className="text-sm font-semibold text-slate-800">
+                      <div className="text-sm font-semibold text-brand-darkolive">
                         {item.subject}
                       </div>
                       <div className="text-xs text-slate-500">
@@ -185,7 +185,7 @@ export default function HomePage() {
                       key={subject.name}
                       className="flex items-center justify-between rounded-2xl bg-slate-50 px-3 py-2"
                     >
-                      <div className="text-sm font-semibold text-slate-800">
+                      <div className="text-sm font-semibold text-brand-darkolive">
                         {subject.name}
                       </div>
                       <div className="flex items-center gap-3 text-xs text-slate-500">
@@ -201,7 +201,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-14 sm:px-6">
+      <section className="mx-auto max-w-6xl px-5 py-6 sm:px-6">
         <div className="grid gap-4 md:grid-cols-3">
           {audienceCards.map((card) => (
             <div
@@ -245,7 +245,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-6">
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-6">
         <SectionHeading
           eyebrow="How it works"
           title="Practice, review, improve"
@@ -257,7 +257,7 @@ export default function HomePage() {
               key={step.number}
               className="rounded-3xl border border-slate-200 p-6"
             >
-              <div className="text-sm font-bold text-brand-blue">
+              <div className="text-sm font-bold text-brand-olive">
                 {step.number}
               </div>
               <h3 className="mt-4 text-lg font-semibold text-slate-950">
@@ -271,8 +271,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 pb-16 sm:px-6">
-        <div className="rounded-[2rem] bg-brand-navy px-6 py-10 text-white sm:px-10">
+      <section className="mx-auto max-w-7xl px-5 pb-16 sm:px-6">
+        <div className="rounded-[2rem] bg-brand-green px-6 py-10 text-white sm:px-10">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <h2 className="text-3xl font-semibold tracking-tight">
@@ -285,7 +285,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/contact"
-              className="inline-flex justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-brand-navy hover:bg-slate-100"
+              className="inline-flex justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-brand-green hover:bg-slate-100"
             >
               Contact Us
             </Link>

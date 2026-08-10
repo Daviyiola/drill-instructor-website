@@ -1,0 +1,260 @@
+{
+  "formatVersion": 1,
+  "selectionSeed": "academic-pilot-v1",
+  "datasets": {
+    "act": "2026.08.2",
+    "sat": "2026.08.1"
+  },
+  "rubric": "docs/QUESTION_REVIEW_RUBRIC.md",
+  "reviewer": "Codex",
+  "questionCount": 20,
+  "reviews": [
+    {
+      "legacyId": "English#14",
+      "independentlyDeterminedAnswerIndex": 3,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The contrast requires However; the explanation distinguishes every distractor.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "English#26",
+      "independentlyDeterminedAnswerIndex": 3,
+      "answerVerdict": "correct",
+      "explanationVerdict": "adequate",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "medium",
+      "notes": "Naming the embankment removes the tested pronoun ambiguity and follows the immediately described structure.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "English#28",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "Planted correctly continues the paragraph's simple-past sequence.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "English#74",
+      "independentlyDeterminedAnswerIndex": 1,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "medium",
+      "notes": "Placement at B bridges the described motions and the narrator's difficulty understanding their coordination.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Mathematics#42",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "ambiguous",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "invalid",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The mathematical result is (−12, 16), but options A and B are identical.",
+      "proposedChanges": {
+        "options": {
+          "option2": "(−27/4, 9)"
+        }
+      }
+    },
+    {
+      "legacyId": "Mathematics#58",
+      "independentlyDeterminedAnswerIndex": 1,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The excess above room temperature is halved every five minutes.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Mathematics#268",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "There are 55 interior points and 19 have matching residues modulo 3.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Mathematics#294",
+      "independentlyDeterminedAnswerIndex": 1,
+      "answerVerdict": "ambiguous",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "invalid",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The perimeter is 55 + 5√33, but options B and D are identical.",
+      "proposedChanges": {
+        "options": {
+          "option4": "55 + 5√17"
+        }
+      }
+    },
+    {
+      "legacyId": "Science#33",
+      "independentlyDeterminedAnswerIndex": 1,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "Researchers A and D reproduce all three module-output mappings in the introduction.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Science#86",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "adequate",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The passage directly identifies fertilizer concentration as the varied factor.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Science#111",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "adequate",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "Period 2 is closest to the 28°C reference line among the listed choices.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Science#156",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "At every fixed mode, wider tubes lower the tone setting and raise the required pressure.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Math#37",
+      "independentlyDeterminedAnswerIndex": 3,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The table yields f(x) = 2x + 4, so the y-intercept is 4.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Math#50",
+      "independentlyDeterminedAnswerIndex": null,
+      "answerVerdict": "incorrect",
+      "explanationVerdict": "incorrect",
+      "wordingVerdict": "invalid",
+      "formattingVerdict": "blocking",
+      "confidence": "high",
+      "notes": "√(13/5) is greater than 1 and cannot be a cosine. The explanation silently changes it to √13/5, which is not an exact option.",
+      "proposedChanges": {
+        "question": "In right triangle PQR, angles P and Q are complementary. If cos(P) = √13/5, what is sin(Q)?",
+        "options": {
+          "option1": "√13/5"
+        },
+        "correctAnswer": "√13/5",
+        "explanation": "Because P and Q are complementary, sin(Q) = cos(P). Therefore, sin(Q) = √13/5."
+      }
+    },
+    {
+      "legacyId": "Math#166",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The mathematics is correct; the stored answer uses a hyphen while the option uses the Unicode minus sign.",
+      "proposedChanges": {
+        "correctAnswer": "−1"
+      }
+    },
+    {
+      "legacyId": "Math#171",
+      "independentlyDeterminedAnswerIndex": 1,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The mathematics is correct; the stored answer uses Unicode minus while the matching option uses a hyphen.",
+      "proposedChanges": {
+        "options": {
+          "option2": "−1"
+        }
+      }
+    },
+    {
+      "legacyId": "Read. & Writ.#25",
+      "independentlyDeterminedAnswerIndex": null,
+      "answerVerdict": "incorrect",
+      "explanationVerdict": "incorrect",
+      "wordingVerdict": "invalid",
+      "formattingVerdict": "clean",
+      "confidence": "high",
+      "notes": "However is a conjunctive adverb and does not make the opening dependent clause needed before the comma; every option leaves a comma splice.",
+      "proposedChanges": {
+        "options": {
+          "option3": "Although"
+        },
+        "correctAnswer": "Although",
+        "explanation": "Although correctly introduces a dependent clause that contrasts improved measurements with the delayed boundary adjustment. The comma then properly separates that clause from the main clause."
+      }
+    },
+    {
+      "legacyId": "Read. & Writ.#98",
+      "independentlyDeterminedAnswerIndex": 1,
+      "answerVerdict": "correct",
+      "explanationVerdict": "adequate",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "Individuals is the plural subject required by misjudge.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Read. & Writ.#103",
+      "independentlyDeterminedAnswerIndex": 1,
+      "answerVerdict": "correct",
+      "explanationVerdict": "adequate",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The comma already following the blank opens the nonessential appositive.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Read. & Writ.#115",
+      "independentlyDeterminedAnswerIndex": 2,
+      "answerVerdict": "correct",
+      "explanationVerdict": "adequate",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The passage introduces behavioral economics and contrasts it with traditional assumptions.",
+      "proposedChanges": null
+    }
+  ]
+}

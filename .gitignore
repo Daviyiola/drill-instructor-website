@@ -3,3 +3,28 @@ node_modules
 out
 .env*.local
 .DS_Store
+tsconfig.tsbuildinfo
+
+# The Felgo client is maintained in its own Git repository. It remains nested
+# locally because the content publishing tools generate its bundled free pack.
+/Drill_Instructor/
+
+# Felgo / Qt generated output
+Drill_Instructor/build/
+Drill_Instructor/CMakeLists.txt.user
+
+# Firebase production exports and local emulator data
+Firebase/*-export.json
+firebase-export-*/
+.firebase/
+.firebase-config/
+
+# Local logs and generated diagnostics
+*.log
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Reproducible immutable content-pack build artifacts
+.content-packs/
+.question-audits/

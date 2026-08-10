@@ -28,8 +28,8 @@ export default function SiteHeader() {
         </nav>
 
         <Link
-          href="/contact"
-          className="rounded-2xl bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+          href="/app/sign-in"
+          className="rounded-2xl bg-brand-green px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-darkolive"
         >
           Get Started
         </Link>

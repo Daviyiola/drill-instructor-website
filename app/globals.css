@@ -1,6 +1,99 @@
 @import "tailwindcss";
 
+@keyframes di-account-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.di-account-menu-in {
+  animation: di-account-menu-enter 160ms ease-out both;
+  transform-origin: top right;
+}
+
+.di-range {
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+}
+
+.di-range::-webkit-slider-runnable-track {
+  height: 2rem;
+  background: transparent;
+}
+
+.di-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-top: 0.325rem;
+  border: 3px solid #4b5320;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 2px 7px rgb(15 23 42 / 18%);
+  cursor: grab;
+  pointer-events: auto;
+}
+
+.di-range::-moz-range-track {
+  height: 2rem;
+  background: transparent;
+}
+
+.di-range::-moz-range-thumb {
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 3px solid #4b5320;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 2px 7px rgb(15 23 42 / 18%);
+  cursor: grab;
+  pointer-events: auto;
+}
+
+@keyframes di-loading-sweep {
+  0% {
+    transform: translateX(-115%);
+  }
+  100% {
+    transform: translateX(255%);
+  }
+}
+
+.di-loading-sweep {
+  animation: di-loading-sweep 1.15s ease-in-out infinite alternate;
+}
+
+@keyframes di-educator-drill-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.di-educator-drill-in {
+  animation: di-educator-drill-in 450ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .di-loading-sweep {
+    animation-duration: 2.5s;
+  }
+}
+
 @theme {
+  --color-brand-green: #4B5320;
+  --color-brand-darkolive: #414131;
+  --color-brand-olive: #6B6B4D;
   --color-brand-navy: #17324D;
   --color-brand-blue: #2563EB;
   --color-brand-gold: #E8B44B;
@@ -21,6 +114,19 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
+}
+
+.di-app .font-black,
+.di-app .font-extrabold {
+  font-weight: 700;
+}
+
+.di-app .font-bold {
+  font-weight: 600;
+}
+
+.di-app .font-semibold {
+  font-weight: 500;
 }
 
 ::selection {

@@ -1,45 +1,67 @@
-# Drill Instructor Website
+# Drill Instructor
 
-A lightweight Next.js marketing website for Drill Instructor.
+The Drill Instructor web application and Firebase backend.
 
-## Pages included
+## Repository boundary
 
-- `/` — student/parent-first landing page
-- `/schools` — school and educator page
-- `/pricing` — simple pricing placeholder
-- `/contact` — contact/demo page with visual-only form
-- `/privacy` — privacy policy placeholder
-- `/terms` — terms of use placeholder
+This repository contains:
 
-## Getting started
+- The Next.js marketing site and authenticated student/educator web app.
+- Firebase Functions and canonical question-bank data under `functions/`.
+- Firebase configuration, RTDB rules, and rules tests.
+- Web assets and content publishing scripts.
+
+The Felgo native client is maintained in the separate
+`drill_instructor_app` repository. For integrated local development, clone that
+repository into `Drill_Instructor/` inside this workspace. The directory is
+ignored by this repository, so its files and build output are never included in
+web commits or Vercel deployments.
+
+Some content-pack build checks and the bundled-free-pack generator expect that
+local two-repository layout:
+
+```text
+drill-instructor-website/
+  functions/
+  app/
+  Drill_Instructor/       # separate drill_instructor_app Git checkout
+```
+
+The normal web build does not require the native checkout.
+
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open:
+Open `http://localhost:3000`.
 
-```txt
-http://localhost:3000
+Copy `.env.example` to `.env.local` and populate the public Firebase web
+configuration. Keep server credentials in Firebase Functions secrets; do not
+place Stripe, Resend, support-email, or other server secrets in `.env.local`.
+
+## Validation
+
+Run the production web build before publishing:
+
+```bash
+npm run build
 ```
 
-## Before publishing
+Firebase Functions, content releases, and rules have their own commands and
+deployment lifecycle. Deploying the Next.js application to Vercel does not
+deploy Firebase Functions or Firebase rules.
 
-Update these placeholders:
+## Vercel
 
-- `hello@drillinstructor.app`
-- pricing details
-- privacy policy details
-- terms of use details
-- app store links when available
-- contact form backend
+Connect Vercel to this repository, keep the project root at the repository
+root, and add the `NEXT_PUBLIC_FIREBASE_*` values from `.env.local` to the
+Vercel project environment variables. Do not upload `.env.local`.
 
-## Suggested deployment
+Vercel should use the standard commands:
 
-Deploy to Vercel, Netlify, or any host that supports Next.js.
-
-
-## Tailwind note
-
-This project is wired for Tailwind CSS v4 using `@tailwindcss/postcss` and CSS theme tokens in `app/globals.css`.
+- Install: `npm install`
+- Build: `npm run build`
+- Framework preset: Next.js

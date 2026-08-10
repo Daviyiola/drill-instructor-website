@@ -22,7 +22,7 @@ export default function SchoolsPage() {
       <section className="bg-gradient-to-b from-brand-mist to-white">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 lg:py-20">
           <div className="max-w-3xl">
-            <div className="text-sm font-semibold text-brand-blue">For Schools & Educators</div>
+            <div className="text-sm font-semibold text-brand-olive">For Schools & Educators</div>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
               Organized practice for classrooms, groups, and school programs.
             </h1>
@@ -30,7 +30,7 @@ export default function SchoolsPage() {
               Drill Instructor helps schools support test preparation with focused student practice, educator assignments, group management, and simple access control.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/contact" className="rounded-2xl bg-brand-navy px-5 py-3 text-center text-sm font-semibold text-white hover:bg-slate-800">
+              <Link href="/contact" className="rounded-2xl bg-brand-green px-5 py-3 text-center text-sm font-semibold text-white hover:bg-brand-darkolive">
                 Request School Info
               </Link>
               <Link href="/pricing" className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-center text-sm font-semibold text-slate-900 hover:bg-slate-50">
