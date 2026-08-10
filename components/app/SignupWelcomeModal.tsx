@@ -56,7 +56,7 @@ export default function SignupWelcomeModal({
             type="button"
             autoFocus
             onClick={onClose}
-            className="min-h-12 w-full rounded-2xl border border-slate-900 bg-white px-6 text-sm font-semibold text-slate-950 transition hover:bg-slate-950 hover:text-white focus:outline-none focus:ring-4 focus:ring-brand-green/20"
+            className="min-h-12 w-full rounded-2xl border border-slate-900 bg-white px-6 text-sm font-semibold text-slate-950 transition hover:bg-brand-green hover:text-white focus:outline-none focus:ring-4 focus:ring-brand-green/20"
           >
             CLOSE
           </button>
