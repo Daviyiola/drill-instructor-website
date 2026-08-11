@@ -3,6 +3,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {blockSetsFor, isBlockedBySets} = require("./_socialPolicy");
 
 /**
  * @typedef {import("firebase-admin").database.Database} Database
@@ -80,7 +81,11 @@ exports.handler = async function handler(req, res) {
         .once("value");
 
     const obj = snap.val() || {};
-    const memberIds = Object.keys(obj).filter((k) => obj[k] === true);
+    const blockSets = await blockSetsFor(db, customId);
+    const memberIds = Object.keys(obj).filter((k) =>
+      obj[k] === true &&
+      (k === customId || !isBlockedBySets(blockSets, k)),
+    );
 
     if (memberIds.indexOf(customId) < 0) {
       memberIds.unshift(customId);

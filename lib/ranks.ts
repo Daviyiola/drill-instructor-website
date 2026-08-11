@@ -13,7 +13,7 @@ export const ranks: RankDefinition[] = [
     minimum: 0,
     nextMinimum: 100,
     description:
-      "Training has begun. Build discipline, learn the test structure, and master the foundations.",
+      "Training has begun. Every answered question starts building a record of practice, discipline, and persistence.",
   },
   {
     name: "Corporal",
@@ -21,7 +21,7 @@ export const ranks: RankDefinition[] = [
     minimum: 100,
     nextMinimum: 250,
     description:
-      "Consistency is forming. Foundational concepts are becoming more accurate and controlled.",
+      "Consistency is forming. Practice is becoming a habit and meaningful momentum is beginning to build.",
   },
   {
     name: "Sergeant",
@@ -29,7 +29,7 @@ export const ranks: RankDefinition[] = [
     minimum: 250,
     nextMinimum: 450,
     description:
-      "Performance is becoming reliable under time pressure with fewer tactical errors.",
+      "The training record is growing through continued answering, reviewing, and returning to difficult areas.",
   },
   {
     name: "Warrant Officer",
@@ -37,7 +37,7 @@ export const ranks: RankDefinition[] = [
     minimum: 450,
     nextMinimum: 800,
     description:
-      "Technical skill is evident across more advanced questions and unfamiliar situations.",
+      "A meaningful body of practice has been completed across a broader range of questions.",
   },
   {
     name: "Lieutenant",
@@ -45,7 +45,7 @@ export const ranks: RankDefinition[] = [
     minimum: 800,
     nextMinimum: 1300,
     description:
-      "Strategic awareness is strong. Time and test plans are managed with confidence.",
+      "Sustained effort has earned this promotion through continued, purposeful training.",
   },
   {
     name: "Captain",
@@ -53,7 +53,7 @@ export const ranks: RankDefinition[] = [
     minimum: 1300,
     nextMinimum: 1950,
     description:
-      "Battle readiness is clear across longer drills and demanding testing conditions.",
+      "A steady practice habit has taken shape with substantial training experience accumulated.",
   },
   {
     name: "Major",
@@ -61,7 +61,7 @@ export const ranks: RankDefinition[] = [
     minimum: 1950,
     nextMinimum: 3000,
     description:
-      "Preparation is deliberate. Weaknesses are identified early and tactics adjust quickly.",
+      "Practice is deliberate and sustained, reflecting serious commitment to continued preparation.",
   },
   {
     name: "Colonel",
@@ -69,7 +69,7 @@ export const ranks: RankDefinition[] = [
     minimum: 3000,
     nextMinimum: 4500,
     description:
-      "High readiness achieved across varied question types and testing conditions.",
+      "Extensive training has been completed through a long record of disciplined practice.",
   },
   {
     name: "Major General",
@@ -77,14 +77,14 @@ export const ranks: RankDefinition[] = [
     minimum: 4500,
     nextMinimum: 7000,
     description:
-      "Elite preparation is confirmed with near-exam speed, accuracy, and control.",
+      "Exceptional consistency has been demonstrated while approaching the highest practice rank.",
   },
   {
     name: "General",
     number: 10,
     minimum: 7000,
     description:
-      "Fully battle ready. Mastery, composure, and peak execution are the standard.",
+      "The highest practice rank, representing sustained commitment and an exceptional training record.",
   },
 ];
 
@@ -103,4 +103,10 @@ export function rankForUnitScore(score: number) {
 
 export function rankImage(number: number) {
   return `/app-assets/ranks/Rank${Math.min(10, Math.max(1, number))}.png`;
+}
+
+export function unitRankImage(number: number) {
+  const tier = Math.min(10, Math.max(1, Number(number) || 1));
+  const imageNumber = tier === 10 ? 10 : tier + 10;
+  return `/app-assets/ranks/Rank${imageNumber}.png`;
 }

@@ -1,0 +1,208 @@
+{
+  "assumptions": {
+    "scenario_accuracy": 0.7,
+    "one_bootcamp_questions_per_day": 20,
+    "two_bootcamp_questions_per_day": 40,
+    "practice_days_per_week": 5,
+    "free_session_allowance": 20,
+    "free_points_ceiling": 2000
+  },
+  "journey": [
+    {
+      "rank": "Recruit",
+      "threshold": 0,
+      "promotion_gap": 0,
+      "attempts_for_gap_at_70pct": 0,
+      "one_bootcamp_practice_days": 0,
+      "one_bootcamp_calendar_weeks_at_5d": 0,
+      "two_bootcamp_practice_days": 0,
+      "two_bootcamp_calendar_weeks_at_5d": 0
+    },
+    {
+      "rank": "Corporal",
+      "threshold": 100,
+      "promotion_gap": 100,
+      "attempts_for_gap_at_70pct": 42,
+      "one_bootcamp_practice_days": 3,
+      "one_bootcamp_calendar_weeks_at_5d": 0.6,
+      "two_bootcamp_practice_days": 2,
+      "two_bootcamp_calendar_weeks_at_5d": 0.4
+    },
+    {
+      "rank": "Sergeant",
+      "threshold": 250,
+      "promotion_gap": 150,
+      "attempts_for_gap_at_70pct": 63,
+      "one_bootcamp_practice_days": 6,
+      "one_bootcamp_calendar_weeks_at_5d": 1.2,
+      "two_bootcamp_practice_days": 3,
+      "two_bootcamp_calendar_weeks_at_5d": 0.6
+    },
+    {
+      "rank": "Warrant Officer",
+      "threshold": 450,
+      "promotion_gap": 200,
+      "attempts_for_gap_at_70pct": 84,
+      "one_bootcamp_practice_days": 10,
+      "one_bootcamp_calendar_weeks_at_5d": 2.0,
+      "two_bootcamp_practice_days": 5,
+      "two_bootcamp_calendar_weeks_at_5d": 1.0
+    },
+    {
+      "rank": "Lieutenant",
+      "threshold": 800,
+      "promotion_gap": 350,
+      "attempts_for_gap_at_70pct": 146,
+      "one_bootcamp_practice_days": 17,
+      "one_bootcamp_calendar_weeks_at_5d": 3.4,
+      "two_bootcamp_practice_days": 9,
+      "two_bootcamp_calendar_weeks_at_5d": 1.8
+    },
+    {
+      "rank": "Captain",
+      "threshold": 1300,
+      "promotion_gap": 500,
+      "attempts_for_gap_at_70pct": 209,
+      "one_bootcamp_practice_days": 28,
+      "one_bootcamp_calendar_weeks_at_5d": 5.6,
+      "two_bootcamp_practice_days": 14,
+      "two_bootcamp_calendar_weeks_at_5d": 2.8
+    },
+    {
+      "rank": "Major",
+      "threshold": 1950,
+      "promotion_gap": 650,
+      "attempts_for_gap_at_70pct": 271,
+      "one_bootcamp_practice_days": 41,
+      "one_bootcamp_calendar_weeks_at_5d": 8.2,
+      "two_bootcamp_practice_days": 21,
+      "two_bootcamp_calendar_weeks_at_5d": 4.2
+    },
+    {
+      "rank": "Colonel",
+      "threshold": 3000,
+      "promotion_gap": 1050,
+      "attempts_for_gap_at_70pct": 438,
+      "one_bootcamp_practice_days": 63,
+      "one_bootcamp_calendar_weeks_at_5d": 12.6,
+      "two_bootcamp_practice_days": 32,
+      "two_bootcamp_calendar_weeks_at_5d": 6.4
+    },
+    {
+      "rank": "Major General",
+      "threshold": 4500,
+      "promotion_gap": 1500,
+      "attempts_for_gap_at_70pct": 625,
+      "one_bootcamp_practice_days": 94,
+      "one_bootcamp_calendar_weeks_at_5d": 18.8,
+      "two_bootcamp_practice_days": 47,
+      "two_bootcamp_calendar_weeks_at_5d": 9.4
+    },
+    {
+      "rank": "General",
+      "threshold": 7000,
+      "promotion_gap": 2500,
+      "attempts_for_gap_at_70pct": 1042,
+      "one_bootcamp_practice_days": 146,
+      "one_bootcamp_calendar_weeks_at_5d": 29.2,
+      "two_bootcamp_practice_days": 73,
+      "two_bootcamp_calendar_weeks_at_5d": 14.6
+    }
+  ],
+  "accuracy_sensitivity": [
+    {
+      "accuracy_pct": 0,
+      "points_per_attempt": 1.0,
+      "attempts_to_general": 7000,
+      "days_at_20_questions": 350,
+      "days_at_40_questions": 175
+    },
+    {
+      "accuracy_pct": 50,
+      "points_per_attempt": 2.0,
+      "attempts_to_general": 3500,
+      "days_at_20_questions": 175,
+      "days_at_40_questions": 88
+    },
+    {
+      "accuracy_pct": 70,
+      "points_per_attempt": 2.4,
+      "attempts_to_general": 2917,
+      "days_at_20_questions": 146,
+      "days_at_40_questions": 73
+    },
+    {
+      "accuracy_pct": 80,
+      "points_per_attempt": 2.6,
+      "attempts_to_general": 2693,
+      "days_at_20_questions": 135,
+      "days_at_40_questions": 68
+    },
+    {
+      "accuracy_pct": 90,
+      "points_per_attempt": 2.8,
+      "attempts_to_general": 2500,
+      "days_at_20_questions": 125,
+      "days_at_40_questions": 63
+    },
+    {
+      "accuracy_pct": 100,
+      "points_per_attempt": 3.0,
+      "attempts_to_general": 2334,
+      "days_at_20_questions": 117,
+      "days_at_40_questions": 59
+    }
+  ],
+  "workload_sensitivity": [
+    {
+      "questions_per_day": 10,
+      "answering_minutes_at_90_sec_each": 15,
+      "practice_and_review_minutes_at_2_min_each": 20,
+      "practice_days_to_general": 292,
+      "calendar_weeks_at_5d": 58.4
+    },
+    {
+      "questions_per_day": 20,
+      "answering_minutes_at_90_sec_each": 30,
+      "practice_and_review_minutes_at_2_min_each": 40,
+      "practice_days_to_general": 146,
+      "calendar_weeks_at_5d": 29.2
+    },
+    {
+      "questions_per_day": 40,
+      "answering_minutes_at_90_sec_each": 60,
+      "practice_and_review_minutes_at_2_min_each": 80,
+      "practice_days_to_general": 73,
+      "calendar_weeks_at_5d": 14.6
+    },
+    {
+      "questions_per_day": 80,
+      "answering_minutes_at_90_sec_each": 120,
+      "practice_and_review_minutes_at_2_min_each": 160,
+      "practice_days_to_general": 37,
+      "calendar_weeks_at_5d": 7.4
+    }
+  ],
+  "free_account_examples": [
+    {
+      "questions_per_session": 10,
+      "expected_points_after_free_sessions": 480,
+      "expected_rank_after_free_sessions": "Warrant Officer"
+    },
+    {
+      "questions_per_session": 20,
+      "expected_points_after_free_sessions": 960,
+      "expected_rank_after_free_sessions": "Lieutenant"
+    },
+    {
+      "questions_per_session": 40,
+      "expected_points_after_free_sessions": 1920,
+      "expected_rank_after_free_sessions": "Captain"
+    },
+    {
+      "questions_per_session": 80,
+      "expected_points_after_free_sessions": 2000,
+      "expected_rank_after_free_sessions": "Major"
+    }
+  ]
+}

@@ -121,6 +121,13 @@ export interface StudentAnalytics {
   }>;
   subjectFocusAreas: StudentAnalytics["focusAreas"];
   moduleFocusAreas: StudentAnalytics["focusAreas"];
+  diriPreference: {
+    selectedSubjects: string[];
+    availableSubjects: string[];
+    minimumSubjects: number;
+    maximumSubjects: number;
+    configured: boolean;
+  };
   readiness: {
     status: "insufficient_data" | "estimated";
     score: number | null;
@@ -129,6 +136,8 @@ export interface StudentAnalytics {
     contributingAttempts: number;
     requiredAttempts: number;
     includedSubjects: string[];
+    selectedSubjects?: string[];
+    subjectEvidence?: Array<{subject: string; attempted: number}>;
     formulaVersion: string;
     pillars: null | {
       performance: number;

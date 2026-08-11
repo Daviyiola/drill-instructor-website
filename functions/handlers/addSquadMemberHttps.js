@@ -3,6 +3,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {blockRelationship} = require("./_socialPolicy");
 
 /**
  * @typedef {import("firebase-admin").database.Database} Database
@@ -130,6 +131,14 @@ exports.handler = async function handler(req, res) {
     const memberId = normalizeCustomId(body.memberId);
 
     if (!memberId) return bad(res, 400, "INVALID_ARGUMENT", ["memberId"]);
+    if (memberId === myCustomId) {
+      return res.status(200).json({ok: true, memberId, state: "already"});
+    }
+
+    const relationship = await blockRelationship(db, myCustomId, memberId);
+    if (relationship.blocked) {
+      return bad(res, 404, "STUDENT_UNAVAILABLE");
+    }
 
     // Optional: enforce only students can be added (based on /roles)
     const roleSnap = await db.ref("roles/" + memberId).once("value");
@@ -143,7 +152,7 @@ exports.handler = async function handler(req, res) {
         .ref("users/" + memberId + "/profilePermissions")
         .once("value");
     if (permSnap.val() !== true) {
-      return bad(res, 403, "PERMISSION_DENIED", ["Profile not searchable"]);
+      return bad(res, 404, "STUDENT_UNAVAILABLE");
     }
 
     // Keep squad size reasonable

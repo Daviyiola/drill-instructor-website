@@ -1,0 +1,1473 @@
+{
+  "generatedAt": "2026-08-11T06:32:31.205Z",
+  "simulationNow": "2026-08-11T12:00:00.000Z",
+  "formulaVersion": "diri-3.1",
+  "catalogs": {
+    "act": [
+      {
+        "name": "English",
+        "moduleCount": 13,
+        "practiceTestCount": 2,
+        "questionCount": 100
+      },
+      {
+        "name": "Mathematics",
+        "moduleCount": 15,
+        "practiceTestCount": 9,
+        "questionCount": 370
+      },
+      {
+        "name": "Science",
+        "moduleCount": 6,
+        "practiceTestCount": 5,
+        "questionCount": 168
+      }
+    ],
+    "sat": [
+      {
+        "name": "Read. & Writ.",
+        "moduleCount": 11,
+        "practiceTestCount": 3,
+        "questionCount": 120
+      },
+      {
+        "name": "Math",
+        "moduleCount": 13,
+        "practiceTestCount": 5,
+        "questionCount": 180
+      }
+    ]
+  },
+  "breakpoints": {
+    "evidence": {
+      "overallAttempts": 100,
+      "focusedAttempts": 40,
+      "windowDays": 90
+    },
+    "confidence": {
+      "initialAtMinimumOverall": 0.65,
+      "maximumAttempts": 450,
+      "calculation": "min(1, 0.55 + attempted / 1000)"
+    },
+    "consistency": {
+      "volumeMaximumAttempts": 500,
+      "activeDaysMaximum": 24,
+      "recencyPointsLostPerDay": 2.5,
+      "recencyReachesZeroDays": 40
+    },
+    "coverage": {
+      "meaningfulSubjectAttempts": 10,
+      "additionalSubjectEveryAttempts": 40,
+      "meaningfulModuleAttempts": 5,
+      "additionalModuleEverySubjectAttempts": 20,
+      "additionalPracticeTestEverySubjectSessions": 5
+    }
+  },
+  "weightModels": [
+    {
+      "id": "current-40-30-30",
+      "performance": 0.4,
+      "consistency": 0.3,
+      "coverage": 0.3
+    },
+    {
+      "id": "balanced-50-25-25",
+      "performance": 0.5,
+      "consistency": 0.25,
+      "coverage": 0.25
+    },
+    {
+      "id": "performance-60-20-20",
+      "performance": 0.6,
+      "consistency": 0.2,
+      "coverage": 0.2
+    }
+  ],
+  "theoreticalAccuracyFloors": [
+    {
+      "model": "current-40-30-30",
+      "target": 85,
+      "minAccuracyWithCurrentPerformance": 53.1,
+      "minAccuracyWithPenaltyOnlyPacing": 62.5
+    },
+    {
+      "model": "current-40-30-30",
+      "target": 90,
+      "minAccuracyWithCurrentPerformance": 68.7,
+      "minAccuracyWithPenaltyOnlyPacing": 75
+    },
+    {
+      "model": "balanced-50-25-25",
+      "target": 85,
+      "minAccuracyWithCurrentPerformance": 62.5,
+      "minAccuracyWithPenaltyOnlyPacing": 70
+    },
+    {
+      "model": "balanced-50-25-25",
+      "target": 90,
+      "minAccuracyWithCurrentPerformance": 75,
+      "minAccuracyWithPenaltyOnlyPacing": 80
+    },
+    {
+      "model": "performance-60-20-20",
+      "target": 85,
+      "minAccuracyWithCurrentPerformance": 68.8,
+      "minAccuracyWithPenaltyOnlyPacing": 75
+    },
+    {
+      "model": "performance-60-20-20",
+      "target": 90,
+      "minAccuracyWithCurrentPerformance": 79.2,
+      "minAccuracyWithPenaltyOnlyPacing": 83.3
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "insufficient-99",
+      "label": "99 attempts at 90% accuracy",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 99,
+        "accuracy": 90,
+        "sessions": 5,
+        "activeDays": 5,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "insufficient_data",
+        "score": null,
+        "confidence": 0.99,
+        "contributingAttempts": 99,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": null
+      }
+    },
+    {
+      "id": "minimum-balanced",
+      "label": "Minimum evidence, balanced, one fresh session",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 100,
+        "accuracy": 90,
+        "sessions": 1,
+        "activeDays": 1,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 83.3,
+        "band": "Almost",
+        "confidence": 0.65,
+        "contributingAttempts": 100,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 54.9,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "minimum-narrow",
+      "label": "Minimum evidence, one subject/module/test",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 100,
+        "accuracy": 90,
+        "sessions": 1,
+        "activeDays": 1,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "Mathematics"
+        ],
+        "moduleBreadth": 1,
+        "testBreadth": 1,
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 61.5,
+        "band": "Building",
+        "confidence": 0.65,
+        "contributingAttempts": 100,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "Mathematics"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 54.9,
+          "coverage": 27.6
+        }
+      }
+    },
+    {
+      "id": "balanced-200",
+      "label": "Balanced 90%, 200 questions across 10 days",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 200,
+        "accuracy": 90,
+        "sessions": 10,
+        "activeDays": 10,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 88.7,
+        "band": "Ready",
+        "confidence": 0.75,
+        "contributingAttempts": 200,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 73,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "balanced-300",
+      "label": "Balanced 90%, 300 questions across 15 days",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 300,
+        "accuracy": 90,
+        "sessions": 15,
+        "activeDays": 15,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 91.8,
+        "band": "Ready",
+        "confidence": 0.85,
+        "contributingAttempts": 300,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "balanced-500",
+      "label": "Balanced 90%, 500 questions across 24 days",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 24,
+        "activeDays": 24,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 96.8,
+        "band": "Ready",
+        "confidence": 1,
+        "contributingAttempts": 500,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 100,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "accuracy-70-max",
+      "label": "Balanced 70%, maximum consistency and coverage",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 500,
+        "accuracy": 70,
+        "sessions": 24,
+        "activeDays": 24,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 90.4,
+        "band": "Ready",
+        "confidence": 1,
+        "contributingAttempts": 500,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 76,
+          "consistency": 100,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "accuracy-80-max",
+      "label": "Balanced 80%, maximum consistency and coverage",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 500,
+        "accuracy": 80,
+        "sessions": 24,
+        "activeDays": 24,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 93.6,
+        "band": "Ready",
+        "confidence": 1,
+        "contributingAttempts": 500,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 84,
+          "consistency": 100,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "accuracy-85-max",
+      "label": "Balanced 85%, maximum consistency and coverage",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 500,
+        "accuracy": 85,
+        "sessions": 24,
+        "activeDays": 24,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 95.2,
+        "band": "Ready",
+        "confidence": 1,
+        "contributingAttempts": 500,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 88,
+          "consistency": 100,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "fresh-cram",
+      "label": "Balanced 90% crammed into one day",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 1,
+        "activeDays": 1,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 86.7,
+        "band": "Ready",
+        "confidence": 1,
+        "contributingAttempts": 500,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 66.5,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "stale-60",
+      "label": "Balanced 90%, latest practice 60 days ago",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 24,
+        "activeDays": 24,
+        "latestDaysAgo": 60,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 90.8,
+        "band": "Ready",
+        "confidence": 1,
+        "contributingAttempts": 500,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 80,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "one-subject-broad",
+      "label": "90% practice confined to Mathematics",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 24,
+        "activeDays": 24,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "Mathematics"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 85.2,
+        "band": "Ready",
+        "confidence": 1,
+        "contributingAttempts": 500,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "Mathematics"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 100,
+          "coverage": 61.2
+        }
+      }
+    },
+    {
+      "id": "all-subjects-narrow",
+      "label": "90% across subjects but one module/test each",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 24,
+        "activeDays": 24,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": 1,
+        "testBreadth": 1,
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 82.2,
+        "band": "Almost",
+        "confidence": 1,
+        "contributingAttempts": 500,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 100,
+          "coverage": 51.2
+        }
+      }
+    },
+    {
+      "id": "cross-subsidized-coverage",
+      "label": "One subject's extra breadth offsets narrow practice elsewhere",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 300,
+        "accuracy": 90,
+        "sessions": 15,
+        "activeDays": 15,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": {
+          "English": "all",
+          "Mathematics": 1,
+          "Science": 1
+        },
+        "testBreadthBySubject": {
+          "English": "all",
+          "Mathematics": "all",
+          "Science": 1
+        },
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 91.8,
+        "band": "Ready",
+        "confidence": 0.85,
+        "contributingAttempts": 300,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "fast-90",
+      "label": "90% accuracy at 10 seconds per question",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 300,
+        "accuracy": 90,
+        "sessions": 15,
+        "activeDays": 15,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 10,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 91.8,
+        "band": "Ready",
+        "confidence": 0.85,
+        "contributingAttempts": 300,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "slow-90",
+      "label": "90% accuracy at 120 seconds against 60 allocated",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 300,
+        "accuracy": 90,
+        "sessions": 15,
+        "activeDays": 15,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 120,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 87.8,
+        "band": "Ready",
+        "confidence": 0.85,
+        "contributingAttempts": 300,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 82,
+          "consistency": 83.2,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "timer-generous",
+      "label": "Same slow work with a generous timer allocation",
+      "bootcamp": "act",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 300,
+        "accuracy": 90,
+        "sessions": 15,
+        "activeDays": 15,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 120,
+        "allocatedSecondsPerQuestion": 360
+      },
+      "result": {
+        "status": "estimated",
+        "score": 91.8,
+        "band": "Ready",
+        "confidence": 0.85,
+        "contributingAttempts": 300,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "English",
+          "Mathematics",
+          "Science"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "sat-balanced",
+      "label": "SAT balanced 90%, 300 questions across 15 days",
+      "bootcamp": "sat",
+      "focusedSubject": null,
+      "inputs": {
+        "attempted": 300,
+        "accuracy": 90,
+        "sessions": 15,
+        "activeDays": 15,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "Read. & Writ.",
+          "Math"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 91.8,
+        "band": "Ready",
+        "confidence": 0.85,
+        "contributingAttempts": 300,
+        "requiredAttempts": 100,
+        "includedSubjects": [
+          "Read. & Writ.",
+          "Math"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "focused-math-only-days",
+      "label": "Focused Math DIRI with Math activity only",
+      "bootcamp": "act",
+      "focusedSubject": "Mathematics",
+      "inputs": {
+        "attempted": 40,
+        "accuracy": 90,
+        "sessions": 1,
+        "activeDays": 1,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "Mathematics"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60
+      },
+      "result": {
+        "status": "estimated",
+        "score": 81.3,
+        "band": "Almost",
+        "confidence": 0.59,
+        "contributingAttempts": 40,
+        "requiredAttempts": 40,
+        "includedSubjects": [
+          "Mathematics"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 48.3,
+          "coverage": 100
+        }
+      }
+    },
+    {
+      "id": "focused-math-plus-other-days",
+      "label": "Same Math evidence plus 23 unrelated Science days",
+      "bootcamp": "act",
+      "focusedSubject": "Mathematics",
+      "inputs": {
+        "attempted": 40,
+        "accuracy": 90,
+        "sessions": 1,
+        "activeDays": 24,
+        "latestDaysAgo": 0,
+        "subjects": [
+          "Mathematics"
+        ],
+        "moduleBreadth": "adaptive",
+        "testBreadth": "adaptive",
+        "moduleBreadthBySubject": null,
+        "testBreadthBySubject": null,
+        "secondsPerQuestion": 60,
+        "allocatedSecondsPerQuestion": 60,
+        "note": "Math evidence is unchanged; only unrelated Science activity was added."
+      },
+      "result": {
+        "status": "estimated",
+        "score": 90.9,
+        "band": "Ready",
+        "confidence": 0.59,
+        "contributingAttempts": 40,
+        "requiredAttempts": 40,
+        "includedSubjects": [
+          "Mathematics"
+        ],
+        "formulaVersion": "diri-3.1",
+        "pillars": {
+          "performance": 92,
+          "consistency": 80.4,
+          "coverage": 100
+        }
+      }
+    }
+  ],
+  "weightedScenarios": [
+    {
+      "scenarioId": "minimum-balanced",
+      "model": "current-40-30-30",
+      "score": 83.3
+    },
+    {
+      "scenarioId": "minimum-balanced",
+      "model": "balanced-50-25-25",
+      "score": 84.7
+    },
+    {
+      "scenarioId": "minimum-balanced",
+      "model": "performance-60-20-20",
+      "score": 86.2
+    },
+    {
+      "scenarioId": "minimum-narrow",
+      "model": "current-40-30-30",
+      "score": 61.6
+    },
+    {
+      "scenarioId": "minimum-narrow",
+      "model": "balanced-50-25-25",
+      "score": 66.6
+    },
+    {
+      "scenarioId": "minimum-narrow",
+      "model": "performance-60-20-20",
+      "score": 71.7
+    },
+    {
+      "scenarioId": "balanced-200",
+      "model": "current-40-30-30",
+      "score": 88.7
+    },
+    {
+      "scenarioId": "balanced-200",
+      "model": "balanced-50-25-25",
+      "score": 89.3
+    },
+    {
+      "scenarioId": "balanced-200",
+      "model": "performance-60-20-20",
+      "score": 89.8
+    },
+    {
+      "scenarioId": "balanced-300",
+      "model": "current-40-30-30",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "balanced-300",
+      "model": "balanced-50-25-25",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "balanced-300",
+      "model": "performance-60-20-20",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "balanced-500",
+      "model": "current-40-30-30",
+      "score": 96.8
+    },
+    {
+      "scenarioId": "balanced-500",
+      "model": "balanced-50-25-25",
+      "score": 96
+    },
+    {
+      "scenarioId": "balanced-500",
+      "model": "performance-60-20-20",
+      "score": 95.2
+    },
+    {
+      "scenarioId": "accuracy-70-max",
+      "model": "current-40-30-30",
+      "score": 90.4
+    },
+    {
+      "scenarioId": "accuracy-70-max",
+      "model": "balanced-50-25-25",
+      "score": 88
+    },
+    {
+      "scenarioId": "accuracy-70-max",
+      "model": "performance-60-20-20",
+      "score": 85.6
+    },
+    {
+      "scenarioId": "accuracy-80-max",
+      "model": "current-40-30-30",
+      "score": 93.6
+    },
+    {
+      "scenarioId": "accuracy-80-max",
+      "model": "balanced-50-25-25",
+      "score": 92
+    },
+    {
+      "scenarioId": "accuracy-80-max",
+      "model": "performance-60-20-20",
+      "score": 90.4
+    },
+    {
+      "scenarioId": "accuracy-85-max",
+      "model": "current-40-30-30",
+      "score": 95.2
+    },
+    {
+      "scenarioId": "accuracy-85-max",
+      "model": "balanced-50-25-25",
+      "score": 94
+    },
+    {
+      "scenarioId": "accuracy-85-max",
+      "model": "performance-60-20-20",
+      "score": 92.8
+    },
+    {
+      "scenarioId": "fresh-cram",
+      "model": "current-40-30-30",
+      "score": 86.8
+    },
+    {
+      "scenarioId": "fresh-cram",
+      "model": "balanced-50-25-25",
+      "score": 87.6
+    },
+    {
+      "scenarioId": "fresh-cram",
+      "model": "performance-60-20-20",
+      "score": 88.5
+    },
+    {
+      "scenarioId": "stale-60",
+      "model": "current-40-30-30",
+      "score": 90.8
+    },
+    {
+      "scenarioId": "stale-60",
+      "model": "balanced-50-25-25",
+      "score": 91
+    },
+    {
+      "scenarioId": "stale-60",
+      "model": "performance-60-20-20",
+      "score": 91.2
+    },
+    {
+      "scenarioId": "one-subject-broad",
+      "model": "current-40-30-30",
+      "score": 85.2
+    },
+    {
+      "scenarioId": "one-subject-broad",
+      "model": "balanced-50-25-25",
+      "score": 86.3
+    },
+    {
+      "scenarioId": "one-subject-broad",
+      "model": "performance-60-20-20",
+      "score": 87.4
+    },
+    {
+      "scenarioId": "all-subjects-narrow",
+      "model": "current-40-30-30",
+      "score": 82.2
+    },
+    {
+      "scenarioId": "all-subjects-narrow",
+      "model": "balanced-50-25-25",
+      "score": 83.8
+    },
+    {
+      "scenarioId": "all-subjects-narrow",
+      "model": "performance-60-20-20",
+      "score": 85.4
+    },
+    {
+      "scenarioId": "cross-subsidized-coverage",
+      "model": "current-40-30-30",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "cross-subsidized-coverage",
+      "model": "balanced-50-25-25",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "cross-subsidized-coverage",
+      "model": "performance-60-20-20",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "fast-90",
+      "model": "current-40-30-30",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "fast-90",
+      "model": "balanced-50-25-25",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "fast-90",
+      "model": "performance-60-20-20",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "slow-90",
+      "model": "current-40-30-30",
+      "score": 87.8
+    },
+    {
+      "scenarioId": "slow-90",
+      "model": "balanced-50-25-25",
+      "score": 86.8
+    },
+    {
+      "scenarioId": "slow-90",
+      "model": "performance-60-20-20",
+      "score": 85.8
+    },
+    {
+      "scenarioId": "timer-generous",
+      "model": "current-40-30-30",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "timer-generous",
+      "model": "balanced-50-25-25",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "timer-generous",
+      "model": "performance-60-20-20",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "sat-balanced",
+      "model": "current-40-30-30",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "sat-balanced",
+      "model": "balanced-50-25-25",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "sat-balanced",
+      "model": "performance-60-20-20",
+      "score": 91.8
+    },
+    {
+      "scenarioId": "focused-math-only-days",
+      "model": "current-40-30-30",
+      "score": 81.3
+    },
+    {
+      "scenarioId": "focused-math-only-days",
+      "model": "balanced-50-25-25",
+      "score": 83.1
+    },
+    {
+      "scenarioId": "focused-math-only-days",
+      "model": "performance-60-20-20",
+      "score": 84.9
+    },
+    {
+      "scenarioId": "focused-math-plus-other-days",
+      "model": "current-40-30-30",
+      "score": 90.9
+    },
+    {
+      "scenarioId": "focused-math-plus-other-days",
+      "model": "balanced-50-25-25",
+      "score": 91.1
+    },
+    {
+      "scenarioId": "focused-math-plus-other-days",
+      "model": "performance-60-20-20",
+      "score": 91.3
+    }
+  ],
+  "accuracySweep": [
+    {
+      "accuracy": 40,
+      "currentScore": 80.8,
+      "performance": 52,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 76,
+      "performance-60-20-20": 71.2
+    },
+    {
+      "accuracy": 45,
+      "currentScore": 82.4,
+      "performance": 56,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 78,
+      "performance-60-20-20": 73.6
+    },
+    {
+      "accuracy": 50,
+      "currentScore": 84,
+      "performance": 60,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 80,
+      "performance-60-20-20": 76
+    },
+    {
+      "accuracy": 55,
+      "currentScore": 85.6,
+      "performance": 64,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 82,
+      "performance-60-20-20": 78.4
+    },
+    {
+      "accuracy": 60,
+      "currentScore": 87.2,
+      "performance": 68,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 84,
+      "performance-60-20-20": 80.8
+    },
+    {
+      "accuracy": 65,
+      "currentScore": 88.8,
+      "performance": 72,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 86,
+      "performance-60-20-20": 83.2
+    },
+    {
+      "accuracy": 70,
+      "currentScore": 90.4,
+      "performance": 76,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 88,
+      "performance-60-20-20": 85.6
+    },
+    {
+      "accuracy": 75,
+      "currentScore": 92,
+      "performance": 80,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 90,
+      "performance-60-20-20": 88
+    },
+    {
+      "accuracy": 80,
+      "currentScore": 93.6,
+      "performance": 84,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 92,
+      "performance-60-20-20": 90.4
+    },
+    {
+      "accuracy": 85,
+      "currentScore": 95.2,
+      "performance": 88,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 94,
+      "performance-60-20-20": 92.8
+    },
+    {
+      "accuracy": 90,
+      "currentScore": 96.8,
+      "performance": 92,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 96,
+      "performance-60-20-20": 95.2
+    },
+    {
+      "accuracy": 95,
+      "currentScore": 98.4,
+      "performance": 96,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 98,
+      "performance-60-20-20": 97.6
+    },
+    {
+      "accuracy": 100,
+      "currentScore": 100,
+      "performance": 100,
+      "consistency": 100,
+      "coverage": 100,
+      "balanced-50-25-25": 100,
+      "performance-60-20-20": 100
+    }
+  ],
+  "attainability": [
+    {
+      "accuracy": 60,
+      "firstReady": {
+        "attempted": 180,
+        "sessions": 24,
+        "score": 85
+      },
+      "first90": null
+    },
+    {
+      "accuracy": 70,
+      "firstReady": {
+        "attempted": 100,
+        "sessions": 20,
+        "score": 85.2
+      },
+      "first90": {
+        "attempted": 410,
+        "sessions": 24,
+        "score": 90
+      }
+    },
+    {
+      "accuracy": 75,
+      "firstReady": {
+        "attempted": 100,
+        "sessions": 16,
+        "score": 85
+      },
+      "first90": {
+        "attempted": 190,
+        "sessions": 24,
+        "score": 90
+      }
+    },
+    {
+      "accuracy": 80,
+      "firstReady": {
+        "attempted": 100,
+        "sessions": 13,
+        "score": 85.3
+      },
+      "first90": {
+        "attempted": 100,
+        "sessions": 24,
+        "score": 90.1
+      }
+    },
+    {
+      "accuracy": 85,
+      "firstReady": {
+        "attempted": 100,
+        "sessions": 9,
+        "score": 85.2
+      },
+      "first90": {
+        "attempted": 100,
+        "sessions": 20,
+        "score": 90
+      }
+    },
+    {
+      "accuracy": 90,
+      "firstReady": {
+        "attempted": 100,
+        "sessions": 5,
+        "score": 85
+      },
+      "first90": {
+        "attempted": 100,
+        "sessions": 17,
+        "score": 90.3
+      }
+    },
+    {
+      "accuracy": 95,
+      "firstReady": {
+        "attempted": 100,
+        "sessions": 2,
+        "score": 85.3
+      },
+      "first90": {
+        "attempted": 100,
+        "sessions": 13,
+        "score": 90.1
+      }
+    }
+  ],
+  "checks": {
+    "accuracyMonotonic": true,
+    "scoreBounds": true,
+    "pillarsPresentWhenEstimated": true,
+    "minimumEvidenceGate": true
+  }
+}

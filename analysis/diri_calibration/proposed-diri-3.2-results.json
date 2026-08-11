@@ -1,0 +1,681 @@
+{
+  "generatedAt": "2026-08-11T06:52:23.344Z",
+  "formula": "proposed-diri-3.2",
+  "simulationNow": "2026-08-11T12:00:00.000Z",
+  "scenarios": [
+    {
+      "id": "insufficient",
+      "inputs": {
+        "id": "insufficient",
+        "attempted": 99,
+        "accuracy": 90,
+        "sessions": 10,
+        "daySpacing": 7
+      },
+      "result": {
+        "status": "insufficient_data",
+        "score": null,
+        "attempted": 99
+      }
+    },
+    {
+      "id": "balanced-90-15-consecutive",
+      "inputs": {
+        "id": "balanced-90-15-consecutive",
+        "attempted": 300,
+        "accuracy": 90,
+        "sessions": 15
+      },
+      "result": {
+        "status": "estimated",
+        "score": 84.3,
+        "band": "Almost",
+        "confidence": 0.81,
+        "attempted": 300,
+        "evidenceCeiling": 95,
+        "constraints": [
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 90.1,
+          "consistency": 53.8,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 15,
+          "activeWeeks": 3,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 90.1,
+          "accuracy": 90.1
+        }
+      }
+    },
+    {
+      "id": "balanced-90-15-distributed",
+      "inputs": {
+        "id": "balanced-90-15-distributed",
+        "attempted": 300,
+        "accuracy": 90,
+        "sessions": 15,
+        "daySpacing": 6
+      },
+      "result": {
+        "status": "estimated",
+        "score": 91.5,
+        "band": "Ready",
+        "confidence": 1,
+        "attempted": 300,
+        "evidenceCeiling": 95,
+        "constraints": [],
+        "pillars": {
+          "mastery": 90.5,
+          "consistency": 88.8,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 15,
+          "activeWeeks": 13,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 90.4,
+          "accuracy": 90.5
+        }
+      }
+    },
+    {
+      "id": "balanced-90-20-distributed",
+      "inputs": {
+        "id": "balanced-90-20-distributed",
+        "attempted": 400,
+        "accuracy": 90,
+        "sessions": 20,
+        "daySpacing": 4
+      },
+      "result": {
+        "status": "estimated",
+        "score": 92.1,
+        "band": "Ready",
+        "confidence": 1,
+        "attempted": 400,
+        "evidenceCeiling": 100,
+        "constraints": [],
+        "pillars": {
+          "mastery": 89.4,
+          "consistency": 95,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 20,
+          "activeWeeks": 12,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 89.4,
+          "accuracy": 89.4
+        }
+      }
+    },
+    {
+      "id": "balanced-85-excellent",
+      "inputs": {
+        "id": "balanced-85-excellent",
+        "attempted": 500,
+        "accuracy": 85,
+        "sessions": 24,
+        "daySpacing": 3
+      },
+      "result": {
+        "status": "estimated",
+        "score": 89.5,
+        "band": "Ready",
+        "confidence": 1,
+        "attempted": 500,
+        "evidenceCeiling": 100,
+        "constraints": [
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 84.5,
+          "consistency": 100,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 24,
+          "activeWeeks": 11,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 84.3,
+          "accuracy": 84.6
+        }
+      }
+    },
+    {
+      "id": "crammed-90",
+      "inputs": {
+        "id": "crammed-90",
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 24,
+        "daysAgo": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "result": {
+        "status": "estimated",
+        "score": 78.6,
+        "band": "Almost",
+        "confidence": 0.74,
+        "attempted": 500,
+        "evidenceCeiling": 100,
+        "constraints": [
+          "consistency_below_ready_floor",
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 89.8,
+          "consistency": 26.3,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 1,
+          "activeWeeks": 1,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 89.8,
+          "accuracy": 89.8
+        }
+      }
+    },
+    {
+      "id": "stale-90",
+      "inputs": {
+        "id": "stale-90",
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 24,
+        "daysAgo": [
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83
+        ]
+      },
+      "result": {
+        "status": "estimated",
+        "score": 83.5,
+        "band": "Almost",
+        "confidence": 0.85,
+        "attempted": 500,
+        "evidenceCeiling": 100,
+        "constraints": [
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 89.7,
+          "consistency": 51,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 24,
+          "activeWeeks": 4,
+          "latestDays": 60,
+          "paceRatio": 1,
+          "weakestSubject": 89.7,
+          "accuracy": 89.7
+        }
+      }
+    },
+    {
+      "id": "narrow-modules-90",
+      "inputs": {
+        "id": "narrow-modules-90",
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 24,
+        "daySpacing": 3,
+        "moduleBreadth": 1,
+        "testBreadth": 1
+      },
+      "result": {
+        "status": "estimated",
+        "score": 84.9,
+        "band": "Almost",
+        "confidence": 0.91,
+        "attempted": 500,
+        "evidenceCeiling": 100,
+        "constraints": [
+          "breadth_below_ready_floor",
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 89.9,
+          "consistency": 100,
+          "breadth": 56.3,
+          "pacingPenalty": 0,
+          "activeDays": 24,
+          "activeWeeks": 11,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 89.9,
+          "accuracy": 89.9
+        }
+      }
+    },
+    {
+      "id": "one-subject-90",
+      "inputs": {
+        "id": "one-subject-90",
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 24,
+        "daySpacing": 3,
+        "subjects": [
+          "Mathematics"
+        ]
+      },
+      "result": {
+        "status": "estimated",
+        "score": 83.5,
+        "band": "Almost",
+        "confidence": 0.87,
+        "attempted": 500,
+        "evidenceCeiling": 100,
+        "constraints": [
+          "breadth_below_ready_floor",
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 90.1,
+          "consistency": 100,
+          "breadth": 33.3,
+          "pacingPenalty": 0,
+          "activeDays": 24,
+          "activeWeeks": 11,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 90.1,
+          "accuracy": 90.1
+        }
+      }
+    },
+    {
+      "id": "weak-subject",
+      "inputs": {
+        "id": "weak-subject",
+        "attempted": 450,
+        "accuracy": 90,
+        "sessions": 24,
+        "daySpacing": 3,
+        "accuracyBySubject": {
+          "English": 95,
+          "Mathematics": 95,
+          "Science": 60
+        }
+      },
+      "result": {
+        "status": "estimated",
+        "score": 83.7,
+        "band": "Almost",
+        "confidence": 1,
+        "attempted": 450,
+        "evidenceCeiling": 100,
+        "constraints": [
+          "mastery_below_ready_floor",
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 78.7,
+          "consistency": 100,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 24,
+          "activeWeeks": 11,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 60.3,
+          "accuracy": 83.3
+        }
+      }
+    },
+    {
+      "id": "high-accuracy-low-volume",
+      "inputs": {
+        "id": "high-accuracy-low-volume",
+        "attempted": 100,
+        "accuracy": 100,
+        "sessions": 5,
+        "daySpacing": 7
+      },
+      "result": {
+        "status": "estimated",
+        "score": 85,
+        "band": "Ready",
+        "confidence": 0.55,
+        "attempted": 100,
+        "evidenceCeiling": 85,
+        "constraints": [
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 100,
+          "consistency": 51.3,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 5,
+          "activeWeeks": 5,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 100,
+          "accuracy": 100
+        }
+      }
+    },
+    {
+      "id": "low-accuracy-high-discipline",
+      "inputs": {
+        "id": "low-accuracy-high-discipline",
+        "attempted": 500,
+        "accuracy": 70,
+        "sessions": 24,
+        "daySpacing": 3
+      },
+      "result": {
+        "status": "estimated",
+        "score": 74.6,
+        "band": "Almost",
+        "confidence": 1,
+        "attempted": 500,
+        "evidenceCeiling": 100,
+        "constraints": [
+          "mastery_below_ready_floor",
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 69.6,
+          "consistency": 100,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 24,
+          "activeWeeks": 11,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 69.4,
+          "accuracy": 69.6
+        }
+      }
+    },
+    {
+      "id": "slow-otherwise-strong",
+      "inputs": {
+        "id": "slow-otherwise-strong",
+        "attempted": 500,
+        "accuracy": 90,
+        "sessions": 24,
+        "daySpacing": 3,
+        "secondsPerQuestion": 130
+      },
+      "result": {
+        "status": "estimated",
+        "score": 88.5,
+        "band": "Ready",
+        "confidence": 1,
+        "attempted": 500,
+        "evidenceCeiling": 100,
+        "constraints": [],
+        "pillars": {
+          "mastery": 89.9,
+          "consistency": 100,
+          "breadth": 100,
+          "pacingPenalty": 5,
+          "activeDays": 24,
+          "activeWeeks": 11,
+          "latestDays": 0,
+          "paceRatio": 2.31,
+          "weakestSubject": 89.9,
+          "accuracy": 89.9
+        }
+      }
+    },
+    {
+      "id": "fast-low-accuracy",
+      "inputs": {
+        "id": "fast-low-accuracy",
+        "attempted": 500,
+        "accuracy": 60,
+        "sessions": 24,
+        "daySpacing": 3,
+        "secondsPerQuestion": 15
+      },
+      "result": {
+        "status": "estimated",
+        "score": 64.9,
+        "band": "Building",
+        "confidence": 1,
+        "attempted": 500,
+        "evidenceCeiling": 100,
+        "constraints": [
+          "mastery_below_ready_floor",
+          "high_readiness_evidence_incomplete"
+        ],
+        "pillars": {
+          "mastery": 59.9,
+          "consistency": 100,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 24,
+          "activeWeeks": 11,
+          "latestDays": 0,
+          "paceRatio": 0.27,
+          "weakestSubject": 59.7,
+          "accuracy": 59.9
+        }
+      }
+    },
+    {
+      "id": "sat-balanced-90",
+      "inputs": {
+        "id": "sat-balanced-90",
+        "bootcamp": "sat",
+        "attempted": 300,
+        "accuracy": 90,
+        "sessions": 16,
+        "daySpacing": 5
+      },
+      "result": {
+        "status": "estimated",
+        "score": 91.7,
+        "band": "Ready",
+        "confidence": 1,
+        "attempted": 300,
+        "evidenceCeiling": 95,
+        "constraints": [],
+        "pillars": {
+          "mastery": 90.4,
+          "consistency": 90,
+          "breadth": 100,
+          "pacingPenalty": 0,
+          "activeDays": 16,
+          "activeWeeks": 12,
+          "latestDays": 0,
+          "paceRatio": 1,
+          "weakestSubject": 90.4,
+          "accuracy": 90.4
+        }
+      }
+    }
+  ],
+  "attainability": [
+    {
+      "accuracy": 60,
+      "pattern": "consecutive",
+      "score": 64.8,
+      "consistency": 75,
+      "breadth": 100
+    },
+    {
+      "accuracy": 60,
+      "pattern": "distributed",
+      "score": 64.9,
+      "consistency": 100,
+      "breadth": 100
+    },
+    {
+      "accuracy": 65,
+      "pattern": "consecutive",
+      "score": 69.6,
+      "consistency": 75,
+      "breadth": 100
+    },
+    {
+      "accuracy": 65,
+      "pattern": "distributed",
+      "score": 69.6,
+      "consistency": 100,
+      "breadth": 100
+    },
+    {
+      "accuracy": 70,
+      "pattern": "consecutive",
+      "score": 74.6,
+      "consistency": 75,
+      "breadth": 100
+    },
+    {
+      "accuracy": 70,
+      "pattern": "distributed",
+      "score": 74.6,
+      "consistency": 100,
+      "breadth": 100
+    },
+    {
+      "accuracy": 75,
+      "pattern": "consecutive",
+      "score": 78.6,
+      "consistency": 75,
+      "breadth": 100
+    },
+    {
+      "accuracy": 75,
+      "pattern": "distributed",
+      "score": 79.9,
+      "consistency": 100,
+      "breadth": 100
+    },
+    {
+      "accuracy": 80,
+      "pattern": "consecutive",
+      "score": 81.7,
+      "consistency": 75,
+      "breadth": 100
+    },
+    {
+      "accuracy": 80,
+      "pattern": "distributed",
+      "score": 84.6,
+      "consistency": 100,
+      "breadth": 100
+    },
+    {
+      "accuracy": 85,
+      "pattern": "consecutive",
+      "score": 85,
+      "consistency": 75,
+      "breadth": 100
+    },
+    {
+      "accuracy": 85,
+      "pattern": "distributed",
+      "score": 89.5,
+      "consistency": 100,
+      "breadth": 100
+    },
+    {
+      "accuracy": 90,
+      "pattern": "consecutive",
+      "score": 88.4,
+      "consistency": 75,
+      "breadth": 100
+    },
+    {
+      "accuracy": 90,
+      "pattern": "distributed",
+      "score": 93.5,
+      "consistency": 100,
+      "breadth": 100
+    },
+    {
+      "accuracy": 95,
+      "pattern": "consecutive",
+      "score": 91.5,
+      "consistency": 75,
+      "breadth": 100
+    },
+    {
+      "accuracy": 95,
+      "pattern": "distributed",
+      "score": 96.5,
+      "consistency": 100,
+      "breadth": 100
+    },
+    {
+      "accuracy": 100,
+      "pattern": "consecutive",
+      "score": 95,
+      "consistency": 75,
+      "breadth": 100
+    },
+    {
+      "accuracy": 100,
+      "pattern": "distributed",
+      "score": 100,
+      "consistency": 100,
+      "breadth": 100
+    }
+  ],
+  "checks": {
+    "bounded": true,
+    "insufficientGate": true,
+    "accuracyMonotonic": true,
+    "distributionRewarded": true,
+    "crammingNotReady": true,
+    "staleNotReady": true,
+    "weakAccuracyCannotReach90": true
+  }
+}

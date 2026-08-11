@@ -1,0 +1,5 @@
+questions_per_session,expected_points_after_free_sessions,expected_rank_after_free_sessions
+10,480,Warrant Officer
+20,960,Lieutenant
+40,1920,Captain
+80,2000,Major

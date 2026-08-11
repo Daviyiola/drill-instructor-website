@@ -1,6 +1,7 @@
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
 const {assertLicenseActive} = require("./_license");
+const {blockRelationship} = require("./_socialPolicy");
 
 /**
  * Send a standardized JSON error response.
@@ -65,6 +66,12 @@ exports.handler = async (req, res) => {
     const ch = chSnap.val();
     if (!ch) return bad(res, 404, "NOT_FOUND");
     if (ch.status !== "open") return bad(res, 412, "FAILED_PRECONDITION");
+
+    const creatorId = String(ch.createdByCustomId || ch.creatorCustomId || "");
+    if (creatorId && creatorId !== customId &&
+        await blockRelationship(db, customId, creatorId)) {
+      return bad(res, 404, "CHALLENGE_UNAVAILABLE");
+    }
 
     const exp = new Date(ch.expiresAt).getTime();
     if (Date.now() > exp) return bad(res, 408, "DEADLINE_EXCEEDED");

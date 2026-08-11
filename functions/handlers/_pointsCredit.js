@@ -1,7 +1,7 @@
 "use strict";
 
 const FREE_POINTS_CEILING = 2000;
-const FREE_CREDITS_ALLOWANCE = 10;
+const FREE_CREDITS_ALLOWANCE = 20;
 
 /**
  * Return a safe object.

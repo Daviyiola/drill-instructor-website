@@ -6,6 +6,7 @@ const {defineSecret} = require("firebase-functions/params");
 const crypto = require("crypto");
 const {requireBearerUid, allowCors} = require("./_auth");
 const {assertLicenseActive} = require("./_license");
+const {canSendChallenge} = require("./_socialPolicy");
 
 const CHALLENGE_SIGNING_SECRET = defineSecret("CHALLENGE_SIGNING_SECRET");
 const MAX_OPEN_OUTGOING = 20;
@@ -392,21 +393,16 @@ exports.handler = async (req, res) => {
     /** @type {string[]} */
     const skipped = [];
 
-    for (let i = 0; i < normRecipients.length; i++) {
-      const cid = normRecipients[i];
-      // eslint-disable-next-line no-await-in-loop
-      const bSnap = await db.ref(`users/${cid}/blocks/${callerCustomId}`,
-
-      ).once("value");
-      if (bSnap.val() === true) {
-        skipped.push(cid);
-        continue;
-      }
-      filtered.push(cid);
-    }
+    const policies = await Promise.all(normRecipients.map((cid) =>
+      canSendChallenge(db, callerCustomId, cid),
+    ));
+    normRecipients.forEach((cid, index) => {
+      if (policies[index].allowed) filtered.push(cid);
+      else skipped.push(cid);
+    });
 
     if (filtered.length === 0) {
-      return bad(res, 412, "All recipients blocked the sender");
+      return bad(res, 412, "RECIPIENTS_UNAVAILABLE");
     }
 
     /** @type {string[]} */

@@ -341,13 +341,13 @@ test("free credit serializes allowance enforcement", async () => {
   const ref = new TransactionRef({totalPoints: 0});
   const db = {ref: () => ref};
   const results = await Promise.all(
-      Array.from({length: 12}, (_, index) =>
+      Array.from({length: 25}, (_, index) =>
         creditFreeSession(db, "user", `session-${index}`, 100)),
   );
 
-  assert.equal(results.filter((value) => value.consumedCredit).length, 10);
-  assert.equal(ref.value.freeBudget.creditsUsed, 10);
-  assert.equal(ref.value.totalPoints, 1000);
+  assert.equal(results.filter((value) => value.consumedCredit).length, 20);
+  assert.equal(ref.value.freeBudget.creditsUsed, 20);
+  assert.equal(ref.value.totalPoints, 2000);
 });
 
 test("paid recovery awards blocked points exactly once", async () => {

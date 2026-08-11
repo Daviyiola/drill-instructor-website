@@ -14,34 +14,6 @@ const CHALLENGE_SIGNING_SECRET = defineSecret("CHALLENGE_SIGNING_SECRET");
 /** @typedef {import('express').Response} Response */
 
 /**
- * Snapshot summary numbers persisted by the client.
- * @typedef {Object} SnapshotSummary
- * @property {number} totalQ
- * @property {number} attempted
- * @property {number} correct
- * @property {number} [points]
- * @property {number} [usedSec]
- */
-
-/**
- * Minimal snapshot shape used by this endpoint.
- * @typedef {Object} SessionSnapshot
- * @property {string} [bootcamp]
- * @property {string} [takenAt]
- * @property {string} [createdAt]
- * @property {SnapshotSummary} summary
- */
-
-/**
- * Legacy result shape (backward compatibility).
- * @typedef {Object} LegacyResult
- * @property {number} [correct]
- * @property {number} [wrong]
- * @property {number} [unanswered]
- * @property {number} [timeMs]
- */
-
-/**
  * Optional participant metadata provided by the client.
  * If omitted or incomplete, the server will look it up from /users.
  * @typedef {Object} ParticipantMetaIn
@@ -101,36 +73,22 @@ function hmac(secret, data) {
 }
 
 /**
- * Normalize a payload into legacy scalar fields and useful extras.
- * Accepts either a full snapshot (preferred) or the legacy fields.
- * @param {SessionSnapshot|undefined} snapshot
- * @param {LegacyResult|undefined} legacy
+ * Normalize an authoritative, server-graded drill result for the challenge.
+ * @param {Object} result
  * @return {{correct:number, wrong:number, unanswered:number,
  * timeMs:number, points:number, attempted:number, totalQ:number}}
  */
-function summarizeAttempt(snapshot, legacy) {
-  if (snapshot && snapshot.summary && typeof snapshot.summary === "object") {
-    const s = snapshot.summary;
-    const totalQ = Math.max(0, Number(s.totalQ || 0));
-    const attempted = Math.max(0, Number(s.attempted || 0));
-    const correct = Math.max(0, Number(s.correct || 0));
-    const wrong = Math.max(0, attempted - correct);
-    const unanswered = Math.max(0, totalQ - attempted);
-    const usedSec = Math.max(0, Number(s.usedSec || 0));
-    const timeMs = usedSec ? Math.floor(usedSec * 1000) : 0;
-    const points = Math.max(0, Number(s.points || correct));
-    return {correct, wrong, unanswered, timeMs, points, attempted, totalQ};
-  }
-
-  // Legacy fallback
-  const r = legacy || {};
-  const correct = Math.max(0, Number(r.correct || 0));
-  const wrong = Math.max(0, Number(r.wrong || 0));
-  const unanswered = Math.max(0, Number(r.unanswered || 0));
-  const timeMs = Math.max(0, Number(r.timeMs || 0));
-  const attempted = correct + wrong;
-  const totalQ = attempted + unanswered;
-  const points = correct;
+function summarizeSubmittedResult(result) {
+  const s = result && result.summary &&
+    typeof result.summary === "object" ? result.summary : {};
+  const totalQ = Math.max(0, Number(s.totalQ || 0));
+  const attempted = Math.max(0, Number(s.attempted || 0));
+  const correct = Math.max(0, Number(s.correct || 0));
+  const wrong = Math.max(0, attempted - correct);
+  const unanswered = Math.max(0, totalQ - attempted);
+  const usedSec = Math.max(0, Number(s.usedSec || 0));
+  const timeMs = usedSec ? Math.floor(usedSec * 1000) : 0;
+  const points = (3 * correct) + wrong;
   return {correct, wrong, unanswered, timeMs, points, attempted, totalQ};
 }
 
@@ -203,9 +161,7 @@ async function resolveParticipantMeta(db, customId, provided) {
  *
  * Request body:
  *   - challengeId: string (required)
- *   - snapshot: SessionSnapshot (optional, preferred)
- *   - correct, wrong, unanswered, timeMs: number (optional legacy)
- *   - participant: { displayName?: string, avatarNumber?: number } (optional)
+ *   - sessionId: canonical submitted drill session id (required)
  *
  * Response body (200): { ok: true, allDone: boolean }
  *
@@ -222,47 +178,18 @@ exports.handler = async (req, res) => {
     }
 
     const fbUid = await requireBearerUid(req);
-    /** @type {{
-     *   challengeId?: unknown;
-     *   snapshot?: unknown;
-     *   correct?: unknown; wrong?: unknown;
-     *   unanswered?: unknown; timeMs?: unknown;
-     *   participant?: unknown
-     * }} */
+    /** @type {{challengeId?: unknown; sessionId?: unknown}} */
     const body = req.body || {};
 
     const challengeId =
       typeof body.challengeId === "string" ? body.challengeId : "";
-    const snapshot = /** @type {SessionSnapshot|undefined} */ (body.snapshot);
-    const participantIn =
-      /** @type {ParticipantMetaIn|undefined} */ (body.participant);
-
-    // Build normalized summary, supporting legacy fields
-    const mini = summarizeAttempt(
-        snapshot,
-        /** @type {LegacyResult|undefined} */ (body),
-    );
+    const sessionId =
+      typeof body.sessionId === "string" ? body.sessionId : "";
 
     /** @type {string[]} */
     const errs = [];
     if (!challengeId) errs.push("challengeId");
-    if (!(Number.isFinite(mini.correct) && mini.correct >= 0)) {
-      errs.push("correct>=0");
-    }
-    if (!(Number.isFinite(mini.wrong) && mini.wrong >= 0)) {
-      errs.push("wrong>=0");
-    }
-    if (
-      !(Number.isFinite(mini.unanswered) && mini.unanswered >= 0)
-    ) {
-      errs.push("unanswered>=0");
-    }
-    if (!(Number.isFinite(mini.timeMs) && mini.timeMs >= 0)) {
-      errs.push("timeMs>=0");
-    }
-    if (mini.correct > mini.attempted || mini.attempted > mini.totalQ) {
-      errs.push("inconsistent totals");
-    }
+    if (!sessionId) errs.push("sessionId");
     if (errs.length) {
       bad(res, 400, "INVALID_ARGUMENT", errs);
       return;
@@ -281,6 +208,15 @@ exports.handler = async (req, res) => {
     if (!ch) {
       bad(res, 404, "NOT_FOUND");
       return;
+    }
+    if (ch.status === "completed") {
+      const existing = await db.ref(
+          "challengeResults/" + challengeId + "/" + customId,
+      ).once("value");
+      if (existing.exists()) {
+        res.status(200).json({ok: true, allDone: true, duplicate: true});
+        return;
+      }
     }
     if (ch.status !== "open") {
       bad(res, 412, "FAILED_PRECONDITION");
@@ -324,15 +260,43 @@ exports.handler = async (req, res) => {
       return;
     }
 
-    // Resolve participant meta (client-provided or server lookup)
+    const sessionSnap = await db.ref(
+        "studentDrills/" + customId + "/" + sessionId,
+    ).once("value");
+    const session = sessionSnap.val();
+    if (!session) {
+      bad(res, 404, "DRILL_SESSION_NOT_FOUND");
+      return;
+    }
+    if (session.status !== "submitted" || !session.result) {
+      bad(res, 412, "DRILL_SESSION_NOT_SUBMITTED");
+      return;
+    }
+    if (String(session.challengeId || "") !== challengeId) {
+      bad(res, 403, "SESSION_CHALLENGE_MISMATCH");
+      return;
+    }
+    if (String(session.bootcamp || "").toLowerCase() !==
+        String(ch.bootcamp || "").toLowerCase()) {
+      bad(res, 412, "SESSION_BOOTCAMP_MISMATCH");
+      return;
+    }
+
+    const mini = summarizeSubmittedResult(session.result);
+    if (mini.correct > mini.attempted || mini.attempted > mini.totalQ) {
+      bad(res, 412, "INVALID_SERVER_RESULT");
+      return;
+    }
+
+    // Resolve participant metadata from the server-owned profile.
     const meta = await resolveParticipantMeta(
         db,
         customId,
-        participantIn,
+        undefined,
     );
     const usedSec = Math.round(mini.timeMs / 1000);
 
-    // Write result (legacy scalars + full snapshot + participant meta)
+    // Write compatibility scalars plus the authoritative server result.
     const finishedAt = new Date().toISOString();
     /** @type {Record<string, unknown>} */
     const updates = {};
@@ -346,7 +310,8 @@ exports.handler = async (req, res) => {
       attempted: mini.attempted,
       totalQ: mini.totalQ,
       finishedAt: finishedAt,
-      snapshot: snapshot || null,
+      snapshot: session.result,
+      sessionId,
       participant: {
         displayName: meta.displayName || "",
         avaterNumber: Number(meta.avatarNumber || 0),

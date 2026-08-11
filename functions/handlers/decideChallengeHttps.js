@@ -4,6 +4,7 @@
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
 const {assertLicenseActive} = require("./_license");
+const {blockRelationship} = require("./_socialPolicy");
 
 /** @typedef {import("firebase-admin").database.Database} Database */
 /** @typedef {import("express").Request} Request */
@@ -132,6 +133,11 @@ exports.handler = async (req, res) => {
 
     // License only required to ACCEPT (you can reject without a license)
     if (decision === "accept") {
+      const creatorId = String(ch.createdByCustomId || "");
+      const relationship = await blockRelationship(db, customId, creatorId);
+      if (relationship.blocked) {
+        return bad(res, 404, "CHALLENGE_UNAVAILABLE");
+      }
       await assertLicenseActive(db, customId, ch.bootcamp || "");
     }
 

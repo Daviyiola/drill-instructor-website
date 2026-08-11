@@ -40,6 +40,19 @@ export default function RanksPage() {
     account.profile.totalPoints || account.profile.points || 0,
   );
   const current = rankForPoints(points);
+  const promotionProgress = current.nextMinimum
+    ? Math.max(
+        0,
+        Math.min(
+          100,
+          Math.round(
+            ((points - current.minimum) /
+              (current.nextMinimum - current.minimum)) *
+              100,
+          ),
+        ),
+      )
+    : 100;
 
   return (
     <AppShell profile={account.profile}>
@@ -54,7 +67,7 @@ export default function RanksPage() {
           to General.
         </p>
 
-        <section className="mt-7 grid items-center gap-6 rounded-[2rem] bg-brand-green p-6 text-white shadow-soft sm:grid-cols-[auto_1fr_auto] sm:p-8">
+        <section className="mt-7 grid items-center gap-6 rounded-[2rem] bg-brand-green p-6 text-white shadow-soft sm:grid-cols-[auto_1fr] sm:p-8">
           <img
             src={rankImage(current.number)}
             alt=""
@@ -70,18 +83,23 @@ export default function RanksPage() {
             <p className="mt-2 text-sm text-white/70">
               {points.toLocaleString()} total points
             </p>
-          </div>
-          {current.nextMinimum && (
-            <div className="rounded-2xl bg-white/10 p-4 sm:text-right">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">
-                Next promotion
-              </p>
-              <p className="mt-1 text-xl font-black">
-                {(current.nextMinimum - points).toLocaleString()}
-              </p>
-              <p className="text-xs text-white/60">points remaining</p>
+            <div className="mt-5 max-w-xl">
+              <div className="flex items-center justify-between gap-3 text-xs text-white/70">
+                <span>
+                  {current.nextMinimum
+                    ? `Progress to ${ranks[current.number]?.name || "next rank"}`
+                    : "Highest rank achieved"}
+                </span>
+                <span>{promotionProgress}%</span>
+              </div>
+              <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-white/15">
+                <div
+                  className="h-full rounded-full bg-brand-gold transition-[width]"
+                  style={{width: `${promotionProgress}%`}}
+                />
+              </div>
             </div>
-          )}
+          </div>
         </section>
 
         <div className="mt-6 space-y-3">
@@ -120,11 +138,8 @@ export default function RanksPage() {
                   </p>
                 </div>
                 <div className="sm:text-right">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                    Starts at
-                  </p>
-                  <p className="mt-1 font-black">
-                    {rank.minimum.toLocaleString()} pts
+                  <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
+                    {active ? "Current" : achieved ? "Achieved" : "Keep training"}
                   </p>
                 </div>
               </article>

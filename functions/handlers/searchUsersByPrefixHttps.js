@@ -3,6 +3,8 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {blockSetsFor, isBlockedBySets, studentIdForUid} =
+  require("./_socialPolicy");
 
 /** @typedef {import("express").Request} Request */
 /** @typedef {import("express").Response} Response */
@@ -84,6 +86,10 @@ exports.handler = async (req, res) => {
 
     const db = getDatabase();
 
+    const callerStudentId = await studentIdForUid(db, fbUid);
+    const callerBlocks = callerStudentId ?
+      await blockSetsFor(db, callerStudentId) : null;
+
     const rl = await enforceRateLimit(db, fbUid, 20);
     if (!rl.allowed) {
       return res.status(429).json({
@@ -115,13 +121,15 @@ exports.handler = async (req, res) => {
       const u = userSnaps[i].val() || {};
 
       if (u.profilePermissions !== true) continue;
+      if (id === callerStudentId) continue;
+      if (callerBlocks && isBlockedBySets(callerBlocks, id)) continue;
 
       results.push({
         id,
         firstName: u.firstName || "",
         lastName: u.lastName || "",
-        totalPoints: u.totalPoints || 0,
         platoonName: u.platoonName || "",
+        rankNum: Math.min(10, Math.max(1, Number(u.currentRankNum) || 1)),
       });
 
       if (results.length >= 20) break;

@@ -33,11 +33,14 @@ test("all deterministic calibration personas produce explainable readiness", () 
   });
 });
 
-test("volume has diminishing readiness returns", () => {
-  const score = (volume) => readiness([
-    makeAttempt({attempted: volume, accuracy: 80}),
-  ], catalog, NOW).pillars.consistency;
-  assert.ok(score(200) - score(100) > score(500) - score(400));
+test("volume raises evidence confidence without masquerading as consistency", () => {
+  const low = readiness([makeAttempt({attempted: 100, accuracy: 100})],
+      catalog, NOW);
+  const mature = readiness([makeAttempt({attempted: 400, accuracy: 100})],
+      catalog, NOW);
+  assert.equal(low.pillars.consistency, mature.pillars.consistency);
+  assert.ok(mature.evidenceCeiling > low.evidenceCeiling);
+  assert.ok(mature.confidence > low.confidence);
 });
 
 test("small accuracy changes do not create readiness cliffs", () => {

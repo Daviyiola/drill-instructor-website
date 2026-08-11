@@ -1,0 +1,624 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Is the rank progression defensible?",
+    "description": "A theoretical audit of the Drill Instructor student rank curve.",
+    "generatedAt": "2026-08-11T05:39:31Z",
+    "cards": [],
+    "charts": [
+      {
+        "id": "rank_pace_chart",
+        "title": "Practice days needed to reach each rank",
+        "subtitle": "Modeled at 70% accuracy and five practice days per week; the two-bootcamp case assumes twice the daily question volume.",
+        "type": "bar",
+        "dataset": "journey_long",
+        "sourceId": "rank_journey_model",
+        "encodings": {
+          "x": {
+            "field": "rank",
+            "type": "nominal",
+            "label": "Rank"
+          },
+          "y": {
+            "field": "practice_days",
+            "type": "quantitative",
+            "label": "Practice days"
+          },
+          "color": {
+            "field": "scenario",
+            "type": "nominal",
+            "label": "Daily workload"
+          },
+          "tooltip": [
+            {
+              "field": "threshold",
+              "type": "quantitative",
+              "label": "Point threshold"
+            },
+            {
+              "field": "calendar_weeks_at_5d",
+              "type": "quantitative",
+              "label": "Calendar weeks"
+            },
+            {
+              "field": "questions_per_day",
+              "type": "quantitative",
+              "label": "Questions/day"
+            }
+          ]
+        }
+      },
+      {
+        "id": "promotion_gap_chart",
+        "title": "Answered questions needed for each promotion",
+        "subtitle": "Expected attempts at 70% accuracy; unanswered questions earn no points.",
+        "type": "bar",
+        "dataset": "journey",
+        "sourceId": "rank_journey_model",
+        "encodings": {
+          "x": {
+            "field": "rank",
+            "type": "nominal",
+            "label": "Rank reached"
+          },
+          "y": {
+            "field": "attempts_for_gap_at_70pct",
+            "type": "quantitative",
+            "label": "Answered questions"
+          },
+          "tooltip": [
+            {
+              "field": "promotion_gap",
+              "type": "quantitative",
+              "label": "Point gap"
+            },
+            {
+              "field": "threshold",
+              "type": "quantitative",
+              "label": "Cumulative threshold"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "rank_table",
+        "title": "Rank-by-rank progression",
+        "subtitle": "Cumulative thresholds and modeled time at 70% accuracy.",
+        "dataset": "journey",
+        "sourceId": "rank_journey_model",
+        "defaultSort": {
+          "field": "threshold",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "rank",
+            "label": "Rank",
+            "type": "text"
+          },
+          {
+            "field": "threshold",
+            "label": "Points",
+            "format": "number"
+          },
+          {
+            "field": "promotion_gap",
+            "label": "Gap",
+            "format": "number"
+          },
+          {
+            "field": "attempts_for_gap_at_70pct",
+            "label": "Questions for promotion",
+            "format": "number"
+          },
+          {
+            "field": "one_bootcamp_practice_days",
+            "label": "Days \u00b7 20/day",
+            "format": "number"
+          },
+          {
+            "field": "two_bootcamp_practice_days",
+            "label": "Days \u00b7 40/day",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "accuracy_table",
+        "title": "Accuracy sensitivity",
+        "subtitle": "How accuracy changes points per attempt and the full journey to General.",
+        "dataset": "accuracy_sensitivity",
+        "sourceId": "accuracy_sensitivity_model",
+        "defaultSort": {
+          "field": "accuracy_pct",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "accuracy_pct",
+            "label": "Accuracy",
+            "format": "number",
+            "unit": "%"
+          },
+          {
+            "field": "points_per_attempt",
+            "label": "Points/attempt",
+            "format": "number"
+          },
+          {
+            "field": "attempts_to_general",
+            "label": "Attempts to General",
+            "format": "number"
+          },
+          {
+            "field": "days_at_20_questions",
+            "label": "Days \u00b7 20/day",
+            "format": "number"
+          },
+          {
+            "field": "days_at_40_questions",
+            "label": "Days \u00b7 40/day",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "rank_model_analysis",
+        "label": "Rank thresholds, scoring rules, and modeled progression",
+        "path": "analysis/rank_progression/results.json"
+      },
+      {
+        "id": "rank_journey_model",
+        "label": "Rank journey model",
+        "path": "analysis/rank_progression/journey.csv"
+      },
+      {
+        "id": "accuracy_sensitivity_model",
+        "label": "Accuracy sensitivity model",
+        "path": "analysis/rank_progression/accuracy_sensitivity.csv"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Is the rank progression defensible?"
+      },
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "sourceId": "rank_model_analysis",
+        "body": "## Executive Summary\n\n- **Yes, for engagement.** The curve is broadly defensible if rank represents accumulated practice and persistence, not exam mastery. At 70% accuracy, a student answering 20 questions on each of five days per week reaches General in about 29 weeks.\n- **Two bootcamps do not create a multiplier.** If the student answers 20 questions in each bootcamp, the doubled 40-question workload halves the journey to about 15 weeks. If total daily questions stay at 20, splitting them across two bootcamps changes nothing.\n- **The final promotion is very back-loaded.** Major General to General requires 2,500 points, 35.7% of the entire journey, or about 1,042 answered questions at 70% accuracy.\n- **Accuracy matters, but activity dominates.** Moving from 50% to 80% accuracy raises earnings from 2.0 to 2.6 points per answer, only a 30% advantage. The current rank descriptions therefore overstate mastery relative to what the formula measures."
+      },
+      {
+        "id": "pace_heading",
+        "type": "markdown",
+        "sourceId": "rank_model_analysis",
+        "body": "## A steady student can complete the ladder within one school year\n\nAt 70% accuracy, 20 answered questions produce about 48 points. That is roughly 30 minutes of answering time, or around 40 minutes when brief review is included. The same workload across five days per week reaches Corporal in the first week, Captain in about six weeks, Colonel in about thirteen weeks, and General in about twenty-nine weeks. A two-bootcamp student doing 20 questions in each bootcamp doubles the workload and roughly halves those times. The bootcamp count itself has no mathematical effect."
+      },
+      {
+        "id": "pace_chart",
+        "type": "chart",
+        "chartId": "rank_pace_chart"
+      },
+      {
+        "id": "curve_heading",
+        "type": "markdown",
+        "sourceId": "rank_model_analysis",
+        "body": "## Early momentum is strong, but the last rank risks feeling distant\n\nThe first three promotions require about 42, 63, and 84 answered questions at 70% accuracy, so new students receive useful early reinforcement. The final promotion alone requires more answered questions than the first seven promotions combined through Major. That preserves General as a prestigious endpoint, but it creates a long motivational stretch unless the UI shows progress and smaller milestones inside the gap."
+      },
+      {
+        "id": "gap_chart",
+        "type": "chart",
+        "chartId": "promotion_gap_chart"
+      },
+      {
+        "id": "rank_table_block",
+        "type": "table",
+        "tableId": "rank_table"
+      },
+      {
+        "id": "accuracy_heading",
+        "type": "markdown",
+        "sourceId": "rank_model_analysis",
+        "body": "## The formula rewards showing up more than being excellent\n\nBecause every attempted question earns at least one point, even 0% accuracy eventually reaches General after 7,000 attempts; perfect accuracy needs 2,334. More realistically, 50% accuracy needs 3,500 attempts while 80% needs 2,693. This is a reasonable anti-discouragement mechanic for a practice product, but it means rank should not be presented as proof of readiness. Accuracy, analytics, and DIRI should own the mastery story."
+      },
+      {
+        "id": "accuracy_table_block",
+        "type": "table",
+        "tableId": "accuracy_table"
+      },
+      {
+        "id": "recommendations",
+        "type": "markdown",
+        "body": "## Recommended v1 decision\n\n1. **Keep the thresholds for launch.** The overall pace is reasonable for a year-round engagement ladder.\n2. **Frame rank as practice progression.** Rewrite descriptions that currently imply accuracy, speed, or mastery unless those qualities are separately required.\n3. **Show percentage progress inside each rank.** This preserves momentum without exposing the exact promotion thresholds.\n4. **Explain the free limit.** Free accounts receive points for at most 20 sessions and cannot earn more than 2,000 free points. Without clear copy, an unexplained points freeze will look broken.\n5. **Calibrate after launch.** Monitor median questions per active day, days between promotions, rank distribution, and the share of active students stalled for 30 days before changing thresholds."
+      },
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "body": "## What real usage should answer next\n\n- Do students usually complete 10, 20, or 40 questions on an active day?\n- Does the Major General-to-General gap improve retention or produce abandonment?\n- Do students farm easier questions or repeated content for points?\n- Should assignment practice and solo practice carry identical engagement rewards?"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "body": "## Caveats and assumptions\n\nThis is a deterministic model, not a forecast from production behavior. It assumes 70% accuracy for the main scenarios, five practice days per week, 90 seconds of answering time per question, and roughly two minutes per question when brief review is included. The two-bootcamp scenario assumes twice the daily work. Unanswered questions earn zero. Licensed sessions are credited idempotently to one global student total; free accounts are additionally constrained by the current 20-session and 2,000-point limits."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-11T05:39:31Z",
+    "status": "ready",
+    "datasets": {
+      "journey": [
+        {
+          "rank": "Corporal",
+          "threshold": 100,
+          "promotion_gap": 100,
+          "attempts_for_gap_at_70pct": 42,
+          "one_bootcamp_practice_days": 3,
+          "one_bootcamp_calendar_weeks_at_5d": 0.6,
+          "two_bootcamp_practice_days": 2,
+          "two_bootcamp_calendar_weeks_at_5d": 0.4
+        },
+        {
+          "rank": "Sergeant",
+          "threshold": 250,
+          "promotion_gap": 150,
+          "attempts_for_gap_at_70pct": 63,
+          "one_bootcamp_practice_days": 6,
+          "one_bootcamp_calendar_weeks_at_5d": 1.2,
+          "two_bootcamp_practice_days": 3,
+          "two_bootcamp_calendar_weeks_at_5d": 0.6
+        },
+        {
+          "rank": "Warrant Officer",
+          "threshold": 450,
+          "promotion_gap": 200,
+          "attempts_for_gap_at_70pct": 84,
+          "one_bootcamp_practice_days": 10,
+          "one_bootcamp_calendar_weeks_at_5d": 2.0,
+          "two_bootcamp_practice_days": 5,
+          "two_bootcamp_calendar_weeks_at_5d": 1.0
+        },
+        {
+          "rank": "Lieutenant",
+          "threshold": 800,
+          "promotion_gap": 350,
+          "attempts_for_gap_at_70pct": 146,
+          "one_bootcamp_practice_days": 17,
+          "one_bootcamp_calendar_weeks_at_5d": 3.4,
+          "two_bootcamp_practice_days": 9,
+          "two_bootcamp_calendar_weeks_at_5d": 1.8
+        },
+        {
+          "rank": "Captain",
+          "threshold": 1300,
+          "promotion_gap": 500,
+          "attempts_for_gap_at_70pct": 209,
+          "one_bootcamp_practice_days": 28,
+          "one_bootcamp_calendar_weeks_at_5d": 5.6,
+          "two_bootcamp_practice_days": 14,
+          "two_bootcamp_calendar_weeks_at_5d": 2.8
+        },
+        {
+          "rank": "Major",
+          "threshold": 1950,
+          "promotion_gap": 650,
+          "attempts_for_gap_at_70pct": 271,
+          "one_bootcamp_practice_days": 41,
+          "one_bootcamp_calendar_weeks_at_5d": 8.2,
+          "two_bootcamp_practice_days": 21,
+          "two_bootcamp_calendar_weeks_at_5d": 4.2
+        },
+        {
+          "rank": "Colonel",
+          "threshold": 3000,
+          "promotion_gap": 1050,
+          "attempts_for_gap_at_70pct": 438,
+          "one_bootcamp_practice_days": 63,
+          "one_bootcamp_calendar_weeks_at_5d": 12.6,
+          "two_bootcamp_practice_days": 32,
+          "two_bootcamp_calendar_weeks_at_5d": 6.4
+        },
+        {
+          "rank": "Major General",
+          "threshold": 4500,
+          "promotion_gap": 1500,
+          "attempts_for_gap_at_70pct": 625,
+          "one_bootcamp_practice_days": 94,
+          "one_bootcamp_calendar_weeks_at_5d": 18.8,
+          "two_bootcamp_practice_days": 47,
+          "two_bootcamp_calendar_weeks_at_5d": 9.4
+        },
+        {
+          "rank": "General",
+          "threshold": 7000,
+          "promotion_gap": 2500,
+          "attempts_for_gap_at_70pct": 1042,
+          "one_bootcamp_practice_days": 146,
+          "one_bootcamp_calendar_weeks_at_5d": 29.2,
+          "two_bootcamp_practice_days": 73,
+          "two_bootcamp_calendar_weeks_at_5d": 14.6
+        }
+      ],
+      "journey_long": [
+        {
+          "rank": "Corporal",
+          "threshold": 100,
+          "scenario": "1 bootcamp \u00b7 20 questions/day",
+          "questions_per_day": 20,
+          "practice_days": 3,
+          "calendar_weeks_at_5d": 0.6,
+          "promotion_gap": 100,
+          "attempts_for_gap_at_70pct": 42
+        },
+        {
+          "rank": "Corporal",
+          "threshold": 100,
+          "scenario": "2 bootcamps \u00b7 40 questions/day",
+          "questions_per_day": 40,
+          "practice_days": 2,
+          "calendar_weeks_at_5d": 0.4,
+          "promotion_gap": 100,
+          "attempts_for_gap_at_70pct": 42
+        },
+        {
+          "rank": "Sergeant",
+          "threshold": 250,
+          "scenario": "1 bootcamp \u00b7 20 questions/day",
+          "questions_per_day": 20,
+          "practice_days": 6,
+          "calendar_weeks_at_5d": 1.2,
+          "promotion_gap": 150,
+          "attempts_for_gap_at_70pct": 63
+        },
+        {
+          "rank": "Sergeant",
+          "threshold": 250,
+          "scenario": "2 bootcamps \u00b7 40 questions/day",
+          "questions_per_day": 40,
+          "practice_days": 3,
+          "calendar_weeks_at_5d": 0.6,
+          "promotion_gap": 150,
+          "attempts_for_gap_at_70pct": 63
+        },
+        {
+          "rank": "Warrant Officer",
+          "threshold": 450,
+          "scenario": "1 bootcamp \u00b7 20 questions/day",
+          "questions_per_day": 20,
+          "practice_days": 10,
+          "calendar_weeks_at_5d": 2.0,
+          "promotion_gap": 200,
+          "attempts_for_gap_at_70pct": 84
+        },
+        {
+          "rank": "Warrant Officer",
+          "threshold": 450,
+          "scenario": "2 bootcamps \u00b7 40 questions/day",
+          "questions_per_day": 40,
+          "practice_days": 5,
+          "calendar_weeks_at_5d": 1.0,
+          "promotion_gap": 200,
+          "attempts_for_gap_at_70pct": 84
+        },
+        {
+          "rank": "Lieutenant",
+          "threshold": 800,
+          "scenario": "1 bootcamp \u00b7 20 questions/day",
+          "questions_per_day": 20,
+          "practice_days": 17,
+          "calendar_weeks_at_5d": 3.4,
+          "promotion_gap": 350,
+          "attempts_for_gap_at_70pct": 146
+        },
+        {
+          "rank": "Lieutenant",
+          "threshold": 800,
+          "scenario": "2 bootcamps \u00b7 40 questions/day",
+          "questions_per_day": 40,
+          "practice_days": 9,
+          "calendar_weeks_at_5d": 1.8,
+          "promotion_gap": 350,
+          "attempts_for_gap_at_70pct": 146
+        },
+        {
+          "rank": "Captain",
+          "threshold": 1300,
+          "scenario": "1 bootcamp \u00b7 20 questions/day",
+          "questions_per_day": 20,
+          "practice_days": 28,
+          "calendar_weeks_at_5d": 5.6,
+          "promotion_gap": 500,
+          "attempts_for_gap_at_70pct": 209
+        },
+        {
+          "rank": "Captain",
+          "threshold": 1300,
+          "scenario": "2 bootcamps \u00b7 40 questions/day",
+          "questions_per_day": 40,
+          "practice_days": 14,
+          "calendar_weeks_at_5d": 2.8,
+          "promotion_gap": 500,
+          "attempts_for_gap_at_70pct": 209
+        },
+        {
+          "rank": "Major",
+          "threshold": 1950,
+          "scenario": "1 bootcamp \u00b7 20 questions/day",
+          "questions_per_day": 20,
+          "practice_days": 41,
+          "calendar_weeks_at_5d": 8.2,
+          "promotion_gap": 650,
+          "attempts_for_gap_at_70pct": 271
+        },
+        {
+          "rank": "Major",
+          "threshold": 1950,
+          "scenario": "2 bootcamps \u00b7 40 questions/day",
+          "questions_per_day": 40,
+          "practice_days": 21,
+          "calendar_weeks_at_5d": 4.2,
+          "promotion_gap": 650,
+          "attempts_for_gap_at_70pct": 271
+        },
+        {
+          "rank": "Colonel",
+          "threshold": 3000,
+          "scenario": "1 bootcamp \u00b7 20 questions/day",
+          "questions_per_day": 20,
+          "practice_days": 63,
+          "calendar_weeks_at_5d": 12.6,
+          "promotion_gap": 1050,
+          "attempts_for_gap_at_70pct": 438
+        },
+        {
+          "rank": "Colonel",
+          "threshold": 3000,
+          "scenario": "2 bootcamps \u00b7 40 questions/day",
+          "questions_per_day": 40,
+          "practice_days": 32,
+          "calendar_weeks_at_5d": 6.4,
+          "promotion_gap": 1050,
+          "attempts_for_gap_at_70pct": 438
+        },
+        {
+          "rank": "Major General",
+          "threshold": 4500,
+          "scenario": "1 bootcamp \u00b7 20 questions/day",
+          "questions_per_day": 20,
+          "practice_days": 94,
+          "calendar_weeks_at_5d": 18.8,
+          "promotion_gap": 1500,
+          "attempts_for_gap_at_70pct": 625
+        },
+        {
+          "rank": "Major General",
+          "threshold": 4500,
+          "scenario": "2 bootcamps \u00b7 40 questions/day",
+          "questions_per_day": 40,
+          "practice_days": 47,
+          "calendar_weeks_at_5d": 9.4,
+          "promotion_gap": 1500,
+          "attempts_for_gap_at_70pct": 625
+        },
+        {
+          "rank": "General",
+          "threshold": 7000,
+          "scenario": "1 bootcamp \u00b7 20 questions/day",
+          "questions_per_day": 20,
+          "practice_days": 146,
+          "calendar_weeks_at_5d": 29.2,
+          "promotion_gap": 2500,
+          "attempts_for_gap_at_70pct": 1042
+        },
+        {
+          "rank": "General",
+          "threshold": 7000,
+          "scenario": "2 bootcamps \u00b7 40 questions/day",
+          "questions_per_day": 40,
+          "practice_days": 73,
+          "calendar_weeks_at_5d": 14.6,
+          "promotion_gap": 2500,
+          "attempts_for_gap_at_70pct": 1042
+        }
+      ],
+      "accuracy_sensitivity": [
+        {
+          "accuracy_pct": 0,
+          "points_per_attempt": 1.0,
+          "attempts_to_general": 7000,
+          "days_at_20_questions": 350,
+          "days_at_40_questions": 175
+        },
+        {
+          "accuracy_pct": 50,
+          "points_per_attempt": 2.0,
+          "attempts_to_general": 3500,
+          "days_at_20_questions": 175,
+          "days_at_40_questions": 88
+        },
+        {
+          "accuracy_pct": 70,
+          "points_per_attempt": 2.4,
+          "attempts_to_general": 2917,
+          "days_at_20_questions": 146,
+          "days_at_40_questions": 73
+        },
+        {
+          "accuracy_pct": 80,
+          "points_per_attempt": 2.6,
+          "attempts_to_general": 2693,
+          "days_at_20_questions": 135,
+          "days_at_40_questions": 68
+        },
+        {
+          "accuracy_pct": 90,
+          "points_per_attempt": 2.8,
+          "attempts_to_general": 2500,
+          "days_at_20_questions": 125,
+          "days_at_40_questions": 63
+        },
+        {
+          "accuracy_pct": 100,
+          "points_per_attempt": 3.0,
+          "attempts_to_general": 2334,
+          "days_at_20_questions": 117,
+          "days_at_40_questions": 59
+        }
+      ]
+    },
+    "accessIssues": []
+  },
+  "sources": [
+    {
+      "id": "rank_model_analysis",
+      "path": "analysis/rank_progression/results.json"
+    },
+    {
+      "id": "rank_journey_model",
+      "path": "analysis/rank_progression/journey.csv",
+      "query": {
+        "engine": "postgresql",
+        "language": "sql",
+        "sql": "WITH ranks(rank_name, threshold, rank_order) AS (VALUES ('Corporal',100,2),('Sergeant',250,3),('Warrant Officer',450,4),('Lieutenant',800,5),('Captain',1300,6),('Major',1950,7),('Colonel',3000,8),('Major General',4500,9),('General',7000,10)), gaps AS (SELECT rank_name, threshold, rank_order, threshold - LAG(threshold,1,0) OVER (ORDER BY rank_order) AS promotion_gap FROM ranks), scenarios(scenario, questions_per_day) AS (VALUES ('1 bootcamp \u00b7 20 questions/day',20),('2 bootcamps \u00b7 40 questions/day',40)) SELECT rank_name AS rank, threshold, promotion_gap, CEIL(promotion_gap / 2.4) AS attempts_for_gap_at_70pct, scenario, questions_per_day, CEIL(threshold / (questions_per_day * 2.4)) AS practice_days FROM gaps CROSS JOIN scenarios ORDER BY rank_order, questions_per_day;",
+        "description": "Computes promotion gaps and modeled practice days for the one- and two-bootcamp workloads.",
+        "tables_used": [
+          "modeled_rank_thresholds"
+        ],
+        "filters": [
+          "Accuracy fixed at 70%",
+          "Five practice days per week for calendar-week interpretation"
+        ],
+        "metric_definitions": {
+          "points_per_attempt": "1 + 2 \u00d7 accuracy; correct=3, wrong=1, unanswered=0",
+          "practice_days": "ceil(rank threshold / (questions per day \u00d7 expected points per attempt))"
+        }
+      }
+    },
+    {
+      "id": "accuracy_sensitivity_model",
+      "path": "analysis/rank_progression/accuracy_sensitivity.csv",
+      "query": {
+        "engine": "postgresql",
+        "language": "sql",
+        "sql": "WITH accuracies(accuracy) AS (VALUES (0.0),(0.5),(0.7),(0.8),(0.9),(1.0)) SELECT accuracy * 100 AS accuracy_pct, 1 + 2 * accuracy AS points_per_attempt, CEIL(7000 / (1 + 2 * accuracy)) AS attempts_to_general, CEIL(7000 / (20 * (1 + 2 * accuracy))) AS days_at_20_questions, CEIL(7000 / (40 * (1 + 2 * accuracy))) AS days_at_40_questions FROM accuracies ORDER BY accuracy;",
+        "description": "Computes the sensitivity of the General journey to answer accuracy.",
+        "tables_used": [
+          "modeled_accuracy_levels"
+        ],
+        "metric_definitions": {
+          "points_per_attempt": "1 + 2 \u00d7 accuracy",
+          "attempts_to_general": "ceil(7,000 / expected points per attempt)"
+        }
+      }
+    }
+  ]
+}

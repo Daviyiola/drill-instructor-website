@@ -1,0 +1,11 @@
+rank,threshold,promotion_gap,attempts_for_gap_at_70pct,one_bootcamp_practice_days,one_bootcamp_calendar_weeks_at_5d,two_bootcamp_practice_days,two_bootcamp_calendar_weeks_at_5d
+Recruit,0,0,0,0,0,0,0
+Corporal,100,100,42,3,0.6,2,0.4
+Sergeant,250,150,63,6,1.2,3,0.6
+Warrant Officer,450,200,84,10,2.0,5,1.0
+Lieutenant,800,350,146,17,3.4,9,1.8
+Captain,1300,500,209,28,5.6,14,2.8
+Major,1950,650,271,41,8.2,21,4.2
+Colonel,3000,1050,438,63,12.6,32,6.4
+Major General,4500,1500,625,94,18.8,47,9.4
+General,7000,2500,1042,146,29.2,73,14.6

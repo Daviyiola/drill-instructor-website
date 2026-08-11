@@ -88,8 +88,10 @@ exports.handler = async (req, res) => {
     // 1) Reserve or verify ownership of customUserId
     const userRef = db.ref(`users/${customUserId}`);
 
+    let newlyCreated = false;
     const txResult = await userRef.transaction((cur) => {
       if (!cur) {
+        newlyCreated = true;
         // create skeleton with uid ownership
         return {
           uid: callerFbUid,
@@ -108,6 +110,8 @@ exports.handler = async (req, res) => {
           createdAt: new Date().toISOString(),
         };
       }
+
+      newlyCreated = false;
 
       // If exists, only allow if already owned by this uid
       if (cur.uid && cur.uid !== callerFbUid) return; // abort transaction
@@ -129,6 +133,11 @@ exports.handler = async (req, res) => {
     const updates = {};
     updates[`roles/${customUserId}`] = "student";
     updates[`uidToCustom/${callerFbUid}/student`] = customUserId;
+
+    if (newlyCreated) {
+      updates[`studentSocial/${customUserId}/settings/challengeAudience`] =
+        "squad_only";
+    }
 
     await db.ref().update(updates);
 

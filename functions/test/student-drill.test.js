@@ -236,8 +236,9 @@ test("mobile challenges use the shared cloud session", () => {
   );
   assert.match(
       questions,
-      /submitChallengeResult\(\s*challengeId,\s*resp\.result/,
+      /submitChallengeResult\(\s*challengeId,\s*sessionId/,
   );
+  assert.doesNotMatch(questions, /submitSessionSnapshotHttps/);
   assert.match(questions, /passage:\s*String\(raw\.passage/);
   assert.match(questions, /cachedCloudAssets\(/);
   assert.match(questions, /cacheCloudSessionAssets\(session\)/);
@@ -247,6 +248,30 @@ test("mobile challenges use the shared cloud session", () => {
   assert.match(questions, /savePendingEducatorDrillSubmission/);
   assert.match(squad, /submitStudentDrillHttps/);
   assert.doesNotMatch(squad, /submitEducatorDrillAttemptHttps/);
+});
+
+test("challenge completion loads the canonical submitted session", () => {
+  const handler = readFileSync(join(
+      __dirname,
+      "..",
+      "handlers",
+      "completeChallengeHttps.js",
+  ), "utf8");
+  const webRunner = readFileSync(join(
+      __dirname,
+      "..",
+      "..",
+      "components",
+      "app",
+      "QuestionRunner.tsx",
+  ), "utf8");
+
+  assert.match(handler, /studentDrills\/" \+ customId \+ "\/" \+ sessionId/);
+  assert.match(handler, /session\.status !== "submitted"/);
+  assert.match(handler, /session\.challengeId/);
+  assert.match(handler, /summarizeSubmittedResult\(session\.result\)/);
+  assert.doesNotMatch(handler, /body\.snapshot/);
+  assert.match(webRunner, /"completeChallengeHttps",[\s\S]*?sessionId/);
 });
 
 test("active questions never expose grading fields", () => {

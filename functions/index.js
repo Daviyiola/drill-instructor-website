@@ -91,13 +91,6 @@ exports.completeChallengeHttps = onRequest(
     require("./handlers/completeChallengeHttps").handler,
 );
 
-exports.submitSessionSnapshotHttps = onRequest(
-    {secrets: [LICENSE_SALT],
-      region: "us-central1",
-      timeoutSeconds: 30},
-    require("./handlers/submitSessionSnapshotHttps").handler,
-);
-
 exports.bootstrapAccountHttps = onRequest(
     {region: "us-central1", timeoutSeconds: 60},
     require("./handlers/bootstrapAccountHttps").handler,
@@ -156,6 +149,28 @@ exports.addSquadMemberHttps = onRequest(
 exports.removeSquadMemberHttps = onRequest(
     studentSocialOptions,
     require("./handlers/removeSquadMemberHttps").handler,
+);
+
+const studentSocial = require("./handlers/studentSocialHttps");
+exports.getStudentSocialSettingsHttps = onRequest(
+    studentSocialOptions,
+    studentSocial.getSettings,
+);
+exports.updateStudentSocialSettingsHttps = onRequest(
+    studentSocialOptions,
+    studentSocial.updateSettings,
+);
+exports.blockStudentHttps = onRequest(
+    studentSocialOptions,
+    studentSocial.blockStudent,
+);
+exports.unblockStudentHttps = onRequest(
+    studentSocialOptions,
+    studentSocial.unblockStudent,
+);
+exports.getBlockedStudentsHttps = onRequest(
+    studentSocialOptions,
+    studentSocial.getBlockedStudents,
 );
 
 exports.cleanupExpiredChallenges =
@@ -232,6 +247,11 @@ exports.getEducatorStudentAnalyticsHttps = onRequest(
 exports.getEducatorGroupAnalyticsHttps = onRequest(
     publicStudentOptions,
     require("./handlers/getEducatorGroupAnalyticsHttps").handler,
+);
+
+exports.setStudentAnalyticsPreferencesHttps = onRequest(
+    publicStudentOptions,
+    require("./handlers/setStudentAnalyticsPreferencesHttps").handler,
 );
 
 exports.getEducatorDrillsHttps = onRequest(

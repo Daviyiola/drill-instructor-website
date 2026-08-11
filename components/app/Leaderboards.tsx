@@ -3,7 +3,7 @@
 import {useRouter} from "next/navigation";
 import {useEffect, useMemo, useState} from "react";
 import {callFunction} from "@/lib/api/client";
-import {rankForPoints, rankForUnitScore, rankImage} from "@/lib/ranks";
+import {rankForUnitScore, rankImage, unitRankImage} from "@/lib/ranks";
 import type {ResolvedAccount} from "@/lib/types/account";
 import AppShell from "./AppShell";
 import AppBackLink from "./AppBackLink";
@@ -13,7 +13,7 @@ interface SquadProfile {
   id: string;
   firstName: string;
   lastName: string;
-  totalPoints: number;
+  rankNum: number;
   platoonName: string;
 }
 
@@ -46,6 +46,7 @@ export default function Leaderboards() {
   const [removing, setRemoving] = useState<SquadProfile | null>(null);
   const [mutating, setMutating] = useState(false);
   const [error, setError] = useState("");
+  const [infoOpen, setInfoOpen] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) router.replace("/app/sign-in");
@@ -79,7 +80,7 @@ export default function Leaderboards() {
       setSquad(
         profilesResponse.status === "fulfilled"
           ? profilesResponse.value.results.sort(
-              (a, b) => Number(b.totalPoints) - Number(a.totalPoints),
+              (a, b) => Number(b.rankNum) - Number(a.rankNum),
             )
           : [],
       );
@@ -189,15 +190,18 @@ export default function Leaderboards() {
               Compare your squad and the units you train with.
             </p>
           </div>
-          {tab === "squad" && (
-            <button
-              type="button"
-              onClick={() => setManageOpen(true)}
-              className="min-h-11 rounded-2xl bg-brand-green px-5 text-sm font-black text-white"
-            >
-              Add squad member
-            </button>
-          )}
+          <div className="flex gap-2">
+            <button type="button" onClick={() => setInfoOpen(true)} aria-label="How leaderboards work" className="grid h-11 w-11 place-items-center rounded-2xl border border-slate-200 bg-white text-sm font-semibold text-brand-green">i</button>
+            {tab === "squad" && (
+              <button
+                type="button"
+                onClick={() => setManageOpen(true)}
+                className="min-h-11 rounded-2xl bg-brand-green px-5 text-sm font-black text-white"
+              >
+                Add squad member
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="mt-7 grid grid-cols-3 rounded-2xl border-2 border-brand-green bg-white p-1">
@@ -226,18 +230,17 @@ export default function Leaderboards() {
         <div className="mt-6 space-y-3">
           {tab === "squad" &&
             squad.map((member, index) => {
-              const rank = rankForPoints(member.totalPoints);
               const isSelf = member.id === account.customUserId;
               return (
                 <div
                   key={member.id}
-                  className="grid gap-4 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[auto_auto_minmax(0,1fr)_auto] sm:items-center sm:p-5"
+                  className="grid gap-4 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[auto_auto_minmax(0,1fr)] sm:items-center sm:p-5"
                 >
                   <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-mist text-sm font-black text-brand-green">
                     {index + 1}
                   </span>
                   <img
-                    src={rankImage(rank.number)}
+                    src={rankImage(member.rankNum)}
                     alt=""
                     className="h-16 w-16 object-contain"
                   />
@@ -253,19 +256,10 @@ export default function Leaderboards() {
                       )}
                     </p>
                     <p className="mt-1 text-xs text-slate-500">
-                      {rank.name.toUpperCase()}
-                      {member.platoonName ? ` · ${member.platoonName}` : ""}
+                      {member.platoonName || "Squad member"}
                     </p>
                   </div>
-                  <div className="flex items-center justify-between gap-4 sm:block sm:text-right">
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                        Points
-                      </p>
-                      <p className="text-lg font-black">
-                        {Number(member.totalPoints || 0).toLocaleString()}
-                      </p>
-                    </div>
+                  <div className="sm:text-right">
                     {!isSelf && (
                       <button
                         type="button"
@@ -292,22 +286,14 @@ export default function Leaderboards() {
                     {index + 1}
                   </span>
                   <img
-                    src={rankImage(rank.number)}
+                    src={unitRankImage(rank.number)}
                     alt=""
                     className="h-16 w-16 object-contain"
                   />
                   <div>
                     <p className="text-lg font-black">{unit.name}</p>
                     <p className="mt-1 text-xs text-slate-500">
-                      {unit.parent || "Global corps"} · {rank.name}
-                    </p>
-                  </div>
-                  <div className="sm:text-right">
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                      Score
-                    </p>
-                    <p className="text-lg font-black">
-                      {Math.round(Number(unit.score || 0))}%
+                      {unit.parent || "Global corps"}
                     </p>
                   </div>
                 </div>
@@ -366,7 +352,6 @@ export default function Leaderboards() {
               />
               <div className="mt-4 max-h-80 space-y-2 overflow-y-auto">
                 {results.map((member) => {
-                  const rank = rankForPoints(member.totalPoints);
                   return (
                     <button
                       key={member.id}
@@ -379,7 +364,7 @@ export default function Leaderboards() {
                       }`}
                     >
                       <img
-                        src={rankImage(rank.number)}
+                        src={rankImage(member.rankNum)}
                         alt=""
                         className="h-12 w-12 object-contain"
                       />
@@ -390,8 +375,7 @@ export default function Leaderboards() {
                             .join(" ")}
                         </p>
                         <p className="text-xs text-slate-500">
-                          {rank.name} ·{" "}
-                          {Number(member.totalPoints).toLocaleString()} points
+                          {member.platoonName || "No school listed"}
                         </p>
                       </div>
                       <span className="text-sm font-black text-brand-green">
@@ -421,6 +405,23 @@ export default function Leaderboards() {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {infoOpen && (
+        <div className="fixed inset-0 z-[70] grid place-items-center bg-black/60 p-4">
+          <section role="dialog" aria-modal="true" aria-labelledby="leaderboard-info-title" className="w-full max-w-lg rounded-[2rem] bg-white p-6 shadow-2xl sm:p-8">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-brand-green/60">Friendly competition</p>
+            <h2 id="leaderboard-info-title" className="mt-2 text-2xl font-semibold text-slate-950">How leaderboards work</h2>
+            <div className="mt-6 space-y-4 text-sm leading-6 text-slate-600">
+              <p>Leaderboards turn consistent practice into shared progress. As you complete drills and earn points, you strengthen your own standing and contribute to the communities you represent.</p>
+              <p><strong className="font-medium text-slate-950">Squad</strong> is your personal list of students you choose to train with. It gives you a smaller circle for friendly competition, shared challenges, and encouragement. Adding someone does not automatically add you to their squad.</p>
+              <p><strong className="font-medium text-slate-950">Battalion</strong> represents your state or region. Every test you take adds to your battalion&apos;s progress, so your individual effort helps your wider learning community move forward together.</p>
+              <p><strong className="font-medium text-slate-950">Corps</strong> represents your country. Your practice joins the effort of students across the country, turning each completed test into a contribution to something greater than one score.</p>
+              <p>Private profiles cannot be found in search or added to new squads. Existing squad connections and rank updates remain visible, and practice may still contribute anonymously to Battalion and Corps totals.</p>
+            </div>
+            <button type="button" onClick={() => setInfoOpen(false)} className="mt-7 min-h-12 w-full rounded-2xl bg-brand-green text-sm text-white">Close</button>
+          </section>
         </div>
       )}
 

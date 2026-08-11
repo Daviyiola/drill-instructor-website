@@ -6,6 +6,8 @@ const {allowCors, requireBearerUid} = require("./_auth");
 const {buildCatalog, resolveStudent, SUPPORTED_BOOTCAMPS} =
   require("./_studentDrill");
 const {aggregateAnalytics, activitySessions} = require("./_analytics");
+const {preferenceDescriptor, validatePreference} =
+  require("./_diriPreferences");
 
 function requestOptions(body) {
   const bootcamp = String(body.bootcamp || "").trim().toLowerCase();
@@ -50,7 +52,26 @@ async function handler(req, res) {
     const uid = await requireBearerUid(req);
     const db = getDatabase();
     const {studentId} = await resolveStudent(db, uid);
-    const options = requestOptions(req.body || {});
+    const body = req.body || {};
+    const options = requestOptions(body);
+    const catalog = buildCatalog(options.bootcamp);
+    const preferenceRef = db.ref(
+        `users/${studentId}/analyticsPreferences/${options.bootcamp}`);
+    const storedPreference = (await preferenceRef.once("value")).val();
+    let diriPreference = preferenceDescriptor(
+        options.bootcamp, catalog, storedPreference);
+    // Native releases before this server-owned preference stored the student's
+    // explicit choice in SQLite. Accepting it here performs a one-time,
+    // authenticated migration while preserving offline-first behavior.
+    if (Array.isArray(body.diriSubjects) && body.diriSubjects.length) {
+      diriPreference = validatePreference(
+          options.bootcamp, catalog, body.diriSubjects);
+      await preferenceRef.set({
+        selectedSubjects: diriPreference.selectedSubjects,
+        updatedAt: new Date().toISOString(),
+      });
+    }
+    options.diriSubjects = diriPreference.selectedSubjects;
     // The response has two windows: the requested display range and a fixed
     // trailing 90-day DIRI window. Fetch their union so the shared aggregator
     // can render the selected range without letting it alter readiness.
@@ -70,7 +91,7 @@ async function handler(req, res) {
     const analytics = aggregateAnalytics(
         Object.values(attempts),
         options,
-        buildCatalog(options.bootcamp),
+        catalog,
     );
     return res.status(200).json({
       ok: true,
@@ -78,6 +99,7 @@ async function handler(req, res) {
       // Deliberately lightweight: native caches these coordinates to make
       // practice-test variety complete across devices without result payloads.
       activitySessions: activitySessions(Object.values(attempts), options),
+      diriPreference,
       ...analytics,
     });
   } catch (error) {

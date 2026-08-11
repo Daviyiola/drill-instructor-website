@@ -5,6 +5,11 @@ const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
 const {assertLicenseActive} = require("./_license");
 const {
+  blockSetsFor,
+  canSendChallenge,
+  isBlockedBySets,
+} = require("./_socialPolicy");
+const {
   cleanSegment,
   correctionRevisionFor,
   datasetVersionFor,
@@ -182,6 +187,7 @@ async function getChallenges(req, res) {
     const tree = (await db.ref(
         `users/${studentId}/userChallenges`,
     ).once("value")).val() || {};
+    const blockSets = await blockSetsFor(db, studentId);
     const inboxRows = Object.entries(tree)
         .map(([challengeId, value]) => {
           const row = value && typeof value === "object" ? value : {};
@@ -207,6 +213,9 @@ async function getChallenges(req, res) {
           };
         })
         .filter((row) => row.stage !== "hidden")
+        .filter((row) => !row.senderCustomId ||
+          row.senderCustomId === studentId ||
+          !isBlockedBySets(blockSets, row.senderCustomId))
         .filter((row) => !requestedBootcamp ||
           row.bootcamp === requestedBootcamp)
         .sort((a, b) => Date.parse(b.createdAt || 0) -
@@ -447,6 +456,15 @@ async function reinviteParticipant(req, res) {
       throw error;
     }
 
+    const socialPolicy = await canSendChallenge(
+        db, studentId, recipientCustomId,
+    );
+    if (!socialPolicy.allowed) {
+      const error = new Error("This recipient is unavailable");
+      error.code = 409;
+      throw error;
+    }
+
     const nowIso = new Date().toISOString();
     const recipientRef = db.ref(
         `users/${recipientCustomId}/userChallenges/${challengeId}`,
@@ -530,6 +548,13 @@ async function getChallenge(req, res) {
       error.code = 404;
       throw error;
     }
+    const blockSets = await blockSetsFor(db, studentId);
+    const creatorId = String(challenge.createdByCustomId || "");
+    if (creatorId !== studentId && isBlockedBySets(blockSets, creatorId)) {
+      const error = new Error("Challenge was not found");
+      error.code = 404;
+      throw error;
+    }
     await assertLicenseActive(db, studentId, challenge.bootcamp);
     const expired = Date.parse(challenge.expiresAt || 0) <= Date.now();
     const reveal = challenge.reveal === true ||
@@ -547,6 +572,8 @@ async function getChallenge(req, res) {
     }
     if (reveal) {
       results = Object.entries(resultTree)
+          .filter(([customId]) => customId === studentId ||
+            !isBlockedBySets(blockSets, customId))
           .map(([customId, value]) =>
             publicChallengeResult(customId, value))
           .sort((a, b) => b.correct - a.correct ||
@@ -555,22 +582,25 @@ async function getChallenge(req, res) {
     let participants = [];
     if (isCreator) {
       participants = await Promise.all(
-          challenge.participantsCustomIds.map(async (customId) => {
-            const [profileRow, participantInbox] = await Promise.all([
-              db.ref(`users/${customId}`).once("value"),
-              db.ref(
-                  `users/${customId}/userChallenges/${challengeId}`,
-              ).once("value"),
-            ]);
-            return publicChallengeParticipant(
-                customId,
-                profileRow.val(),
-                participantInbox.val(),
-                studentId,
-                expired,
-                Boolean(resultTree[customId]),
-            );
-          }),
+          challenge.participantsCustomIds
+              .filter((customId) => customId === studentId ||
+                !isBlockedBySets(blockSets, customId))
+              .map(async (customId) => {
+                const [profileRow, participantInbox] = await Promise.all([
+                  db.ref(`users/${customId}`).once("value"),
+                  db.ref(
+                      `users/${customId}/userChallenges/${challengeId}`,
+                  ).once("value"),
+                ]);
+                return publicChallengeParticipant(
+                    customId,
+                    profileRow.val(),
+                    participantInbox.val(),
+                    studentId,
+                    expired,
+                    Boolean(resultTree[customId]),
+                );
+              }),
       );
     }
     return res.status(200).json({
@@ -695,6 +725,13 @@ async function createChallengeSession(req, res) {
     if (!challenge || !inbox ||
         !Array.isArray(challenge.participantsCustomIds) ||
         !challenge.participantsCustomIds.includes(studentId)) {
+      const error = new Error("Challenge was not found");
+      error.code = 404;
+      throw error;
+    }
+    const blockSets = await blockSetsFor(db, studentId);
+    const creatorId = String(challenge.createdByCustomId || "");
+    if (creatorId !== studentId && isBlockedBySets(blockSets, creatorId)) {
       const error = new Error("Challenge was not found");
       error.code = 404;
       throw error;

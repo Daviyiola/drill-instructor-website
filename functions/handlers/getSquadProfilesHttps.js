@@ -3,6 +3,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {blockSetsFor, isBlockedBySets} = require("./_socialPolicy");
 
 /**
  * @typedef {import("firebase-admin").database.Database} Database
@@ -151,18 +152,25 @@ exports.handler = async function handler(req, res) {
       return res.status(200).json({ok: true, results: []});
     }
 
+    const [membershipSnap, blockSets] = await Promise.all([
+      db.ref(`users/${customId}/squadMembers`).once("value"),
+      blockSetsFor(db, customId),
+    ]);
+    const memberships = membershipSnap.val() || {};
+    const allowedIds = ids.filter((id) =>
+      (id === customId || memberships[id] === true) &&
+      (id === customId || !isBlockedBySets(blockSets, id)),
+    );
     const snaps = await Promise.all(
-        ids.map((id) => {
+        allowedIds.map((id) => {
           return db.ref("users/" + id).once("value");
         }),
     );
 
     const results = [];
     for (let i = 0; i < snaps.length; i++) {
-      const id = ids[i];
+      const id = allowedIds[i];
       const u = snaps[i].val() || {};
-
-      if (u.profilePermissions !== true) continue;
 
       const rankNum = Math.min(10, Math.max(1,
           Number(u.currentRankNum) || rankNumberForPoints(u.totalPoints)));
@@ -177,7 +185,10 @@ exports.handler = async function handler(req, res) {
         firstName: u.firstName || "",
         lastName: u.lastName || "",
         platoonName: u.platoonName || "",
-        totalPoints: u.totalPoints || 0,
+        rankNum: rankNum,
+        // Squad leaderboards still use the score internally for ordering and
+        // local caching. Clients do not render it in profile rows.
+        totalPoints: Math.max(0, Number(u.totalPoints) || 0),
       };
       // Recipient selection needs identity only. Keep leaderboard/ranking
       // fields out of that response unless a caller explicitly needs them.

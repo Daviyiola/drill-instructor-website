@@ -321,6 +321,7 @@ export default function SquadChallenges({bootcamp}: {bootcamp: string}) {
     useState<StudentChallengeResult | null>(null);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [blockTarget, setBlockTarget] = useState<StudentChallengeRow | null>(null);
 
   useEffect(() => {
     if (!loading && !user) router.replace("/app/sign-in");
@@ -436,6 +437,25 @@ export default function SquadChallenges({bootcamp}: {bootcamp: string}) {
       });
       setSelected(null);
       if (decision === "accept") setStage("accepted");
+      await loadChallenges();
+    } catch (reason) {
+      setError((reason as Error).message);
+    } finally {
+      setMutating(false);
+    }
+  }
+
+  async function blockSender() {
+    if (!user || !blockTarget || mutating) return;
+    setMutating(true);
+    setError("");
+    try {
+      await callFunction(user, "blockStudentHttps", {
+        studentId: blockTarget.senderCustomId,
+      });
+      setBlockTarget(null);
+      setSelected(null);
+      setNotice("This account has been blocked.");
       await loadChallenges();
     } catch (reason) {
       setError((reason as Error).message);
@@ -687,7 +707,32 @@ export default function SquadChallenges({bootcamp}: {bootcamp: string}) {
             >
               Not now
             </button>
+            <button
+              type="button"
+              disabled={mutating}
+              onClick={() => {
+                setBlockTarget(selected);
+                setSelected(null);
+              }}
+              className="mt-1 min-h-9 w-full text-xs text-red-700 underline decoration-1 underline-offset-4"
+            >
+              Block this user
+            </button>
           </div>
+        </div>
+      )}
+
+      {blockTarget && (
+        <div className="fixed inset-0 z-[70] grid place-items-center bg-black/65 p-4">
+          <section role="dialog" aria-modal="true" aria-labelledby="block-title" className="w-full max-w-md rounded-[2rem] bg-white p-6 shadow-2xl sm:p-7">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-red-600">Privacy</p>
+            <h2 id="block-title" className="mt-2 text-2xl font-semibold text-slate-950">Block {blockTarget.senderDisplay}?</h2>
+            <p className="mt-4 text-sm leading-6 text-slate-600">This user will no longer be able to find, add, or challenge you. You will also stop seeing each other in shared challenge results.</p>
+            <div className="mt-7 grid grid-cols-2 gap-3">
+              <button type="button" disabled={mutating} onClick={() => setBlockTarget(null)} className="min-h-12 rounded-2xl border border-slate-200 text-sm text-slate-700">Cancel</button>
+              <button type="button" disabled={mutating} onClick={() => void blockSender()} className="min-h-12 rounded-2xl bg-red-700 text-sm text-white disabled:opacity-50">{mutating ? "Blocking…" : "Block"}</button>
+            </div>
+          </section>
         </div>
       )}
 

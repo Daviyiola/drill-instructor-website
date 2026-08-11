@@ -168,9 +168,16 @@ exports.handler = async (req, res) => {
     const updates = {};
 
     if (studentId) {
-      const [studentSnap, stripeCustomerSnap] = await Promise.all([
+      const [
+        studentSnap,
+        stripeCustomerSnap,
+        blocksSnap,
+        blockedBySnap,
+      ] = await Promise.all([
         db.ref(`users/${studentId}`).once("value"),
         db.ref(`stripeCustomers/${studentId}`).once("value"),
+        db.ref(`studentSocial/${studentId}/blocks`).once("value"),
+        db.ref(`studentSocialBlockedBy/${studentId}`).once("value"),
       ]);
       const student = studentSnap.val() || {};
       const stripeCustomer = stripeCustomerSnap.val() || {};
@@ -185,6 +192,14 @@ exports.handler = async (req, res) => {
       updates[`studentDrills/${studentId}`] = null;
       updates[`subscriptionEvents/${studentId}`] = null;
       updates[`stripeCustomers/${studentId}`] = null;
+      updates[`studentSocial/${studentId}`] = null;
+      updates[`studentSocialBlockedBy/${studentId}`] = null;
+      Object.keys(blocksSnap.val() || {}).forEach((blockedId) => {
+        updates[`studentSocialBlockedBy/${blockedId}/${studentId}`] = null;
+      });
+      Object.keys(blockedBySnap.val() || {}).forEach((blockerId) => {
+        updates[`studentSocial/${blockerId}/blocks/${studentId}`] = null;
+      });
       if (stripeCustomerId) {
         updates[`stripeCustomerIndex/${stripeCustomerId}`] = null;
       }

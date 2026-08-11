@@ -31,6 +31,31 @@ interface EditableProfile {
   platoonName: string;
 }
 
+type ChallengeAudience = "anyone" | "squad_only" | "nobody";
+
+interface BlockedStudent {
+  id: string;
+  firstName: string;
+  lastName: string;
+  schoolName: string;
+  blockedAt: number;
+}
+
+const challengeAudienceCopy: Record<ChallengeAudience, {title: string; body: string}> = {
+  anyone: {
+    title: "Anyone",
+    body: "Any discoverable student may add and challenge you.",
+  },
+  squad_only: {
+    title: "My squad only",
+    body: "Only students you have personally added to your squad may challenge you.",
+  },
+  nobody: {
+    title: "Nobody",
+    body: "Do not accept new friendly challenges.",
+  },
+};
+
 function profileForm(profile: DrillInstructorProfile): EditableProfile {
   return {
     firstName: String(profile.firstName || ""),
@@ -70,6 +95,15 @@ export default function UserProfile() {
   const [deleteStage, setDeleteStage] = useState<0 | 1 | 2>(0);
   const [deleteText, setDeleteText] = useState("");
   const [deleting, setDeleting] = useState(false);
+  const [challengeAudience, setChallengeAudience] =
+    useState<ChallengeAudience>("anyone");
+  const [savedChallengeAudience, setSavedChallengeAudience] =
+    useState<ChallengeAudience>("anyone");
+  const [blockedCount, setBlockedCount] = useState(0);
+  const [challengeOpen, setChallengeOpen] = useState(false);
+  const [blockedOpen, setBlockedOpen] = useState(false);
+  const [blockedStudents, setBlockedStudents] = useState<BlockedStudent[]>([]);
+  const [socialBusy, setSocialBusy] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) router.replace("/app/sign-in");
@@ -77,13 +111,23 @@ export default function UserProfile() {
 
   useEffect(() => {
     if (!user) return;
-    callFunction<ResolvedAccount>(user, "resolveSignInAccountHttps", {
-      preferredRole: "student",
-      includeStats: true,
-    })
-      .then((nextAccount) => {
+    Promise.all([
+      callFunction<ResolvedAccount>(user, "resolveSignInAccountHttps", {
+        preferredRole: "student",
+        includeStats: true,
+      }),
+      callFunction<{
+        ok: true;
+        settings: {challengeAudience: ChallengeAudience};
+        blockedCount: number;
+      }>(user, "getStudentSocialSettingsHttps", {}),
+    ])
+      .then(([nextAccount, social]) => {
         setAccount(nextAccount);
         setForm(profileForm(nextAccount.profile));
+        setChallengeAudience(social.settings.challengeAudience);
+        setSavedChallengeAudience(social.settings.challengeAudience);
+        setBlockedCount(social.blockedCount);
       })
       .catch((reason) => setError((reason as Error).message));
   }, [user]);
@@ -197,6 +241,19 @@ export default function UserProfile() {
         platoonPermissions: form.platoonPermissions,
       });
 
+      if (challengeAudience !== savedChallengeAudience) {
+        const socialResponse = await callFunction<{
+          ok: true;
+          settings: {challengeAudience: ChallengeAudience};
+        }, {challengeAudience: ChallengeAudience}>(
+          user,
+          "updateStudentSocialSettingsHttps",
+          {challengeAudience},
+        );
+        setChallengeAudience(socialResponse.settings.challengeAudience);
+        setSavedChallengeAudience(socialResponse.settings.challengeAudience);
+      }
+
       const nextForm = {
         ...form,
         ...response.profile,
@@ -239,6 +296,41 @@ export default function UserProfile() {
       setError((reason as Error).message);
       setDeleteStage(0);
       setDeleting(false);
+    }
+  }
+
+  async function openBlockedStudents() {
+    if (!user || socialBusy || blockedCount < 1) return;
+    setSocialBusy(true);
+    setError("");
+    try {
+      const response = await callFunction<{
+        ok: true;
+        blockedStudents: BlockedStudent[];
+      }>(user, "getBlockedStudentsHttps", {});
+      setBlockedStudents(response.blockedStudents);
+      setBlockedOpen(true);
+    } catch (reason) {
+      setError((reason as Error).message);
+    } finally {
+      setSocialBusy(false);
+    }
+  }
+
+  async function unblockStudent(student: BlockedStudent) {
+    if (!user || socialBusy) return;
+    setSocialBusy(true);
+    setError("");
+    try {
+      await callFunction(user, "unblockStudentHttps", {studentId: student.id});
+      const next = blockedStudents.filter((row) => row.id !== student.id);
+      setBlockedStudents(next);
+      setBlockedCount(next.length);
+      if (!next.length) setBlockedOpen(false);
+    } catch (reason) {
+      setError((reason as Error).message);
+    } finally {
+      setSocialBusy(false);
     }
   }
 
@@ -315,8 +407,8 @@ export default function UserProfile() {
         {!account.emailVerified && <div className="mt-6"><EmailVerificationCard /></div>}
 
         <div className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="space-y-6">
-            <section className="rounded-[2rem] border border-slate-200 bg-white p-6 sm:p-8">
+          <div className="flex flex-col gap-6">
+            <section className="order-2 rounded-[2rem] border border-slate-200 bg-white p-6 sm:p-8">
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-brand-green/60">
                 Personal details
               </p>
@@ -357,7 +449,7 @@ export default function UserProfile() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-slate-200 bg-white p-6 sm:p-8">
+            <section className="order-3 rounded-[2rem] border border-slate-200 bg-white p-6 sm:p-8">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <p className="text-xs font-medium uppercase tracking-[0.18em] text-brand-green/60">
@@ -402,7 +494,7 @@ export default function UserProfile() {
               </dl>
             </section>
 
-            <section className="rounded-[2rem] border border-slate-200 bg-white p-6 sm:p-8">
+            <section className="order-1 rounded-[2rem] border border-slate-200 bg-white p-6 sm:p-8">
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-brand-green/60">
                 Avatar
               </p>
@@ -462,6 +554,40 @@ export default function UserProfile() {
                   title="School learning access"
                   body="Allow my joined school to assign tests and view learning analytics such as scores, timing, subjects and modules."
                 />
+                <button
+                  type="button"
+                  disabled={!account.emailVerified || socialBusy}
+                  onClick={() => setChallengeOpen(true)}
+                  className="flex w-full items-center justify-between gap-4 rounded-2xl bg-brand-mist p-4 text-left disabled:opacity-50"
+                >
+                  <span>
+                    <span className="block text-sm font-medium text-slate-900">
+                      Friendly challenges
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-slate-500">
+                      {challengeAudienceCopy[challengeAudience].title} · Control who may send you a challenge.
+                    </span>
+                  </span>
+                  <span aria-hidden className="text-xl text-brand-green">›</span>
+                </button>
+                {blockedCount > 0 && (
+                  <button
+                    type="button"
+                    disabled={socialBusy}
+                    onClick={() => void openBlockedStudents()}
+                    className="flex w-full items-center justify-between gap-4 rounded-2xl bg-brand-mist p-4 text-left disabled:opacity-50"
+                  >
+                    <span>
+                      <span className="block text-sm font-medium text-slate-900">
+                        Blocked accounts · {blockedCount}
+                      </span>
+                      <span className="mt-1 block text-xs leading-5 text-slate-500">
+                        Review accounts you have blocked.
+                      </span>
+                    </span>
+                    <span aria-hidden className="text-xl text-brand-green">›</span>
+                  </button>
+                )}
               </div>
             </section>
 
@@ -706,6 +832,48 @@ export default function UserProfile() {
                     : "Delete forever"}
               </button>
             </div>
+          </section>
+        </div>
+      )}
+
+      {challengeOpen && (
+        <div className="fixed inset-0 z-[80] grid place-items-center bg-slate-950/60 p-5 backdrop-blur-sm">
+          <section role="dialog" aria-modal="true" aria-labelledby="challenge-pref-title" className="w-full max-w-lg rounded-[2rem] bg-white p-6 shadow-2xl sm:p-8">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-brand-green/60">Privacy</p>
+            <h2 id="challenge-pref-title" className="mt-2 text-2xl font-semibold text-slate-950">Who can challenge you?</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-500">Choose who may send you a new friendly challenge. Existing squad connections are not removed.</p>
+            <div className="mt-6 space-y-3">
+              {(Object.keys(challengeAudienceCopy) as ChallengeAudience[]).map((value) => {
+                const option = challengeAudienceCopy[value];
+                return <button key={value} type="button" disabled={socialBusy} onClick={() => { setChallengeAudience(value); setSaved(""); }} className={`w-full rounded-2xl border p-4 text-left transition ${challengeAudience === value ? "border-brand-green bg-brand-mist" : "border-slate-200 hover:border-brand-green/50"}`}>
+                  <span className="flex items-start gap-3">
+                    <span aria-hidden className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border ${challengeAudience === value ? "border-brand-green" : "border-slate-300"}`}>
+                      {challengeAudience === value && <span className="h-2.5 w-2.5 rounded-full bg-brand-green" />}
+                    </span>
+                    <span><span className="block text-sm font-medium text-slate-950">{option.title}</span><span className="mt-1 block text-xs leading-5 text-slate-500">{option.body}</span></span>
+                  </span>
+                </button>;
+              })}
+            </div>
+            <p className="mt-4 text-xs leading-5 text-slate-500">Your selection will be applied when you save your profile.</p>
+            <button type="button" disabled={socialBusy} onClick={() => setChallengeOpen(false)} className="mt-6 min-h-11 w-full rounded-2xl border border-slate-200 text-sm text-slate-700">Close</button>
+          </section>
+        </div>
+      )}
+
+      {blockedOpen && (
+        <div className="fixed inset-0 z-[80] grid place-items-center bg-slate-950/60 p-5 backdrop-blur-sm">
+          <section role="dialog" aria-modal="true" aria-labelledby="blocked-title" className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-[2rem] bg-white p-6 shadow-2xl sm:p-8">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-brand-green/60">Privacy</p>
+            <h2 id="blocked-title" className="mt-2 text-2xl font-semibold text-slate-950">Blocked accounts</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-500">Unblocking does not restore previous squad membership or challenges.</p>
+            <div className="mt-6 space-y-3">
+              {blockedStudents.map((student) => <div key={student.id} className="flex items-center justify-between gap-4 rounded-2xl bg-brand-mist p-4">
+                <div className="min-w-0"><p className="truncate text-sm font-medium text-slate-950">{[student.firstName, student.lastName].filter(Boolean).join(" ") || "Unavailable account"}</p>{student.schoolName && <p className="mt-1 truncate text-xs text-slate-500">{student.schoolName}</p>}</div>
+                <button type="button" disabled={socialBusy} onClick={() => void unblockStudent(student)} className="min-h-9 shrink-0 rounded-xl border border-brand-green px-3 text-xs text-brand-green disabled:opacity-50">UNBLOCK</button>
+              </div>)}
+            </div>
+            <button type="button" disabled={socialBusy} onClick={() => setBlockedOpen(false)} className="mt-6 min-h-11 w-full rounded-2xl border border-slate-200 text-sm text-slate-700">Close</button>
           </section>
         </div>
       )}

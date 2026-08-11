@@ -323,6 +323,10 @@ export default function StudentAnalyticsPage({
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState("");
   const [diriOpen, setDiriOpen] = useState(false);
+  const [subjectPreferenceOpen, setSubjectPreferenceOpen] = useState(false);
+  const [subjectPreferenceDraft, setSubjectPreferenceDraft] = useState<string[]>([]);
+  const [preferenceSaving, setPreferenceSaving] = useState(false);
+  const [analyticsRefresh, setAnalyticsRefresh] = useState(0);
   const [rhythmWindowDays, setRhythmWindowDays] = useState(365);
   const analyticsRequest = useRef(0);
 
@@ -374,7 +378,7 @@ export default function StudentAnalyticsPage({
     );
     // Presets are deliberately part of the key instead of their millisecond
     // timestamps, which change on every render and would defeat caching.
-    const cacheKey = `di.analytics.v2:${educatorStudentId || "self"}:${bootcamp}:${preset}:${customStart}:${customEnd}:${source}:${subject}`;
+    const cacheKey = `di.analytics.v3:${educatorStudentId || "self"}:${bootcamp}:${preset}:${customStart}:${customEnd}:${source}:${subject}:${analyticsRefresh}`;
     let hasCachedAnalytics = false;
     try {
       const cached = window.sessionStorage.getItem(cacheKey);
@@ -412,7 +416,7 @@ export default function StudentAnalyticsPage({
       if (analyticsRequest.current === requestId) setBusy(false);
     });
     return () => controller.abort();
-  }, [bootcamp, customEnd, customStart, educatorMode, educatorStudentId, preset, source, subject, user]);
+  }, [analyticsRefresh, bootcamp, customEnd, customStart, educatorMode, educatorStudentId, preset, source, subject, user]);
 
   const modules = useMemo(() => analytics?.modules || [], [analytics]);
   const attemptedModules = useMemo(
@@ -441,8 +445,12 @@ export default function StudentAnalyticsPage({
       `${moduleCount} ${moduleCount === 1 ? "module" : "modules"}`],
   ];
   const recommendationLevel = subject ? "module" : "subject";
+  const readinessSubjects = analytics.diriPreference?.selectedSubjects ||
+    analytics.readiness.selectedSubjects || [];
   const recommendationRows = subject ?
-    modules.filter((row) => row.subject === subject) : analytics.subjects;
+    modules.filter((row) => row.subject === subject) : analytics.subjects.filter(
+        (row) => !readinessSubjects.length || readinessSubjects.includes(row.subject),
+    );
   const recommendations = recommendationsFor(
     recommendationRows,
     recommendationLevel,
@@ -614,11 +622,32 @@ export default function StudentAnalyticsPage({
 
         <div className="mt-6 grid gap-6">
           <section className="rounded-[2rem] bg-brand-mist p-5 sm:p-7">
-            <h2 className="text-xl font-medium">Suggested practice</h2>
-            <p className="mt-1 text-sm text-slate-500">
-              {subject ? `Focused on ${subject} modules.` :
-                "Prioritized by accuracy, pacing, and practice volume."}
-            </p>
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <h2 className="text-xl font-medium">Suggested practice</h2>
+                <p className="mt-1 text-sm text-slate-500">
+                  {subject ? `Focused on ${subject} modules.` :
+                    "Prioritized across the subjects selected for your exam."}
+                </p>
+                {!subject && readinessSubjects.length > 0 && (
+                  <p className="mt-2 text-xs text-brand-green">
+                    {readinessSubjects.join(" · ")}
+                  </p>
+                )}
+              </div>
+              {!subject && !educatorMode && analytics.diriPreference && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSubjectPreferenceDraft(readinessSubjects);
+                    setSubjectPreferenceOpen(true);
+                  }}
+                  className="rounded-xl border border-brand-green bg-white px-4 py-2 text-sm text-brand-green hover:bg-brand-green hover:text-white"
+                >
+                  Choose subjects
+                </button>
+              )}
+            </div>
             <div className="mt-5 grid gap-3 lg:grid-cols-2">
               {recommendations.map((row) => (
                 <div key={`${row.subject}-${row.modules.join("-")}`} className="rounded-2xl bg-white p-4">
@@ -814,11 +843,13 @@ export default function StudentAnalyticsPage({
                 reflects how consistent, balanced, and effective recent practice has been.
               </p>
               <p>
-                DIRI draws from three main metrics. <strong>Performance</strong> captures
-                accuracy and pacing during practice. <strong>Consistency</strong> measures
-                how steadily sessions have been completed over time. <strong>Coverage</strong>
-                looks at how well effort has been distributed across subjects and topics.
-                Each part matters, and together they provide a realistic picture of current readiness.
+                DIRI draws from three main metrics. <strong>Performance</strong> is anchored
+                in recent accuracy and gives extra attention to the weakest practiced subject.
+                <strong> Consistency</strong> measures active weeks, active days, and how
+                recently practice occurred. <strong>Coverage</strong> checks whether effort
+                is spread across the subjects, modules, and practice tests expected for the
+                amount of work completed. Slow pacing can reduce the score slightly, but fast
+                work never earns bonus points.
               </p>
               <p>
                 Since preparation is never static, DIRI evaluates only the most recent
@@ -828,15 +859,92 @@ export default function StudentAnalyticsPage({
                 around that area alone, allowing a closer look at individual progress.
               </p>
               <p>
-                DIRI is best read as an internal indicator. It does not measure readiness
-                in absolute terms, but when viewed over about 90 days, scores approaching or
-                exceeding 90% tend to indicate consistent and well-rounded preparation.
+                DIRI is best read as an internal indicator, not an official score prediction.
+                A score of 90 or more is reserved for substantial evidence of exceptional,
+                recent, consistent, and well-rounded practice. Lower-confidence histories are
+                deliberately capped until more graded questions are completed.
               </p>
             </div>
             <div className="mt-6 text-center">
               <button type="button" onClick={() => setDiriOpen(false)}
                 className="rounded-xl border border-black bg-white px-6 py-2 text-sm font-semibold text-black">
                 Close
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
+      {subjectPreferenceOpen && analytics.diriPreference && (
+        <div
+          className="fixed inset-0 z-[110] grid place-items-center bg-slate-950/55 p-5 backdrop-blur-sm"
+          role="presentation"
+          onMouseDown={() => !preferenceSaving && setSubjectPreferenceOpen(false)}
+        >
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="diri-subjects-title"
+            className="w-full max-w-lg rounded-3xl bg-white p-6 shadow-2xl sm:p-8"
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <h2 id="diri-subjects-title" className="text-2xl font-medium">
+              Subjects for your exam
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              DIRI and Suggested Practice will evaluate these subjects. Choose between {analytics.diriPreference.minimumSubjects} and {analytics.diriPreference.maximumSubjects}.
+            </p>
+            <div className="mt-5 space-y-2">
+              {analytics.diriPreference.availableSubjects.map((name) => {
+                const checked = subjectPreferenceDraft.includes(name);
+                return (
+                  <label key={name} className="flex cursor-pointer items-center gap-3 rounded-2xl bg-brand-mist p-4 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      disabled={!checked && subjectPreferenceDraft.length >= analytics.diriPreference.maximumSubjects}
+                      onChange={() => setSubjectPreferenceDraft((current) => checked ?
+                        current.filter((row) => row !== name) : [...current, name])}
+                      className="h-5 w-5 accent-brand-green"
+                    />
+                    <span>{name}</span>
+                  </label>
+                );
+              })}
+            </div>
+            <p className="mt-3 text-xs text-slate-500">
+              {subjectPreferenceDraft.length} selected
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                disabled={preferenceSaving}
+                onClick={() => setSubjectPreferenceOpen(false)}
+                className="min-h-11 rounded-xl border border-slate-300 text-sm disabled:opacity-50"
+              >
+                CANCEL
+              </button>
+              <button
+                type="button"
+                disabled={preferenceSaving ||
+                  subjectPreferenceDraft.length < analytics.diriPreference.minimumSubjects ||
+                  subjectPreferenceDraft.length > analytics.diriPreference.maximumSubjects}
+                onClick={() => {
+                  if (!user) return;
+                  setPreferenceSaving(true);
+                  setError("");
+                  callFunction(user, "setStudentAnalyticsPreferencesHttps", {
+                    bootcamp,
+                    selectedSubjects: subjectPreferenceDraft,
+                  }).then(() => {
+                    setSubjectPreferenceOpen(false);
+                    setAnalyticsRefresh((value) => value + 1);
+                  }).catch((reason: unknown) => {
+                    setError((reason as Error).message);
+                  }).finally(() => setPreferenceSaving(false));
+                }}
+                className="min-h-11 rounded-xl bg-brand-green text-sm text-white disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {preferenceSaving ? "SAVING..." : "SAVE"}
               </button>
             </div>
           </section>

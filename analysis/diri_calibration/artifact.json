@@ -1,0 +1,1935 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Can DIRI 3.1 reliably represent readiness?",
+    "description": "A deterministic calibration audit of the Drill Instructor Readiness Index.",
+    "generatedAt": "2026-08-11T06:38:32Z",
+    "cards": [],
+    "charts": [
+      {
+        "id": "scenario_scores",
+        "title": "DIRI across calibration scenarios",
+        "subtitle": "Exact diri-3.1 results; Ready begins at 85 and DIRI 90 is shown as a stronger reference point.",
+        "type": "bar",
+        "dataset": "selected_scenarios",
+        "sourceId": "simulation",
+        "encodings": {
+          "x": {
+            "field": "shortLabel",
+            "type": "nominal",
+            "label": "Synthetic account"
+          },
+          "y": {
+            "field": "score",
+            "type": "quantitative",
+            "label": "DIRI"
+          },
+          "tooltip": [
+            {
+              "field": "accuracy",
+              "type": "quantitative",
+              "label": "Accuracy"
+            },
+            {
+              "field": "attempted",
+              "type": "quantitative",
+              "label": "Questions"
+            },
+            {
+              "field": "sessions",
+              "type": "quantitative",
+              "label": "Sessions"
+            },
+            {
+              "field": "band",
+              "type": "nominal",
+              "label": "Band"
+            }
+          ]
+        },
+        "source": {
+          "id": "simulation",
+          "label": "Deterministic DIRI simulation results",
+          "path": "analysis/diri_calibration/simulation-results.json",
+          "query": {
+            "sql": "SELECT * FROM read_csv_auto('analysis/diri_calibration/scenario-results.csv');",
+            "description": "Loads the bounded synthetic-account outputs produced by the exact server formula.",
+            "engine": "duckdb",
+            "language": "sql",
+            "tables_used": [
+              "analysis/diri_calibration/simulation-results.json"
+            ],
+            "filters": [
+              "Fixed simulation clock: 2026-08-11T12:00:00Z",
+              "ACT and SAT live catalogs"
+            ],
+            "metric_definitions": {
+              "scenario score": "Exact return value from readiness() for one deterministic synthetic history",
+              "accuracy": "Correct answers divided by attempted questions"
+            }
+          }
+        }
+      },
+      {
+        "id": "accuracy_weight_sweep",
+        "title": "DIRI sensitivity to accuracy and pillar weights",
+        "subtitle": "500 attempts over 24 active days with full adaptive coverage; only accuracy and the outer pillar weights change.",
+        "type": "line",
+        "dataset": "accuracy_weight_sweep",
+        "sourceId": "simulation",
+        "encodings": {
+          "x": {
+            "field": "accuracy",
+            "type": "quantitative",
+            "label": "Accuracy (%)"
+          },
+          "y": {
+            "field": "diriScore",
+            "type": "quantitative",
+            "label": "DIRI"
+          },
+          "color": {
+            "field": "model",
+            "type": "nominal",
+            "label": "Weight model"
+          },
+          "tooltip": [
+            {
+              "field": "attempted",
+              "type": "quantitative",
+              "label": "Questions"
+            },
+            {
+              "field": "activeDays",
+              "type": "quantitative",
+              "label": "Active days"
+            }
+          ]
+        },
+        "source": {
+          "id": "simulation",
+          "label": "Deterministic DIRI simulation results",
+          "path": "analysis/diri_calibration/simulation-results.json",
+          "query": {
+            "sql": "SELECT * FROM read_csv_auto('analysis/diri_calibration/scenario-results.csv');",
+            "description": "Loads the bounded synthetic-account outputs produced by the exact server formula.",
+            "engine": "duckdb",
+            "language": "sql",
+            "tables_used": [
+              "analysis/diri_calibration/simulation-results.json"
+            ],
+            "filters": [
+              "Fixed simulation clock: 2026-08-11T12:00:00Z",
+              "ACT and SAT live catalogs"
+            ],
+            "metric_definitions": {
+              "scenario score": "Exact return value from readiness() for one deterministic synthetic history",
+              "accuracy": "Correct answers divided by attempted questions"
+            }
+          }
+        }
+      },
+      {
+        "id": "pillar_scenarios",
+        "title": "Pillar scores reveal how weak signals are rescued",
+        "subtitle": "Performance, Consistency, and Coverage for selected hypothetical accounts.",
+        "type": "bar",
+        "dataset": "pillars_long",
+        "sourceId": "simulation",
+        "encodings": {
+          "x": {
+            "field": "scenario",
+            "type": "nominal",
+            "label": "Synthetic account"
+          },
+          "y": {
+            "field": "pillarScore",
+            "type": "quantitative",
+            "label": "Pillar score"
+          },
+          "color": {
+            "field": "pillar",
+            "type": "nominal",
+            "label": "Pillar"
+          }
+        },
+        "source": {
+          "id": "simulation",
+          "label": "Deterministic DIRI simulation results",
+          "path": "analysis/diri_calibration/simulation-results.json",
+          "query": {
+            "sql": "SELECT * FROM read_csv_auto('analysis/diri_calibration/scenario-results.csv');",
+            "description": "Loads the bounded synthetic-account outputs produced by the exact server formula.",
+            "engine": "duckdb",
+            "language": "sql",
+            "tables_used": [
+              "analysis/diri_calibration/simulation-results.json"
+            ],
+            "filters": [
+              "Fixed simulation clock: 2026-08-11T12:00:00Z",
+              "ACT and SAT live catalogs"
+            ],
+            "metric_definitions": {
+              "scenario score": "Exact return value from readiness() for one deterministic synthetic history",
+              "accuracy": "Correct answers divided by attempted questions"
+            }
+          }
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "scenario_table",
+        "title": "Selected calibration accounts",
+        "subtitle": "Exact production-formula outputs for the scenarios discussed in the report.",
+        "dataset": "selected_scenarios",
+        "sourceId": "simulation",
+        "defaultSort": {
+          "field": "score",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "scenario",
+            "label": "Scenario",
+            "type": "text"
+          },
+          {
+            "field": "accuracy",
+            "label": "Accuracy",
+            "format": "number",
+            "unit": "%"
+          },
+          {
+            "field": "attempted",
+            "label": "Questions",
+            "format": "number"
+          },
+          {
+            "field": "sessions",
+            "label": "Sessions",
+            "format": "number"
+          },
+          {
+            "field": "score",
+            "label": "DIRI",
+            "format": "number"
+          },
+          {
+            "field": "band",
+            "label": "Band",
+            "type": "text"
+          }
+        ],
+        "source": {
+          "id": "simulation",
+          "label": "Deterministic DIRI simulation results",
+          "path": "analysis/diri_calibration/simulation-results.json",
+          "query": {
+            "sql": "SELECT * FROM read_csv_auto('analysis/diri_calibration/scenario-results.csv');",
+            "description": "Loads the bounded synthetic-account outputs produced by the exact server formula.",
+            "engine": "duckdb",
+            "language": "sql",
+            "tables_used": [
+              "analysis/diri_calibration/simulation-results.json"
+            ],
+            "filters": [
+              "Fixed simulation clock: 2026-08-11T12:00:00Z",
+              "ACT and SAT live catalogs"
+            ],
+            "metric_definitions": {
+              "scenario score": "Exact return value from readiness() for one deterministic synthetic history",
+              "accuracy": "Correct answers divided by attempted questions"
+            }
+          }
+        }
+      },
+      {
+        "id": "floor_table",
+        "title": "Theoretical minimum accuracy when other pillars are perfect",
+        "subtitle": "These are mathematical lower bounds, not expected student journeys.",
+        "dataset": "accuracy_floors",
+        "sourceId": "simulation",
+        "defaultSort": {
+          "field": "target",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "model",
+            "label": "Weight model",
+            "type": "text"
+          },
+          {
+            "field": "target",
+            "label": "DIRI target",
+            "format": "number"
+          },
+          {
+            "field": "currentPacingFloor",
+            "label": "Current pacing formula",
+            "format": "number",
+            "unit": "%"
+          },
+          {
+            "field": "penaltyOnlyPacingFloor",
+            "label": "Penalty-only pacing",
+            "format": "number",
+            "unit": "%"
+          }
+        ],
+        "source": {
+          "id": "simulation",
+          "label": "Deterministic DIRI simulation results",
+          "path": "analysis/diri_calibration/simulation-results.json",
+          "query": {
+            "sql": "SELECT * FROM read_csv_auto('analysis/diri_calibration/scenario-results.csv');",
+            "description": "Loads the bounded synthetic-account outputs produced by the exact server formula.",
+            "engine": "duckdb",
+            "language": "sql",
+            "tables_used": [
+              "analysis/diri_calibration/simulation-results.json"
+            ],
+            "filters": [
+              "Fixed simulation clock: 2026-08-11T12:00:00Z",
+              "ACT and SAT live catalogs"
+            ],
+            "metric_definitions": {
+              "scenario score": "Exact return value from readiness() for one deterministic synthetic history",
+              "accuracy": "Correct answers divided by attempted questions"
+            }
+          }
+        }
+      },
+      {
+        "id": "attainability_table",
+        "title": "Lowest question volume found in the calibration grid",
+        "subtitle": "For each accuracy, sessions were varied from 1 to 24 and questions from 100 to 600 with adaptive full breadth.",
+        "dataset": "attainability",
+        "sourceId": "simulation",
+        "defaultSort": {
+          "field": "accuracy",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "accuracy",
+            "label": "Accuracy",
+            "format": "number",
+            "unit": "%"
+          },
+          {
+            "field": "readyAttempts",
+            "label": "Questions for Ready",
+            "format": "number"
+          },
+          {
+            "field": "readySessions",
+            "label": "Sessions for Ready",
+            "format": "number"
+          },
+          {
+            "field": "diri90Attempts",
+            "label": "Questions for DIRI 90",
+            "format": "number"
+          },
+          {
+            "field": "diri90Sessions",
+            "label": "Sessions for DIRI 90",
+            "format": "number"
+          }
+        ],
+        "source": {
+          "id": "simulation",
+          "label": "Deterministic DIRI simulation results",
+          "path": "analysis/diri_calibration/simulation-results.json",
+          "query": {
+            "sql": "SELECT * FROM read_csv_auto('analysis/diri_calibration/scenario-results.csv');",
+            "description": "Loads the bounded synthetic-account outputs produced by the exact server formula.",
+            "engine": "duckdb",
+            "language": "sql",
+            "tables_used": [
+              "analysis/diri_calibration/simulation-results.json"
+            ],
+            "filters": [
+              "Fixed simulation clock: 2026-08-11T12:00:00Z",
+              "ACT and SAT live catalogs"
+            ],
+            "metric_definitions": {
+              "scenario score": "Exact return value from readiness() for one deterministic synthetic history",
+              "accuracy": "Correct answers divided by attempted questions"
+            }
+          }
+        }
+      },
+      {
+        "id": "breakpoint_table",
+        "title": "Current DIRI breakpoints",
+        "subtitle": "Production thresholds in diri-3.1.",
+        "dataset": "breakpoints",
+        "sourceId": "server_formula",
+        "defaultSort": {
+          "field": "component",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "component",
+            "label": "Component",
+            "type": "text"
+          },
+          {
+            "field": "breakpoint",
+            "label": "Breakpoint",
+            "type": "text"
+          },
+          {
+            "field": "value",
+            "label": "Current value",
+            "type": "text"
+          }
+        ],
+        "source": {
+          "id": "server_formula",
+          "label": "Canonical DIRI 3.1 implementation",
+          "path": "functions/handlers/_analytics.js",
+          "query": {
+            "sql": "SELECT content FROM read_text('functions/handlers/_analytics.js');",
+            "description": "Executes the canonical server-owned readiness calculation.",
+            "engine": "duckdb",
+            "language": "sql",
+            "tables_used": [
+              "functions/handlers/_analytics.js"
+            ],
+            "filters": [
+              "Trailing 90 days",
+              "Canonical graded analytics attempts"
+            ],
+            "metric_definitions": {
+              "DIRI": "0.40 * Performance + 0.30 * Consistency + 0.30 * Coverage",
+              "Performance": "0.80 * accuracy percentage + 0.20 * pacing percentage"
+            }
+          }
+        }
+      },
+      {
+        "id": "platform_table",
+        "title": "DIRI delivery differs by platform state",
+        "subtitle": "Server responses are canonical online; native offline mode still calculates an older formula.",
+        "dataset": "platform_parity",
+        "sourceId": "native_formula",
+        "defaultSort": {
+          "field": "surface",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "surface",
+            "label": "Surface",
+            "type": "text"
+          },
+          {
+            "field": "online",
+            "label": "Online",
+            "type": "text"
+          },
+          {
+            "field": "offline",
+            "label": "Offline",
+            "type": "text"
+          },
+          {
+            "field": "risk",
+            "label": "Parity risk",
+            "type": "text"
+          }
+        ],
+        "source": {
+          "id": "native_formula",
+          "label": "Native online and offline analytics behavior",
+          "path": "Drill_Instructor/qml/Student/Bootcamps/Analytics.qml",
+          "query": {
+            "sql": "SELECT content FROM read_text('Drill_Instructor/qml/Student/Bootcamps/Analytics.qml');",
+            "description": "Identifies the canonical online response path and the separate native offline formula.",
+            "engine": "duckdb",
+            "language": "sql",
+            "tables_used": [
+              "Drill_Instructor/qml/Student/Bootcamps/Analytics.qml"
+            ],
+            "filters": [
+              "Student analytics page",
+              "Connectivity-dependent execution path"
+            ],
+            "metric_definitions": {
+              "parity risk": "Whether the displayed DIRI uses server diri-3.1"
+            }
+          }
+        }
+      }
+    ],
+    "sources": [
+      {
+        "id": "server_formula",
+        "label": "Canonical DIRI 3.1 implementation",
+        "path": "functions/handlers/_analytics.js",
+        "query": {
+          "sql": "SELECT content FROM read_text('functions/handlers/_analytics.js');",
+          "description": "Executes the canonical server-owned readiness calculation.",
+          "engine": "duckdb",
+          "language": "sql",
+          "tables_used": [
+            "functions/handlers/_analytics.js"
+          ],
+          "filters": [
+            "Trailing 90 days",
+            "Canonical graded analytics attempts"
+          ],
+          "metric_definitions": {
+            "DIRI": "0.40 * Performance + 0.30 * Consistency + 0.30 * Coverage",
+            "Performance": "0.80 * accuracy percentage + 0.20 * pacing percentage"
+          }
+        }
+      },
+      {
+        "id": "simulation",
+        "label": "Deterministic DIRI simulation results",
+        "path": "analysis/diri_calibration/simulation-results.json",
+        "query": {
+          "sql": "SELECT * FROM read_csv_auto('analysis/diri_calibration/scenario-results.csv');",
+          "description": "Loads the bounded synthetic-account outputs produced by the exact server formula.",
+          "engine": "duckdb",
+          "language": "sql",
+          "tables_used": [
+            "analysis/diri_calibration/simulation-results.json"
+          ],
+          "filters": [
+            "Fixed simulation clock: 2026-08-11T12:00:00Z",
+            "ACT and SAT live catalogs"
+          ],
+          "metric_definitions": {
+            "scenario score": "Exact return value from readiness() for one deterministic synthetic history",
+            "accuracy": "Correct answers divided by attempted questions"
+          }
+        }
+      },
+      {
+        "id": "scenario_csv",
+        "label": "Scenario result extract",
+        "path": "analysis/diri_calibration/scenario-results.csv"
+      },
+      {
+        "id": "native_formula",
+        "label": "Native online and offline analytics behavior",
+        "path": "Drill_Instructor/qml/Student/Bootcamps/Analytics.qml",
+        "query": {
+          "sql": "SELECT content FROM read_text('Drill_Instructor/qml/Student/Bootcamps/Analytics.qml');",
+          "description": "Identifies the canonical online response path and the separate native offline formula.",
+          "engine": "duckdb",
+          "language": "sql",
+          "tables_used": [
+            "Drill_Instructor/qml/Student/Bootcamps/Analytics.qml"
+          ],
+          "filters": [
+            "Student analytics page",
+            "Connectivity-dependent execution path"
+          ],
+          "metric_definitions": {
+            "parity risk": "Whether the displayed DIRI uses server diri-3.1"
+          }
+        }
+      },
+      {
+        "id": "catalog",
+        "label": "Live ACT and SAT catalog construction",
+        "path": "functions/handlers/_studentDrill.js"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Can DIRI 3.1 reliably represent readiness?"
+      },
+      {
+        "id": "technical_summary",
+        "type": "markdown",
+        "sourceId": "simulation",
+        "body": "## Technical summary\n\n- **A DIRI of 90 is achievable without extreme volume.** A balanced synthetic ACT student at 90% accuracy reached 91.8 after 300 questions across 15 active days; 200 questions across 10 days reached 88.7.\n- **The current score is too easy to rescue with non-performance pillars.** With perfect Consistency and Coverage, 70% accuracy produced DIRI 90.4, and the mathematical accuracy floor for the Ready band is 53.1%.\n- **The main weaknesses are structural, not cosmetic.** A one-day 500-question cram scored Ready, practice ending 60 days ago still scored 90.8, a user-selected generous timer added four DIRI points, and extra breadth in one subject fully offset narrow coverage in others.\n- **Recommendation: do not market DIRI as calibrated readiness yet.** Keep the Estimated Readiness label and disclaimer, then move to a performance-led, penalty-only pacing model with readiness gates, per-subject coverage normalization, filtered focused-subject activity, and one canonical online/offline formula."
+      },
+      {
+        "id": "attainable",
+        "type": "markdown",
+        "sourceId": "simulation",
+        "body": "## DIRI 90 is realistic, but it measures more than 90% accuracy\n\nFor a genuinely strong, balanced student, 90 is not prohibitively difficult. At 90% accuracy, 100 answered questions in one session scored 83.3, 200 over 10 days scored 88.7, and 300 over 15 days scored 91.8. The formula therefore rewards sustained breadth as intended. The important caveat is that **DIRI 90 does not require 90% accuracy**: with maximum Consistency and Coverage, 70% accuracy also reached 90.4."
+      },
+      {
+        "id": "scenario_chart_block",
+        "type": "chart",
+        "chartId": "scenario_scores"
+      },
+      {
+        "id": "scenario_table_block",
+        "type": "table",
+        "tableId": "scenario_table"
+      },
+      {
+        "id": "weight_result",
+        "type": "markdown",
+        "sourceId": "simulation",
+        "body": "## Weight changes help, but weights alone cannot fix the model\n\nUnder the current 40/30/30 mix, perfect non-performance pillars contribute 60 DIRI points before performance is considered. Because pacing supplies up to 20% of Performance even when accuracy is weak, the theoretical accuracy floor is only 53.1% for Ready and 68.7% for DIRI 90. Raising Performance to 50% moves those floors to 62.5% and 75%, while 60% Performance moves them to 68.8% and 79.2%. However, increasing Performance weight also raises scores for high-accuracy cramming and one-subject practice. The better fix combines a moderate weight shift with gates and better component definitions."
+      },
+      {
+        "id": "weight_chart_block",
+        "type": "chart",
+        "chartId": "accuracy_weight_sweep"
+      },
+      {
+        "id": "floor_table_block",
+        "type": "table",
+        "tableId": "floor_table"
+      },
+      {
+        "id": "attainability_table_block",
+        "type": "table",
+        "tableId": "attainability_table"
+      },
+      {
+        "id": "breakpoint_result",
+        "type": "markdown",
+        "sourceId": "simulation",
+        "body": "## Several breakpoints behave correctly in isolation but fail in combination\n\nThe 100-question overall and 40-question focused evidence gates work: 99 overall attempts return insufficient data. Volume has diminishing returns and caps at 500; active-day credit caps at 24. Yet a 500-question one-day cram still scored 86.7 because high Performance and Coverage outweighed weak Consistency. Conversely, a strong history whose latest practice was 60 days ago retained DIRI 90.8 because recency is only 20% of Consistency. The 90-day boundary also creates an unavoidable cliff when a large history expires."
+      },
+      {
+        "id": "pillar_chart_block",
+        "type": "chart",
+        "chartId": "pillar_scenarios"
+      },
+      {
+        "id": "breakpoint_table_block",
+        "type": "table",
+        "tableId": "breakpoint_table"
+      },
+      {
+        "id": "pacing_result",
+        "type": "markdown",
+        "sourceId": "simulation",
+        "body": "## Pacing currently rewards timer configuration, not exam pacing\n\nServer pacing compares active seconds per question with the time allocated inside that specific drill. The same 90%-accurate student working at 120 seconds per question scored 87.8 when allocated 60 seconds and 91.8 when allocated 360 seconds. Because students can configure drill timers, pacing can shift the final score by four points in an otherwise identical history. Fast work is never penalized; allocation divided by actual time is simply capped at 100%. Pacing should use canonical subject targets and act only as a modest penalty when the student is too slow, rather than adding a standing bonus that can rescue weak accuracy."
+      },
+      {
+        "id": "coverage_result",
+        "type": "markdown",
+        "sourceId": "simulation",
+        "body": "## Coverage can be cross-subsidized across subjects\n\nCoverage correctly expands expected breadth as practice grows: another subject every 40 attempts, another module every 20 subject attempts, and another practice test every five subject sessions. The flaw is aggregation. Meaningful modules and tests are summed globally, so extra English breadth can offset narrow Mathematics or Science practice. The cross-subsidized synthetic account received Coverage 100 and DIRI 91.8 despite using only one module in both Mathematics and Science. Coverage should be capped within each subject before subject scores are combined."
+      },
+      {
+        "id": "focused_result",
+        "type": "markdown",
+        "sourceId": "simulation",
+        "body": "## Focused DIRI leaks unrelated activity into Consistency\n\nWith 40 Math questions at 90% accuracy, focused Math DIRI was 81.3. Adding 23 active Science days raised focused Math DIRI to 90.9 without changing Math accuracy, volume, modules, tests, or timing. Graded rows are filtered to Math, but active days and freshness are calculated from every recent bootcamp attempt. A focused calculation must filter the activity history before computing all three pillars."
+      },
+      {
+        "id": "platform_result",
+        "type": "markdown",
+        "sourceId": "native_formula",
+        "body": "## Native offline DIRI is not the same metric\n\nWeb and online native analytics eventually consume the server-owned diri-3.1 response. Before that response arrives\u2014and whenever the phone is offline\u2014the native page computes a separate QML formula with different accuracy scaling, an ideal 30\u201390 second pacing band, different Consistency targets, entropy-based practice-test diversity, and different coverage logic. The same student can therefore see a different readiness value by connectivity state. Native offline mode should display the last cached canonical DIRI and mark it with its generated date, rather than recomputing a competing formula."
+      },
+      {
+        "id": "platform_table_block",
+        "type": "table",
+        "tableId": "platform_table"
+      },
+      {
+        "id": "definitions",
+        "type": "markdown",
+        "sourceId": "server_formula",
+        "body": "## Scope, definitions, and method\n\nDIRI 3.1 evaluates canonical analytics attempts from the trailing 90 days. Overall readiness requires 100 graded attempts; focused readiness requires 40. Performance is 80% accuracy plus 20% pacing. Consistency is 45% logarithmic volume, 35% active days, and 20% freshness. Coverage is 40% subject breadth, 30% module breadth, and 30% practice-test breadth. The final score is 40% Performance, 30% Consistency, and 30% Coverage. Bands begin at 55 Building, 70 Almost, and 85 Ready. Confidence is evidence volume only: it starts at 65% at the overall minimum and reaches 100% at 450 attempts."
+      },
+      {
+        "id": "recommendations",
+        "type": "markdown",
+        "body": "## Recommended DIRI 3.2 calibration\n\n1. **Use Performance 50%, Consistency 25%, Coverage 25%.** This makes exam performance primary without erasing disciplined practice.\n2. **Make pacing penalty-only.** Start Performance from accuracy and subtract at most 10 points for subject-specific slow pacing. Never derive the target from a user-selected drill timer.\n3. **Add provisional band gates.** Ready should require at least 75% accuracy, five active days, practice within 30 days, and meaningful work in every included subject. DIRI 90 should additionally require at least 85% accuracy, ten active days, practice within 21 days, and Coverage of at least 75. Keep these thresholds explicitly provisional until real outcomes can calibrate them.\n4. **Normalize Coverage per subject.** Calculate subject, module, and test breadth inside each subject, cap each subject at 100, then combine subjects using equal or bounded weights.\n5. **Filter focused activity end to end.** Accuracy, volume, active days, freshness, modules, and tests must all use the selected subject.\n6. **Keep one canonical formula.** Cache the last server DIRI for offline display; do not calculate a second native score.\n7. **Version and monitor the cutover.** Release as diri-3.2 and monitor score distributions, band transitions, attempts-to-Ready, time since last activity, and later official-exam outcomes before calling the model calibrated."
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## Limitations and robustness\n\nThese results are deterministic counterfactuals, not evidence that DIRI predicts ACT or SAT performance. They validate arithmetic, monotonicity, thresholds, and failure modes against synthetic histories. The simulation uses the live catalogs and exact server function, but it assumes answered questions are distributed deterministically and does not model question difficulty, guessing, score reliability, or official exam outcomes. Formula checks passed for score bounds, minimum evidence, pillar availability, and monotonic accuracy. Real calibration requires consented, privacy-safe outcome data or at minimum stable internal benchmarks across a meaningful student cohort."
+      },
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "body": "## Further questions\n\n- Should DIRI be calibrated separately for ACT and SAT once outcome samples exist?\n- Should assignment attempts carry the same readiness weight as self-directed practice?\n- Should question difficulty or repeated-question exposure affect Performance confidence?\n- What official or educator-reviewed outcome can serve as the calibration target without overclaiming prediction?"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-11T06:38:32Z",
+    "status": "ready",
+    "datasets": {
+      "all_scenarios": [
+        {
+          "id": "insufficient-99",
+          "scenario": "99 attempts at 90% accuracy",
+          "shortLabel": "insufficient-99",
+          "attempted": 99,
+          "accuracy": 90,
+          "sessions": 5,
+          "activeDays": 5,
+          "latestDaysAgo": 0,
+          "score": null,
+          "band": "insufficient_data",
+          "confidence": 0.99,
+          "performance": null,
+          "consistency": null,
+          "coverage": null
+        },
+        {
+          "id": "minimum-balanced",
+          "scenario": "Minimum evidence, balanced, one fresh session",
+          "shortLabel": "100 Q / 1 day",
+          "attempted": 100,
+          "accuracy": 90,
+          "sessions": 1,
+          "activeDays": 1,
+          "latestDaysAgo": 0,
+          "score": 83.3,
+          "band": "Almost",
+          "confidence": 0.65,
+          "performance": 92,
+          "consistency": 54.9,
+          "coverage": 100
+        },
+        {
+          "id": "minimum-narrow",
+          "scenario": "Minimum evidence, one subject/module/test",
+          "shortLabel": "minimum-narrow",
+          "attempted": 100,
+          "accuracy": 90,
+          "sessions": 1,
+          "activeDays": 1,
+          "latestDaysAgo": 0,
+          "score": 61.5,
+          "band": "Building",
+          "confidence": 0.65,
+          "performance": 92,
+          "consistency": 54.9,
+          "coverage": 27.6
+        },
+        {
+          "id": "balanced-200",
+          "scenario": "Balanced 90%, 200 questions across 10 days",
+          "shortLabel": "200 Q / 10 days",
+          "attempted": 200,
+          "accuracy": 90,
+          "sessions": 10,
+          "activeDays": 10,
+          "latestDaysAgo": 0,
+          "score": 88.7,
+          "band": "Ready",
+          "confidence": 0.75,
+          "performance": 92,
+          "consistency": 73,
+          "coverage": 100
+        },
+        {
+          "id": "balanced-300",
+          "scenario": "Balanced 90%, 300 questions across 15 days",
+          "shortLabel": "300 Q / 15 days",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 91.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "balanced-500",
+          "scenario": "Balanced 90%, 500 questions across 24 days",
+          "shortLabel": "500 Q / 24 days",
+          "attempted": 500,
+          "accuracy": 90,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 96.8,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 92,
+          "consistency": 100,
+          "coverage": 100
+        },
+        {
+          "id": "accuracy-70-max",
+          "scenario": "Balanced 70%, maximum consistency and coverage",
+          "shortLabel": "70% / max breadth",
+          "attempted": 500,
+          "accuracy": 70,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 90.4,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 76,
+          "consistency": 100,
+          "coverage": 100
+        },
+        {
+          "id": "accuracy-80-max",
+          "scenario": "Balanced 80%, maximum consistency and coverage",
+          "shortLabel": "accuracy-80-max",
+          "attempted": 500,
+          "accuracy": 80,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 93.6,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 84,
+          "consistency": 100,
+          "coverage": 100
+        },
+        {
+          "id": "accuracy-85-max",
+          "scenario": "Balanced 85%, maximum consistency and coverage",
+          "shortLabel": "accuracy-85-max",
+          "attempted": 500,
+          "accuracy": 85,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 95.2,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 88,
+          "consistency": 100,
+          "coverage": 100
+        },
+        {
+          "id": "fresh-cram",
+          "scenario": "Balanced 90% crammed into one day",
+          "shortLabel": "500 Q / 1-day cram",
+          "attempted": 500,
+          "accuracy": 90,
+          "sessions": 1,
+          "activeDays": 1,
+          "latestDaysAgo": 0,
+          "score": 86.7,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 92,
+          "consistency": 66.5,
+          "coverage": 100
+        },
+        {
+          "id": "stale-60",
+          "scenario": "Balanced 90%, latest practice 60 days ago",
+          "shortLabel": "Latest work 60d ago",
+          "attempted": 500,
+          "accuracy": 90,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 60,
+          "score": 90.8,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 92,
+          "consistency": 80,
+          "coverage": 100
+        },
+        {
+          "id": "one-subject-broad",
+          "scenario": "90% practice confined to Mathematics",
+          "shortLabel": "Math only",
+          "attempted": 500,
+          "accuracy": 90,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 85.2,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 92,
+          "consistency": 100,
+          "coverage": 61.2
+        },
+        {
+          "id": "all-subjects-narrow",
+          "scenario": "90% across subjects but one module/test each",
+          "shortLabel": "all-subjects-narrow",
+          "attempted": 500,
+          "accuracy": 90,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 82.2,
+          "band": "Almost",
+          "confidence": 1,
+          "performance": 92,
+          "consistency": 100,
+          "coverage": 51.2
+        },
+        {
+          "id": "cross-subsidized-coverage",
+          "scenario": "One subject's extra breadth offsets narrow practice elsewhere",
+          "shortLabel": "Cross-subsidized breadth",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 91.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "fast-90",
+          "scenario": "90% accuracy at 10 seconds per question",
+          "shortLabel": "fast-90",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 91.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "slow-90",
+          "scenario": "90% accuracy at 120 seconds against 60 allocated",
+          "shortLabel": "120 sec / strict timer",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 87.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 82,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "timer-generous",
+          "scenario": "Same slow work with a generous timer allocation",
+          "shortLabel": "120 sec / generous timer",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 91.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "sat-balanced",
+          "scenario": "SAT balanced 90%, 300 questions across 15 days",
+          "shortLabel": "sat-balanced",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 91.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "focused-math-only-days",
+          "scenario": "Focused Math DIRI with Math activity only",
+          "shortLabel": "Focused Math only",
+          "attempted": 40,
+          "accuracy": 90,
+          "sessions": 1,
+          "activeDays": 1,
+          "latestDaysAgo": 0,
+          "score": 81.3,
+          "band": "Almost",
+          "confidence": 0.59,
+          "performance": 92,
+          "consistency": 48.3,
+          "coverage": 100
+        },
+        {
+          "id": "focused-math-plus-other-days",
+          "scenario": "Same Math evidence plus 23 unrelated Science days",
+          "shortLabel": "Math + unrelated days",
+          "attempted": 40,
+          "accuracy": 90,
+          "sessions": 1,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 90.9,
+          "band": "Ready",
+          "confidence": 0.59,
+          "performance": 92,
+          "consistency": 80.4,
+          "coverage": 100
+        }
+      ],
+      "selected_scenarios": [
+        {
+          "id": "minimum-balanced",
+          "scenario": "Minimum evidence, balanced, one fresh session",
+          "shortLabel": "100 Q / 1 day",
+          "attempted": 100,
+          "accuracy": 90,
+          "sessions": 1,
+          "activeDays": 1,
+          "latestDaysAgo": 0,
+          "score": 83.3,
+          "band": "Almost",
+          "confidence": 0.65,
+          "performance": 92,
+          "consistency": 54.9,
+          "coverage": 100
+        },
+        {
+          "id": "balanced-200",
+          "scenario": "Balanced 90%, 200 questions across 10 days",
+          "shortLabel": "200 Q / 10 days",
+          "attempted": 200,
+          "accuracy": 90,
+          "sessions": 10,
+          "activeDays": 10,
+          "latestDaysAgo": 0,
+          "score": 88.7,
+          "band": "Ready",
+          "confidence": 0.75,
+          "performance": 92,
+          "consistency": 73,
+          "coverage": 100
+        },
+        {
+          "id": "balanced-300",
+          "scenario": "Balanced 90%, 300 questions across 15 days",
+          "shortLabel": "300 Q / 15 days",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 91.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "balanced-500",
+          "scenario": "Balanced 90%, 500 questions across 24 days",
+          "shortLabel": "500 Q / 24 days",
+          "attempted": 500,
+          "accuracy": 90,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 96.8,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 92,
+          "consistency": 100,
+          "coverage": 100
+        },
+        {
+          "id": "accuracy-70-max",
+          "scenario": "Balanced 70%, maximum consistency and coverage",
+          "shortLabel": "70% / max breadth",
+          "attempted": 500,
+          "accuracy": 70,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 90.4,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 76,
+          "consistency": 100,
+          "coverage": 100
+        },
+        {
+          "id": "fresh-cram",
+          "scenario": "Balanced 90% crammed into one day",
+          "shortLabel": "500 Q / 1-day cram",
+          "attempted": 500,
+          "accuracy": 90,
+          "sessions": 1,
+          "activeDays": 1,
+          "latestDaysAgo": 0,
+          "score": 86.7,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 92,
+          "consistency": 66.5,
+          "coverage": 100
+        },
+        {
+          "id": "stale-60",
+          "scenario": "Balanced 90%, latest practice 60 days ago",
+          "shortLabel": "Latest work 60d ago",
+          "attempted": 500,
+          "accuracy": 90,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 60,
+          "score": 90.8,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 92,
+          "consistency": 80,
+          "coverage": 100
+        },
+        {
+          "id": "one-subject-broad",
+          "scenario": "90% practice confined to Mathematics",
+          "shortLabel": "Math only",
+          "attempted": 500,
+          "accuracy": 90,
+          "sessions": 24,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 85.2,
+          "band": "Ready",
+          "confidence": 1,
+          "performance": 92,
+          "consistency": 100,
+          "coverage": 61.2
+        },
+        {
+          "id": "cross-subsidized-coverage",
+          "scenario": "One subject's extra breadth offsets narrow practice elsewhere",
+          "shortLabel": "Cross-subsidized breadth",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 91.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "slow-90",
+          "scenario": "90% accuracy at 120 seconds against 60 allocated",
+          "shortLabel": "120 sec / strict timer",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 87.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 82,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "timer-generous",
+          "scenario": "Same slow work with a generous timer allocation",
+          "shortLabel": "120 sec / generous timer",
+          "attempted": 300,
+          "accuracy": 90,
+          "sessions": 15,
+          "activeDays": 15,
+          "latestDaysAgo": 0,
+          "score": 91.8,
+          "band": "Ready",
+          "confidence": 0.85,
+          "performance": 92,
+          "consistency": 83.2,
+          "coverage": 100
+        },
+        {
+          "id": "focused-math-only-days",
+          "scenario": "Focused Math DIRI with Math activity only",
+          "shortLabel": "Focused Math only",
+          "attempted": 40,
+          "accuracy": 90,
+          "sessions": 1,
+          "activeDays": 1,
+          "latestDaysAgo": 0,
+          "score": 81.3,
+          "band": "Almost",
+          "confidence": 0.59,
+          "performance": 92,
+          "consistency": 48.3,
+          "coverage": 100
+        },
+        {
+          "id": "focused-math-plus-other-days",
+          "scenario": "Same Math evidence plus 23 unrelated Science days",
+          "shortLabel": "Math + unrelated days",
+          "attempted": 40,
+          "accuracy": 90,
+          "sessions": 1,
+          "activeDays": 24,
+          "latestDaysAgo": 0,
+          "score": 90.9,
+          "band": "Ready",
+          "confidence": 0.59,
+          "performance": 92,
+          "consistency": 80.4,
+          "coverage": 100
+        }
+      ],
+      "pillars_long": [
+        {
+          "scenario": "100 Q / 1 day",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "100 Q / 1 day",
+          "pillar": "Consistency",
+          "pillarScore": 54.9
+        },
+        {
+          "scenario": "100 Q / 1 day",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "200 Q / 10 days",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "200 Q / 10 days",
+          "pillar": "Consistency",
+          "pillarScore": 73
+        },
+        {
+          "scenario": "200 Q / 10 days",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "300 Q / 15 days",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "300 Q / 15 days",
+          "pillar": "Consistency",
+          "pillarScore": 83.2
+        },
+        {
+          "scenario": "300 Q / 15 days",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "500 Q / 24 days",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "500 Q / 24 days",
+          "pillar": "Consistency",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "500 Q / 24 days",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "70% / max breadth",
+          "pillar": "Performance",
+          "pillarScore": 76
+        },
+        {
+          "scenario": "70% / max breadth",
+          "pillar": "Consistency",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "70% / max breadth",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "500 Q / 1-day cram",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "500 Q / 1-day cram",
+          "pillar": "Consistency",
+          "pillarScore": 66.5
+        },
+        {
+          "scenario": "500 Q / 1-day cram",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "Latest work 60d ago",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "Latest work 60d ago",
+          "pillar": "Consistency",
+          "pillarScore": 80
+        },
+        {
+          "scenario": "Latest work 60d ago",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "Math only",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "Math only",
+          "pillar": "Consistency",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "Math only",
+          "pillar": "Coverage",
+          "pillarScore": 61.2
+        },
+        {
+          "scenario": "Cross-subsidized breadth",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "Cross-subsidized breadth",
+          "pillar": "Consistency",
+          "pillarScore": 83.2
+        },
+        {
+          "scenario": "Cross-subsidized breadth",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "120 sec / strict timer",
+          "pillar": "Performance",
+          "pillarScore": 82
+        },
+        {
+          "scenario": "120 sec / strict timer",
+          "pillar": "Consistency",
+          "pillarScore": 83.2
+        },
+        {
+          "scenario": "120 sec / strict timer",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "120 sec / generous timer",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "120 sec / generous timer",
+          "pillar": "Consistency",
+          "pillarScore": 83.2
+        },
+        {
+          "scenario": "120 sec / generous timer",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "Focused Math only",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "Focused Math only",
+          "pillar": "Consistency",
+          "pillarScore": 48.3
+        },
+        {
+          "scenario": "Focused Math only",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        },
+        {
+          "scenario": "Math + unrelated days",
+          "pillar": "Performance",
+          "pillarScore": 92
+        },
+        {
+          "scenario": "Math + unrelated days",
+          "pillar": "Consistency",
+          "pillarScore": 80.4
+        },
+        {
+          "scenario": "Math + unrelated days",
+          "pillar": "Coverage",
+          "pillarScore": 100
+        }
+      ],
+      "accuracy_weight_sweep": [
+        {
+          "accuracy": 40,
+          "model": "Current 40/30/30",
+          "diriScore": 80.8,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 40,
+          "model": "Performance 50%",
+          "diriScore": 76,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 40,
+          "model": "Performance 60%",
+          "diriScore": 71.2,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 45,
+          "model": "Current 40/30/30",
+          "diriScore": 82.4,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 45,
+          "model": "Performance 50%",
+          "diriScore": 78,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 45,
+          "model": "Performance 60%",
+          "diriScore": 73.6,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 50,
+          "model": "Current 40/30/30",
+          "diriScore": 84,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 50,
+          "model": "Performance 50%",
+          "diriScore": 80,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 50,
+          "model": "Performance 60%",
+          "diriScore": 76,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 55,
+          "model": "Current 40/30/30",
+          "diriScore": 85.6,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 55,
+          "model": "Performance 50%",
+          "diriScore": 82,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 55,
+          "model": "Performance 60%",
+          "diriScore": 78.4,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 60,
+          "model": "Current 40/30/30",
+          "diriScore": 87.2,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 60,
+          "model": "Performance 50%",
+          "diriScore": 84,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 60,
+          "model": "Performance 60%",
+          "diriScore": 80.8,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 65,
+          "model": "Current 40/30/30",
+          "diriScore": 88.8,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 65,
+          "model": "Performance 50%",
+          "diriScore": 86,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 65,
+          "model": "Performance 60%",
+          "diriScore": 83.2,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 70,
+          "model": "Current 40/30/30",
+          "diriScore": 90.4,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 70,
+          "model": "Performance 50%",
+          "diriScore": 88,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 70,
+          "model": "Performance 60%",
+          "diriScore": 85.6,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 75,
+          "model": "Current 40/30/30",
+          "diriScore": 92,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 75,
+          "model": "Performance 50%",
+          "diriScore": 90,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 75,
+          "model": "Performance 60%",
+          "diriScore": 88,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 80,
+          "model": "Current 40/30/30",
+          "diriScore": 93.6,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 80,
+          "model": "Performance 50%",
+          "diriScore": 92,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 80,
+          "model": "Performance 60%",
+          "diriScore": 90.4,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 85,
+          "model": "Current 40/30/30",
+          "diriScore": 95.2,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 85,
+          "model": "Performance 50%",
+          "diriScore": 94,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 85,
+          "model": "Performance 60%",
+          "diriScore": 92.8,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 90,
+          "model": "Current 40/30/30",
+          "diriScore": 96.8,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 90,
+          "model": "Performance 50%",
+          "diriScore": 96,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 90,
+          "model": "Performance 60%",
+          "diriScore": 95.2,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 95,
+          "model": "Current 40/30/30",
+          "diriScore": 98.4,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 95,
+          "model": "Performance 50%",
+          "diriScore": 98,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 95,
+          "model": "Performance 60%",
+          "diriScore": 97.6,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 100,
+          "model": "Current 40/30/30",
+          "diriScore": 100,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 100,
+          "model": "Performance 50%",
+          "diriScore": 100,
+          "attempted": 500,
+          "activeDays": 24
+        },
+        {
+          "accuracy": 100,
+          "model": "Performance 60%",
+          "diriScore": 100,
+          "attempted": 500,
+          "activeDays": 24
+        }
+      ],
+      "attainability": [
+        {
+          "accuracy": 60,
+          "readyAttempts": 180,
+          "readySessions": 24,
+          "diri90Attempts": null,
+          "diri90Sessions": null
+        },
+        {
+          "accuracy": 70,
+          "readyAttempts": 100,
+          "readySessions": 20,
+          "diri90Attempts": 410,
+          "diri90Sessions": 24
+        },
+        {
+          "accuracy": 75,
+          "readyAttempts": 100,
+          "readySessions": 16,
+          "diri90Attempts": 190,
+          "diri90Sessions": 24
+        },
+        {
+          "accuracy": 80,
+          "readyAttempts": 100,
+          "readySessions": 13,
+          "diri90Attempts": 100,
+          "diri90Sessions": 24
+        },
+        {
+          "accuracy": 85,
+          "readyAttempts": 100,
+          "readySessions": 9,
+          "diri90Attempts": 100,
+          "diri90Sessions": 20
+        },
+        {
+          "accuracy": 90,
+          "readyAttempts": 100,
+          "readySessions": 5,
+          "diri90Attempts": 100,
+          "diri90Sessions": 17
+        },
+        {
+          "accuracy": 95,
+          "readyAttempts": 100,
+          "readySessions": 2,
+          "diri90Attempts": 100,
+          "diri90Sessions": 13
+        }
+      ],
+      "accuracy_floors": [
+        {
+          "model": "current-40-30-30",
+          "target": 85,
+          "currentPacingFloor": 53.1,
+          "penaltyOnlyPacingFloor": 62.5
+        },
+        {
+          "model": "current-40-30-30",
+          "target": 90,
+          "currentPacingFloor": 68.7,
+          "penaltyOnlyPacingFloor": 75
+        },
+        {
+          "model": "balanced-50-25-25",
+          "target": 85,
+          "currentPacingFloor": 62.5,
+          "penaltyOnlyPacingFloor": 70
+        },
+        {
+          "model": "balanced-50-25-25",
+          "target": 90,
+          "currentPacingFloor": 75,
+          "penaltyOnlyPacingFloor": 80
+        },
+        {
+          "model": "performance-60-20-20",
+          "target": 85,
+          "currentPacingFloor": 68.8,
+          "penaltyOnlyPacingFloor": 75
+        },
+        {
+          "model": "performance-60-20-20",
+          "target": 90,
+          "currentPacingFloor": 79.2,
+          "penaltyOnlyPacingFloor": 83.3
+        }
+      ],
+      "breakpoints": [
+        {
+          "component": "Evidence",
+          "breakpoint": "Overall estimate",
+          "value": "100 answered questions"
+        },
+        {
+          "component": "Evidence",
+          "breakpoint": "Focused estimate",
+          "value": "40 answered questions"
+        },
+        {
+          "component": "Window",
+          "breakpoint": "Lookback",
+          "value": "90 trailing days"
+        },
+        {
+          "component": "Consistency",
+          "breakpoint": "Volume maximum",
+          "value": "500 attempts"
+        },
+        {
+          "component": "Consistency",
+          "breakpoint": "Active-day maximum",
+          "value": "24 active days"
+        },
+        {
+          "component": "Consistency",
+          "breakpoint": "Freshness reaches zero",
+          "value": "40 days since practice"
+        },
+        {
+          "component": "Coverage",
+          "breakpoint": "Meaningful subject",
+          "value": "10 attempts"
+        },
+        {
+          "component": "Coverage",
+          "breakpoint": "Additional subject expected",
+          "value": "Every 40 attempts"
+        },
+        {
+          "component": "Coverage",
+          "breakpoint": "Meaningful module",
+          "value": "5 attempts"
+        },
+        {
+          "component": "Coverage",
+          "breakpoint": "Additional module expected",
+          "value": "Every 20 subject attempts"
+        },
+        {
+          "component": "Coverage",
+          "breakpoint": "Additional test expected",
+          "value": "Every 5 subject sessions"
+        },
+        {
+          "component": "Confidence",
+          "breakpoint": "Maximum",
+          "value": "450 attempted questions"
+        }
+      ],
+      "platform_parity": [
+        {
+          "surface": "Web",
+          "online": "Server diri-3.1",
+          "offline": "No offline analytics recomputation",
+          "risk": "Low"
+        },
+        {
+          "surface": "Native online",
+          "online": "Server diri-3.1 after sync",
+          "offline": "Local fallback shown first",
+          "risk": "Transient drift"
+        },
+        {
+          "surface": "Native offline",
+          "online": "Not available",
+          "offline": "Older QML formula",
+          "risk": "Material formula drift"
+        },
+        {
+          "surface": "Educator web",
+          "online": "Server diri-3.1",
+          "offline": "Not supported",
+          "risk": "Low"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "server_formula",
+      "label": "Canonical DIRI 3.1 implementation",
+      "path": "functions/handlers/_analytics.js",
+      "query": {
+        "sql": "SELECT content FROM read_text('functions/handlers/_analytics.js');",
+        "description": "Executes the canonical server-owned readiness calculation.",
+        "engine": "duckdb",
+        "language": "sql",
+        "tables_used": [
+          "functions/handlers/_analytics.js"
+        ],
+        "filters": [
+          "Trailing 90 days",
+          "Canonical graded analytics attempts"
+        ],
+        "metric_definitions": {
+          "DIRI": "0.40 * Performance + 0.30 * Consistency + 0.30 * Coverage",
+          "Performance": "0.80 * accuracy percentage + 0.20 * pacing percentage"
+        }
+      }
+    },
+    {
+      "id": "simulation",
+      "label": "Deterministic DIRI simulation results",
+      "path": "analysis/diri_calibration/simulation-results.json",
+      "query": {
+        "sql": "SELECT * FROM read_csv_auto('analysis/diri_calibration/scenario-results.csv');",
+        "description": "Loads the bounded synthetic-account outputs produced by the exact server formula.",
+        "engine": "duckdb",
+        "language": "sql",
+        "tables_used": [
+          "analysis/diri_calibration/simulation-results.json"
+        ],
+        "filters": [
+          "Fixed simulation clock: 2026-08-11T12:00:00Z",
+          "ACT and SAT live catalogs"
+        ],
+        "metric_definitions": {
+          "scenario score": "Exact return value from readiness() for one deterministic synthetic history",
+          "accuracy": "Correct answers divided by attempted questions"
+        }
+      }
+    },
+    {
+      "id": "scenario_csv",
+      "label": "Scenario result extract",
+      "path": "analysis/diri_calibration/scenario-results.csv"
+    },
+    {
+      "id": "native_formula",
+      "label": "Native online and offline analytics behavior",
+      "path": "Drill_Instructor/qml/Student/Bootcamps/Analytics.qml",
+      "query": {
+        "sql": "SELECT content FROM read_text('Drill_Instructor/qml/Student/Bootcamps/Analytics.qml');",
+        "description": "Identifies the canonical online response path and the separate native offline formula.",
+        "engine": "duckdb",
+        "language": "sql",
+        "tables_used": [
+          "Drill_Instructor/qml/Student/Bootcamps/Analytics.qml"
+        ],
+        "filters": [
+          "Student analytics page",
+          "Connectivity-dependent execution path"
+        ],
+        "metric_definitions": {
+          "parity risk": "Whether the displayed DIRI uses server diri-3.1"
+        }
+      }
+    },
+    {
+      "id": "catalog",
+      "label": "Live ACT and SAT catalog construction",
+      "path": "functions/handlers/_studentDrill.js"
+    }
+  ],
+  "package_info": {
+    "version": 1,
+    "status": "ready"
+  }
+}

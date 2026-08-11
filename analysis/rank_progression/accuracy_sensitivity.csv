@@ -1,0 +1,7 @@
+accuracy_pct,points_per_attempt,attempts_to_general,days_at_20_questions,days_at_40_questions
+0,1.0,7000,350,175
+50,2.0,3500,175,88
+70,2.4,2917,146,73
+80,2.6,2693,135,68
+90,2.8,2500,125,63
+100,3.0,2334,117,59

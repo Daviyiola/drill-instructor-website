@@ -4,6 +4,7 @@ const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
 const {aggregateAnalytics} = require("./_analytics");
 const {buildCatalog} = require("./_studentDrill");
+const {preferenceDescriptor} = require("./_diriPreferences");
 const {
   bad,
   cleanStr,
@@ -220,6 +221,12 @@ exports.handler = async (req, res) => {
     const startAt = new Date(startMs || Date.now() - 29 * 86400000)
         .toISOString();
     const endAt = new Date(endMs || Date.now()).toISOString();
+    const catalog = buildCatalog(bootcamp);
+    const storedPreference = (await db.ref(
+        `users/${targetStudentId}/analyticsPreferences/${bootcamp}`)
+        .once("value")).val();
+    const diriPreference = preferenceDescriptor(
+        bootcamp, catalog, storedPreference);
     const analytics = aggregateAnalytics(attempts, {
       bootcamp,
       startAt,
@@ -230,17 +237,23 @@ exports.handler = async (req, res) => {
       granularity: ["week", "month"].includes(body.granularity) ?
         body.granularity : "day",
       educator: true,
-    }, buildCatalog(bootcamp));
+      diriSubjects: diriPreference.selectedSubjects,
+    }, catalog);
 
     return res.status(200).json({
       ok: true,
       bootcamp,
       student,
-      analytics,
+      analytics: {...analytics, diriPreference},
       syncedAt: new Date().toISOString(),
     });
   } catch (e) {
     const details = errText(e);
+
+    if ([401, 403].includes(Number(e && e.code))) {
+      return bad(res, Number(e.code),
+          Number(e.code) === 401 ? "AUTH_REQUIRED" : "FORBIDDEN");
+    }
 
     if (
       details.includes("auth/id-token-expired") ||

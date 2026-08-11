@@ -96,22 +96,15 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
       .then(async (response) => {
         if (response.status === "submitted") {
           if (response.challengeId) {
-            callFunction<{ok: true; result: DrillResult}, {sessionId: string}>(
+            callFunction(
               user,
-              "getStudentDrillResultHttps",
-              {sessionId},
+              "completeChallengeHttps",
+              {
+                challengeId: response.challengeId,
+                sessionId,
+              },
+              {retryTransient: true},
             )
-              .then((resultResponse) =>
-                callFunction(
-                  user,
-                  "completeChallengeHttps",
-                  {
-                    challengeId: response.challengeId,
-                    snapshot: resultResponse.result,
-                  },
-                  {retryTransient: true},
-                ),
-              )
               .finally(() =>
                 router.replace(
                   `/app/drills/${sessionId}/results?from=challenges`,
@@ -311,7 +304,7 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
           "completeChallengeHttps",
           {
             challengeId: session.challengeId || response.challengeId,
-            snapshot: response.result,
+            sessionId,
           },
           {retryTransient: true},
         );
