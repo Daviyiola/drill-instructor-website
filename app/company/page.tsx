@@ -65,7 +65,7 @@ export default function CompanyPage() {
             </p>
             <div className="mt-auto pt-7">
               <Link
-                href="/"
+                href="https://drillinstructorprep.com"
                 className="inline-flex rounded-2xl bg-brand-green px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-darkolive"
               >
                 Visit Drill Instructor
