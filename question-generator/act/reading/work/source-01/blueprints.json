@@ -1,0 +1,40 @@
+{
+  "source_passage_id": 1,
+  "source_passage_type": "Paired Passages",
+  "source_architecture_summary": "Two first-person narratives place a protagonist in a socially charged setting where observation, memory, and another person's behavior reshape the protagonist's understanding of personal change.",
+  "source_information_density": "High",
+  "two_blueprint_feasibility": "Strong",
+  "feasibility_notes": "Both blueprints preserve the paired movement from concrete setting through self-conscious observation to a contrasting final realization, while replacing homecoming, migration, photography, family introduction, and every source-specific image.",
+  "blueprints": [
+    {
+      "blueprint_label": "A",
+      "blueprint_focus": "Two former participants revisit public institutions that once defined them, but one reads institutional change as erasure while the other discovers continuity through changed responsibilities.",
+      "act_reading_passage_type": "Paired Passages",
+      "overall_reading_skill_family": "Character inference and comparative thematic development",
+      "passage_architecture_observed": "Each passage opens with arrival, develops meaning through concrete spatial details and interaction, and ends with a realization that revises the narrator's initial expectation.",
+      "rhetorical_or_narrative_arc": "Arrival, observation, remembered or expected identity, disruptive interaction, qualified realization",
+      "information_density_requirements": ["Distinct institutional details", "A revealing secondary character", "An early expectation qualified later", "Different emotional resolutions"],
+      "cross_paragraph_connections_required": ["Opening physical detail gains emotional meaning near the end", "Another person's action changes the narrator's interpretation"],
+      "safe_replacement_domains": ["Community theater", "Public greenhouse", "Volunteer institutions"],
+      "question_opportunity_types": ["Character motivation", "Structural comparison", "Tone contrast", "Context vocabulary", "Cross-passage theme"],
+      "recommended_modules": ["Character and Relationship Analysis", "Comparative Passage Analysis", "Function and Structure", "Inference and Implication", "Vocabulary in Context"],
+      "primary_module": "Comparative Passage Analysis",
+      "distinctness_notes": "Uses institutional succession and stewardship rather than geographic return or cultural belonging."
+    },
+    {
+      "blueprint_label": "B",
+      "blueprint_focus": "Two narrators face being publicly recognized for work they preferred to perform invisibly; one retreats from recognition while the other learns to share it.",
+      "act_reading_passage_type": "Paired Passages",
+      "overall_reading_skill_family": "Perspective, relationship development, and comparison",
+      "passage_architecture_observed": "Each passage begins during preparation, introduces an unexpected public moment, traces the narrator's internal resistance, and closes with a different response to visibility.",
+      "rhetorical_or_narrative_arc": "Private competence, approaching public exposure, interpersonal pressure, decisive response, reflective ending",
+      "information_density_requirements": ["Concrete work process", "Contrasting companion", "Public turning point", "Evidence of both discomfort and competence"],
+      "cross_paragraph_connections_required": ["An early work habit explains a later reaction", "The companion's behavior clarifies the narrator's attitude"],
+      "safe_replacement_domains": ["Museum conservation", "Community astronomy", "Public demonstration"],
+      "question_opportunity_types": ["Authorial technique", "Motivation inference", "Sequence", "Paired response comparison", "Phrase meaning"],
+      "recommended_modules": ["Author's Purpose and Perspective", "Character and Relationship Analysis", "Comparative Passage Analysis", "Sequence and Relationships", "Textual Details"],
+      "primary_module": "Comparative Passage Analysis",
+      "distinctness_notes": "Centers public visibility and collaborative credit, not return, place, migration, or family acceptance."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "source_analysis":{"sourceId":13,"required_passage_class":"SHORT","required_question_count":5,"assigned_passage_type":"informational","reusable_architecture":"Introduce an observation, explain how evidence is gathered, distinguish patterns in the evidence, and conclude with the wider value of continued study.","copyright_risk_notes":["Do not reuse manta rays, Mozambique, marine species identification, denticles, tail fins, Andrea Marshall, or the source's discoveries."]},
+  "blueprints":[
+    {"blueprint_id":"A","new_topic_domain":"How nighttime thermal surveys help cities care for street trees","passage_type":"informational","rhetorical_arc":"Introduce hidden heat stress, explain paired measurements, interpret patterns, and connect the maps to targeted tree care."},
+    {"blueprint_id":"B","new_topic_domain":"How radar reveals layers and water beneath a glacier","passage_type":"informational","rhetorical_arc":"Introduce radar sounding, explain signal returns, distinguish readings, and conclude with safer field planning and long-term monitoring."}
+  ]
+}

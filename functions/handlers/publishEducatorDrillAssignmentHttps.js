@@ -2,6 +2,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {normalizeFutureDueAt} = require("./_educatorDueDate");
 const {
   bad,
   cleanStr,
@@ -631,6 +632,10 @@ exports.handler = async (req, res) => {
     const instructions = cleanStr(drill.instructions, 1600);
     const dueAt = cleanStr(drill.dueAt, 80);
     const settings = sanitizeDrillSettings(drill.settings || {}, {});
+    const dueResult = normalizeFutureDueAt(dueAt);
+    if (!dueResult.ok) {
+      return bad(res, 400, dueResult.error);
+    }
     if (!dueAt && (settings.scorePolicy === "on_due_date" ||
         settings.correctionPolicy === "on_due_date")) {
       return bad(res, 400, "DUE_DATE_REQUIRED_FOR_RELEASE_POLICY");

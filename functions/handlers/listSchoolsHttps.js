@@ -3,6 +3,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {studentEnrollmentOpen} = require("./_schoolPolicies");
 
 /**
  * @typedef {import("express").Request} Request
@@ -178,9 +179,7 @@ exports.handler = async function handler(req, res) {
       const node = data[k];
       if (!node || typeof node !== "object") continue;
 
-      // If you want to only return visible schools:
-      // const allowed = node.platoonPermissions === true;
-      // if (!allowed) continue;
+      if (!studentEnrollmentOpen(node)) continue;
 
       schools.push({name: k});
     }

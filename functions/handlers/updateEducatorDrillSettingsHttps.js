@@ -2,6 +2,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {normalizeFutureDueAt} = require("./_educatorDueDate");
 const {
   bad,
   cleanStr,
@@ -71,26 +72,6 @@ function normalizeSettings(input, existing) {
  * @param {string} raw Raw due date
  * @return {{ok:boolean, dueAt:string, error:string}}
  */
-function normalizeDueAt(raw) {
-  const dueAt = cleanStr(raw, 80);
-
-  if (!dueAt) {
-    return {ok: true, dueAt: "", error: ""};
-  }
-
-  const ms = Date.parse(dueAt);
-
-  if (Number.isNaN(ms)) {
-    return {ok: false, dueAt: "", error: "INVALID_DUE_DATE"};
-  }
-
-  return {
-    ok: true,
-    dueAt: new Date(ms).toISOString(),
-    error: "",
-  };
-}
-
 /**
  * HTTPS handler to update safe settings for an educator drill.
  *
@@ -140,7 +121,7 @@ exports.handler = async (req, res) => {
       return bad(res, 400, "MISSING_TITLE");
     }
 
-    const dueResult = normalizeDueAt(body.dueAt);
+    const dueResult = normalizeFutureDueAt(body.dueAt);
 
     if (!dueResult.ok) {
       return bad(res, 400, dueResult.error);

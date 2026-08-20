@@ -55,6 +55,19 @@ exports.sendPasswordResetHttps = onRequest(
     require("./handlers/sendPasswordResetHttps").handler,
 );
 
+exports.requestAccountDeletionHttps = onRequest(
+    {
+      ...publicStudentOptions,
+      secrets: [RESEND_API_KEY, SUPPORT_FROM_EMAIL],
+    },
+    require("./handlers/requestAccountDeletionHttps").handler,
+);
+
+exports.confirmAccountDeletionHttps = onRequest(
+    publicStudentOptions,
+    require("./handlers/confirmAccountDeletionHttps").handler,
+);
+
 exports.createChallengeHttps = onRequest(
     {secrets: [CHALLENGE_SIGNING_SECRET,
       LICENSE_SALT],
@@ -229,6 +242,11 @@ exports.updateSchoolEducatorAccessHttps = onRequest(
     require("./handlers/updateSchoolEducatorAccessHttps").handler,
 );
 
+exports.updateSchoolSettingsHttps = onRequest(
+    publicStudentOptions,
+    require("./handlers/updateSchoolSettingsHttps").handler,
+);
+
 exports.getSchoolAdminAuditLogsHttps = onRequest(
     publicStudentOptions,
     require("./handlers/getSchoolAdminAuditLogsHttps").handler,
@@ -290,17 +308,17 @@ exports.publishEducatorDrillAssignmentHttps = onRequest(
 );
 
 exports.getStudentEducatorDrillAssignmentsHttps = onRequest(
-    publicStudentOptions,
+    {...publicStudentOptions, secrets: [LICENSE_SALT]},
     require("./handlers/getStudentEducatorDrillAssignmentsHttps").handler,
 );
 
 exports.getStudentEducatorDrillAssignmentHttps = onRequest(
-    publicStudentOptions,
+    {...publicStudentOptions, secrets: [LICENSE_SALT]},
     require("./handlers/getStudentEducatorDrillAssignmentHttps").handler,
 );
 
 exports.submitEducatorDrillAttemptHttps = onRequest(
-    publicStudentOptions,
+    {...publicStudentOptions, secrets: [LICENSE_SALT]},
     require("./handlers/submitEducatorDrillAttemptHttps").handler,
 );
 
@@ -350,7 +368,7 @@ exports.releaseEducatorAssignmentHttps = onRequest(
 );
 
 exports.getStudentEducatorDrillResultHttps = onRequest(
-    publicStudentOptions,
+    {...publicStudentOptions, secrets: [LICENSE_SALT]},
     require("./handlers/getStudentEducatorDrillResultHttps").handler,
 );
 
@@ -540,7 +558,7 @@ exports.createStudentChallengeSessionHttps = onRequest(
 );
 
 exports.createStudentAssignmentSessionHttps = onRequest(
-    studentDrillOptions,
+    studentDrillLicensedOptions,
     require("./handlers/studentAssignmentsHttps").createAssignmentSession,
 );
 

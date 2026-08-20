@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 1,
+  "blueprint": "A",
+  "passageAssetId": "act-reading-s01-a",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 794,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "No source names, places, occupations, central images, events, or factual sequences are retained.",
+    "The paired structure is preserved abstractly while the conflict centers institutional succession and stewardship."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

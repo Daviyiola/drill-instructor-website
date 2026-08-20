@@ -261,10 +261,22 @@ export default function DrillResults({
   return (
     <main className="min-h-screen bg-brand-mist text-slate-950">
       <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-center px-5 sm:px-8">
+        <div className={`mx-auto flex h-16 max-w-7xl items-center px-5 sm:px-8 ${educatorContext ? "justify-between gap-4" : "justify-center"}`}>
           <p className="text-xl font-black tracking-tight text-brand-green sm:text-2xl">
             RESULTS
           </p>
+          {educatorContext && (
+            <Link
+              href={educatorContext.dashboardHref}
+              className="inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-3 text-xs text-slate-700 transition hover:border-brand-green/35 hover:bg-brand-mist sm:px-4 sm:text-sm"
+            >
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-brand-mist">
+                <span className="h-2.5 w-2.5 rotate-45 border-b-[3px] border-l-[3px] border-brand-green" />
+              </span>
+              <span className="hidden sm:inline">Back to drill dashboard</span>
+              <span className="sm:hidden">Dashboard</span>
+            </Link>
+          )}
         </div>
       </header>
 

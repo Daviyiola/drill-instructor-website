@@ -1,0 +1,152 @@
+[
+    {
+        "skill_tested":  "Eliminating a redundant particle",
+        "question":  "Which choice is least redundant in context?",
+        "options":  [
+                        "discarded",
+                        "discarded away",
+                        "thrown and discarded away",
+                        "removed away for disposal"
+                    ],
+        "correctAnswer":  "discarded",
+        "step1":  "\u0027Discarded\u0027 already means thrown away or rejected.",
+        "step2":  "Removing \u0027away\u0027 preserves the meaning without repetition.",
+        "difficulty":  "Medium",
+        "module":  "Conciseness and Redundancy"
+    },
+    {
+        "skill_tested":  "Choosing vivid imagery consistent with the scene",
+        "question":  "Which choice provides the clearest and most fitting description of the partly visible lettering?",
+        "options":  [
+                        "lines doing a strange thing",
+                        "threads of gold showing through worn cloth",
+                        "letters more interesting than ordinary letters",
+                        "marks that were unbelievably amazing"
+                    ],
+        "correctAnswer":  "threads of gold showing through worn cloth",
+        "step1":  "The narrator sees thin gold shapes emerging beneath a worn painted surface.",
+        "step2":  "The image of threads through cloth is concrete, visually precise, and consistent with the reflective tone.",
+        "difficulty":  "Medium",
+        "module":  "Style and Tone"
+    },
+    {
+        "skill_tested":  "Selecting a pronoun with a singular antecedent",
+        "question":  "Which choice makes the sentence most grammatically acceptable?",
+        "options":  [
+                        "its",
+                        "there",
+                        "their",
+                        "his or her"
+                    ],
+        "correctAnswer":  "their",
+        "step1":  "The pronoun refers to the plural noun \u0027theater companies.\u0027",
+        "step2":  "The plural possessive pronoun \u0027their\u0027 agrees with that antecedent.",
+        "difficulty":  "Medium",
+        "module":  "Pronouns"
+    },
+    {
+        "skill_tested":  "Evaluating a precise observation that supports discovery",
+        "question":  "Should the writer keep or delete the underlined sentence?",
+        "options":  [
+                        "Delete it, because the exact shape of the letter cannot contribute to identifying old lettering.",
+                        "Delete it, because all theater signs use block lettering.",
+                        "Keep it, because it proves the conservator already knows every former building name.",
+                        "Keep it, because the curling stroke supplies visual evidence that the newly exposed layer differs from the current sign."
+                    ],
+        "correctAnswer":  "Keep it, because the curling stroke supplies visual evidence that the newly exposed layer differs from the current sign.",
+        "step1":  "The paragraph follows the discovery and identification of an earlier painted layer.",
+        "step2":  "The contrast between the curling stroke and current block letters gives concrete evidence of that layer\u0027s difference.",
+        "difficulty":  "Hard",
+        "module":  "Topic Development"
+    },
+    {
+        "skill_tested":  "Correcting a dangling introductory modifier",
+        "question":  "Which choice makes the sentence most grammatically acceptable?",
+        "options":  [
+                        "Leaning over the table, the gold edge was revealed one millimeter at a time.",
+                        "The gold edge, leaning over the table, was revealed by Ms. Okafor.",
+                        "Leaning over the table, Ms. Okafor revealed the gold edge one millimeter at a time.",
+                        "While the table leaned, Ms. Okafor revealing the edge."
+                    ],
+        "correctAnswer":  "Leaning over the table, Ms. Okafor revealed the gold edge one millimeter at a time.",
+        "step1":  "The noun after the introductory phrase must name the person leaning over the table.",
+        "step2":  "The correct choice places Ms. Okafor immediately after the modifier and gives her a complete active verb.",
+        "difficulty":  "Hard",
+        "module":  "Modifiers and Comparisons"
+    },
+    {
+        "skill_tested":  "Joining independent clauses without a comma splice",
+        "question":  "Which choice makes the sentence most grammatically acceptable?",
+        "options":  [
+                        ", each coat",
+                        "; each coat",
+                        ": because each coat",
+                        ", with each coat"
+                    ],
+        "correctAnswer":  "; each coat",
+        "step1":  "\u0027Ms. Okafor shook her head\u0027 and \u0027each coat belonged to the sign\u0027s history\u0027 are independent clauses.",
+        "step2":  "A semicolon correctly joins the closely related clauses.",
+        "difficulty":  "Hard",
+        "module":  "Sentence Structure"
+    },
+    {
+        "skill_tested":  "Maintaining consistent narrative tense",
+        "question":  "Which choice makes the sentence most grammatically acceptable?",
+        "options":  [
+                        "described",
+                        "describes",
+                        "has describing",
+                        "will described"
+                    ],
+        "correctAnswer":  "described",
+        "step1":  "The surrounding account reports Ms. Okafor\u0027s actions in the past tense.",
+        "step2":  "\u0027Described\u0027 matches \u0027planned\u0027 and completes the predicate correctly.",
+        "difficulty":  "Hard",
+        "module":  "Verb Tense and Form"
+    },
+    {
+        "skill_tested":  "Using a transition to mark a gradual change in perspective",
+        "question":  "Should the writer keep or revise the opening transition of the underlined sentence?",
+        "options":  [
+                        "Replace it with \u0027For example\u0027 because the sentence supplies a random illustration.",
+                        "Delete the sentence because the narrator\u0027s opinion never changes.",
+                        "Keep \u0027Gradually, however\u0027 because it signals a developing contrast with the narrator\u0027s initial view of the layers as damage.",
+                        "Replace it with \u0027Similarly\u0027 because both judgments are identical."
+                    ],
+        "correctAnswer":  "Keep \u0027Gradually, however\u0027 because it signals a developing contrast with the narrator\u0027s initial view of the layers as damage.",
+        "step1":  "The narrator first sees the overlapping names as damage.",
+        "step2":  "\u0027Gradually, however\u0027 accurately introduces the later, contrasting interpretation that emerges through observation.",
+        "difficulty":  "Hard",
+        "module":  "Organization and Cohesion"
+    },
+    {
+        "skill_tested":  "Placing historical evidence beside the discovery it clarifies",
+        "question":  "The sentence about the 1948 archive photograph would most logically be placed at which point?",
+        "options":  [
+                        "Point A",
+                        "Point C",
+                        "Point D",
+                        "Point B"
+                    ],
+        "correctAnswer":  "Point C",
+        "step1":  "The photograph confirms the newly uncovered word \u0027Lyric\u0027 and shows that sign in its historical setting.",
+        "step2":  "Point C immediately follows the paragraph in which the letters form the word \u0027Lyric,\u0027 so the evidence appears beside the discovery it clarifies.",
+        "difficulty":  "Very Hard",
+        "module":  "Topic Development"
+    },
+    {
+        "skill_tested":  "Determining whether a narrative fulfills a stated purpose",
+        "question":  "Suppose the writer\u0027s purpose were to describe a moment when close observation changes a person\u0027s judgment about an ordinary object. Would this passage accomplish that purpose?",
+        "options":  [
+                        "No, because it focuses primarily on how to construct a new wooden sign.",
+                        "Yes, because it lists every business that ever occupied the building.",
+                        "No, because the narrator maintains the same opinion throughout.",
+                        "Yes, because observing the layered lettering changes the narrator\u0027s view of the worn sign from ruined object to historical record."
+                    ],
+        "correctAnswer":  "Yes, because observing the layered lettering changes the narrator\u0027s view of the worn sign from ruined object to historical record.",
+        "step1":  "The narrator initially assumes the damaged sign will be discarded.",
+        "step2":  "After observing the restoration, the narrator interprets its wear and layers as evidence of multiple stories, fulfilling the stated purpose.",
+        "difficulty":  "Very Hard",
+        "module":  "Topic Development"
+    }
+]

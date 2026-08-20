@@ -13,6 +13,7 @@ const {
   correctionRevisionFor,
   datasetVersionFor,
   normalizedQuestions,
+  orderedSelectQuestions,
   smartSelectQuestions,
 } = require("./_studentDrill");
 
@@ -162,7 +163,11 @@ async function buildBlueprint(req, res) {
         (!modules.length || modules.includes(question.module)) &&
         (!practiceTests.length ||
           practiceTests.includes(question.practiceYear)));
-      const picked = smartSelectQuestions(candidates, requestedCount);
+      const shuffleQuestions = row &&
+        (row.shuffleQuestions === true || row.shuffle === true);
+      const picked = shuffleQuestions ?
+        smartSelectQuestions(candidates, requestedCount) :
+        orderedSelectQuestions(candidates, requestedCount);
       if (!picked.length) {
         return bad(res, 400, "NO_MATCHING_QUESTIONS", {subject});
       }

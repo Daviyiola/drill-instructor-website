@@ -102,6 +102,13 @@ function correctionRevisionFor(bootcamp) {
   return descriptor ? Number(descriptor.correctionRevision || 0) : 0;
 }
 
+const ACT_SECTION_SIZES = {
+  Mathematics: 45,
+  Science: 40,
+  English: 50,
+  Reading: 36,
+};
+
 /**
  * Preserve an authored practice-test label. ACT source rows that lack a
  * trusted label fall back to deterministic grouping; insertion order is stable.
@@ -118,8 +125,7 @@ function canonicalPracticeTest(bootcamp, subject, ordinal, authoredValue) {
     return authoredTest;
   }
   if (bootcamp !== "act") return Number(authoredValue || 0);
-  const sizes = {Mathematics: 45, Science: 40, English: 50};
-  const size = sizes[subject];
+  const size = ACT_SECTION_SIZES[subject];
   return size ? Math.floor((ordinal - 1) / size) + 1 :
     Number(authoredValue || 0);
 }
@@ -136,8 +142,7 @@ function canonicalPracticeTest(bootcamp, subject, ordinal, authoredValue) {
  * @return {boolean} Whether the labels can be used as authored
  */
 function hasUsableAuthoredActTestLabels(records, subject) {
-  const sizes = {Mathematics: 45, Science: 40, English: 50};
-  const sectionSize = sizes[subject];
+  const sectionSize = ACT_SECTION_SIZES[subject];
   if (!sectionSize || !records.length) return false;
   const counts = new Map();
   for (const raw of records) {
@@ -468,6 +473,35 @@ function smartSelectQuestions(candidates, maxCount) {
     } else {
       selected.push(...randomConsecutiveWindow(group.questions, remaining));
     }
+  }
+  return selected;
+}
+
+/**
+ * Select questions deterministically from the earliest available practice
+ * test while preserving passage/image groups and their source order.
+ *
+ * @param {Object[]} candidates Filtered candidate questions
+ * @param {number} maxCount Maximum paper size
+ * @return {Object[]} Selected questions
+ */
+function orderedSelectQuestions(candidates, maxCount) {
+  const limit = Math.max(0, Number(maxCount || 0));
+  if (limit <= 0 || !Array.isArray(candidates) || candidates.length === 0) {
+    return [];
+  }
+  const ordered = candidates.slice().sort((left, right) => {
+    const testDifference = Number(left.practiceYear || 0) -
+      Number(right.practiceYear || 0);
+    if (testDifference) return testDifference;
+    return String(left.id || "").localeCompare(String(right.id || ""),
+        undefined, {numeric: true});
+  });
+  if (ordered.length <= limit) return ordered;
+  const selected = [];
+  for (const group of groupQuestionsByStimulus(ordered)) {
+    if (selected.length >= limit) break;
+    selected.push(...group.questions.slice(0, limit - selected.length));
   }
   return selected;
 }
@@ -921,6 +955,7 @@ module.exports = {
   normalizeLegacyResult,
   publicQuestion,
   publicSession,
+  orderedSelectQuestions,
   questionStimulusKey,
   resolveStudent,
   smartSelectQuestions,

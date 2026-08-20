@@ -8,10 +8,11 @@ import type {ResolvedAccount} from "@/lib/types/account";
 import AppShell from "./AppShell";
 import AppBackLink from "./AppBackLink";
 import {useAuth} from "./AuthProvider";
+import EducatorShell from "@/components/educator/EducatorShell";
 
 export default function RanksPage() {
   const router = useRouter();
-  const {user, loading} = useAuth();
+  const {user, loading, educatorWorkspace} = useAuth();
   const [account, setAccount] = useState<ResolvedAccount | null>(null);
   const [error, setError] = useState("");
 
@@ -20,15 +21,15 @@ export default function RanksPage() {
   }, [loading, router, user]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user || educatorWorkspace) return;
     callFunction<ResolvedAccount>(user, "resolveSignInAccountHttps", {
       preferredRole: "student",
     })
       .then(setAccount)
       .catch((reason) => setError((reason as Error).message));
-  }, [user]);
+  }, [educatorWorkspace, user]);
 
-  if (!account) {
+  if (!account && !educatorWorkspace) {
     return (
       <div className="grid min-h-screen place-items-center bg-brand-mist px-5 text-center text-sm font-semibold text-slate-600">
         {error || "Loading ranks…"}
@@ -36,8 +37,9 @@ export default function RanksPage() {
     );
   }
 
+  const educatorMode = Boolean(educatorWorkspace);
   const points = Number(
-    account.profile.totalPoints || account.profile.points || 0,
+    account?.profile.totalPoints || account?.profile.points || 0,
   );
   const current = rankForPoints(points);
   const promotionProgress = current.nextMinimum
@@ -54,8 +56,8 @@ export default function RanksPage() {
       )
     : 100;
 
-  return (
-    <AppShell profile={account.profile}>
+  const content = (
+    <>
       <div className="mx-auto max-w-5xl px-5 py-8 sm:px-8 lg:px-10">
         <AppBackLink className="mb-5" />
         <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-green/60">
@@ -67,7 +69,7 @@ export default function RanksPage() {
           to General.
         </p>
 
-        <section className="mt-7 grid items-center gap-6 rounded-[2rem] bg-brand-green p-6 text-white shadow-soft sm:grid-cols-[auto_1fr] sm:p-8">
+        {!educatorMode && <section className="mt-7 grid items-center gap-6 rounded-[2rem] bg-brand-green p-6 text-white shadow-soft sm:grid-cols-[auto_1fr] sm:p-8">
           <img
             src={rankImage(current.number)}
             alt=""
@@ -100,12 +102,12 @@ export default function RanksPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section>}
 
         <div className="mt-6 space-y-3">
           {ranks.map((rank) => {
-            const active = rank.number === current.number;
-            const achieved = points >= rank.minimum;
+            const active = !educatorMode && rank.number === current.number;
+            const achieved = educatorMode || points >= rank.minimum;
             return (
               <article
                 key={rank.number}
@@ -139,7 +141,7 @@ export default function RanksPage() {
                 </div>
                 <div className="sm:text-right">
                   <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
-                    {active ? "Current" : achieved ? "Achieved" : "Keep training"}
+                    {educatorMode ? "Reference" : active ? "Current" : achieved ? "Achieved" : "Keep training"}
                   </p>
                 </div>
               </article>
@@ -147,6 +149,8 @@ export default function RanksPage() {
           })}
         </div>
       </div>
-    </AppShell>
+    </>
   );
+  if (educatorWorkspace) return <EducatorShell workspace={educatorWorkspace}>{content}</EducatorShell>;
+  return <AppShell profile={account!.profile}>{content}</AppShell>;
 }

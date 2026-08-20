@@ -1,0 +1,259 @@
+{
+  "subject": "Reading",
+  "blueprintsPerSource": 2,
+  "questionsPerBatch": 9,
+  "passageCount": 30,
+  "questionCount": 270,
+  "difficultyDistribution": {
+    "Medium": 3,
+    "Hard": 4,
+    "Very Hard": 2
+  },
+  "firstQuestionNumber": 19,
+  "lastQuestionNumber": 288,
+  "visualPolicy": "text_only",
+  "batches": [
+    {
+      "sourceId": 1,
+      "blueprint": "A",
+      "startQuestionNumber": 19,
+      "endQuestionNumber": 27,
+      "sourceForm": "paired_literary",
+      "status": "validated"
+    },
+    {
+      "sourceId": 1,
+      "blueprint": "B",
+      "startQuestionNumber": 28,
+      "endQuestionNumber": 36,
+      "sourceForm": "paired_literary",
+      "status": "validated"
+    },
+    {
+      "sourceId": 2,
+      "blueprint": "A",
+      "startQuestionNumber": 37,
+      "endQuestionNumber": 45,
+      "sourceForm": "informational",
+      "sourceVisual": "excluded",
+      "status": "validated"
+    },
+    {
+      "sourceId": 2,
+      "blueprint": "B",
+      "startQuestionNumber": 46,
+      "endQuestionNumber": 54,
+      "sourceForm": "informational",
+      "sourceVisual": "excluded",
+      "status": "validated"
+    },
+    {
+      "sourceId": 3,
+      "blueprint": "A",
+      "startQuestionNumber": 55,
+      "endQuestionNumber": 63,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 3,
+      "blueprint": "B",
+      "startQuestionNumber": 64,
+      "endQuestionNumber": 72,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 4,
+      "blueprint": "A",
+      "startQuestionNumber": 73,
+      "endQuestionNumber": 81,
+      "sourceForm": "paired_literary",
+      "status": "validated"
+    },
+    {
+      "sourceId": 4,
+      "blueprint": "B",
+      "startQuestionNumber": 82,
+      "endQuestionNumber": 90,
+      "sourceForm": "paired_literary",
+      "status": "validated"
+    },
+    {
+      "sourceId": 5,
+      "blueprint": "A",
+      "startQuestionNumber": 91,
+      "endQuestionNumber": 99,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 5,
+      "blueprint": "B",
+      "startQuestionNumber": 100,
+      "endQuestionNumber": 108,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 6,
+      "blueprint": "A",
+      "startQuestionNumber": 109,
+      "endQuestionNumber": 117,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 6,
+      "blueprint": "B",
+      "startQuestionNumber": 118,
+      "endQuestionNumber": 126,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 7,
+      "blueprint": "A",
+      "startQuestionNumber": 127,
+      "endQuestionNumber": 135,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 7,
+      "blueprint": "B",
+      "startQuestionNumber": 136,
+      "endQuestionNumber": 144,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 8,
+      "blueprint": "A",
+      "startQuestionNumber": 145,
+      "endQuestionNumber": 153,
+      "sourceForm": "literary",
+      "status": "validated"
+    },
+    {
+      "sourceId": 8,
+      "blueprint": "B",
+      "startQuestionNumber": 154,
+      "endQuestionNumber": 162,
+      "sourceForm": "literary",
+      "status": "validated"
+    },
+    {
+      "sourceId": 9,
+      "blueprint": "A",
+      "startQuestionNumber": 163,
+      "endQuestionNumber": 171,
+      "sourceForm": "paired_informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 9,
+      "blueprint": "B",
+      "startQuestionNumber": 172,
+      "endQuestionNumber": 180,
+      "sourceForm": "paired_informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 10,
+      "blueprint": "A",
+      "startQuestionNumber": 181,
+      "endQuestionNumber": 189,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 10,
+      "blueprint": "B",
+      "startQuestionNumber": 190,
+      "endQuestionNumber": 198,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 11,
+      "blueprint": "A",
+      "startQuestionNumber": 199,
+      "endQuestionNumber": 207,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 11,
+      "blueprint": "B",
+      "startQuestionNumber": 208,
+      "endQuestionNumber": 216,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 12,
+      "blueprint": "A",
+      "startQuestionNumber": 217,
+      "endQuestionNumber": 225,
+      "sourceForm": "paired_literary",
+      "status": "validated"
+    },
+    {
+      "sourceId": 12,
+      "blueprint": "B",
+      "startQuestionNumber": 226,
+      "endQuestionNumber": 234,
+      "sourceForm": "paired_literary",
+      "status": "validated"
+    },
+    {
+      "sourceId": 13,
+      "blueprint": "A",
+      "startQuestionNumber": 235,
+      "endQuestionNumber": 243,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 13,
+      "blueprint": "B",
+      "startQuestionNumber": 244,
+      "endQuestionNumber": 252,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 14,
+      "blueprint": "A",
+      "startQuestionNumber": 253,
+      "endQuestionNumber": 261,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 14,
+      "blueprint": "B",
+      "startQuestionNumber": 262,
+      "endQuestionNumber": 270,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 15,
+      "blueprint": "A",
+      "startQuestionNumber": 271,
+      "endQuestionNumber": 279,
+      "sourceForm": "informational",
+      "status": "validated"
+    },
+    {
+      "sourceId": 15,
+      "blueprint": "B",
+      "startQuestionNumber": 280,
+      "endQuestionNumber": 288,
+      "sourceForm": "informational",
+      "status": "validated"
+    }
+  ]
+}

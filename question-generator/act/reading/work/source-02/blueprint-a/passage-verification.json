@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 2,
+  "blueprint": "A",
+  "passageAssetId": "act-reading-s02-a",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 676,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "No bird, city-ecology, migration, introduction, or graph material is retained.",
+    "The taxonomy is functional and overlapping rather than a hierarchy of biological response."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

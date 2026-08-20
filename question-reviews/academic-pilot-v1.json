@@ -7,7 +7,7 @@
   },
   "rubric": "docs/QUESTION_REVIEW_RUBRIC.md",
   "reviewer": "Codex",
-  "questionCount": 20,
+  "questionCount": 24,
   "reviews": [
     {
       "legacyId": "English#14",
@@ -104,6 +104,50 @@
           "option4": "55 + 5√17"
         }
       }
+    },
+    {
+      "legacyId": "Reading#1",
+      "independentlyDeterminedAnswerIndex": 1,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "clean",
+      "confidence": "high",
+      "notes": "The second paragraph directly contrasts a broad border-light wash with isolating one actor.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Reading#8",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "clean",
+      "confidence": "high",
+      "notes": "The control-booth example extends a production-specific constraint into a repeatable convention across theatrical work.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Reading#10",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "clean",
+      "confidence": "high",
+      "notes": "In context, blocking unambiguously describes planned performer movement and positioning.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Reading#11",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "clean",
+      "confidence": "high",
+      "notes": "The fourth paragraph supplies camera, lighting, and editing alternatives to crossings within a fixed visible space.",
+      "proposedChanges": null
     },
     {
       "legacyId": "Science#33",

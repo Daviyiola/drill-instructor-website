@@ -23,7 +23,14 @@ const drillImages = [
 
 export default function StudentAppPage() {
   const router = useRouter();
-  const {account, appDataLoading, appDataError, user, refreshAccount} = useAuth();
+  const {
+    account,
+    appDataLoading,
+    appDataError,
+    loading,
+    user,
+    refreshAccount,
+  } = useAuth();
   const [drillImageIndex, setDrillImageIndex] = useState(0);
   const [checkingApproval, setCheckingApproval] = useState(false);
   const [approvalNotice, setApprovalNotice] = useState("");
@@ -51,12 +58,18 @@ export default function StudentAppPage() {
   }
 
   useEffect(() => {
+    if (!loading && !user) {
+      router.replace("/app/sign-in");
+    }
+  }, [loading, router, user]);
+
+  useEffect(() => {
     if (account?.role === "educator" && account.approvalStatus === "approved" && account.emailVerified) {
       router.replace("/app/educator/bootcamps");
     }
   }, [account, router]);
 
-  if (!user || appDataLoading) {
+  if (loading || !user || appDataLoading) {
     return <BrandedLoadingOverlay label="Loading your account" />;
   }
 

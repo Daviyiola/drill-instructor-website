@@ -17,6 +17,7 @@ const {
   sanitizePlan,
   trueMapKeys,
 } = require("./_schoolAdminAccess");
+const {studentEnrollmentOpen} = require("./_schoolPolicies");
 
 /**
  * Resolve the calling educator and school from Firebase UID.
@@ -112,13 +113,27 @@ exports.handler = async (req, res) => {
 
     const {educatorId, schoolId} = callerCtx;
 
-    const [schoolSnap, callerRowSnap] = await Promise.all([
-      db.ref(`schools/${schoolId}`).once("value"),
-      db.ref(`schools/${schoolId}/educators/${educatorId}`).once("value"),
-    ]);
-
-    const school = schoolSnap.val() || {};
-    const callerRow = callerRowSnap.val() || {};
+    const [nameSnap, countrySnap, stateSnap, timezoneSnap, planSnap,
+      educatorsSnap, designationSnap] =
+      await Promise.all([
+        db.ref(`schools/${schoolId}/name`).once("value"),
+        db.ref(`schools/${schoolId}/country`).once("value"),
+        db.ref(`schools/${schoolId}/state`).once("value"),
+        db.ref(`schools/${schoolId}/timezone`).once("value"),
+        db.ref(`schools/${schoolId}/plan`).once("value"),
+        db.ref(`schools/${schoolId}/educators`).once("value"),
+        db.ref(`designations/${schoolId}`).once("value"),
+      ]);
+    const schoolEducators = educatorsSnap.val() || {};
+    const school = {
+      name: nameSnap.val(),
+      country: countrySnap.val(),
+      state: stateSnap.val(),
+      timezone: timezoneSnap.val(),
+      plan: planSnap.val() || {},
+      educators: schoolEducators,
+    };
+    const callerRow = schoolEducators[educatorId] || {};
     const callerIsAdmin = callerRow.adminAccess === true ||
       callerRow.superAdmin === true;
 
@@ -140,15 +155,26 @@ exports.handler = async (req, res) => {
       });
     }
 
-    const schoolEducators = school.educators || {};
     const approvedCount = approvedEducatorCount(schoolEducators);
     const plan = sanitizePlan(school.plan || {}, approvedCount);
     const subjectCatalogByBootcamp = buildSubjectCatalogForPlan(school.plan);
+    const schoolUnitSnap = await db.ref(
+        `units/corps/${schoolNorm.country}/${schoolNorm.state}/` +
+        schoolNorm.name,
+    ).once("value");
 
     const educatorIds = Object.keys(schoolEducators);
-    const educatorSnaps = await Promise.all(educatorIds.map((id) => {
-      return db.ref(`educators/${id}`).once("value");
-    }));
+    const [educatorSnaps, visibleStudentCounts] = await Promise.all([
+      Promise.all(educatorIds.map((id) => {
+        return db.ref(`educators/${id}`).once("value");
+      })),
+      Promise.all(educatorIds.map((id) => countVisibleStudents(
+          db,
+          schoolId,
+          schoolNorm,
+          schoolEducators[id] || {},
+      ))),
+    ]);
 
     const educators = [];
 
@@ -158,12 +184,7 @@ exports.handler = async (req, res) => {
       const row = schoolEducators[targetEducatorId] || {};
       const safe = sanitizeEducatorProfile(targetEducatorId, profile, row);
 
-      safe.studentCount = await countVisibleStudents(
-          db,
-          schoolId,
-          schoolNorm,
-          row,
-      );
+      safe.studentCount = visibleStudentCounts[i];
 
       educators.push(safe);
     }
@@ -206,6 +227,10 @@ exports.handler = async (req, res) => {
       educators,
       students,
       schoolGroups,
+      policies: {
+        educatorRegistrationOpen: designationSnap.val() === true,
+        studentEnrollmentOpen: studentEnrollmentOpen(schoolUnitSnap.val()),
+      },
       activeBootcamp: cleanStr(req.body && req.body.bootcamp, 40)
           .toLowerCase(),
       syncedAt: new Date().toISOString(),

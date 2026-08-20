@@ -1,0 +1,21 @@
+{
+  "sourceId": 9,
+  "scale": "1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles": [
+    {
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-09-a",
+      "scores": {"wordingAndSyntax": 1, "factsEntitiesExamples": 1, "subjectMatter": 1, "centralConceptualTheme": 2, "paragraphFunctionSequence": 3, "overallRhetoricalArchitecture": 3, "questionLogicTransfer": 3, "disguisedRewriteRisk": 2, "overallSimilarity": 2.0},
+      "decision": "PASS",
+      "notes": "The managed-night-market argument uses distinct civic conditions, stakeholders, operating safeguards, and evidence from the source passage's visual-art subject."
+    },
+    {
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-09-b",
+      "scores": {"wordingAndSyntax": 1, "factsEntitiesExamples": 1, "subjectMatter": 1, "centralConceptualTheme": 2, "paragraphFunctionSequence": 3, "overallRhetoricalArchitecture": 3, "questionLogicTransfer": 3, "disguisedRewriteRisk": 2, "overallSimilarity": 2.0},
+      "decision": "PASS",
+      "notes": "The schoolyard rain-garden proposal has independent environmental mechanics, educational uses, maintenance concerns, and policy qualifications."
+    }
+  ],
+  "pairDistinctness": {"decision": "PASS", "notes": "A concerns temporary evening commerce on public streets; B concerns storm-water infrastructure on school grounds. Their settings, mechanisms, and supporting details are distinct."}
+}

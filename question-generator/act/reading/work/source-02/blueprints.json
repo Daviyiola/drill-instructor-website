@@ -1,0 +1,38 @@
+{
+  "source_passage_id": 2,
+  "source_passage_type": "Informational",
+  "source_architecture_summary": "The source introduces surprising diversity, explains historical change, establishes behavioral categories, and develops those categories through examples and consequences.",
+  "source_information_density": "High",
+  "two_blueprint_feasibility": "Strong",
+  "feasibility_notes": "The source graph and its three dependent stems are excluded. Both blueprints create nine text-supported opportunities without visual evidence.",
+  "blueprints": [
+    {
+      "blueprint_label": "A",
+      "blueprint_focus": "How public libraries diversify their functions while retaining quiet study as one use among several.",
+      "act_reading_passage_type": "Social Science",
+      "overall_reading_skill_family": "Classification, historical development, cause and effect, and qualification",
+      "passage_architecture_observed": "Surprising opening observation, correction of a static assumption, three-part functional framework, examples, and a qualified future implication.",
+      "rhetorical_or_narrative_arc": "Present diversity, historical contrast, classify responses, develop examples, qualify apparent conflict",
+      "information_density_requirements": ["Three functional patterns", "Concrete examples", "A historical cause", "A counterexample that complicates the framework"],
+      "safe_replacement_domains": ["Public libraries", "Civic spaces", "Community services"],
+      "question_opportunity_types": ["Paragraph function", "Category application", "Cause and effect", "Context vocabulary", "Qualified central claim"],
+      "recommended_modules": ["Function and Structure", "Sequence and Relationships", "Textual Details", "Vocabulary in Context", "Central Ideas and Themes"],
+      "primary_module": "Sequence and Relationships",
+      "distinctness_notes": "Replaces urban ecology with civic institutions and examines overlapping functions rather than species success."
+    },
+    {
+      "blueprint_label": "B",
+      "blueprint_focus": "How desert annual plants use different germination strategies under uncertain rainfall.",
+      "act_reading_passage_type": "Natural Science",
+      "overall_reading_skill_family": "Scientific classification, mechanism, evidence, and tradeoff",
+      "passage_architecture_observed": "Apparent scarcity is reframed as hidden diversity, followed by strategy categories, examples, risks, and an ecosystem-level conclusion.",
+      "rhetorical_or_narrative_arc": "Challenge surface impression, explain mechanism, compare strategies, introduce evidence, synthesize tradeoffs",
+      "information_density_requirements": ["Dormancy mechanism", "At least three strategies", "Benefits and risks", "A finding that qualifies a simple winner"],
+      "safe_replacement_domains": ["Desert annual plants", "Seed dormancy", "Rainfall variability"],
+      "question_opportunity_types": ["Mechanism detail", "Inference from tradeoff", "Experimental function", "Vocabulary", "Central synthesis"],
+      "recommended_modules": ["Textual Details", "Inference and Implication", "Function and Structure", "Sequence and Relationships", "Vocabulary in Context"],
+      "primary_module": "Inference and Implication",
+      "distinctness_notes": "Uses a natural-science mechanism and temporal risk strategy, wholly separate from Blueprint A's institutional focus."
+    }
+  ]
+}

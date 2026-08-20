@@ -16,8 +16,7 @@ export default function EducatorBootcamps() {
     {workspace.bootcamps.length === 0 ? <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 text-center text-sm text-slate-600">No bootcamps have been assigned to your educator account.</div> :
       <div className="mt-8 grid gap-5 md:grid-cols-2">{workspace.bootcamps.map((bootcamp) => <Link key={bootcamp} href={`/app/educator/bootcamps/${bootcamp}`} className="group relative min-h-64 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft">
         <img src={`/app-assets/bootcamp-${bootcamp}.png`} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 p-6 text-white"><p className="text-xs uppercase tracking-[.18em] text-brand-gold">Bootcamp</p><h2 className="mt-2 text-4xl font-semibold">{bootcamp.toUpperCase()}</h2><p className="mt-2 text-sm text-white/75">{bootcampFullName(bootcamp)}</p></div>
+        <div className="absolute inset-x-0 bottom-0 p-6 text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)]"><p className="text-xs uppercase tracking-[.18em] text-brand-gold">Bootcamp</p><h2 className="mt-2 text-4xl font-semibold">{bootcamp.toUpperCase()}</h2><p className="mt-2 text-sm text-white/90">{bootcampFullName(bootcamp)}</p></div>
       </Link>)}</div>}
   </div>;
 }

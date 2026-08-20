@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 9,
+  "blueprint": "B",
+  "passageAssetId": "act-reading-s09-b",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 652,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "The river-restoration domain and examples are original and independent of the source.",
+    "The two passages retain only an abstract comparative architecture."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

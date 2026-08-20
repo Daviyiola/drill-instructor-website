@@ -6,6 +6,7 @@ const {
   answerContent,
   indexedOption,
   optionDistribution,
+  attributedUsedSec,
 } = require("../handlers/getEducatorDrillAnalyticsHttps");
 
 test("educator option indexes do not treat unanswered as option A", () => {
@@ -59,4 +60,14 @@ test("educator option distribution includes complete performance data", () => {
     {label: "C", count: 0, percentage: 0, isCorrect: false},
     {label: "D", count: 0, percentage: 0, isCorrect: false},
   ]);
+});
+
+test("educator averages exclude unassigned session overhead", () => {
+  const attempt = {
+    summary: {usedSec: 681},
+    subjects: [{subject: "Mathematics", usedSec: 674}],
+    answers: [{timeSpentSec: 7}, {timeSpentSec: 667}],
+  };
+
+  assert.equal(attributedUsedSec(attempt, attempt.summary.usedSec), 674);
 });

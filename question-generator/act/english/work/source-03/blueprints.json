@@ -1,0 +1,7 @@
+{
+  "source_analysis":{"sourceId":3,"required_passage_class":"LONG","required_question_count":10,"passage_type":"informational","reusable_architecture":"Introduce a creator's guiding idea, explain a distinctive layered process, compare examples, and conclude by reconnecting technique to purpose.","copyright_risk_notes":["Do not reuse Cuba, farming, lunar phases, woven portraits, named paintings, fibers, family members, or source quotations."]},
+  "blueprints":[
+    {"blueprint_id":"A","new_topic_domain":"A designer producing tactile neighborhood maps for blind and low-vision travelers","passage_type":"informational","rhetorical_arc":"Introduce navigation as embodied information; explain layered map construction and user testing; compare textures; conclude with the designer's principle of independent route-making."},
+    {"blueprint_id":"B","new_topic_domain":"A composer turning astronomical measurements into layered sound","passage_type":"informational","rhetorical_arc":"Introduce scientific sonification; explain mapping numerical dimensions to musical features; compare two datasets; conclude with listening as another form of pattern detection."}
+  ]
+}

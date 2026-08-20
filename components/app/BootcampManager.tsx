@@ -8,6 +8,20 @@ import AppShell from "./AppShell";
 import { useAuth } from "./AuthProvider";
 
 const launchBootcamps = ["act", "sat"];
+const comingSoonBootcamps = [
+  {
+    id: "utme",
+    name: "UTME",
+    detail: "Unified Tertiary Matriculation Examination",
+    image: "/app-assets/bootcamp-utme.png",
+  },
+  {
+    id: "ap",
+    name: "AP",
+    detail: "Advanced Placement",
+    image: "/app-assets/bootcamp-ap.png",
+  },
+];
 
 export default function BootcampManager() {
   const router = useRouter();
@@ -40,6 +54,7 @@ export default function BootcampManager() {
         ...bootcamps,
         visibleBootcamps: result.visibleBootcamps,
       });
+      router.push("/app");
     } catch (reason) {
       setError((reason as Error).message);
     } finally {
@@ -93,8 +108,7 @@ export default function BootcampManager() {
               <article key={id} className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft">
                 <div className="relative h-52">
                   <img src={`/app-assets/bootcamp-${id}.png`} alt="" className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent" />
-                  <h2 className="absolute bottom-5 left-5 text-4xl font-black text-white">{id.toUpperCase()}</h2>
+                  <h2 className="absolute bottom-5 left-5 text-4xl font-black text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)]">{id.toUpperCase()}</h2>
                 </div>
                 <div className="flex items-center justify-between gap-4 p-5">
                   <div>
@@ -115,6 +129,34 @@ export default function BootcampManager() {
               </article>
             );
           })}
+          {comingSoonBootcamps.map((bootcamp) => (
+            <article
+              key={bootcamp.id}
+              className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft"
+            >
+              <div className="relative h-52 overflow-hidden bg-gradient-to-br from-brand-green via-[#667236] to-[#202713]">
+                {bootcamp.image ? (
+                  <img src={bootcamp.image} alt="" className="h-full w-full object-cover" />
+                ) : (
+                  <div className="grid h-full place-items-center text-[6.5rem] font-black tracking-tight text-white/15">
+                    AP
+                  </div>
+                )}
+                <span className="absolute right-4 top-4 rounded-full border border-white/35 bg-black/25 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+                  Coming soon
+                </span>
+                <h2 className="absolute bottom-5 left-5 text-4xl font-black text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)]">
+                  {bootcamp.name}
+                </h2>
+              </div>
+              <div className="p-5">
+                <p className="font-semibold text-slate-900">{bootcamp.detail}</p>
+                <p className="mt-1 text-sm text-slate-500">
+                  We’re preparing this bootcamp for a future release.
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </AppShell>

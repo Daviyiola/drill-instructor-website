@@ -1,0 +1,27 @@
+{
+  "source_analysis": {
+    "sourceId": 2,
+    "required_passage_class": "LONG",
+    "required_question_count": 10,
+    "passage_type": "narrative",
+    "source_rhetorical_arc": "A skeptical narrator enters an unfamiliar public activity, observes increasingly revealing details, revises an initial judgment, and ends by participating more fully.",
+    "reusable_architecture": "First-person expectation-to-participation narrative with observation, contrast, and a closing behavioral change.",
+    "copyright_risk_notes": ["Do not reuse Finland, phones, throwing, competitive events, costumes, recycling, or any source action sequence."]
+  },
+  "blueprints": [
+    {
+      "blueprint_id": "A",
+      "new_topic_domain": "A teenager reluctantly attending a neighborhood repair cafe and helping restore a desk fan",
+      "passage_type": "narrative",
+      "rhetorical_arc": "Dismiss the event as a room of broken objects; observe patient collaborative repairs; assist with one repair; reconsider the value of maintenance and shared skill.",
+      "originality_strategy": "Replace competition and spectacle with quiet cooperative problem solving, different setting, different stakes, and an object-centered participation arc."
+    },
+    {
+      "blueprint_id": "B",
+      "new_topic_domain": "A student joining a predawn community mural installation and learning to place mirrored tiles",
+      "passage_type": "narrative",
+      "rhetorical_arc": "Arrive doubtful that small pieces matter; watch the wall change with the light; accept a precise task; recognize how individual contributions form a shared image.",
+      "originality_strategy": "Use visual craft, predawn work, and cumulative design rather than sport, recycling, travel, or comic performance."
+    }
+  ]
+}

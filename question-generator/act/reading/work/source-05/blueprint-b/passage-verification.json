@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 5,
+  "blueprint": "B",
+  "passageAssetId": "act-reading-s05-b",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 681,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "No mathematical zero, ancient cultures, counting board, etymology, or source scholar is retained.",
+    "The history centers sensory design and user testing."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

@@ -1,0 +1,113 @@
+{
+  "source_analysis": {
+    "required_passage_class": "LONG",
+    "required_question_count": 10,
+    "passage_type": "argumentative",
+    "source_rhetorical_arc": "Introduces a once-useful civic practice, identifies present-day costs, argues for a corrective policy, supports it with practical and financial reasoning, addresses implementation concerns, and closes with community benefits.",
+    "paragraph_role_summary": [
+      "Historical problem and policy claim",
+      "Operational benefits of the proposed change",
+      "Financial justification",
+      "Counterclaim, implementation, and conclusion"
+    ],
+    "question_type_summary": [
+      "local grammar and punctuation",
+      "precision and tone",
+      "relevance and support",
+      "counterclaim",
+      "organization",
+      "whole-passage conclusion"
+    ],
+    "module_distribution_observed": [
+      "Sentence Structure",
+      "Style and Tone",
+      "Topic Development",
+      "Organization and Cohesion",
+      "Pronouns",
+      "Punctuation"
+    ],
+    "reusable_architecture": "A compact civic-policy argument that moves from an outdated assumption to measurable advantages, cost considerations, stakeholder concerns, and a qualified recommendation.",
+    "source_information_density": "High",
+    "copyright_risk_notes": [
+      "Do not reuse waterways, culverts, flooding, daylighting, named cities, or source financial figures.",
+      "Do not preserve the source paragraph-by-paragraph fact sequence mechanically.",
+      "Use unrelated civic domains, distinct evidence, and different conclusion strategies."
+    ]
+  },
+  "two_blueprint_feasibility": "Strong",
+  "feasibility_notes": "The abstract policy architecture transfers safely to unrelated public-lighting and shared-equipment domains with different facts, mechanisms, stakeholders, and local target logic.",
+  "blueprints": [
+    {
+      "blueprint_id": "A",
+      "passage_class": "LONG",
+      "required_target_count": 10,
+      "new_topic_domain": "Municipal conversion from unshielded streetlights to shielded adaptive lighting",
+      "passage_type": "argumentative",
+      "passage_title_style": "Concise policy-oriented title",
+      "rhetorical_arc": "Reconsider brightness as the sole measure of effective lighting; explain direction and dimming benefits; address cost and safety concerns; recommend a measured conversion process.",
+      "paragraph_plan": [
+        {"paragraph": 1, "role": "Introduce the old assumption, its drawbacks, and the central recommendation.", "content_to_include": "Glare, wasted upward light, and shielded fixtures.", "content_to_avoid": "Water infrastructure, restoration, flooding, or source locations."},
+        {"paragraph": 2, "role": "Explain how direction and adaptive controls improve visibility while reducing waste.", "content_to_include": "Shielding, sensors, and lower output during quiet hours.", "content_to_avoid": "Claims that more darkness is automatically safer."},
+        {"paragraph": 3, "role": "Present a bounded financial case and a reasonable counterclaim.", "content_to_include": "Installation cost, maintenance, energy, and staged replacement.", "content_to_avoid": "Source cost ratios or named real projects."},
+        {"paragraph": 4, "role": "Explain stakeholder consultation and conclude with a precise standard for success.", "content_to_include": "Residents, businesses, pilots, feedback, and useful light.", "content_to_avoid": "Generic environmental moralizing."}
+      ],
+      "planned_module_distribution": [
+        {"module": "Punctuation", "target_count": 2, "difficulty_range": "Medium-Hard", "reason_this_module_fits": "The passage uses conjunctive adverbs and coordinated descriptive elements."},
+        {"module": "Subject-Verb Agreement", "target_count": 1, "difficulty_range": "Hard", "reason_this_module_fits": "A singular technical subject can be separated from its verb."},
+        {"module": "Sentence Structure", "target_count": 1, "difficulty_range": "Hard", "reason_this_module_fits": "A sensor explanation supports a realistic fragment repair."},
+        {"module": "Style and Tone", "target_count": 1, "difficulty_range": "Medium", "reason_this_module_fits": "A policy argument requires measured diction."},
+        {"module": "Conciseness and Redundancy", "target_count": 1, "difficulty_range": "Medium", "reason_this_module_fits": "A time phrase can be tightened without losing meaning."},
+        {"module": "Topic Development", "target_count": 3, "difficulty_range": "Hard-Very Hard", "reason_this_module_fits": "The argument supports relevance, counterclaim, and conclusion decisions."},
+        {"module": "Organization and Cohesion", "target_count": 1, "difficulty_range": "Very Hard", "reason_this_module_fits": "A pilot-study sentence has one coherent placement."}
+      ],
+      "originality_strategy": [
+        "Use lighting direction and adaptive control rather than environmental restoration.",
+        "Use staged replacement and nighttime observation rather than flood-damage economics.",
+        "Conclude with a functional definition of good lighting rather than opposition to an old practice."
+      ],
+      "forbidden_overlap_with_source": ["streams", "culverts", "daylighting", "flooding", "erosion", "Bee Branch Creek"],
+      "why_this_blueprint_can_support_required_count": "The policy claim naturally permits four conventions targets, two language targets, and four development or organization targets without overlapping spans."
+    },
+    {
+      "blueprint_id": "B",
+      "passage_class": "LONG",
+      "required_target_count": 10,
+      "new_topic_domain": "Public libraries lending tools and occasional-use household equipment",
+      "passage_type": "argumentative",
+      "passage_title_style": "Compact invitation to reconsider ownership",
+      "rhetorical_arc": "Question the assumption that every household must own rarely used equipment; explain access and maintenance benefits; address availability concerns; recommend carefully managed lending collections.",
+      "paragraph_plan": [
+        {"paragraph": 1, "role": "Frame underused ownership as a practical problem and state the proposal.", "content_to_include": "Occasional-use tools, storage, and library lending.", "content_to_avoid": "Civic waterways or reversal of construction."},
+        {"paragraph": 2, "role": "Explain catalog, maintenance, training, and access.", "content_to_include": "Reservation system, inspections, brief instruction.", "content_to_avoid": "Environmental claims as the primary justification."},
+        {"paragraph": 3, "role": "Show community and budget benefits through a fictionalized but bounded example.", "content_to_include": "Shared repair project and avoided duplicate purchases.", "content_to_avoid": "Source financial magnitude or damage prevention."},
+        {"paragraph": 4, "role": "Address shortages and responsibility, then give a qualified conclusion.", "content_to_include": "Deposits, wait lists, borrowing limits, and pilot scope.", "content_to_avoid": "Unqualified claim that ownership is always wasteful."}
+      ],
+      "planned_module_distribution": [
+        {"module": "Subject-Verb Agreement", "target_count": 1, "difficulty_range": "Medium", "reason_this_module_fits": "A compound list can obscure its plural subject."},
+        {"module": "Modifiers and Comparisons", "target_count": 1, "difficulty_range": "Hard", "reason_this_module_fits": "An introductory modifier can be attached to the wrong actor."},
+        {"module": "Verb Tense and Form", "target_count": 1, "difficulty_range": "Hard", "reason_this_module_fits": "A completed pilot requires consistent past tense."},
+        {"module": "Sentence Structure", "target_count": 1, "difficulty_range": "Hard", "reason_this_module_fits": "A comma splice can occur naturally in the implementation discussion."},
+        {"module": "Conciseness and Redundancy", "target_count": 1, "difficulty_range": "Medium", "reason_this_module_fits": "The ownership problem supports a realistic redundant phrase."},
+        {"module": "Word Choice and Usage", "target_count": 1, "difficulty_range": "Medium", "reason_this_module_fits": "A precise verb is needed for equipment checks."},
+        {"module": "Transitions and Logical Relationships", "target_count": 1, "difficulty_range": "Hard", "reason_this_module_fits": "The benefit paragraph shifts from access to upkeep."},
+        {"module": "Organization and Cohesion", "target_count": 1, "difficulty_range": "Very Hard", "reason_this_module_fits": "A reservation detail has a uniquely coherent location."},
+        {"module": "Topic Development", "target_count": 2, "difficulty_range": "Hard-Very Hard", "reason_this_module_fits": "The passage needs a relevant counterclaim response and qualified conclusion."}
+      ],
+      "originality_strategy": [
+        "Center household storage and shared access rather than environmental remediation.",
+        "Use lending operations, safety checks, and reservation constraints as evidence.",
+        "Conclude with a limited-pilot recommendation rather than a universal mandate."
+      ],
+      "forbidden_overlap_with_source": ["streams", "culverts", "daylighting", "flooding", "erosion", "city waterways"],
+      "why_this_blueprint_can_support_required_count": "The lending workflow supports ten independent targets distributed across local conventions, effective language, transitions, organization, and policy development."
+    }
+  ],
+  "blueprint_quality_check": {
+    "are_all_returned_blueprints_complete": true,
+    "are_returned_blueprints_distinct": true,
+    "do_blueprints_avoid_source_expression": true,
+    "each_supports_required_passage_class_and_count": true,
+    "source_reconstruction_risk": "Low",
+    "notes": ["Both retain only the abstract civic-policy argument structure."]
+  }
+}

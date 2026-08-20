@@ -1,0 +1,80 @@
+{
+  "source_passage_id": 14,
+  "source_passage_type": "Informational",
+  "source_architecture_summary": "A humanities debate contrasts positions through practitioner viewpoints, illustrative cases, and a qualified account of how cultural mediation changes an audience's experience.",
+  "source_information_density": "High",
+  "two_blueprint_feasibility": "Strong",
+  "feasibility_notes": "Blueprint A examines museum replicas and touch; Blueprint B examines reconstructed historic buildings. Both replace film dubbing, language substitution, directors, actors, and source examples.",
+  "blueprints": [
+    {
+      "blueprint_label": "A",
+      "blueprint_focus": "Outdoor procession musicians coordinate tempo across distance through layered visual, sonic, and bodily cues.",
+      "act_reading_passage_type": "Humanities",
+      "overall_reading_skill_family": "Debate, authenticity, access, mediation, and qualified evaluation",
+      "rhetorical_or_narrative_arc": "Touch restriction, case for replicas, authenticity objection, examples of use, labeling problem, complementary conclusion",
+      "information_density_requirements": [
+        "Conservation constraint",
+        "Replica use",
+        "Material limitation",
+        "Visitor interpretation",
+        "Labeling practice"
+      ],
+      "safe_replacement_domains": [
+        "Museums",
+        "Tactile learning",
+        "Object conservation"
+      ],
+      "question_opportunity_types": [
+        "Perspective",
+        "Purpose",
+        "Function",
+        "Inference",
+        "Main idea"
+      ],
+      "recommended_modules": [
+        "Author's Purpose and Perspective",
+        "Function and Structure",
+        "Inference and Implication",
+        "Textual Details",
+        "Central Ideas and Themes"
+      ],
+      "primary_module": "Author's Purpose and Perspective",
+      "distinctness_notes": "A descriptive analysis of live collective timing; no translation, replica, authenticity dispute, access policy, substitution, or opposing debate positions."
+    },
+    {
+      "blueprint_label": "B",
+      "blueprint_focus": "Reconstructed historic buildings make past spaces inhabitable but inevitably interpret incomplete evidence and modern safety needs.",
+      "act_reading_passage_type": "Humanities",
+      "overall_reading_skill_family": "Competing authenticity standards, reconstruction, evidence, and public experience",
+      "rhetorical_or_narrative_arc": "Ruined site, reconstruction appeal, scholarly objection, evidence hierarchy, visitor use, reversible design, qualified conclusion",
+      "information_density_requirements": [
+        "Incomplete evidence",
+        "Modern-code intervention",
+        "Craft reconstruction",
+        "Visitor learning",
+        "Transparency strategy"
+      ],
+      "safe_replacement_domains": [
+        "Historic preservation",
+        "Architecture",
+        "Public history"
+      ],
+      "question_opportunity_types": [
+        "Central claim",
+        "Comparison of viewpoints",
+        "Inference",
+        "Sequence",
+        "Function"
+      ],
+      "recommended_modules": [
+        "Central Ideas and Themes",
+        "Author's Purpose and Perspective",
+        "Inference and Implication",
+        "Sequence and Relationships",
+        "Function and Structure"
+      ],
+      "primary_module": "Central Ideas and Themes",
+      "distinctness_notes": "Uses spatial reconstruction rather than portable object replicas."
+    }
+  ]
+}

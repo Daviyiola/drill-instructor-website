@@ -1,0 +1,152 @@
+[
+  {
+    "skill_tested": "Eliminating redundant modifiers",
+    "question": "Which choice is least redundant in context?",
+    "options": [
+      "small pieces",
+      "small, tiny pieces",
+      "small pieces tiny in size",
+      "tiny, small-sized pieces"
+    ],
+    "correctAnswer": "small pieces",
+    "step1": "'Small' and 'tiny' communicate the same size relationship.",
+    "step2": "'Small pieces' preserves the necessary description without repeating it.",
+    "difficulty": "Medium",
+    "module": "Conciseness and Redundancy"
+  },
+  {
+    "skill_tested": "Selecting the precise verb for displaying an image",
+    "question": "Which choice is clearest and most precise in context?",
+    "options": [
+      "threw",
+      "distributed",
+      "released",
+      "projected"
+    ],
+    "correctAnswer": "projected",
+    "step1": "A portable projector displays an enlarged image by casting it onto a surface.",
+    "step2": "'Projected' names that action precisely; the other verbs do not describe the device's function.",
+    "difficulty": "Hard",
+    "module": "Word Choice and Usage"
+  },
+  {
+    "skill_tested": "Maintaining subject-verb agreement",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "were",
+      "have been",
+      "was",
+      "are being"
+    ],
+    "correctAnswer": "was",
+    "step1": "The subject is the singular noun 'pattern'; 'of numbered shapes' is a prepositional phrase.",
+    "step2": "The singular past-tense verb 'was' agrees with 'pattern.'",
+    "difficulty": "Medium",
+    "module": "Subject-Verb Agreement"
+  },
+  {
+    "skill_tested": "Choosing a transition that advances a sequence",
+    "question": "Which transition is most logical in context?",
+    "options": [
+      "Next,",
+      "In contrast,",
+      "For instance,",
+      "Otherwise,"
+    ],
+    "correctAnswer": "Next,",
+    "step1": "The previous paragraph explains the plan before the narrator receives an assignment.",
+    "step2": "'Next' clearly marks the following stage in the morning's sequence.",
+    "difficulty": "Hard",
+    "module": "Transitions and Logical Relationships"
+  },
+  {
+    "skill_tested": "Deleting a detail unrelated to narrative development",
+    "question": "Should the writer keep or delete the underlined sentence?",
+    "options": [
+      "Keep it, because glove stitching determines which mural section a volunteer receives.",
+      "Keep it, because orange is the mural's most important color.",
+      "Delete it, because the passage never states where Maya purchased the gloves.",
+      "Delete it, because the stitching detail does not develop the tile-placement task or the narrator's changing perspective."
+    ],
+    "correctAnswer": "Delete it, because the stitching detail does not develop the tile-placement task or the narrator's changing perspective.",
+    "step1": "The paragraph moves from assignment to the challenge of following the curved design.",
+    "step2": "The color of Maya's glove stitching contributes to neither the action nor the narrator's development.",
+    "difficulty": "Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Correcting a comma splice between independent clauses",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      ", I pressed",
+      "; I pressed",
+      ", pressing",
+      ": and I pressed"
+    ],
+    "correctAnswer": "; I pressed",
+    "step1": "'Lina spread mortar over a small area' and 'I pressed tiles along the penciled arc' are independent clauses.",
+    "step2": "A semicolon correctly joins the closely related actions.",
+    "difficulty": "Hard",
+    "module": "Sentence Structure"
+  },
+  {
+    "skill_tested": "Placing a realization after the observations that support it",
+    "question": "The underlined sentence would most logically be placed at which point?",
+    "options": [
+      "Point A",
+      "Point B",
+      "Point C",
+      "Point D"
+    ],
+    "correctAnswer": "Point D",
+    "step1": "The narrator must first see the reflecting tiles and recognize the river image before understanding the section's role.",
+    "step2": "Point D follows those observations and makes the realization a logical conclusion.",
+    "difficulty": "Very Hard",
+    "module": "Organization and Cohesion"
+  },
+  {
+    "skill_tested": "Eliminating an ambiguous pronoun",
+    "question": "Which choice most clearly indicates who receives the cloth?",
+    "options": [
+      "Maya handed Lina her cloth",
+      "Maya handed her the cloth",
+      "Maya handed a cloth to Lina",
+      "She handed Lina hers"
+    ],
+    "correctAnswer": "Maya handed a cloth to Lina",
+    "step1": "In the original wording, 'her' could refer to either Maya or Lina.",
+    "step2": "Naming Lina as the recipient and using 'a cloth' removes the ambiguity.",
+    "difficulty": "Medium",
+    "module": "Pronouns"
+  },
+  {
+    "skill_tested": "Using a colon to introduce examples after a complete clause",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "; roofs, trees, tracks, and water",
+      ", roofs, trees, tracks, and water",
+      ": roofs, trees, tracks, and water",
+      " roofs; trees; tracks; and water"
+    ],
+    "correctAnswer": ": roofs, trees, tracks, and water",
+    "step1": "The clause before the underlined portion is complete and announces what the map contains.",
+    "step2": "A colon correctly introduces the list of features shown in the mural.",
+    "difficulty": "Hard",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Evaluating whether a conclusion completes a narrative's central idea",
+    "question": "Should the writer keep or delete the final sentence?",
+    "options": [
+      "Keep it, because it connects the narrator's small task to the mural's collective result.",
+      "Keep it, because it shows that the narrator completed the entire mural alone.",
+      "Delete it, because the passage does not list the name of every volunteer.",
+      "Delete it, because the conclusion should introduce a different artwork."
+    ],
+    "correctAnswer": "Keep it, because it connects the narrator's small task to the mural's collective result.",
+    "step1": "The narrator initially doubts that a few small pieces can matter.",
+    "step2": "The conclusion resolves that doubt by showing how many carefully completed sections create the whole image.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  }
+]

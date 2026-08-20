@@ -1,0 +1,38 @@
+{
+  "formatVersion": 1,
+  "scope": "ACT English questions 1-100",
+  "academicReview": {
+    "source": "question-reviews/act-english-review-progress.json",
+    "status": "complete_and_applied",
+    "questionCount": 100
+  },
+  "originalNoChangeOption1Keys": [1,2,4,6,9,10,11,12,13,17,18,19,20,25,26,27,28,31,33,34,35,36,39,40,41,42,47,50,51,53,56,57,58,59,60,61,63,64,65,66,67,68,69,70,71,72,75,76,77,78,79,80,81,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,100],
+  "originalNoChangeCorrectKeys": [9,17,18,25,28,33,41,50,93],
+  "forms": [
+    {
+      "form": 1,
+      "range": [1, 50],
+      "answerMoves": {"A": [3, 16, 29], "D": [12, 23, 44]},
+      "mediumKeys": [1, 2, 6, 11, 12, 13, 18, 20, 21, 23, 27, 28, 30, 35, 39, 43, 46, 49],
+      "veryHardKeys": [7, 9, 15, 17, 25, 29, 33, 41, 44, 50]
+    },
+    {
+      "form": 2,
+      "range": [51, 100],
+      "answerMoves": {"A": [54, 59, 63, 67, 74, 79, 90, 95], "D": [57, 69, 84, 98]},
+      "mediumKeys": [51, 53, 56, 59, 60, 61, 63, 64, 67, 68, 72, 76, 77, 85, 86, 90, 97, 98],
+      "veryHardKeys": [54, 58, 62, 66, 70, 74, 82, 92, 99, 100]
+    }
+  ],
+  "targetsPerForm": {
+    "questions": 50,
+    "passages": 6,
+    "answerPositions": {"A": 12, "B": 13, "C": 13, "D": 12},
+    "difficulties": {"Medium": 18, "Hard": 22, "Very Hard": 10}
+  },
+  "notes": [
+    "Literal NO CHANGE options are expanded to the exact underlined passage text before choices are reordered.",
+    "Reordering changes answer positions only; correct-answer text and explanations remain unchanged.",
+    "The two forms jointly retain a balanced reporting-category mix, with per-form module variation of at most one question from the 20/10/20 benchmark."
+  ]
+}

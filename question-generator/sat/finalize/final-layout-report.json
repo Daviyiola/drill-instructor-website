@@ -1,0 +1,120 @@
+{
+  "generatedAt": "2026-08-20T04:08:02.851Z",
+  "policy": "Fresh canonical numbering; no old-to-new ID mapping retained.",
+  "subjects": {
+    "Math": [
+      {
+        "practiceTest": 1,
+        "questions": 44,
+        "modules": {
+          "Plane geometry": 8,
+          "Linear equations and inequalities": 5,
+          "Functions and graphs": 5,
+          "Ratios rates and proportions": 5,
+          "Coordinate geometry": 4,
+          "Systems of equations": 4,
+          "Quadratic and polynomial expressions": 4,
+          "Percent and unit problems": 3,
+          "Statistics and data analysis": 2,
+          "Trigonometry": 2,
+          "Rational and radical expressions": 1,
+          "Probability": 1
+        }
+      },
+      {
+        "practiceTest": 2,
+        "questions": 44,
+        "modules": {
+          "Plane geometry": 8,
+          "Functions and graphs": 5,
+          "Linear equations and inequalities": 5,
+          "Ratios rates and proportions": 5,
+          "Systems of equations": 4,
+          "Quadratic and polynomial expressions": 4,
+          "Coordinate geometry": 4,
+          "Percent and unit problems": 3,
+          "Trigonometry": 2,
+          "Statistics and data analysis": 2,
+          "Probability": 1,
+          "Rational and radical expressions": 1
+        }
+      },
+      {
+        "practiceTest": 3,
+        "questions": 44,
+        "modules": {
+          "Plane geometry": 8,
+          "Ratios rates and proportions": 6,
+          "Quadratic and polynomial expressions": 5,
+          "Functions and graphs": 5,
+          "Linear equations and inequalities": 4,
+          "Systems of equations": 4,
+          "Coordinate geometry": 3,
+          "Percent and unit problems": 3,
+          "Statistics and data analysis": 3,
+          "Exponential functions": 1,
+          "Rational and radical expressions": 1,
+          "Trigonometry": 1
+        }
+      },
+      {
+        "practiceTest": 4,
+        "questions": 44,
+        "modules": {
+          "Plane geometry": 8,
+          "Ratios rates and proportions": 6,
+          "Quadratic and polynomial expressions": 5,
+          "Linear equations and inequalities": 5,
+          "Functions and graphs": 4,
+          "Systems of equations": 4,
+          "Percent and unit problems": 3,
+          "Statistics and data analysis": 3,
+          "Coordinate geometry": 3,
+          "Trigonometry": 1,
+          "Exponential functions": 1,
+          "Rational and radical expressions": 1
+        }
+      }
+    ],
+    "Read. & Writ.": [
+      {
+        "practiceTest": 1,
+        "questions": 54,
+        "modules": {
+          "Vocabulary in context": 12,
+          "Transitions and cohesion": 10,
+          "Grammar fundamentals": 7,
+          "Main idea and purpose": 6,
+          "Sentence clarity and conciseness": 5,
+          "Punctuation and sentence structure": 4,
+          "Inference and conclusions": 4,
+          "Evidence and support": 2,
+          "Rhetoric and author’s technique": 2,
+          "Data interpretation": 1,
+          "Text structure and organization": 1
+        }
+      },
+      {
+        "practiceTest": 2,
+        "questions": 54,
+        "modules": {
+          "Vocabulary in context": 12,
+          "Transitions and cohesion": 10,
+          "Grammar fundamentals": 7,
+          "Main idea and purpose": 6,
+          "Sentence clarity and conciseness": 5,
+          "Inference and conclusions": 4,
+          "Punctuation and sentence structure": 4,
+          "Rhetoric and author’s technique": 2,
+          "Evidence and support": 2,
+          "Text structure and organization": 1,
+          "Data interpretation": 1
+        }
+      }
+    ]
+  },
+  "archived": {
+    "Math": 4,
+    "Read. & Writ.": 12
+  }
+}

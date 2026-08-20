@@ -1,0 +1,8 @@
+{
+  "sourceId":16,"scale":"1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles":[
+    {"blueprint":"A","passageAssetId":"act-english-source-16-a","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":2,"centralConceptualTheme":4,"paragraphFunctionSequence":5,"overallRhetoricalArchitecture":5,"questionLogicTransfer":3,"disguisedRewriteRisk":4,"overallSimilarity":3.1},"decision":"PASS","notes":"The bundle retains an original-design, deterioration, and restoration arc but replaces transportation infrastructure and landscape tourism with an iron-and-glass plant environment, corrosion control, numbered components, glazing, and climate systems."},
+    {"blueprint":"B","passageAssetId":"act-english-source-16-b","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":2,"paragraphFunctionSequence":3,"overallRhetoricalArchitecture":3,"questionLogicTransfer":3,"disguisedRewriteRisk":2,"overallSimilarity":2.0},"decision":"PASS","notes":"The film reconstruction passage concerns incomplete archival copies, contextual records, frame scanning, intertitles, and documented uncertainty; it shares no infrastructure, geographic, or public-trail material with the source."}
+  ],
+  "pairDistinctness":{"decision":"PASS","notes":"A restores a single physical building that must continue regulating a living environment; B assembles a viewable work from multiple incomplete media objects while preserving uncertainty. Their evidence, procedures, and outcomes are distinct."}
+}

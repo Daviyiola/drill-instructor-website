@@ -1,0 +1,7 @@
+{
+  "source_analysis":{"sourceId":9,"required_passage_class":"LONG","required_question_count":10,"assigned_passage_type":"argumentative","reusable_architecture":"Introduce a public-facing practice, explain how its physical implementation works, connect concrete components to a wider civic meaning, and end by synthesizing practical and communal value.","copyright_risk_notes":["Do not reuse a station mural, celadon, pottery, ceramic shards, Korean American identity, named artists, Flushing, Queens, or source history."]},
+  "blueprints":[
+    {"blueprint_id":"A","new_topic_domain":"Cities authorizing carefully managed evening street markets","passage_type":"argumentative","rhetorical_arc":"Identify underused evening streets; propose temporary markets; explain modular operation and benefits; answer access and cleanup concerns; recommend measured pilots."},
+    {"blueprint_id":"B","new_topic_domain":"Schools replacing selected paved areas with instructional rain gardens","passage_type":"argumentative","rhetorical_arc":"Identify runoff from paved schoolyards; propose planted collection areas; explain design and curricular benefits; address maintenance concerns; recommend site-specific implementation."}
+  ]
+}

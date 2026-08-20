@@ -1,0 +1,26 @@
+{
+  "source_analysis": {
+    "sourceId": 12,
+    "required_passage_class": "LONG",
+    "required_question_count": 10,
+    "assigned_passage_type": "narrative",
+    "reusable_architecture": "Establish a personally meaningful skill or practice, introduce a disruption that exposes the narrator's limits, show the narrator learning a related method through observation and practice, and conclude with an expanded understanding rather than a simple replacement of the original attachment.",
+    "copyright_risk_notes": [
+      "Do not reuse an older sister, guitar lessons, family road trips, a missing instrument, an airport, Honolulu or Hawai'i, a beach, local musicians, a ukulele, or the source's song titles."
+    ]
+  },
+  "blueprints": [
+    {
+      "blueprint_id": "A",
+      "new_topic_domain": "Repairing a misaligned vintage bicycle at a neighborhood cooperative",
+      "passage_type": "narrative",
+      "rhetorical_arc": "Recall learning basic bicycle care; confront a repair that familiar habits cannot solve; learn diagnostic measurement at a cooperative; return as a volunteer; conclude that care for the bicycle now includes shared knowledge."
+    },
+    {
+      "blueprint_id": "B",
+      "new_topic_domain": "Learning to identify marsh birds by sound during a foggy volunteer survey",
+      "passage_type": "narrative",
+      "rhetorical_arc": "Begin with confidence in visual identification; let fog undermine that method; learn to parse calls with an experienced observer; contribute reliable observations; conclude that listening changes how the narrator attends to the marsh."
+    }
+  ]
+}

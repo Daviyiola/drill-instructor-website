@@ -1,0 +1,122 @@
+[
+  {
+    "skill_tested": "Ordering a problem, proposal, and qualification logically",
+    "question": "Which sequence makes the opening paragraph most logical?",
+    "options": ["2, 3, 1", "1, 3, 2", "3, 1, 2", "2, 1, 3"],
+    "correctAnswer": "2, 3, 1",
+    "step1": "Sentence 2 identifies the runoff problem, and sentence 3 responds with the rain-garden proposal.",
+    "step2": "Sentence 1 then qualifies the proposal by establishing the safety requirement addressed in the next sentence.",
+    "difficulty": "Hard",
+    "module": "Organization and Cohesion"
+  },
+  {
+    "skill_tested": "Selecting a precise verb for producing storage space",
+    "question": "Which choice is clearest and most precise in context?",
+    "options": ["spawn", "create", "hatch", "perform"],
+    "correctAnswer": "create",
+    "step1": "The soil and gravel form temporary space in which storm water can collect.",
+    "step2": "'Create' states that relationship precisely without the biological associations of 'spawn.'",
+    "difficulty": "Medium",
+    "module": "Word Choice and Usage"
+  },
+  {
+    "skill_tested": "Correcting a dangling introductory modifier",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "Planted in a shallow basin, runoff can spread among grasses and flowering perennials.",
+      "Runoff planted in a shallow basin spreads among grasses and flowering perennials.",
+      "Planted in a shallow basin, grasses and flowering perennials slow the runoff.",
+      "The shallow basin planting, grasses and flowering perennials slowing runoff."
+    ],
+    "correctAnswer": "Planted in a shallow basin, grasses and flowering perennials slow the runoff.",
+    "step1": "The noun immediately after 'Planted in a shallow basin' must name what is planted.",
+    "step2": "The correct choice places 'grasses and flowering perennials' after the modifier and states what those plants do.",
+    "difficulty": "Hard",
+    "module": "Modifiers and Comparisons"
+  },
+  {
+    "skill_tested": "Maintaining pronoun-antecedent agreement",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["its", "it's", "their", "there"],
+    "correctAnswer": "their",
+    "step1": "The possessive pronoun refers to the plural noun 'gardens.'",
+    "step2": "The plural possessive pronoun 'their' agrees with that antecedent.",
+    "difficulty": "Medium",
+    "module": "Pronouns"
+  },
+  {
+    "skill_tested": "Choosing a cause-and-effect transition",
+    "question": "Which transition is most logical in context?",
+    "options": ["In addition,", "As a result,", "Nevertheless,", "Earlier,"],
+    "correctAnswer": "As a result,",
+    "step1": "The preceding sentences explain that multiple gardens collect and direct storm water.",
+    "step2": "'As a result' correctly introduces the resulting opportunity for students to measure how the basins drain.",
+    "difficulty": "Hard",
+    "module": "Transitions and Logical Relationships"
+  },
+  {
+    "skill_tested": "Placing a planning detail where it develops the paragraph's response to a concern",
+    "question": "The sentence about a written maintenance calendar would most logically be placed at which point?",
+    "options": ["Point A", "Point B", "Point C", "Point D"],
+    "correctAnswer": "Point D",
+    "step1": "The paragraph first raises the risk of neglect and then describes design and inspection measures.",
+    "step2": "At Point D, the calendar follows those measures and leads naturally into the oversight team's recordkeeping duties.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Maintaining subject-verb agreement across a relative clause",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["meets", "meet", "have met", "are meeting"],
+    "correctAnswer": "meets",
+    "step1": "The subject of the relative clause is the singular noun phrase 'A small oversight team.'",
+    "step2": "The singular present-tense verb 'meets' agrees with 'team.'",
+    "difficulty": "Hard",
+    "module": "Subject-Verb Agreement"
+  },
+  {
+    "skill_tested": "Maintaining a measured policy-oriented tone",
+    "question": "Which choice best matches the passage's tone?",
+    "options": [
+      "a hilariously awful idea",
+      "an ineffective use of school resources",
+      "the most ridiculous project imaginable",
+      "a totally pointless disaster"
+    ],
+    "correctAnswer": "an ineffective use of school resources",
+    "step1": "The passage evaluates the proposal with practical, measured language.",
+    "step2": "'An ineffective use of school resources' states the criticism precisely without slang or exaggeration.",
+    "difficulty": "Medium",
+    "module": "Style and Tone"
+  },
+  {
+    "skill_tested": "Using a colon to introduce a list",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "; the direction of runoff, the rate at which soil drains, and the space needed for existing school activities",
+      ", the direction of runoff, the rate at which soil drains, and the space needed for existing school activities",
+      ": the direction of runoff, the rate at which soil drains, and the space needed for existing school activities",
+      ": the direction of runoff; the rate at which soil drains; and, the space needed for existing school activities"
+    ],
+    "correctAnswer": ": the direction of runoff, the rate at which soil drains, and the space needed for existing school activities",
+    "step1": "The complete clause before the underlined text announces three conditions.",
+    "step2": "A colon correctly introduces the list of those conditions, whose simple items are separated by commas.",
+    "difficulty": "Hard",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Evaluating whether a conclusion reinforces a qualified proposal",
+    "question": "Should the writer keep or delete the final sentence?",
+    "options": [
+      "Delete it, because the passage argues that every paved schoolyard must be removed.",
+      "Keep it, because it guarantees that rain gardens eliminate all local flooding.",
+      "Delete it, because a conclusion should introduce a different environmental project.",
+      "Keep it, because it synthesizes the garden's environmental and instructional benefits with the need for a practical operating plan."
+    ],
+    "correctAnswer": "Keep it, because it synthesizes the garden's environmental and instructional benefits with the need for a practical operating plan.",
+    "step1": "The passage supports carefully located rain gardens that are designed, monitored, and maintained.",
+    "step2": "The final sentence restates both the project's benefits and the planning condition central to the argument.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  }
+]

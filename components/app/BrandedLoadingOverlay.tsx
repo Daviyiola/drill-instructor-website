@@ -9,7 +9,7 @@ export default function BrandedLoadingOverlay({
 }) {
   return (
     <div
-      className={`z-[90] grid place-items-center bg-slate-950/60 p-5 backdrop-blur-[3px] ${
+      className={`z-[1000] grid place-items-center bg-slate-950/60 p-5 backdrop-blur-[3px] ${
         fixed ? "fixed inset-0" : "min-h-screen"
       }`}
       role="status"

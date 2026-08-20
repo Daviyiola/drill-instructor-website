@@ -1,0 +1,643 @@
+{
+  "generatedAt": "2026-08-20T03:45:11.089Z",
+  "policy": "Fresh canonical numbering; no old-to-new ID mapping retained.",
+  "subjects": {
+    "Mathematics": [
+      {
+        "practiceTest": 1,
+        "questions": 45,
+        "modules": {
+          "Number properties and operations": 6,
+          "Probability and counting": 5,
+          "Plane geometry": 5,
+          "Trigonometry": 3,
+          "Percent and unit problems": 3,
+          "Statistics and data analysis": 3,
+          "Functions and graphs": 3,
+          "Coordinate geometry": 3,
+          "Radical and rational expressions": 3,
+          "Ratios, rates and proportions": 3,
+          "Linear equations and inequalities": 2,
+          "Quadratic expressions": 2,
+          "Exponential and logarithmic functions": 2,
+          "Polynomials": 1,
+          "Systems of equations": 1
+        },
+        "difficulties": {
+          "Medium": 23,
+          "Hard": 22
+        }
+      },
+      {
+        "practiceTest": 2,
+        "questions": 45,
+        "modules": {
+          "Number properties and operations": 6,
+          "Plane geometry": 5,
+          "Probability and counting": 4,
+          "Statistics and data analysis": 4,
+          "Coordinate geometry": 4,
+          "Ratios, rates and proportions": 3,
+          "Trigonometry": 3,
+          "Radical and rational expressions": 3,
+          "Functions and graphs": 3,
+          "Percent and unit problems": 2,
+          "Exponential and logarithmic functions": 2,
+          "Linear equations and inequalities": 2,
+          "Quadratic expressions": 2,
+          "Systems of equations": 1,
+          "Polynomials": 1
+        },
+        "difficulties": {
+          "Hard": 22,
+          "Medium": 23
+        }
+      },
+      {
+        "practiceTest": 3,
+        "questions": 45,
+        "modules": {
+          "Plane geometry": 6,
+          "Number properties and operations": 5,
+          "Coordinate geometry": 4,
+          "Probability and counting": 4,
+          "Exponential and logarithmic functions": 3,
+          "Ratios, rates and proportions": 3,
+          "Trigonometry": 3,
+          "Functions and graphs": 3,
+          "Percent and unit problems": 3,
+          "Statistics and data analysis": 3,
+          "Linear equations and inequalities": 2,
+          "Radical and rational expressions": 2,
+          "Quadratic expressions": 2,
+          "Systems of equations": 1,
+          "Polynomials": 1
+        },
+        "difficulties": {
+          "Hard": 22,
+          "Medium": 23
+        }
+      },
+      {
+        "practiceTest": 4,
+        "questions": 45,
+        "modules": {
+          "Plane geometry": 6,
+          "Number properties and operations": 5,
+          "Coordinate geometry": 4,
+          "Probability and counting": 4,
+          "Functions and graphs": 3,
+          "Trigonometry": 3,
+          "Radical and rational expressions": 3,
+          "Percent and unit problems": 3,
+          "Ratios, rates and proportions": 3,
+          "Statistics and data analysis": 3,
+          "Quadratic expressions": 2,
+          "Exponential and logarithmic functions": 2,
+          "Linear equations and inequalities": 2,
+          "Systems of equations": 1,
+          "Polynomials": 1
+        },
+        "difficulties": {
+          "Hard": 22,
+          "Medium": 23
+        }
+      },
+      {
+        "practiceTest": 5,
+        "questions": 45,
+        "modules": {
+          "Number properties and operations": 6,
+          "Plane geometry": 6,
+          "Probability and counting": 4,
+          "Coordinate geometry": 4,
+          "Percent and unit problems": 3,
+          "Functions and graphs": 3,
+          "Trigonometry": 3,
+          "Ratios, rates and proportions": 3,
+          "Statistics and data analysis": 3,
+          "Exponential and logarithmic functions": 2,
+          "Radical and rational expressions": 2,
+          "Quadratic expressions": 2,
+          "Linear equations and inequalities": 2,
+          "Polynomials": 2
+        },
+        "difficulties": {
+          "Hard": 22,
+          "Medium": 23
+        }
+      },
+      {
+        "practiceTest": 6,
+        "questions": 45,
+        "modules": {
+          "Number properties and operations": 6,
+          "Plane geometry": 6,
+          "Coordinate geometry": 4,
+          "Probability and counting": 4,
+          "Percent and unit problems": 3,
+          "Trigonometry": 3,
+          "Functions and graphs": 3,
+          "Ratios, rates and proportions": 3,
+          "Statistics and data analysis": 3,
+          "Quadratic expressions": 2,
+          "Linear equations and inequalities": 2,
+          "Exponential and logarithmic functions": 2,
+          "Radical and rational expressions": 2,
+          "Polynomials": 2
+        },
+        "difficulties": {
+          "Medium": 23,
+          "Hard": 22
+        }
+      },
+      {
+        "practiceTest": 7,
+        "questions": 45,
+        "modules": {
+          "Number properties and operations": 6,
+          "Plane geometry": 6,
+          "Coordinate geometry": 4,
+          "Probability and counting": 4,
+          "Trigonometry": 3,
+          "Exponential and logarithmic functions": 3,
+          "Statistics and data analysis": 3,
+          "Functions and graphs": 3,
+          "Percent and unit problems": 3,
+          "Ratios, rates and proportions": 3,
+          "Quadratic expressions": 2,
+          "Linear equations and inequalities": 2,
+          "Radical and rational expressions": 2,
+          "Polynomials": 1
+        },
+        "difficulties": {
+          "Hard": 22,
+          "Medium": 23
+        }
+      },
+      {
+        "practiceTest": 8,
+        "questions": 45,
+        "modules": {
+          "Plane geometry": 6,
+          "Number properties and operations": 5,
+          "Trigonometry": 4,
+          "Coordinate geometry": 4,
+          "Probability and counting": 4,
+          "Statistics and data analysis": 3,
+          "Exponential and logarithmic functions": 3,
+          "Functions and graphs": 3,
+          "Percent and unit problems": 3,
+          "Radical and rational expressions": 3,
+          "Quadratic expressions": 2,
+          "Linear equations and inequalities": 2,
+          "Ratios, rates and proportions": 2,
+          "Polynomials": 1
+        },
+        "difficulties": {
+          "Hard": 23,
+          "Medium": 22
+        }
+      }
+    ],
+    "Science": [
+      {
+        "practiceTest": 1,
+        "questions": 40,
+        "modules": {
+          "Data Representation": 9,
+          "Experimental Design": 4,
+          "Research Summaries": 2,
+          "Data Analysis and Trends": 14,
+          "Scientific Conclusions and Predictions": 9,
+          "Conflicting Viewpoints": 2
+        },
+        "difficulties": {
+          "Medium": 19,
+          "Hard": 18,
+          "Very Hard": 3
+        }
+      },
+      {
+        "practiceTest": 2,
+        "questions": 40,
+        "modules": {
+          "Data Representation": 9,
+          "Data Analysis and Trends": 12,
+          "Experimental Design": 4,
+          "Scientific Conclusions and Predictions": 10,
+          "Research Summaries": 3,
+          "Conflicting Viewpoints": 2
+        },
+        "difficulties": {
+          "Medium": 18,
+          "Hard": 17,
+          "Very Hard": 5
+        }
+      },
+      {
+        "practiceTest": 3,
+        "questions": 40,
+        "modules": {
+          "Data Representation": 8,
+          "Research Summaries": 5,
+          "Data Analysis and Trends": 14,
+          "Scientific Conclusions and Predictions": 9,
+          "Conflicting Viewpoints": 3,
+          "Experimental Design": 1
+        },
+        "difficulties": {
+          "Medium": 16,
+          "Hard": 14,
+          "Very Hard": 10
+        }
+      },
+      {
+        "practiceTest": 4,
+        "questions": 40,
+        "modules": {
+          "Data Representation": 8,
+          "Research Summaries": 3,
+          "Data Analysis and Trends": 13,
+          "Scientific Conclusions and Predictions": 10,
+          "Conflicting Viewpoints": 2,
+          "Experimental Design": 4
+        },
+        "difficulties": {
+          "Medium": 18,
+          "Hard": 16,
+          "Very Hard": 6
+        }
+      }
+    ],
+    "English": [
+      {
+        "practiceTest": 1,
+        "questions": 50,
+        "modules": {
+          "Pronouns": 3,
+          "Conciseness and Redundancy": 4,
+          "Transitions and Logical Relationships": 4,
+          "Topic Development": 10,
+          "Punctuation": 7,
+          "Organization and Cohesion": 5,
+          "Style and Tone": 3,
+          "Word Choice and Usage": 4,
+          "Verb Tense and Form": 3,
+          "Subject-Verb Agreement": 4,
+          "Modifiers and Comparisons": 2,
+          "Sentence Structure": 1
+        },
+        "difficulties": {
+          "Medium": 16,
+          "Hard": 24,
+          "Very Hard": 10
+        }
+      },
+      {
+        "practiceTest": 2,
+        "questions": 50,
+        "modules": {
+          "Punctuation": 5,
+          "Word Choice and Usage": 5,
+          "Topic Development": 9,
+          "Pronouns": 3,
+          "Transitions and Logical Relationships": 6,
+          "Verb Tense and Form": 2,
+          "Conciseness and Redundancy": 4,
+          "Sentence Structure": 4,
+          "Organization and Cohesion": 4,
+          "Subject-Verb Agreement": 3,
+          "Modifiers and Comparisons": 3,
+          "Style and Tone": 2
+        },
+        "difficulties": {
+          "Hard": 20,
+          "Medium": 20,
+          "Very Hard": 10
+        }
+      },
+      {
+        "practiceTest": 3,
+        "questions": 50,
+        "modules": {
+          "Subject-Verb Agreement": 3,
+          "Sentence Structure": 5,
+          "Word Choice and Usage": 4,
+          "Topic Development": 11,
+          "Transitions and Logical Relationships": 4,
+          "Punctuation": 4,
+          "Organization and Cohesion": 6,
+          "Pronouns": 3,
+          "Verb Tense and Form": 4,
+          "Conciseness and Redundancy": 4,
+          "Style and Tone": 1,
+          "Modifiers and Comparisons": 1
+        },
+        "difficulties": {
+          "Medium": 18,
+          "Hard": 21,
+          "Very Hard": 11
+        }
+      },
+      {
+        "practiceTest": 4,
+        "questions": 50,
+        "modules": {
+          "Sentence Structure": 6,
+          "Topic Development": 12,
+          "Word Choice and Usage": 5,
+          "Transitions and Logical Relationships": 6,
+          "Pronouns": 2,
+          "Punctuation": 6,
+          "Style and Tone": 2,
+          "Subject-Verb Agreement": 2,
+          "Conciseness and Redundancy": 3,
+          "Organization and Cohesion": 3,
+          "Modifiers and Comparisons": 3
+        },
+        "difficulties": {
+          "Hard": 23,
+          "Very Hard": 9,
+          "Medium": 18
+        }
+      },
+      {
+        "practiceTest": 5,
+        "questions": 50,
+        "modules": {
+          "Punctuation": 7,
+          "Topic Development": 11,
+          "Word Choice and Usage": 6,
+          "Subject-Verb Agreement": 3,
+          "Organization and Cohesion": 5,
+          "Modifiers and Comparisons": 2,
+          "Pronouns": 4,
+          "Conciseness and Redundancy": 3,
+          "Transitions and Logical Relationships": 4,
+          "Verb Tense and Form": 3,
+          "Style and Tone": 1,
+          "Sentence Structure": 1
+        },
+        "difficulties": {
+          "Medium": 18,
+          "Very Hard": 10,
+          "Hard": 22
+        }
+      },
+      {
+        "practiceTest": 6,
+        "questions": 50,
+        "modules": {
+          "Conciseness and Redundancy": 3,
+          "Word Choice and Usage": 5,
+          "Subject-Verb Agreement": 5,
+          "Transitions and Logical Relationships": 5,
+          "Topic Development": 12,
+          "Sentence Structure": 3,
+          "Organization and Cohesion": 3,
+          "Pronouns": 3,
+          "Punctuation": 5,
+          "Modifiers and Comparisons": 3,
+          "Style and Tone": 2,
+          "Verb Tense and Form": 1
+        },
+        "difficulties": {
+          "Medium": 18,
+          "Hard": 22,
+          "Very Hard": 10
+        }
+      },
+      {
+        "practiceTest": 7,
+        "questions": 50,
+        "modules": {
+          "Punctuation": 5,
+          "Word Choice and Usage": 5,
+          "Verb Tense and Form": 3,
+          "Transitions and Logical Relationships": 6,
+          "Style and Tone": 3,
+          "Topic Development": 10,
+          "Sentence Structure": 4,
+          "Organization and Cohesion": 5,
+          "Pronouns": 3,
+          "Subject-Verb Agreement": 3,
+          "Conciseness and Redundancy": 2,
+          "Modifiers and Comparisons": 1
+        },
+        "difficulties": {
+          "Medium": 18,
+          "Hard": 22,
+          "Very Hard": 10
+        }
+      },
+      {
+        "practiceTest": 8,
+        "questions": 50,
+        "modules": {
+          "Organization and Cohesion": 4,
+          "Word Choice and Usage": 4,
+          "Subject-Verb Agreement": 4,
+          "Punctuation": 5,
+          "Transitions and Logical Relationships": 2,
+          "Topic Development": 14,
+          "Pronouns": 4,
+          "Conciseness and Redundancy": 3,
+          "Verb Tense and Form": 3,
+          "Style and Tone": 3,
+          "Modifiers and Comparisons": 2,
+          "Sentence Structure": 2
+        },
+        "difficulties": {
+          "Hard": 22,
+          "Medium": 18,
+          "Very Hard": 10
+        }
+      }
+    ],
+    "Reading": [
+      {
+        "practiceTest": 1,
+        "questions": 36,
+        "modules": {
+          "Textual Details": 4,
+          "Vocabulary in Context": 3,
+          "Central Ideas and Themes": 7,
+          "Function and Structure": 5,
+          "Sequence and Relationships": 5,
+          "Inference and Implication": 7,
+          "Author's Purpose and Perspective": 3,
+          "Comparative Passage Analysis": 2
+        },
+        "difficulties": {
+          "Medium": 12,
+          "Hard": 16,
+          "Very Hard": 8
+        }
+      },
+      {
+        "practiceTest": 2,
+        "questions": 36,
+        "modules": {
+          "Textual Details": 5,
+          "Vocabulary in Context": 3,
+          "Central Ideas and Themes": 4,
+          "Sequence and Relationships": 5,
+          "Function and Structure": 6,
+          "Inference and Implication": 6,
+          "Author's Purpose and Perspective": 4,
+          "Comparative Passage Analysis": 3
+        },
+        "difficulties": {
+          "Medium": 12,
+          "Hard": 16,
+          "Very Hard": 8
+        }
+      },
+      {
+        "practiceTest": 3,
+        "questions": 36,
+        "modules": {
+          "Textual Details": 3,
+          "Vocabulary in Context": 1,
+          "Comparative Passage Analysis": 4,
+          "Function and Structure": 4,
+          "Inference and Implication": 7,
+          "Central Ideas and Themes": 7,
+          "Sequence and Relationships": 6,
+          "Author's Purpose and Perspective": 4
+        },
+        "difficulties": {
+          "Medium": 12,
+          "Hard": 16,
+          "Very Hard": 8
+        }
+      },
+      {
+        "practiceTest": 4,
+        "questions": 36,
+        "modules": {
+          "Sequence and Relationships": 5,
+          "Textual Details": 4,
+          "Central Ideas and Themes": 5,
+          "Inference and Implication": 8,
+          "Function and Structure": 5,
+          "Author's Purpose and Perspective": 4,
+          "Vocabulary in Context": 2,
+          "Comparative Passage Analysis": 3
+        },
+        "difficulties": {
+          "Medium": 12,
+          "Hard": 16,
+          "Very Hard": 8
+        }
+      },
+      {
+        "practiceTest": 5,
+        "questions": 36,
+        "modules": {
+          "Textual Details": 4,
+          "Vocabulary in Context": 3,
+          "Central Ideas and Themes": 5,
+          "Function and Structure": 5,
+          "Sequence and Relationships": 7,
+          "Inference and Implication": 5,
+          "Author's Purpose and Perspective": 3,
+          "Character and Relationship Analysis": 1,
+          "Comparative Passage Analysis": 3
+        },
+        "difficulties": {
+          "Medium": 12,
+          "Hard": 16,
+          "Very Hard": 8
+        }
+      },
+      {
+        "practiceTest": 6,
+        "questions": 36,
+        "modules": {
+          "Textual Details": 3,
+          "Function and Structure": 6,
+          "Central Ideas and Themes": 5,
+          "Inference and Implication": 8,
+          "Sequence and Relationships": 4,
+          "Author's Purpose and Perspective": 2,
+          "Vocabulary in Context": 2,
+          "Comparative Passage Analysis": 3,
+          "Character and Relationship Analysis": 3
+        },
+        "difficulties": {
+          "Medium": 12,
+          "Hard": 16,
+          "Very Hard": 8
+        }
+      },
+      {
+        "practiceTest": 7,
+        "questions": 36,
+        "modules": {
+          "Character and Relationship Analysis": 2,
+          "Textual Details": 4,
+          "Comparative Passage Analysis": 3,
+          "Inference and Implication": 8,
+          "Function and Structure": 6,
+          "Central Ideas and Themes": 4,
+          "Vocabulary in Context": 3,
+          "Sequence and Relationships": 4,
+          "Author's Purpose and Perspective": 2
+        },
+        "difficulties": {
+          "Medium": 12,
+          "Hard": 16,
+          "Very Hard": 8
+        }
+      },
+      {
+        "practiceTest": 8,
+        "questions": 36,
+        "modules": {
+          "Textual Details": 4,
+          "Vocabulary in Context": 2,
+          "Central Ideas and Themes": 5,
+          "Character and Relationship Analysis": 3,
+          "Sequence and Relationships": 4,
+          "Function and Structure": 6,
+          "Inference and Implication": 6,
+          "Author's Purpose and Perspective": 3,
+          "Comparative Passage Analysis": 3
+        },
+        "difficulties": {
+          "Medium": 12,
+          "Hard": 16,
+          "Very Hard": 8
+        }
+      }
+    ]
+  },
+  "archived": {
+    "Mathematics": 10,
+    "Science": 8
+  },
+  "scienceDomains": [
+    {
+      "Life and environmental science": 2,
+      "Physics and engineering": 3,
+      "Chemistry and materials": 2
+    },
+    {
+      "Life and environmental science": 2,
+      "Physics and engineering": 3,
+      "Chemistry and materials": 2
+    },
+    {
+      "Life and environmental science": 3,
+      "Physics and engineering": 3,
+      "Chemistry and materials": 1
+    },
+    {
+      "Physics and engineering": 3,
+      "Life and environmental science": 2,
+      "Chemistry and materials": 2
+    }
+  ]
+}

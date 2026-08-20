@@ -1,0 +1,7 @@
+{
+  "source_analysis":{"sourceId":4,"required_passage_class":"LONG","required_question_count":10,"passage_type":"narrative","reusable_architecture":"A narrator waits in an ordinary place, initially dismisses an unfamiliar object or practice, observes it closely, encounters an unexpected revealing moment, and leaves with a revised judgment.","copyright_risk_notes":["Do not reuse a veterinarian, cat, iguana, pet owner, rainforest imagery, animal affection, or source dialogue."]},
+  "blueprints":[
+    {"blueprint_id":"A","new_topic_domain":"A narrator observing restoration of an old theater sign and discovering its layered civic history","passage_type":"narrative","rhetorical_arc":"Dismiss a damaged sign as scrap; watch a conservator reveal earlier lettering; understand the marks as evidence of changing neighborhood uses; leave seeing wear as a record."},
+    {"blueprint_id":"B","new_topic_domain":"A narrator helping a coastal weather club launch an instrument kite","passage_type":"narrative","rhetorical_arc":"Dismiss the kite as a toy; observe wind cues and a failed launch; help adjust and relaunch it; recognize motion as evidence and the kite as a measurement tool."}
+  ]
+}

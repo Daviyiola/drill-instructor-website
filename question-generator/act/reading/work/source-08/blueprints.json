@@ -1,0 +1,80 @@
+{
+  "source_passage_id": 8,
+  "source_passage_type": "Literary Narrative",
+  "source_architecture_summary": "A later narrator reconstructs a relationship through precise observation, social mediation, private conversation, community expectations, and a decisive commitment that reveals character.",
+  "source_information_density": "High",
+  "two_blueprint_feasibility": "Strong",
+  "feasibility_notes": "Both blueprints discard courtship, marriage, migration, cultural matchmaking, family consent, source characters, and imagery while retaining layered characterization and social pressure.",
+  "blueprints": [
+    {
+      "blueprint_label": "A",
+      "blueprint_focus": "During an apartment water outage, a teenager revises an unfair judgment about an elderly neighbor while tracing the building's hidden plumbing.",
+      "act_reading_passage_type": "Literary Narrative",
+      "overall_reading_skill_family": "Character motivation, mentorship, chronology, and social expectation",
+      "rhetorical_or_narrative_arc": "Distant observation, orchestrated meeting, revealing work encounter, community approval, family resistance, deliberate commitment",
+      "information_density_requirements": [
+        "Concrete habits",
+        "Contrasting temperaments",
+        "Community mediation",
+        "Private exchange",
+        "Decision under pressure"
+      ],
+      "safe_replacement_domains": [
+        "Hand-painted signs",
+        "Craft apprenticeship",
+        "Neighborhood commerce"
+      ],
+      "question_opportunity_types": [
+        "Characterization",
+        "Sequence",
+        "Function",
+        "Inference",
+        "Vocabulary"
+      ],
+      "recommended_modules": [
+        "Character and Relationship Analysis",
+        "Sequence and Relationships",
+        "Function and Structure",
+        "Inference and Implication",
+        "Vocabulary in Context"
+      ],
+      "primary_module": "Character and Relationship Analysis",
+      "distinctness_notes": "A problem-solving neighbor narrative about evidence and infrastructure; no courtship, orchestrated meeting, family approval, resistance, or commitment decision."
+    },
+    {
+      "blueprint_label": "B",
+      "blueprint_focus": "Estranged siblings sorting their late father's neighborhood cinema learn that their opposed methods conceal related forms of care.",
+      "act_reading_passage_type": "Literary Narrative",
+      "overall_reading_skill_family": "Relationship tension, perspective, symbolic detail, and chronological revelation",
+      "rhetorical_or_narrative_arc": "Uneasy reunion, contrasting methods, object-triggered conflict, disclosed motive, collaborative act, qualified reconciliation",
+      "information_density_requirements": [
+        "Shared setting",
+        "Contrasting behavior",
+        "Misread motive",
+        "Physical task",
+        "Unresolved but altered relationship"
+      ],
+      "safe_replacement_domains": [
+        "Closed cinema",
+        "Sibling inheritance",
+        "Archival sorting"
+      ],
+      "question_opportunity_types": [
+        "Motivation",
+        "Relationship change",
+        "Function of object",
+        "Tone",
+        "Inference"
+      ],
+      "recommended_modules": [
+        "Character and Relationship Analysis",
+        "Function and Structure",
+        "Inference and Implication",
+        "Central Ideas and Themes",
+        "Sequence and Relationships"
+      ],
+      "primary_module": "Character and Relationship Analysis",
+      "distinctness_notes": "Uses sibling grief and material inheritance, separate from Blueprint A's apprenticeship and public legitimacy."
+    }
+  ]
+}

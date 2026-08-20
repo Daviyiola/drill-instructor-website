@@ -3,6 +3,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {normalizeUidToEducator} = require("./_schoolAdminAccess");
 
 /**
  * @typedef {import("firebase-admin").database.Database} Database
@@ -173,10 +174,32 @@ exports.handler = async function handler(req, res) {
     }
 
     const customId = await getCustomIdByFirebaseUid(db, fbUid);
-    if (!customId) return bad(res, 403, "PERMISSION_DENIED");
-
-    const userSnap = await db.ref("users/" + customId).once("value");
-    const user = userSnap.val() || {};
+    let user = {};
+    if (customId) {
+      const userSnap = await db.ref("users/" + customId).once("value");
+      user = userSnap.val() || {};
+    } else {
+      const mapped = (await db.ref(`uidToCustom/${fbUid}`)
+          .once("value")).val();
+      const educatorId = normalizeUidToEducator(mapped);
+      if (!educatorId) return bad(res, 403, "PERMISSION_DENIED");
+      const educator = (await db.ref(`educators/${educatorId}`)
+          .once("value")).val() || {};
+      const schoolId = String(educator.schoolID || educator.schoolId || "");
+      const [schoolSnap, accessSnap] = await Promise.all([
+        db.ref(`schools/${schoolId}`).once("value"),
+        db.ref(`schools/${schoolId}/educators/${educatorId}`).once("value"),
+      ]);
+      const school = schoolSnap.val() || {};
+      const access = accessSnap.val() || {};
+      if (access.status !== "approved") {
+        return bad(res, 403, "EDUCATOR_NOT_APPROVED");
+      }
+      user = {
+        corpsName: String(school.country || educator.corpsName || ""),
+        battalionName: String(school.state || educator.battalionName || ""),
+      };
+    }
 
     const userCorps =
       typeof user.corpsName === "string" ? user.corpsName : "";

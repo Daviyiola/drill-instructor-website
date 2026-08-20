@@ -1,0 +1,80 @@
+{
+  "source_passage_id": 7,
+  "source_passage_type": "Informational",
+  "source_architecture_summary": "The passage moves from a local biological relationship to a distributed network, explains resource exchange and hub effects, then shows that microscopic or inconspicuous structures can influence an entire landscape.",
+  "source_information_density": "High",
+  "two_blueprint_feasibility": "Strong",
+  "feasibility_notes": "Both blueprints discard fungi, roots, forests, seedlings, quoted researchers, and the source's network metaphors while preserving scale, linkage, heterogeneous benefit, and consequences of disruption.",
+  "blueprints": [
+    {
+      "blueprint_label": "A",
+      "blueprint_focus": "Experiments reveal how desert ants recalibrate celestial navigation when visual cues conflict.",
+      "act_reading_passage_type": "Natural Science",
+      "overall_reading_skill_family": "Mechanism across scales, reciprocal effects, qualification, and disruption",
+      "rhetorical_or_narrative_arc": "Underestimated organism, local mechanism, meadow-scale feedback, unequal beneficiaries, disturbance, restoration implication",
+      "information_density_requirements": [
+        "Flow mechanism",
+        "Sediment feedback",
+        "Several beneficiary groups",
+        "Disturbance threshold",
+        "Restoration qualification"
+      ],
+      "safe_replacement_domains": [
+        "Seagrass ecology",
+        "Coastal hydrodynamics",
+        "Habitat restoration"
+      ],
+      "question_opportunity_types": [
+        "Main purpose",
+        "Mechanism",
+        "Analogy function",
+        "Inference",
+        "Evidence weakening"
+      ],
+      "recommended_modules": [
+        "Central Ideas and Themes",
+        "Sequence and Relationships",
+        "Function and Structure",
+        "Inference and Implication",
+        "Textual Details"
+      ],
+      "primary_module": "Sequence and Relationships",
+      "distinctness_notes": "Focuses individual orientation, cue conflict, and error correction; no resource exchange, mutualism, communication network, or ecosystem-scale effects."
+    },
+    {
+      "blueprint_label": "B",
+      "blueprint_focus": "A cooperative network of small farms pools cold-storage capacity and transport while preserving local ownership and revealing hub vulnerabilities.",
+      "act_reading_passage_type": "Social Science",
+      "overall_reading_skill_family": "Network organization, reciprocal benefit, hubs, unequal access, and resilience",
+      "rhetorical_or_narrative_arc": "Individual constraint, pooled system, hub operation, flexible allocation, hidden dependencies, resilience design",
+      "information_density_requirements": [
+        "Resource exchange",
+        "Multiple nodes",
+        "Scheduling mechanism",
+        "Hub benefit and risk",
+        "Equity qualification"
+      ],
+      "safe_replacement_domains": [
+        "Agricultural cooperatives",
+        "Cold storage",
+        "Regional logistics"
+      ],
+      "question_opportunity_types": [
+        "Purpose",
+        "Cause and effect",
+        "Function",
+        "Inference",
+        "Central synthesis"
+      ],
+      "recommended_modules": [
+        "Author's Purpose and Perspective",
+        "Sequence and Relationships",
+        "Function and Structure",
+        "Inference and Implication",
+        "Central Ideas and Themes"
+      ],
+      "primary_module": "Inference and Implication",
+      "distinctness_notes": "Uses institutional coordination and infrastructure, not marine ecology."
+    }
+  ]
+}

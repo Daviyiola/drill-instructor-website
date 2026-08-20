@@ -37,7 +37,8 @@ function AssignmentCard({row, busy, onOpen}: {row: StudentAssignment; busy: bool
 
 export default function StudentAssignments({bootcamp}: {bootcamp: string}) {
   const router = useRouter();
-  const {user, account, loading} = useAuth();
+  const {user, account, loading, bootcamps, appDataLoading} = useAuth();
+  const licensed = bootcamps?.entitledBootcamps.includes(bootcamp) === true;
   const [rows, setRows] = useState<StudentAssignment[]>([]);
   const [loadingRows, setLoadingRows] = useState(true);
   const [busy, setBusy] = useState("");
@@ -47,15 +48,34 @@ export default function StudentAssignments({bootcamp}: {bootcamp: string}) {
     if (!loading && !user) router.replace("/app/sign-in");
   }, [loading, router, user]);
   useEffect(() => {
-    if (!user) return;
+    if (account && !appDataLoading && bootcamps && !licensed) {
+      router.replace(`/app/bootcamps/${bootcamp}/subscription`);
+    }
+  }, [account, appDataLoading, bootcamp, bootcamps, licensed, router]);
+  useEffect(() => {
+    if (!user || !licensed) return;
     const controller = new AbortController();
-    setLoadingRows(true);
+    const cacheKey = `di.assignments:${user.uid}:${bootcamp}`;
+    let hasCachedRows = false;
+    try {
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        setRows(JSON.parse(cached) as StudentAssignment[]);
+        setLoadingRows(false);
+        hasCachedRows = true;
+      }
+    } catch { /* optional browser cache */ }
+    if (!hasCachedRows) setLoadingRows(true);
     callFunction<StudentAssignmentsResponse, {bootcamp: string}>(user, "getStudentEducatorDrillAssignmentsHttps", {bootcamp}, {retryTransient: true, signal: controller.signal})
-      .then((response) => setRows(response.assignments || []))
+      .then((response) => {
+        const assignments = response.assignments || [];
+        setRows(assignments);
+        try { sessionStorage.setItem(cacheKey, JSON.stringify(assignments)); } catch { /* optional browser cache */ }
+      })
       .catch((reason) => { if ((reason as Error).name !== "AbortError") setError((reason as Error).message); })
       .finally(() => setLoadingRows(false));
     return () => controller.abort();
-  }, [bootcamp, user]);
+  }, [bootcamp, licensed, user]);
 
   const sections = useMemo(() => [
     {title: "Due or active", rows: rows.filter((row) => row.status === "assigned" || row.status === "started")},
@@ -78,7 +98,7 @@ export default function StudentAssignments({bootcamp}: {bootcamp: string}) {
     } catch (reason) { setError((reason as Error).message); setBusy(""); }
   }
 
-  if (!account) return <BrandedLoadingOverlay label="Loading assignments" />;
+  if (!account || appDataLoading || !bootcamps || !licensed) return <BrandedLoadingOverlay label="Checking assignment access" />;
   return <AppShell profile={account.profile}><div className="mx-auto max-w-6xl px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
     <Link href={`/app/bootcamps/${bootcamp}`} className="inline-flex items-center gap-2 text-sm text-slate-700"><span className="grid h-8 w-8 place-items-center rounded-full bg-white shadow-sm"><span className="h-2.5 w-2.5 rotate-45 border-b-[3px] border-l-[3px] border-brand-green" /></span>{bootcamp.toUpperCase()} home</Link>
     <header className="mt-6"><p className="text-xs uppercase tracking-[.2em] text-brand-green/65">School work</p><h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Assignments</h1><p className="mt-2 text-sm text-slate-600">Start required drills, resume active work, and view submitted results when released.</p></header>

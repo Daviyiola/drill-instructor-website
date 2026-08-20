@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 3,
+  "blueprint": "A",
+  "passageAssetId": "act-reading-s03-a",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 678,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "No origin-of-life theory, volcanic pool, ocean vent, ancient rock, or source anecdote is retained.",
+    "The evidence sequence concerns present-day forest hydrology."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

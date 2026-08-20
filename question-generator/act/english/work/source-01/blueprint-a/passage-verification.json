@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "passageAssetId": "act-english-source-01-a",
+  "actualWordCount": 358,
+  "checks": {
+    "longPassageRange": true,
+    "exactTargetCount": true,
+    "targetOrder": true,
+    "nonOverlappingTargets": true,
+    "rendererSafeHtml": true,
+    "reportingCategoryBalance": true,
+    "independentFromSource": true
+  },
+  "reviewNote": "Passed structural, editorial, and textual-similarity review."
+}

@@ -1,0 +1,7 @@
+{
+  "source_analysis":{"sourceId":15,"required_passage_class":"SHORT","required_question_count":5,"assigned_passage_type":"narrative","reusable_architecture":"Present a careful creative process, show how a physical response produces an unexpected result, and end with the maker recognizing what the process contributed.","copyright_risk_notes":["Do not reuse photographers, paint on speakers, music-driven vibration, sonic sculpture, Martin Klimas, Dusseldorf, or the source's visual-art process."]},
+  "blueprints":[
+    {"blueprint_id":"A","new_topic_domain":"A student baker rescues a family recipe by trusting sensory evidence","passage_type":"narrative","rhetorical_arc":"Set up a failed rehearsal, reveal an overlooked measurement, test a careful adjustment, and end with a more useful recipe note."},
+    {"blueprint_id":"B","new_topic_domain":"A volunteer repairs a silent library clock before an event","passage_type":"narrative","rhetorical_arc":"Introduce the stalled clock, trace a cautious diagnosis, reveal a small obstruction, and conclude with restored motion and confidence."}
+  ]
+}

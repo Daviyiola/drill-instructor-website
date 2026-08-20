@@ -1,0 +1,14 @@
+{
+  "source_analysis": {
+    "sourceId": 8,
+    "required_passage_class": "SHORT",
+    "required_question_count": 5,
+    "assigned_passage_type": "informational",
+    "reusable_architecture": "Introduce a classification problem, describe how a distinctive physical pattern is converted into measurable data, explain how a new sample is compared with stored records, and state why the match is useful.",
+    "copyright_risk_notes": ["Do not reuse zebras, stripes, StripeSpotter, StripeCode, bar codes, wildlife photography, fingerprints, or the named universities."]
+  },
+  "blueprints": [
+    {"blueprint_id":"A","new_topic_domain":"Distinguishing medieval scribes by measurable patterns in letterforms","passage_type":"informational","rhetorical_arc":"Introduce unsigned manuscripts; explain image preparation and feature measurement; compare profiles across pages; show how results support rather than replace historical interpretation."},
+    {"blueprint_id":"B","new_topic_domain":"Matching separated pottery fragments through three-dimensional edge profiles","passage_type":"informational","rhetorical_arc":"Introduce mixed excavation fragments; explain edge scanning and profile comparison; narrow candidate joins; verify matches physically and preserve contextual links."}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 4,
+  "blueprint": "B",
+  "passageAssetId": "act-reading-s04-b",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 651,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "No journalism, printing, ink, employment announcement, or source anecdote is retained.",
+    "The shared theme is systems thinking in public operations."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

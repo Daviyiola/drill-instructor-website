@@ -50,6 +50,19 @@ function readinessColors(value: StudentAnalytics["readiness"]) {
   return {card: "#CFE8CF", badge: "#8BC48B"};
 }
 
+function readinessSupportText(value: StudentAnalytics["readiness"]) {
+  if (value.status === "insufficient_data") {
+    return "Not enough recent questions to calculate a reliable Readiness Index.";
+  }
+  const band = String(value.band || "").toLowerCase();
+  if (band === "ready") return "Your recent practice shows strong overall preparation.";
+  if (band === "almost") return "You are close; keep strengthening weaker areas.";
+  if (band === "building") {
+    return "Keep building consistency across your selected subjects.";
+  }
+  return "Build a stronger base with focused, consistent practice.";
+}
+
 type Recommendation = {
   title: string;
   subject: string;
@@ -286,9 +299,7 @@ function Readiness({
               {value.status === "insufficient_data" ? "Not enough data" : value.band}
             </span>
             <span className="mt-1 block text-sm leading-5 text-slate-700">
-              {value.status === "insufficient_data" ?
-                "Not enough recent questions to calculate a reliable Readiness Index." :
-                `Confidence ${Math.round(value.confidence * 100)}% · Tap to learn about DIRI.`}
+              {readinessSupportText(value)}
             </span>
           </span>
         </span>
@@ -301,10 +312,12 @@ export default function StudentAnalyticsPage({
   bootcamp,
   educatorStudentId = "",
   educatorStudentName = "",
+  educatorBackHref = "",
 }: {
   bootcamp: string;
   educatorStudentId?: string;
   educatorStudentName?: string;
+  educatorBackHref?: string;
 }) {
   const router = useRouter();
   const {user, loading, account, educatorWorkspace} = useAuth();
@@ -448,9 +461,22 @@ export default function StudentAnalyticsPage({
   const readinessSubjects = analytics.diriPreference?.selectedSubjects ||
     analytics.readiness.selectedSubjects || [];
   const recommendationRows = subject ?
-    modules.filter((row) => row.subject === subject) : analytics.subjects.filter(
-        (row) => !readinessSubjects.length || readinessSubjects.includes(row.subject),
-    );
+    modules.filter((row) => row.subject === subject) : readinessSubjects.length ?
+      readinessSubjects.map((selectedSubject) =>
+        analytics.subjects.find((row) => row.subject === selectedSubject) || {
+          subject: selectedSubject,
+          module: "",
+          totalQuestions: 0,
+          attempted: 0,
+          correct: 0,
+          wrong: 0,
+          unanswered: 0,
+          activeTimeSec: 0,
+          allocatedTimeSec: 0,
+          accuracy: null,
+          averageTimeSec: null,
+          sampleSize: 0,
+        }) : analytics.subjects;
   const recommendations = recommendationsFor(
     recommendationRows,
     recommendationLevel,
@@ -498,13 +524,13 @@ export default function StudentAnalyticsPage({
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <Link
-              href={educatorMode ? `/app/educator/bootcamps/${bootcamp}/analytics` : `/app/bootcamps/${bootcamp}`}
+              href={educatorMode ? educatorBackHref || `/app/educator/bootcamps/${bootcamp}/analytics` : `/app/bootcamps/${bootcamp}`}
               className="inline-flex items-center gap-2 text-sm font-bold text-slate-700"
             >
               <span className="grid h-8 w-8 place-items-center rounded-full bg-white shadow-sm">
                 <span className="h-2.5 w-2.5 rotate-45 border-b-[3px] border-l-[3px] border-brand-green" />
               </span>
-              {educatorMode ? "Analytics directory" : `${bootcamp.toUpperCase()} bootcamp`}
+              {educatorMode ? educatorBackHref ? "Group analytics" : "Analytics directory" : `${bootcamp.toUpperCase()} bootcamp`}
             </Link>
             <h1 className="mt-4 text-4xl font-semibold">{educatorMode ? educatorStudentName || "Student analytics" : "Analytics"}</h1>
             <p className="mt-2 text-sm text-slate-500">

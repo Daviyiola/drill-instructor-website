@@ -1,0 +1,152 @@
+[
+  {
+    "skill_tested": "Joining related independent clauses",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      ", Bose's maps",
+      "; Bose's maps",
+      ": while Bose's maps",
+      " Bose's maps"
+    ],
+    "correctAnswer": "; Bose's maps",
+    "step1": "The statements about conventional maps and Bose's maps are independent clauses.",
+    "step2": "A semicolon correctly joins the closely related contrasting clauses.",
+    "difficulty": "Medium",
+    "module": "Sentence Structure"
+  },
+  {
+    "skill_tested": "Evaluating a detail that explains development of a design",
+    "question": "Should the writer keep or delete the underlined sentence?",
+    "options": [
+      "Keep it, because it identifies the user observation that changed Bose's approach to texture.",
+      "Keep it, because it proves all printed maps use smooth building outlines.",
+      "Delete it, because the passage does not name the workshop participant.",
+      "Delete it, because route lines are unrelated to navigation."
+    ],
+    "correctAnswer": "Keep it, because it identifies the user observation that changed Bose's approach to texture.",
+    "step1": "The paragraph explains how Bose came to treat texture as functional information.",
+    "step2": "The participant's difficulty supplies the specific cause of that design decision.",
+    "difficulty": "Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Avoiding unnecessary punctuation in a restrictive phrase",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "—using a machine, that builds",
+      ", using a machine, that builds",
+      " using a machine that builds",
+      "; using a machine that builds"
+    ],
+    "correctAnswer": " using a machine that builds",
+    "step1": "The phrase explains how Bose prints the plan, and 'that builds' restrictively identifies the machine.",
+    "step2": "No punctuation is needed before the modifying phrase or before the restrictive clause.",
+    "difficulty": "Hard",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Choosing a precise adjective in context",
+    "question": "Which choice most precisely describes symbols that readers can tell apart?",
+    "options": [
+      "nice",
+      "distinct",
+      "famous",
+      "decorative"
+    ],
+    "correctAnswer": "distinct",
+    "step1": "The passage emphasizes that each texture must be distinguishable by touch.",
+    "step2": "'Distinct' precisely means recognizably different from the other symbols.",
+    "difficulty": "Medium",
+    "module": "Word Choice and Usage"
+  },
+  {
+    "skill_tested": "Correcting a dangling introductory modifier",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "Testing the symbols before finalizing them, the confusing features are found by Bose.",
+      "The symbols being tested, confusing features identify Bose.",
+      "Before finalizing them, the map's confusing features test the volunteers.",
+      "By testing the symbols with volunteers before finalizing them, Bose identifies the map's confusing features."
+    ],
+    "correctAnswer": "By testing the symbols with volunteers before finalizing them, Bose identifies the map's confusing features.",
+    "step1": "The person performing the testing must appear immediately after the introductory phrase.",
+    "step2": "The correct choice places 'Bose' as the actor and clearly states what she identifies.",
+    "difficulty": "Very Hard",
+    "module": "Modifiers and Comparisons"
+  },
+  {
+    "skill_tested": "Selecting a cause-and-effect transition",
+    "question": "Which transition is most logical in context?",
+    "options": [
+      "For example,",
+      "Meanwhile,",
+      "For this reason,",
+      "Nevertheless,"
+    ],
+    "correctAnswer": "For this reason,",
+    "step1": "Different readers may interpret textures differently, creating a need for testing.",
+    "step2": "'For this reason' accurately introduces Bose's response to that problem.",
+    "difficulty": "Hard",
+    "module": "Transitions and Logical Relationships"
+  },
+  {
+    "skill_tested": "Using a colon to introduce a list",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "; a symbol mistaken for another, a route line lost beneath a label, and a landmark noticed too late",
+      ", a symbol mistaken for another, a route line lost beneath a label, and a landmark noticed too late",
+      "—a symbol mistaken for another; a route line lost beneath a label; and a landmark noticed too late",
+      ": a symbol mistaken for another, a route line lost beneath a label, and a landmark noticed too late"
+    ],
+    "correctAnswer": ": a symbol mistaken for another, a route line lost beneath a label, and a landmark noticed too late",
+    "step1": "The complete clause announces three kinds of difficulty.",
+    "step2": "A colon correctly introduces the list that names those difficulties.",
+    "difficulty": "Hard",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Selecting a precise verb for reducing information to essentials",
+    "question": "Which choice most precisely expresses the intended meaning?",
+    "options": [
+      "filter",
+      "decorate",
+      "distill",
+      "scatter"
+    ],
+    "correctAnswer": "distill",
+    "step1": "Bose removes unnecessary visual details while preserving useful navigation choices.",
+    "step2": "'Distill' precisely means reducing something to its essential elements.",
+    "difficulty": "Medium",
+    "module": "Word Choice and Usage"
+  },
+  {
+    "skill_tested": "Evaluating a quotation as a synthesis of a passage",
+    "question": "Should the writer keep or delete Bose's quotation?",
+    "options": [
+      "Keep it, because it distinguishes visual description from the practical decisions the maps support.",
+      "Keep it, because it claims tactile maps should reproduce every visible feature.",
+      "Delete it, because the passage never mentions travelers making decisions.",
+      "Delete it, because quotations cannot effectively conclude informational passages."
+    ],
+    "correctAnswer": "Keep it, because it distinguishes visual description from the practical decisions the maps support.",
+    "step1": "Throughout the passage, Bose selects textures and details according to their usefulness for navigation.",
+    "step2": "The quotation synthesizes that purpose by emphasizing action rather than visual imitation.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Determining whether a passage fulfills a stated purpose",
+    "question": "Suppose the writer's purpose were to explain how a designer's process supports accessible navigation. Would this passage accomplish that purpose?",
+    "options": [
+      "Yes, because it compares the selling prices of conventional and tactile maps.",
+      "Yes, because it traces Bose's simplification, texture choices, user testing, and route-focused revisions.",
+      "No, because it focuses primarily on the history of digital street plans.",
+      "No, because it argues that travelers should avoid unfamiliar places."
+    ],
+    "correctAnswer": "Yes, because it traces Bose's simplification, texture choices, user testing, and route-focused revisions.",
+    "step1": "The passage explains multiple stages of Bose's design and testing process.",
+    "step2": "Each stage is explicitly connected to helping travelers identify routes and make independent choices.",
+    "difficulty": "Hard",
+    "module": "Topic Development"
+  }
+]

@@ -1,0 +1,108 @@
+{
+  "subject": "English",
+  "existingQuestionCount": 100,
+  "newQuestionCount": 300,
+  "finalQuestionCount": 400,
+  "newFormCount": 6,
+  "practiceYearAssignment": "deferred_until_final_bundle_shuffle",
+  "bundleRules": {
+    "LONG": {
+      "questionCount": 10,
+      "reportingCategories": {
+        "Production of Writing": 4,
+        "Knowledge of Language": 2,
+        "Conventions of Standard English": 4
+      },
+      "difficultyTarget": {"Medium": 3, "Hard": 5, "Very Hard": 2}
+    },
+    "SHORT": {
+      "questionCount": 5,
+      "reportingCategories": {
+        "Production of Writing": 2,
+        "Knowledge of Language": 1,
+        "Conventions of Standard English": 2
+      },
+      "difficultyTarget": {"Medium": 3, "Hard": 1, "Very Hard": 1}
+    }
+  },
+  "forms": [
+    {
+      "form": 1,
+      "provisionalRange": "101-150",
+      "status": "validated",
+      "bundles": [
+        {"bundleId": "source-01-a", "sourceId": 1, "blueprint": "A", "passageClass": "LONG", "passageType": "argumentative", "provisionalStartKey": 101, "status": "validated"},
+        {"bundleId": "source-02-a", "sourceId": 2, "blueprint": "A", "passageClass": "LONG", "passageType": "narrative", "provisionalStartKey": 111, "status": "validated"},
+        {"bundleId": "source-03-a", "sourceId": 3, "blueprint": "A", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 121, "status": "validated"},
+        {"bundleId": "source-07-a", "sourceId": 7, "blueprint": "A", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 131, "status": "validated"},
+        {"bundleId": "source-05-a", "sourceId": 5, "blueprint": "A", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 141, "status": "validated"},
+        {"bundleId": "source-06-a", "sourceId": 6, "blueprint": "A", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 146, "status": "validated"}
+      ]
+    },
+    {
+      "form": 2,
+      "provisionalRange": "151-200",
+      "status": "validated",
+      "bundles": [
+        {"bundleId": "source-01-b", "sourceId": 1, "blueprint": "B", "passageClass": "LONG", "passageType": "argumentative", "provisionalStartKey": 151, "status": "validated"},
+        {"bundleId": "source-02-b", "sourceId": 2, "blueprint": "B", "passageClass": "LONG", "passageType": "narrative", "provisionalStartKey": 161, "status": "validated"},
+        {"bundleId": "source-03-b", "sourceId": 3, "blueprint": "B", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 171, "status": "validated"},
+        {"bundleId": "source-07-b", "sourceId": 7, "blueprint": "B", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 181, "status": "validated"},
+        {"bundleId": "source-05-b", "sourceId": 5, "blueprint": "B", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 191, "status": "validated"},
+        {"bundleId": "source-06-b", "sourceId": 6, "blueprint": "B", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 196, "status": "validated"}
+      ]
+    },
+    {
+      "form": 3,
+      "provisionalRange": "201-250",
+      "status": "validated",
+      "bundles": [
+        {"bundleId": "source-04-a", "sourceId": 4, "blueprint": "A", "passageClass": "LONG", "passageType": "narrative", "provisionalStartKey": 201, "status": "validated"},
+        {"bundleId": "source-09-a", "sourceId": 9, "blueprint": "A", "passageClass": "LONG", "passageType": "argumentative", "provisionalStartKey": 211, "status": "validated"},
+        {"bundleId": "source-10-a", "sourceId": 10, "blueprint": "A", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 221, "status": "validated"},
+        {"bundleId": "source-12-a", "sourceId": 12, "blueprint": "A", "passageClass": "LONG", "passageType": "narrative", "provisionalStartKey": 231, "status": "validated"},
+        {"bundleId": "source-08-a", "sourceId": 8, "blueprint": "A", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 241, "status": "validated"},
+        {"bundleId": "source-11-a", "sourceId": 11, "blueprint": "A", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 246, "status": "validated"}
+      ]
+    },
+    {
+      "form": 4,
+      "provisionalRange": "251-300",
+      "status": "validated",
+      "bundles": [
+        {"bundleId": "source-04-b", "sourceId": 4, "blueprint": "B", "passageClass": "LONG", "passageType": "narrative", "provisionalStartKey": 251, "status": "validated"},
+        {"bundleId": "source-09-b", "sourceId": 9, "blueprint": "B", "passageClass": "LONG", "passageType": "argumentative", "provisionalStartKey": 261, "status": "validated"},
+        {"bundleId": "source-10-b", "sourceId": 10, "blueprint": "B", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 271, "status": "validated"},
+        {"bundleId": "source-12-b", "sourceId": 12, "blueprint": "B", "passageClass": "LONG", "passageType": "narrative", "provisionalStartKey": 281, "status": "validated"},
+        {"bundleId": "source-08-b", "sourceId": 8, "blueprint": "B", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 291, "status": "validated"},
+        {"bundleId": "source-11-b", "sourceId": 11, "blueprint": "B", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 296, "status": "validated"}
+      ]
+    },
+      {
+        "form": 5,
+        "provisionalRange": "301-350",
+        "status": "validated",
+      "bundles": [
+        {"bundleId": "source-14-a", "sourceId": 14, "blueprint": "A", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 301, "status": "validated"},
+        {"bundleId": "source-16-a", "sourceId": 16, "blueprint": "A", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 311, "status": "validated"},
+        {"bundleId": "source-18-a", "sourceId": 18, "blueprint": "A", "passageClass": "LONG", "passageType": "argumentative", "provisionalStartKey": 321, "status": "validated"},
+        {"bundleId": "gap-long-a", "sourceId": null, "blueprint": "A", "passageClass": "LONG", "passageType": "narrative", "provisionalStartKey": 331, "status": "validated"},
+        {"bundleId": "source-13-a", "sourceId": 13, "blueprint": "A", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 341, "status": "validated"},
+        {"bundleId": "source-15-a", "sourceId": 15, "blueprint": "A", "passageClass": "SHORT", "passageType": "narrative", "provisionalStartKey": 346, "status": "validated"}
+      ]
+    },
+      {
+        "form": 6,
+        "provisionalRange": "351-400",
+        "status": "validated",
+      "bundles": [
+        {"bundleId": "source-14-b", "sourceId": 14, "blueprint": "B", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 351, "status": "validated"},
+        {"bundleId": "source-16-b", "sourceId": 16, "blueprint": "B", "passageClass": "LONG", "passageType": "informational", "provisionalStartKey": 361, "status": "validated"},
+        {"bundleId": "source-18-b", "sourceId": 18, "blueprint": "B", "passageClass": "LONG", "passageType": "argumentative", "provisionalStartKey": 371, "status": "validated"},
+        {"bundleId": "gap-long-b", "sourceId": null, "blueprint": "B", "passageClass": "LONG", "passageType": "narrative", "provisionalStartKey": 381, "status": "validated"},
+        {"bundleId": "source-13-b", "sourceId": 13, "blueprint": "B", "passageClass": "SHORT", "passageType": "informational", "provisionalStartKey": 391, "status": "validated"},
+        {"bundleId": "source-15-b", "sourceId": 15, "blueprint": "B", "passageClass": "SHORT", "passageType": "narrative", "provisionalStartKey": 396, "status": "validated"}
+      ]
+    }
+  ]
+}

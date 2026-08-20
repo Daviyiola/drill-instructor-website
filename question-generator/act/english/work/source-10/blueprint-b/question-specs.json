@@ -1,0 +1,102 @@
+[
+  {
+    "skill_tested": "Choosing a transition that contrasts appearance with evidentiary value",
+    "question": "Which transition is most logical in context?",
+    "options": ["Yet,", "Similarly,", "Therefore,", "For instance,"],
+    "correctAnswer": "Yet,",
+    "step1": "The preceding sentence says the black lumps may look less informative than recognizable artifacts.",
+    "step2": "'Yet' introduces the contrasting fact that some lumps preserve prepared food and valuable evidence.",
+    "difficulty": "Hard",
+    "module": "Transitions and Logical Relationships"
+  },
+  {
+    "skill_tested": "Selecting a precise verb for careful laboratory observation",
+    "question": "Which choice is clearest and most precise in context?",
+    "options": ["look at", "examine", "eyeball", "notice around"],
+    "correctAnswer": "examine",
+    "step1": "Researchers study a newly exposed surface carefully under magnification.",
+    "step2": "'Examine' precisely describes that systematic laboratory observation.",
+    "difficulty": "Medium",
+    "module": "Word Choice and Usage"
+  },
+  {
+    "skill_tested": "Using a colon to introduce a list",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [", the size of pores, the shape of plant cells, and the distribution of grain particles", "; the size of pores, the shape of plant cells, and the distribution of grain particles", ": the size of pores, the shape of plant cells, and the distribution of grain particles", " the size of pores; the shape of plant cells; and the distribution of grain particles"],
+    "correctAnswer": ": the size of pores, the shape of plant cells, and the distribution of grain particles",
+    "step1": "The complete clause before the underlined text announces several recorded features.",
+    "step2": "A colon correctly introduces the list, whose simple items are separated by commas.",
+    "difficulty": "Hard",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Maintaining pronoun-antecedent agreement",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["it's", "there", "one's", "their"],
+    "correctAnswer": "their",
+    "step1": "The possessive pronoun refers to the plural noun 'fragments.'",
+    "step2": "The plural possessive pronoun 'their' agrees with that antecedent.",
+    "difficulty": "Medium",
+    "module": "Pronouns"
+  },
+  {
+    "skill_tested": "Placing a methodological bridge between a limitation and procedural details",
+    "question": "The sentence about experimental baking would most logically be placed at which point?",
+    "options": ["Point A", "Point B", "Point C", "Point D"],
+    "correctAnswer": "Point A",
+    "step1": "The sentence explains how researchers respond to the limitation that a micrograph cannot reveal the full preparation method.",
+    "step2": "At Point A, it bridges that limitation to the following details about producing controlled replicas.",
+    "difficulty": "Very Hard",
+    "module": "Organization and Cohesion"
+  },
+  {
+    "skill_tested": "Choosing a transition that introduces a specific illustration",
+    "question": "Which transition is most logical in context?",
+    "options": ["Nevertheless,", "In contrast,", "For example,", "Meanwhile,"],
+    "correctAnswer": "For example,",
+    "step1": "The preceding sentence says combinations of features can narrow the range of possible preparation methods.",
+    "step2": "'For example' introduces one feature and the particular method it may support.",
+    "difficulty": "Hard",
+    "module": "Transitions and Logical Relationships"
+  },
+  {
+    "skill_tested": "Maintaining agreement between a singular subject and verb",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["have suggested", "suggests", "suggest", "are suggesting"],
+    "correctAnswer": "suggests",
+    "step1": "The subject is the singular noun 'cluster,' not the plural noun 'fragments' inside the prepositional phrase.",
+    "step2": "The singular present-tense verb 'suggests' agrees with 'cluster.'",
+    "difficulty": "Hard",
+    "module": "Subject-Verb Agreement"
+  },
+  {
+    "skill_tested": "Removing unnecessary words while preserving meaning",
+    "question": "Which choice is most concise while preserving the sentence's meaning?",
+    "options": ["so as to possibly", "for the purpose of developing", "in order that they can", "to"],
+    "correctAnswer": "to",
+    "step1": "The phrase needs only to introduce the researchers' purpose for comparing several forms of evidence.",
+    "step2": "'To' states that purpose directly without redundant wording.",
+    "difficulty": "Medium",
+    "module": "Conciseness and Redundancy"
+  },
+  {
+    "skill_tested": "Maintaining a consistent past-time frame",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["had become", "became", "have become", "become"],
+    "correctAnswer": "became",
+    "step1": "The clause beginning with 'As laboratory methods improved' establishes a completed past-time frame.",
+    "step2": "The simple-past verb 'became' maintains that time frame and describes the corresponding change in practice.",
+    "difficulty": "Hard",
+    "module": "Verb Tense and Form"
+  },
+  {
+    "skill_tested": "Evaluating whether a conclusion accurately states the evidence's significance and limits",
+    "question": "Should the writer keep or delete the final sentence?",
+    "options": ["Delete it, because the passage proves that researchers can recover complete ancient recipes.", "Keep it, because it shows that every meal was prepared and shared in the same way.", "Keep it, because it emphasizes that incomplete food remains can still reveal ordinary choices while avoiding an exaggerated claim.", "Delete it, because a conclusion should introduce a newly discovered grain species."],
+    "correctAnswer": "Keep it, because it emphasizes that incomplete food remains can still reveal ordinary choices while avoiding an exaggerated claim.",
+    "step1": "The passage explains what charred fragments can suggest while repeatedly acknowledging the limits of the evidence.",
+    "step2": "The final sentence accurately synthesizes that cautious but meaningful contribution.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  }
+]

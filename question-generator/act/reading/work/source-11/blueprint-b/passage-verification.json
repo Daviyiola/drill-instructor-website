@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 11,
+  "blueprint": "B",
+  "passageAssetId": "act-reading-s11-b",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 670,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "The biological concrete mechanism and all examples are independent of the source.",
+    "The source contributes only a general mechanism-to-scale architecture."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

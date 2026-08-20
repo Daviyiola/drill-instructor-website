@@ -15,6 +15,7 @@ export interface EducatorWorkspace {
     name: string;
     country: string;
     state: string;
+    timezone?: string;
   };
   caller: {adminAccess: boolean; superAdmin: boolean};
   bootcamps: string[];
@@ -183,6 +184,10 @@ export interface SchoolAdminSnapshot {
   educators: AdminEducator[];
   students: EducatorStudent[];
   schoolGroups: EducatorGroup[];
+  policies: {
+    educatorRegistrationOpen: boolean;
+    studentEnrollmentOpen: boolean;
+  };
   activeBootcamp: string;
   syncedAt: string;
 }

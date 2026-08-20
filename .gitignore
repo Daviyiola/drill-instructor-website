@@ -1,9 +1,39 @@
-node_modules
-.next
-out
-.env*.local
-.DS_Store
-tsconfig.tsbuildinfo
+# JavaScript / Next.js build output
+node_modules/
+.next/
+out/
+coverage/
+.turbo/
+.vercel/
+*.tsbuildinfo
+.eslintcache
+
+# Environment files and local credentials. Commit templates only.
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.mobileprovision
+*.apk
+*.aab
+*.ipa
+service-account*.json
+*serviceAccount*.json
+application_default_credentials.json
+.runtimeconfig.json
+.npmrc
+
+# Local databases and emulator state
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite-journal
 
 # The Felgo client is maintained in its own Git repository. It remains nested
 # locally because the content publishing tools generate its bundled free pack.
@@ -25,6 +55,29 @@ firebase-debug.log
 firestore-debug.log
 ui-debug.log
 
+# Local development processes and generated document inspection output
+.tmp-*.out
+.tmp-*.err
+.tmp/**/rendered/
+*.inspect.ndjson
+~$*
+
+# Editor, language-tooling, and operating-system state
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+.agents/
+.codex/
+.cache/
+__pycache__/
+*.py[cod]
+*.swp
+*.swo
+*~
+
 # Reproducible immutable content-pack build artifacts
 .content-packs/
 .question-audits/
+.demo-seed/

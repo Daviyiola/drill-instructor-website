@@ -2,6 +2,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {normalizeFutureDueAt} = require("./_educatorDueDate");
 const {
   bad,
   canEditContentStatus,
@@ -223,6 +224,12 @@ exports.handler = async (req, res) => {
     if (!draftInput.title) {
       return bad(res, 400, "MISSING_TITLE");
     }
+
+    const dueResult = normalizeFutureDueAt(draftInput.dueAt);
+    if (!dueResult.ok) {
+      return bad(res, 400, dueResult.error);
+    }
+    draftInput.dueAt = dueResult.dueAt;
 
     const row = {
       drillId,

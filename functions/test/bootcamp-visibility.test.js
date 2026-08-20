@@ -34,7 +34,9 @@ function fakeDatabase(values) {
 test("normalizes only catalog bootcamps", () => {
   assert.equal(normalizeBootcamp(" SAT "), "sat");
   assert.equal(normalizeBootcamp("unknown"), "");
-  assert.deepEqual(CATALOG, ["act", "sat", "utme", "waec"]);
+  assert.equal(normalizeBootcamp("utme"), "");
+  assert.equal(normalizeBootcamp("waec"), "");
+  assert.deepEqual(CATALOG, ["act", "sat"]);
 });
 
 test("reads enabled educator plan entries in both supported shapes", () => {
@@ -75,7 +77,7 @@ test("students discover the catalog and seed from test data", async () => {
     role: "student",
     customUserId: "user_1",
     available: CATALOG,
-    entitled: ["sat", "waec"],
+    entitled: ["sat"],
   });
 });
 

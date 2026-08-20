@@ -4,6 +4,7 @@
 const crypto = require("crypto");
 const {getDatabase} = require("firebase-admin/database");
 const {allowCors, requireBearerUid} = require("./_auth");
+const {assertLicenseActive} = require("./_license");
 const {
   cleanSegment,
   correctionRevisionFor,
@@ -97,6 +98,13 @@ async function createAssignmentSession(req, res) {
       error.code = 404;
       throw error;
     }
+    const assignmentBootcamp = cleanSegment(inbox.bootcamp, 80).toLowerCase();
+    if (!assignmentBootcamp) {
+      const error = new Error("Assignment bootcamp is unavailable");
+      error.code = 409;
+      throw error;
+    }
+    await assertLicenseActive(db, studentId, assignmentBootcamp);
     if (!new Set(["assigned", "late", "started"]).has(inbox.status)) {
       const error = new Error("This assignment is not available to start");
       error.code = 409;

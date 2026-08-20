@@ -297,7 +297,8 @@ function normalizeAnswers(answers) {
     const row = asObj(answers[i]);
 
     const questionId = cleanStr(
-        row.questionId || row.question_id || "",
+        row.questionId || row.question_id || row.id || row.sourceId ||
+          row.source_id || "",
         240,
     );
 
@@ -371,6 +372,10 @@ function normalizeAnswers(answers) {
       selectedAnswer,
       correctAnswer,
       isCorrect,
+      selectedIndex: selectedIndex !== null && selectedIndex >= 0 ?
+        selectedIndex : null,
+      correctIndex: correctIndex !== null && correctIndex >= 0 ?
+        correctIndex : null,
       selectedOptionIdx: Math.max(
           0,
           selectedIndex !== null && selectedIndex >= 0 ? selectedIndex + 1 :
@@ -692,7 +697,10 @@ exports.handler = async (req, res) => {
         attempt.summary || assignedRow.summary || {});
     const subjects = normalizeSubjects(attempt.subjects);
     const modules = normalizeModules(attempt.modules);
-    const normalizedAnswers = normalizeAnswers(attempt.answers);
+    const snapshot = asObj(attempt.snapshot);
+    const rawAnswers = asArr(attempt.answers).length ?
+      attempt.answers : snapshot.answers;
+    const normalizedAnswers = normalizeAnswers(rawAnswers);
     const answers = sortAnswersByBlueprint(normalizedAnswers, drill);
 
     return res.status(200).json({

@@ -1,0 +1,8 @@
+{
+  "sourceId":18,"scale":"1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles":[
+    {"blueprint":"A","passageAssetId":"act-english-source-18-a","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":2,"paragraphFunctionSequence":3,"overallRhetoricalArchitecture":3,"questionLogicTransfer":3,"disguisedRewriteRisk":2,"overallSimilarity":2.0},"decision":"PASS","notes":"The municipal-budget argument uses financial-document design, public review timing, citations, corrections, and council adoption; it shares no music-industry subject, characters, events, or commercialization history with the source."},
+    {"blueprint":"B","passageAssetId":"act-english-source-18-b","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":3,"paragraphFunctionSequence":3,"overallRhetoricalArchitecture":3,"questionLogicTransfer":3,"disguisedRewriteRisk":2,"overallSimilarity":2.1},"decision":"PASS","notes":"The museum argument centers on public-domain status, image resolution, metadata, institutional authority, reuse concerns, and phased release rather than performers, recordings, or commercial genre expansion."}
+  ],
+  "pairDistinctness":{"decision":"PASS","notes":"Both discuss access, but A translates a decision-making document for civic participation while B releases visual files for study and creation. Their institutions, constraints, evidence, timing, and user actions are distinct."}
+}

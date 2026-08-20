@@ -1,6 +1,8 @@
 "use strict";
 
-const CATALOG = ["act", "sat", "utme", "waec"];
+// Only launch-ready bootcamps belong in entitlement and visibility flows.
+// Coming-soon products are presented by clients and cannot be added yet.
+const CATALOG = ["act", "sat"];
 
 /**
  * Normalize a bootcamp identifier used in RTDB paths.

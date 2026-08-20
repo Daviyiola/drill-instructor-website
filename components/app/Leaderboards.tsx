@@ -8,6 +8,7 @@ import type {ResolvedAccount} from "@/lib/types/account";
 import AppShell from "./AppShell";
 import AppBackLink from "./AppBackLink";
 import {useAuth} from "./AuthProvider";
+import EducatorShell from "@/components/educator/EducatorShell";
 
 interface SquadProfile {
   id: string;
@@ -33,7 +34,7 @@ function customIdPrefix(email: string) {
 
 export default function Leaderboards() {
   const router = useRouter();
-  const {user, loading} = useAuth();
+  const {user, loading, educatorWorkspace} = useAuth();
   const [account, setAccount] = useState<ResolvedAccount | null>(null);
   const [tab, setTab] = useState<LeaderboardTab>("squad");
   const [squad, setSquad] = useState<SquadProfile[]>([]);
@@ -56,6 +57,13 @@ export default function Leaderboards() {
     if (!user) return;
     setError("");
     try {
+      if (educatorWorkspace) {
+        const rankingResponse = await callFunction<{ok: true; rankings: UnitRanking[]}>(user, "getUnitRankingsHttps", {});
+        setUnits(rankingResponse.rankings || []);
+        setSquad([]);
+        setTab("battalion");
+        return;
+      }
       const nextAccount = await callFunction<ResolvedAccount>(
         user,
         "resolveSignInAccountHttps",
@@ -96,7 +104,7 @@ export default function Leaderboards() {
 
   useEffect(() => {
     void load();
-  }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [educatorWorkspace, user]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!user || !manageOpen || query.trim().length < 5) {
@@ -168,7 +176,7 @@ export default function Leaderboards() {
     }
   }
 
-  if (!account) {
+  if (!account && !educatorWorkspace) {
     return (
       <div className="grid min-h-screen place-items-center bg-brand-mist px-5 text-center text-sm font-semibold text-slate-600">
         {error || "Loading leaderboards…"}
@@ -176,8 +184,9 @@ export default function Leaderboards() {
     );
   }
 
-  return (
-    <AppShell profile={account.profile}>
+  const educatorMode = Boolean(educatorWorkspace);
+  const content = (
+    <>
       <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8 lg:px-10">
         <AppBackLink className="mb-5" />
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -192,7 +201,7 @@ export default function Leaderboards() {
           </div>
           <div className="flex gap-2">
             <button type="button" onClick={() => setInfoOpen(true)} aria-label="How leaderboards work" className="grid h-11 w-11 place-items-center rounded-2xl border border-slate-200 bg-white text-sm font-semibold text-brand-green">i</button>
-            {tab === "squad" && (
+            {!educatorMode && tab === "squad" && (
               <button
                 type="button"
                 onClick={() => setManageOpen(true)}
@@ -204,22 +213,19 @@ export default function Leaderboards() {
           </div>
         </div>
 
-        <div className="mt-7 grid grid-cols-3 rounded-2xl border-2 border-brand-green bg-white p-1">
-          {(["squad", "battalion", "corps"] as const).map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => setTab(item)}
-              className={`min-h-12 rounded-xl text-xs font-black uppercase tracking-wider sm:text-sm ${
-                tab === item
-                  ? "bg-brand-green text-white"
-                  : "text-slate-500"
-              }`}
+        <label className="mt-7 block max-w-sm text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
+          Leaderboard
+          <span className="relative mt-2 block">
+            <select
+              value={tab}
+              onChange={(event) => setTab(event.target.value as LeaderboardTab)}
+              className="min-h-12 w-full appearance-none rounded-2xl border-2 border-brand-green bg-white px-4 pr-11 text-sm font-medium capitalize text-slate-900 outline-none transition focus:ring-4 focus:ring-brand-green/10"
             >
-              {item}
-            </button>
-          ))}
-        </div>
+              {(educatorMode ? ["battalion", "corps"] as const : ["squad", "battalion", "corps"] as const).map((item) => <option key={item} value={item}>{item[0].toUpperCase() + item.slice(1)}</option>)}
+            </select>
+            <svg aria-hidden viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-brand-green"><path d="m6 8 4 4 4-4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </span>
+        </label>
 
         {error && (
           <p className="mt-5 rounded-2xl bg-red-50 p-4 text-sm text-red-700">
@@ -230,11 +236,11 @@ export default function Leaderboards() {
         <div className="mt-6 space-y-3">
           {tab === "squad" &&
             squad.map((member, index) => {
-              const isSelf = member.id === account.customUserId;
+              const isSelf = member.id === account?.customUserId;
               return (
                 <div
                   key={member.id}
-                  className="grid gap-4 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[auto_auto_minmax(0,1fr)] sm:items-center sm:p-5"
+                  className="grid grid-cols-[auto_auto_minmax(0,1fr)_auto] items-center gap-3 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:gap-4 sm:p-5"
                 >
                   <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-mist text-sm font-black text-brand-green">
                     {index + 1}
@@ -259,14 +265,21 @@ export default function Leaderboards() {
                       {member.platoonName || "Squad member"}
                     </p>
                   </div>
-                  <div className="sm:text-right">
+                  <div className="justify-self-end">
                     {!isSelf && (
                       <button
                         type="button"
                         onClick={() => setRemoving(member)}
-                        className="mt-1 text-xs font-bold text-red-700"
+                        aria-label={`Remove ${[member.firstName, member.lastName].filter(Boolean).join(" ") || "squad member"}`}
+                        title="Remove from squad"
+                        className="grid h-10 w-10 place-items-center rounded-xl border border-red-200 bg-white text-red-700 transition hover:border-red-300 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/40"
                       >
-                        Remove
+                        <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M4 7h16" />
+                          <path d="M9 7V4h6v3" />
+                          <path d="m6.5 7 1 13h9l1-13" />
+                          <path d="M10 11v5M14 11v5" />
+                        </svg>
                       </button>
                     )}
                   </div>
@@ -453,6 +466,8 @@ export default function Leaderboards() {
           </div>
         </div>
       )}
-    </AppShell>
+    </>
   );
+  if (educatorWorkspace) return <EducatorShell workspace={educatorWorkspace}>{content}</EducatorShell>;
+  return <AppShell profile={account!.profile}>{content}</AppShell>;
 }

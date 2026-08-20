@@ -1,0 +1,8 @@
+{
+  "sourceId":11,"scale":"1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles":[
+    {"blueprint":"A","passageAssetId":"act-english-source-11-a","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":3,"centralConceptualTheme":4,"paragraphFunctionSequence":4,"overallRhetoricalArchitecture":4,"questionLogicTransfer":3,"disguisedRewriteRisk":3,"overallSimilarity":2.9},"decision":"PASS","notes":"The fern passage concerns reversible dehydration in plant cells, not animal development or life-cycle reversal, and explicitly distinguishes dormancy from death."},
+    {"blueprint":"B","passageAssetId":"act-english-source-11-b","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":3,"centralConceptualTheme":4,"paragraphFunctionSequence":4,"overallRhetoricalArchitecture":4,"questionLogicTransfer":3,"disguisedRewriteRisk":3,"overallSimilarity":2.9},"decision":"PASS","notes":"The axolotl passage explains coordinated tissue repair after injury through wound covering, blastema formation, positional signals, and regrowth; it does not reuse the source organism or lifecycle sequence."}
+  ],
+  "pairDistinctness":{"decision":"PASS","notes":"A explains survival through dehydration and rehydration in a plant; B explains multi-tissue reconstruction after injury in an animal. Their mechanisms and scientific implications are distinct."}
+}

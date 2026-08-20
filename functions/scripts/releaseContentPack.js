@@ -89,43 +89,51 @@ function firebaseEnvironment() {
 function validateInputs() {
   const bootcamp = argument("bootcamp").toLowerCase();
   const project = argument("project");
-  if (!CONTENT_VERSIONS[bootcamp]) {
-    fail("Pass --bootcamp act or --bootcamp sat");
+  if (bootcamp !== "all" && !CONTENT_VERSIONS[bootcamp]) {
+    fail("Pass --bootcamp act, --bootcamp sat, or --bootcamp all");
   }
   if (!/^[a-z0-9][a-z0-9-]{4,62}$/.test(project)) {
     fail("Pass a valid Firebase project with --project");
   }
-  const descriptor = CONTENT_VERSIONS[bootcamp];
-  if (Number(descriptor.schemaVersion) !== SUPPORTED_NATIVE_SCHEMA) {
-    fail(
-        `${bootcamp.toUpperCase()} schemaVersion is ` +
-        `${descriptor.schemaVersion}; the native client currently supports ` +
-        `schema ${SUPPORTED_NATIVE_SCHEMA}.`,
-    );
-  }
-  if (!/^\d{4}\.\d{2}\.\d+$/.test(descriptor.datasetVersion)) {
-    fail(`${bootcamp.toUpperCase()} has an invalid datasetVersion`);
-  }
-  return {bootcamp, project, descriptor};
+  const bootcamps = bootcamp === "all" ? ["act", "sat"] : [bootcamp];
+  bootcamps.forEach((name) => {
+    const descriptor = CONTENT_VERSIONS[name];
+    if (Number(descriptor.schemaVersion) !== SUPPORTED_NATIVE_SCHEMA) {
+      fail(
+          `${name.toUpperCase()} schemaVersion is ` +
+          `${descriptor.schemaVersion}; the native client currently supports ` +
+          `schema ${SUPPORTED_NATIVE_SCHEMA}.`,
+      );
+    }
+    if (!/^\d{4}\.\d{2}\.\d+$/.test(descriptor.datasetVersion)) {
+      fail(`${name.toUpperCase()} has an invalid datasetVersion`);
+    }
+  });
+  return {bootcamps, project};
 }
 
 function main() {
-  const {bootcamp, project, descriptor} = validateInputs();
+  const {bootcamps, project} = validateInputs();
   const firebase = firebaseCommand();
-  phase(
-      `Releasing ${bootcamp.toUpperCase()} ${descriptor.datasetVersion} ` +
-      `(correction ${descriptor.correctionRevision})`,
-  );
+  const releaseLabel = bootcamps.map((bootcamp) => {
+    const descriptor = CONTENT_VERSIONS[bootcamp];
+    return `${bootcamp.toUpperCase()} ${descriptor.datasetVersion} ` +
+      `(correction ${descriptor.correctionRevision})`;
+  }).join(" and ");
+  phase(`Releasing ${releaseLabel}`);
 
   phase("1/4 Build and validate content artifacts");
   run(process.execPath, [path.join(__dirname, "buildContentPacks.js")]);
 
-  phase(`2/4 Publish and activate ${bootcamp.toUpperCase()}`);
-  run(process.execPath, [
-    path.join(__dirname, "publishContentPacks.js"),
-    "--project", project,
-    "--bootcamp", bootcamp,
-  ]);
+  bootcamps.forEach((bootcamp, index) => {
+    phase(`2/4 Publish and activate ${bootcamp.toUpperCase()} ` +
+      `(${index + 1}/${bootcamps.length})`);
+    run(process.execPath, [
+      path.join(__dirname, "publishContentPacks.js"),
+      "--project", project,
+      "--bootcamp", bootcamp,
+    ]);
+  });
 
   for (let index = 0; index < DEPLOY_BATCHES.length; index += 1) {
     const functions = DEPLOY_BATCHES[index];
@@ -141,30 +149,32 @@ function main() {
     });
   }
 
-  phase("4/4 Verify the active content registry");
-  const rawRegistry = run(firebase, [
-    "database:get",
-    `/contentPackRegistry/${bootcamp}`,
-    "--project",
-    project,
-  ], {capture: true, env: firebaseEnvironment()});
-  let registry;
-  try {
-    registry = JSON.parse(rawRegistry);
-  } catch (error) {
-    fail(`Firebase returned an unreadable registry response: ${error.message}`);
-  }
-  if (!registry || registry.activeVersion !== descriptor.datasetVersion ||
-      Number(registry.schemaVersion) !== Number(descriptor.schemaVersion) ||
-      Number(registry.latestCorrectionRevision || 0) !==
-        Number(descriptor.correctionRevision || 0)) {
-    fail("The live content registry does not match the requested release");
-  }
+  bootcamps.forEach((bootcamp) => {
+    const descriptor = CONTENT_VERSIONS[bootcamp];
+    phase(`4/4 Verify the active ${bootcamp.toUpperCase()} content registry`);
+    const rawRegistry = run(firebase, [
+      "database:get",
+      `/contentPackRegistry/${bootcamp}`,
+      "--project",
+      project,
+    ], {capture: true, env: firebaseEnvironment()});
+    let registry;
+    try {
+      registry = JSON.parse(rawRegistry);
+    } catch (error) {
+      fail(`Firebase returned an unreadable ${bootcamp.toUpperCase()} ` +
+        `registry response: ${error.message}`);
+    }
+    if (!registry || registry.activeVersion !== descriptor.datasetVersion ||
+        Number(registry.schemaVersion) !== Number(descriptor.schemaVersion) ||
+        Number(registry.latestCorrectionRevision || 0) !==
+          Number(descriptor.correctionRevision || 0)) {
+      fail(`The live ${bootcamp.toUpperCase()} content registry does not ` +
+        "match the requested release");
+    }
+  });
 
-  process.stdout.write(
-      `\nReleased ${bootcamp.toUpperCase()} ${descriptor.datasetVersion} ` +
-      `successfully.\n`,
-  );
+  process.stdout.write(`\nReleased ${releaseLabel} successfully.\n`);
 }
 
 main();

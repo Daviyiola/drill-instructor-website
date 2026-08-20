@@ -1,0 +1,277 @@
+{
+  "generatedAt": "2026-08-19T13:53:31.343Z",
+  "passageCount": 30,
+  "questionCount": 270,
+  "passages": [
+    {
+      "sourceId": 1,
+      "blueprint": "A",
+      "startQuestionNumber": 19,
+      "endQuestionNumber": 27,
+      "passageAssetId": "act-reading-s01-a",
+      "passageType": "Paired Passages",
+      "wordCount": 794
+    },
+    {
+      "sourceId": 1,
+      "blueprint": "B",
+      "startQuestionNumber": 28,
+      "endQuestionNumber": 36,
+      "passageAssetId": "act-reading-s01-b",
+      "passageType": "Paired Passages",
+      "wordCount": 690
+    },
+    {
+      "sourceId": 2,
+      "blueprint": "A",
+      "startQuestionNumber": 37,
+      "endQuestionNumber": 45,
+      "passageAssetId": "act-reading-s02-a",
+      "passageType": "Social Science",
+      "wordCount": 676
+    },
+    {
+      "sourceId": 2,
+      "blueprint": "B",
+      "startQuestionNumber": 46,
+      "endQuestionNumber": 54,
+      "passageAssetId": "act-reading-s02-b",
+      "passageType": "Natural Science",
+      "wordCount": 669
+    },
+    {
+      "sourceId": 3,
+      "blueprint": "A",
+      "startQuestionNumber": 55,
+      "endQuestionNumber": 63,
+      "passageAssetId": "act-reading-s03-a",
+      "passageType": "Natural Science",
+      "wordCount": 678
+    },
+    {
+      "sourceId": 3,
+      "blueprint": "B",
+      "startQuestionNumber": 64,
+      "endQuestionNumber": 72,
+      "passageAssetId": "act-reading-s03-b",
+      "passageType": "Social Science",
+      "wordCount": 686
+    },
+    {
+      "sourceId": 4,
+      "blueprint": "A",
+      "startQuestionNumber": 73,
+      "endQuestionNumber": 81,
+      "passageAssetId": "act-reading-s04-a",
+      "passageType": "Paired Passages",
+      "wordCount": 672
+    },
+    {
+      "sourceId": 4,
+      "blueprint": "B",
+      "startQuestionNumber": 82,
+      "endQuestionNumber": 90,
+      "passageAssetId": "act-reading-s04-b",
+      "passageType": "Paired Passages",
+      "wordCount": 651
+    },
+    {
+      "sourceId": 5,
+      "blueprint": "A",
+      "startQuestionNumber": 91,
+      "endQuestionNumber": 99,
+      "passageAssetId": "act-reading-s05-a",
+      "passageType": "Humanities",
+      "wordCount": 669
+    },
+    {
+      "sourceId": 5,
+      "blueprint": "B",
+      "startQuestionNumber": 100,
+      "endQuestionNumber": 108,
+      "passageAssetId": "act-reading-s05-b",
+      "passageType": "Humanities",
+      "wordCount": 681
+    },
+    {
+      "sourceId": 6,
+      "blueprint": "A",
+      "startQuestionNumber": 109,
+      "endQuestionNumber": 117,
+      "passageAssetId": "act-reading-s06-a",
+      "passageType": "Social Science",
+      "wordCount": 654
+    },
+    {
+      "sourceId": 6,
+      "blueprint": "B",
+      "startQuestionNumber": 118,
+      "endQuestionNumber": 126,
+      "passageAssetId": "act-reading-s06-b",
+      "passageType": "Natural Science",
+      "wordCount": 654
+    },
+    {
+      "sourceId": 7,
+      "blueprint": "A",
+      "startQuestionNumber": 127,
+      "endQuestionNumber": 135,
+      "passageAssetId": "act-reading-s07-a",
+      "passageType": "Natural Science",
+      "wordCount": 660
+    },
+    {
+      "sourceId": 7,
+      "blueprint": "B",
+      "startQuestionNumber": 136,
+      "endQuestionNumber": 144,
+      "passageAssetId": "act-reading-s07-b",
+      "passageType": "Social Science",
+      "wordCount": 671
+    },
+    {
+      "sourceId": 8,
+      "blueprint": "A",
+      "startQuestionNumber": 145,
+      "endQuestionNumber": 153,
+      "passageAssetId": "act-reading-s08-a",
+      "passageType": "Literary Narrative",
+      "wordCount": 677
+    },
+    {
+      "sourceId": 8,
+      "blueprint": "B",
+      "startQuestionNumber": 154,
+      "endQuestionNumber": 162,
+      "passageAssetId": "act-reading-s08-b",
+      "passageType": "Literary Narrative",
+      "wordCount": 657
+    },
+    {
+      "sourceId": 9,
+      "blueprint": "A",
+      "startQuestionNumber": 163,
+      "endQuestionNumber": 171,
+      "passageAssetId": "act-reading-s09-a",
+      "passageType": "Paired Passages",
+      "wordCount": 657
+    },
+    {
+      "sourceId": 9,
+      "blueprint": "B",
+      "startQuestionNumber": 172,
+      "endQuestionNumber": 180,
+      "passageAssetId": "act-reading-s09-b",
+      "passageType": "Paired Passages",
+      "wordCount": 652
+    },
+    {
+      "sourceId": 10,
+      "blueprint": "A",
+      "startQuestionNumber": 181,
+      "endQuestionNumber": 189,
+      "passageAssetId": "act-reading-s10-a",
+      "passageType": "Humanities",
+      "wordCount": 658
+    },
+    {
+      "sourceId": 10,
+      "blueprint": "B",
+      "startQuestionNumber": 190,
+      "endQuestionNumber": 198,
+      "passageAssetId": "act-reading-s10-b",
+      "passageType": "Humanities",
+      "wordCount": 661
+    },
+    {
+      "sourceId": 11,
+      "blueprint": "A",
+      "startQuestionNumber": 199,
+      "endQuestionNumber": 207,
+      "passageAssetId": "act-reading-s11-a",
+      "passageType": "Natural Science",
+      "wordCount": 651
+    },
+    {
+      "sourceId": 11,
+      "blueprint": "B",
+      "startQuestionNumber": 208,
+      "endQuestionNumber": 216,
+      "passageAssetId": "act-reading-s11-b",
+      "passageType": "Natural Science",
+      "wordCount": 670
+    },
+    {
+      "sourceId": 12,
+      "blueprint": "A",
+      "startQuestionNumber": 217,
+      "endQuestionNumber": 225,
+      "passageAssetId": "act-reading-s12-a",
+      "passageType": "Paired Passages",
+      "wordCount": 655
+    },
+    {
+      "sourceId": 12,
+      "blueprint": "B",
+      "startQuestionNumber": 226,
+      "endQuestionNumber": 234,
+      "passageAssetId": "act-reading-s12-b",
+      "passageType": "Paired Passages",
+      "wordCount": 657
+    },
+    {
+      "sourceId": 13,
+      "blueprint": "A",
+      "startQuestionNumber": 235,
+      "endQuestionNumber": 243,
+      "passageAssetId": "act-reading-s13-a",
+      "passageType": "Social Science",
+      "wordCount": 650
+    },
+    {
+      "sourceId": 13,
+      "blueprint": "B",
+      "startQuestionNumber": 244,
+      "endQuestionNumber": 252,
+      "passageAssetId": "act-reading-s13-b",
+      "passageType": "Social Science",
+      "wordCount": 653
+    },
+    {
+      "sourceId": 14,
+      "blueprint": "A",
+      "startQuestionNumber": 253,
+      "endQuestionNumber": 261,
+      "passageAssetId": "act-reading-s14-a",
+      "passageType": "Humanities",
+      "wordCount": 658
+    },
+    {
+      "sourceId": 14,
+      "blueprint": "B",
+      "startQuestionNumber": 262,
+      "endQuestionNumber": 270,
+      "passageAssetId": "act-reading-s14-b",
+      "passageType": "Humanities",
+      "wordCount": 655
+    },
+    {
+      "sourceId": 15,
+      "blueprint": "A",
+      "startQuestionNumber": 271,
+      "endQuestionNumber": 279,
+      "passageAssetId": "act-reading-s15-a",
+      "passageType": "Natural Science",
+      "wordCount": 687
+    },
+    {
+      "sourceId": 15,
+      "blueprint": "B",
+      "startQuestionNumber": 280,
+      "endQuestionNumber": 288,
+      "passageAssetId": "act-reading-s15-b",
+      "passageType": "Natural Science",
+      "wordCount": 668
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {assertLicenseActive} = require("./_license");
 
 /**
  * Send standardized error response.
@@ -204,6 +205,12 @@ exports.handler = async (req, res) => {
         40,
     ).toLowerCase();
 
+    if (!bootcampFilter) {
+      return bad(res, 400, "MISSING_BOOTCAMP");
+    }
+
+    await assertLicenseActive(db, studentId, bootcampFilter);
+
     const assignmentsSnap = await db
         .ref(`users/${studentId}/assignedDrills`)
         .once("value");
@@ -234,6 +241,10 @@ exports.handler = async (req, res) => {
     });
   } catch (e) {
     const details = errText(e);
+
+    if ([400, 403, 409].includes(Number(e && e.code))) {
+      return bad(res, Number(e.code), "SUBSCRIPTION_REQUIRED", details);
+    }
 
     if (Number(e && e.code) === 401) {
       return bad(res, 401, "AUTHENTICATION_REQUIRED");

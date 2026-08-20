@@ -153,6 +153,36 @@ function normalizeSummary(summary) {
 }
 
 /**
+ * Return time that can be attributed to questions in an attempt.
+ *
+ * Session active time can include a few seconds between questions or on the
+ * submission screen. Educator averages are question metrics, so they use the
+ * same subject/question timing represented in Results.
+ *
+ * @param {Object} attempt Canonical assignment attempt
+ * @param {number} fallbackSec Session-level fallback
+ * @return {number}
+ */
+function attributedUsedSec(attempt, fallbackSec) {
+  const subjectTotal = asArr(asObj(attempt).subjects).reduce((sum, value) => {
+    const row = asObj(value);
+    return sum + Math.max(0, Number(
+        row.usedSec || row.timeSec || row.time_sec || 0));
+  }, 0);
+
+  if (subjectTotal > 0) return subjectTotal;
+
+  const answerTotal = asArr(asObj(attempt).answers).reduce((sum, value) => {
+    const row = asObj(value);
+    const seconds = Number(row.timeSpentSec || 0) ||
+      (Math.max(0, Number(row.timeTakenMs || 0)) / 1000);
+    return sum + Math.max(0, seconds);
+  }, 0);
+
+  return answerTotal > 0 ? answerTotal : Math.max(0, Number(fallbackSec || 0));
+}
+
+/**
  * Return default aggregate stats bucket.
  *
  * @return {Object}
@@ -713,6 +743,9 @@ exports.handler = async (req, res) => {
 
       const summary = normalizeSummary(
           attempt.summary || assigned.summary || {});
+      summary.usedSec = attributedUsedSec(attempt, summary.usedSec);
+      summary.meanSec = summary.attempted > 0 ?
+        Math.floor(summary.usedSec / summary.attempted) : 0;
       addAgg(overallBucket, summary);
 
       let studentName = studentId;
@@ -1059,3 +1092,4 @@ exports.handler = async (req, res) => {
 exports.indexedOption = indexedOption;
 exports.answerContent = answerContent;
 exports.optionDistribution = optionDistribution;
+exports.attributedUsedSec = attributedUsedSec;

@@ -28,9 +28,10 @@
  * 3. Keep schemaVersion at 2 unless the content structure changes.
  * 4. From the repository root, run:
  *
- * npm.cmd run content:release -- --bootcamp act --project drill-instructor-pro
+ * set FUNCTIONS_DISCOVERY_TIMEOUT=120
+ * npm.cmd run content:release -- --bootcamp all --project drill-instructor-pro
  *
- * For SAT, replace "act" with "sat".
+ * Use "act" or "sat" instead of "all" when releasing only one bootcamp.
  *
  * The command builds, publishes, deploys Functions, and verifies the registry.
  *
@@ -40,13 +41,13 @@
  */
 const CONTENT_VERSIONS = Object.freeze({
   act: Object.freeze({
-    datasetVersion: "2026.08.5",
+    datasetVersion: "2026.08.4",
     schemaVersion: 2,
     correctionRevision: 0,
     freePracticeTests: Object.freeze([1, 2]),
   }),
   sat: Object.freeze({
-    datasetVersion: "2026.08.5",
+    datasetVersion: "2026.08.2",
     schemaVersion: 2,
     correctionRevision: 0,
     freePracticeTests: Object.freeze([1, 2]),

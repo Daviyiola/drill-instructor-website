@@ -20,6 +20,17 @@ function time(seconds: number) {
   return value >= 60 ? `${Math.floor(value / 60)}m ${value % 60}s` : `${value}s`;
 }
 
+function rowName(row: GatewayRow) {
+  return row.name || `${row.firstName || ""} ${row.lastName || ""}`.trim();
+}
+
+function sortValue(row: GatewayRow, key: SortKey) {
+  if (key === "name") return rowName(row).toLocaleLowerCase();
+  if (key === "accuracy") return Number(row.accuracyPct || 0);
+  if (key === "averagetime") return Number(row.avgTimeSec || 0);
+  return Number(row[key] || 0);
+}
+
 export default function EducatorAnalyticsGateway({bootcamp}: {bootcamp: string}) {
   const {user} = useAuth();
   const [tab, setTab] = useState<"students" | "groups">("students");
@@ -37,11 +48,21 @@ export default function EducatorAnalyticsGateway({bootcamp}: {bootcamp: string})
     const controller = new AbortController();
     const currentRequest = requestId.current + 1;
     requestId.current = currentRequest;
-    setBusy(true); setError("");
-    callFunction<GatewayResponse>(user, "getEducatorAnalyticsGatewayHttps", {bootcamp, range, sortBy, orderBy}, {retryTransient: true, signal: controller.signal})
+    const cacheKey = `di.educator.analytics-gateway:${user.uid}:${bootcamp}:${range}`;
+    let cached = false;
+    try {
+      const value = sessionStorage.getItem(cacheKey);
+      if (value) {
+        setData(JSON.parse(value) as GatewayResponse);
+        cached = true;
+      }
+    } catch { /* optional browser cache */ }
+    setBusy(!cached); setError("");
+    callFunction<GatewayResponse>(user, "getEducatorAnalyticsGatewayHttps", {bootcamp, range}, {retryTransient: true, signal: controller.signal})
       .then((response) => {
         if (requestId.current !== currentRequest) return;
         setData(response);
+        try { sessionStorage.setItem(cacheKey, JSON.stringify(response)); } catch { /* optional browser cache */ }
       }).catch((reason) => {
         if (controller.signal.aborted || requestId.current !== currentRequest) return;
         setError((reason as Error).message);
@@ -49,8 +70,19 @@ export default function EducatorAnalyticsGateway({bootcamp}: {bootcamp: string})
         if (requestId.current === currentRequest) setBusy(false);
       });
     return () => controller.abort();
-  }, [bootcamp, orderBy, range, sortBy, user]);
-  const rows = useMemo(() => (data?.[tab] || []).filter((row) => `${row.name || ""} ${row.firstName || ""} ${row.lastName || ""}`.toLowerCase().includes(query.trim().toLowerCase())), [data, query, tab]);
+  }, [bootcamp, range, user]);
+  const rows = useMemo(() => {
+    const direction = orderBy === "asc" ? 1 : -1;
+    return (data?.[tab] || [])
+      .filter((row) => `${row.name || ""} ${row.firstName || ""} ${row.lastName || ""}`.toLowerCase().includes(query.trim().toLowerCase()))
+      .slice()
+      .sort((a, b) => {
+        const av = sortValue(a, sortBy);
+        const bv = sortValue(b, sortBy);
+        if (typeof av === "string" && typeof bv === "string") return av.localeCompare(bv) * direction;
+        return (Number(av) - Number(bv)) * direction;
+      });
+  }, [data, orderBy, query, sortBy, tab]);
   const visibleRows = rows.slice(0, visibleCount);
 
   useEffect(() => {

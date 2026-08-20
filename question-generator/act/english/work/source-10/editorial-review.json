@@ -1,0 +1,21 @@
+{
+  "sourceId": 10,
+  "scale": "1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles": [
+    {
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-10-a",
+      "scores": {"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":3,"paragraphFunctionSequence":3,"overallRhetoricalArchitecture":3,"questionLogicTransfer":3,"disguisedRewriteRisk":2,"overallSimilarity":2.1},
+      "decision": "PASS",
+      "notes": "The optical recovery of wax-cylinder recordings uses a laboratory and archival process unrelated to park administration, road construction, military service, or giant sequoias."
+    },
+    {
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-10-b",
+      "scores": {"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":2,"paragraphFunctionSequence":3,"overallRhetoricalArchitecture":3,"questionLogicTransfer":3,"disguisedRewriteRisk":2,"overallSimilarity":2.0},
+      "decision": "PASS",
+      "notes": "The archaeobotanical investigation centers on microscopy, controlled baking, contextual evidence, and cautious inference rather than a historical leader or infrastructure project."
+    }
+  ],
+  "pairDistinctness": {"decision":"PASS","notes":"A reconstructs historic sound with optical technology; B interprets ancient food with microscopy and experimental archaeology. Their materials, methods, evidence, and conclusions are distinct."}
+}

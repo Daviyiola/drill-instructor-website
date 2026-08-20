@@ -2,6 +2,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {assertLicenseActive} = require("./_license");
 const {resolveAssignmentRelease} = require("./_analytics");
 const {releaseFromDrill} = require("./studentAssignmentsHttps");
 
@@ -277,6 +278,8 @@ exports.handler = async (req, res) => {
       return bad(res, 403, "NOT_A_STUDENT");
     }
 
+    await assertLicenseActive(db, studentId, bootcamp);
+
     const inboxSnap = await db
         .ref(`users/${studentId}/assignedDrills/${drillId}`)
         .once("value");
@@ -428,6 +431,10 @@ exports.handler = async (req, res) => {
     });
   } catch (e) {
     const details = errText(e);
+
+    if ([400, 403, 409].includes(Number(e && e.code))) {
+      return bad(res, Number(e.code), "SUBSCRIPTION_REQUIRED", details);
+    }
 
     if (
       details.includes("auth/id-token-expired") ||

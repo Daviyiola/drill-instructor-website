@@ -62,8 +62,7 @@ export default function BootcampOverview({bootcamp}: {bootcamp: string}) {
             alt=""
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/10" />
-          <div className="relative max-w-xl p-7 sm:p-10">
+          <div className="relative max-w-xl p-7 drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)] sm:p-10">
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-brand-gold">
               Bootcamp
             </p>
@@ -226,12 +225,17 @@ export default function BootcampOverview({bootcamp}: {bootcamp: string}) {
             </p>
           </Link>
           <Link
-            href={`/app/bootcamps/${bootcamp}/assignments`}
+            href={licensed
+              ? `/app/bootcamps/${bootcamp}/assignments`
+              : `/app/bootcamps/${bootcamp}/subscription`}
             className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-brand-green/30"
           >
-            <p className="text-xs font-medium uppercase tracking-wider text-brand-green/60">Assignments</p>
+            <div className="flex items-start justify-between gap-3">
+              <p className="text-xs font-medium uppercase tracking-wider text-brand-green/60">Assignments</p>
+              {!licensed && <span className="text-xs text-slate-400" aria-label="Subscription required">Locked</span>}
+            </div>
             <p className="mt-3 text-lg font-semibold">School drills</p>
-            <p className="mt-2 text-sm leading-5 text-slate-500">Open work assigned by your educators.</p>
+            <p className="mt-2 text-sm leading-5 text-slate-500">{licensed ? "Open work assigned by your educators." : "Subscribe to open school assignments."}</p>
           </Link>
         </section>
       </div>

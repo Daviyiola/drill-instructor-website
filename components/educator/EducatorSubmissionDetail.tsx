@@ -35,13 +35,18 @@ type Answer = {
   selectedAnswer: string;
   correctAnswer: string;
   isCorrect: boolean;
+  selectedIndex?: number | null;
+  correctIndex?: number | null;
   selectedOptionIdx: number;
+  practiceYear?: number;
   timeTakenMs: number;
   option1: string;
   option2: string;
   option3: string;
   option4: string;
   explanation: string;
+  passage?: string;
+  imageSources?: string[];
   payload: Record<string, unknown>;
 };
 
@@ -90,29 +95,36 @@ function matchingOption(options: string[], answer: string) {
   return target ? options.findIndex((option) => questionText(option) === target) : -1;
 }
 
+function optionIndex(value: unknown, optionCount: number) {
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed >= 0 && parsed < optionCount ?
+    parsed : null;
+}
+
 function answerResult(row: Answer, fallbackPosition: number): DrillAnswerResult {
   const payload = row.payload || {};
   const options = [row.option1, row.option2, row.option3, row.option4].filter(Boolean);
   const selectedByText = matchingOption(options, row.selectedAnswer);
-  const explicitSelected = number(row.selectedOptionIdx);
-  const selectedIndex = row.selectedAnswer
-    ? selectedByText >= 0
-      ? selectedByText
-      : explicitSelected >= 0 && explicitSelected < options.length
-        ? explicitSelected
-        : null
-    : null;
-  const correctIndex = matchingOption(options, row.correctAnswer);
+  const canonicalSelected = optionIndex(row.selectedIndex, options.length);
+  // Older educator projections exposed this field as one-based.
+  const legacySelected = optionIndex(number(row.selectedOptionIdx) - 1, options.length);
+  const selectedIndex = selectedByText >= 0 ? selectedByText :
+    canonicalSelected ?? legacySelected;
+  const correctByText = matchingOption(options, row.correctAnswer);
+  const correctIndex = correctByText >= 0 ? correctByText :
+    optionIndex(row.correctIndex, options.length) ?? -1;
   const prompt = String(payload.prompt || payload.question || payload.questionText || row.question || "");
   return {
     id: row.questionId,
     sourceId: String(payload.sourceId || payload.source_id || row.questionId),
     subject: row.subject || String(payload.subject || "General"),
     module: row.module || String(payload.module || "General"),
-    practiceYear: number(payload.practiceYear || payload.practiceTest || payload.practice_year),
+    practiceYear: number(row.practiceYear || payload.practiceYear || payload.practiceTest || payload.practice_year),
     prompt,
-    passage: String(payload.passage || payload.reference || ""),
-    imageSources: Array.isArray(payload.imageSources)
+    passage: String(row.passage || payload.passage || payload.reference || ""),
+    imageSources: Array.isArray(row.imageSources)
+      ? row.imageSources.map(String)
+      : Array.isArray(payload.imageSources)
       ? payload.imageSources.map(String)
       : String(payload.imageSource || payload.image || payload.asset || "")
           .split("|").filter(Boolean),
@@ -193,7 +205,7 @@ export default function EducatorSubmissionDetail({
   const encodedAttempt = encodeURIComponent(attemptId);
   const dashboardHref = `/app/educator/bootcamps/${bootcamp}/drills/${drillId}`;
   const resultHref = `${dashboardHref}/students/${encodedStudent}?attemptId=${encodedAttempt}`;
-  const reviewHref = `${dashboardHref}/students/${encodedStudent}/review?attemptId=${encodedAttempt}`;
+  const reviewHref = `${resultHref}&review=1`;
   const sharedContext = {
     studentName: data.student.studentName,
     drillTitle: data.drill.title,

@@ -2,6 +2,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {normalizeFutureDueAt} = require("./_educatorDueDate");
 const {
   bad,
   cleanStr,
@@ -31,15 +32,15 @@ function canChangeDrillStatus(drill, educatorId, schoolEducator) {
 }
 
 /**
- * Return ISO due date seven days from now at 11:59 PM UTC.
+ * Preserve the native client's established automatic reopen deadline.
+ * The web client sends an educator-selected future date explicitly.
  *
- * @return {string}
+ * @return {string} ISO timestamp seven days from now.
  */
-function nextWeekDueAtIso() {
-  const d = new Date();
-  d.setUTCDate(d.getUTCDate() + 7);
-  d.setUTCHours(23, 59, 0, 0);
-  return d.toISOString();
+function defaultReopenDueAt() {
+  const date = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+  date.setUTCHours(23, 59, 0, 0);
+  return date.toISOString();
 }
 
 /**
@@ -198,10 +199,15 @@ exports.handler = async (req, res) => {
     }
 
     if (action === "reopen") {
+      const requestedDueAt = body.dueAt || defaultReopenDueAt();
+      const dueResult = normalizeFutureDueAt(requestedDueAt);
+      if (!dueResult.ok || !dueResult.dueAt) {
+        return bad(res, 400, dueResult.error || "REOPEN_DUE_DATE_REQUIRED");
+      }
       newStatus = "published";
       reopenedAt = nowIso;
       closedAt = "";
-      newDueAt = nextWeekDueAtIso();
+      newDueAt = dueResult.dueAt;
 
       updates[`schools/${schoolId}/educatorDrills/${drillId}/status`] =
         newStatus;

@@ -19,7 +19,10 @@ function subjectArtwork(subject: string) {
     return "/app-assets/drills/Mathematics.png";
   }
   if (normalized.includes("science")) {
-    return "/app-assets/drills/Biology.png";
+    return "/app-assets/drills/Science.png";
+  }
+  if (normalized.includes("reading")) {
+    return "/app-assets/drills/Reading.png";
   }
   return "/app-assets/drills/English.png";
 }

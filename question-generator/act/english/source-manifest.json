@@ -1,0 +1,29 @@
+{
+  "subject": "English",
+  "practiceYearAssignment": "deferred_until_form_assembly",
+  "formContract": {
+    "longPassages": 4,
+    "shortPassages": 2,
+    "questions": 50
+  },
+  "sources": [
+    {"sourceId": 1, "sourceSet": 1, "title": "Seeing Streams in a New Light", "passageClass": "LONG", "questionCount": 10, "passageType": "argumentative", "include": true},
+    {"sourceId": 2, "sourceSet": 1, "title": "Long Distance", "passageClass": "LONG", "questionCount": 10, "passageType": "narrative", "include": true},
+    {"sourceId": 3, "sourceSet": 1, "title": "Threading Connections", "passageClass": "LONG", "questionCount": 10, "passageType": "informational", "include": true},
+    {"sourceId": 4, "sourceSet": 1, "title": "The Object of Love", "passageClass": "LONG", "questionCount": 10, "passageType": "narrative", "include": true},
+    {"sourceId": 5, "sourceSet": 1, "title": "(Re)Defining Music", "passageClass": "SHORT", "questionCount": 5, "passageType": "informational", "include": true},
+    {"sourceId": 6, "sourceSet": 1, "title": "Southside Blooms", "passageClass": "SHORT", "questionCount": 5, "passageType": "informational", "include": true},
+    {"sourceId": 7, "sourceSet": 2, "title": "NASA's Inaugural Artist in Residence", "passageClass": "LONG", "questionCount": 10, "passageType": "informational", "include": true},
+    {"sourceId": 8, "sourceSet": 2, "title": "Zebra ID: Biological Bar Codes", "passageClass": "SHORT", "questionCount": 5, "passageType": "informational", "include": true},
+    {"sourceId": 9, "sourceSet": 2, "title": "Celadon Remnants", "passageClass": "LONG", "questionCount": 10, "passageType": "informational", "include": true},
+    {"sourceId": 10, "sourceSet": 2, "title": "Captain Charles Young's Road to the Giant Sequoias", "passageClass": "LONG", "questionCount": 10, "passageType": "informational", "include": true},
+    {"sourceId": 11, "sourceSet": 2, "title": "The Curious Case of Turritopsis dohrnii", "passageClass": "SHORT", "questionCount": 5, "passageType": "informational", "include": true},
+    {"sourceId": 12, "sourceSet": 2, "title": "Ukulele Life", "passageClass": "LONG", "questionCount": 10, "passageType": "narrative", "include": true},
+    {"sourceId": 13, "sourceSet": 3, "title": "Double the Manta Rays", "passageClass": "SHORT", "questionCount": 5, "passageType": "informational", "include": true},
+    {"sourceId": 14, "sourceSet": 3, "title": "Origins of Aspirin", "passageClass": "LONG", "questionCount": 10, "passageType": "informational", "include": true},
+    {"sourceId": 15, "sourceSet": 3, "title": "Good Vibrations", "passageClass": "SHORT", "questionCount": 5, "passageType": "informational", "include": true},
+    {"sourceId": 16, "sourceSet": 3, "title": "Building and Rebuilding ‘the King of Roads’", "passageClass": "LONG", "questionCount": 10, "passageType": "informational", "include": true},
+    {"sourceId": 17, "sourceSet": 3, "title": "The Object of Love", "passageClass": "LONG", "questionCount": 10, "passageType": "narrative", "include": false, "excludeReason": "Duplicate of source 4"},
+    {"sourceId": 18, "sourceSet": 3, "title": "Selling Hip-Hop", "passageClass": "LONG", "questionCount": 10, "passageType": "informational", "include": true}
+  ]
+}

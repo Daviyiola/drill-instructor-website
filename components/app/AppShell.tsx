@@ -37,6 +37,7 @@ export default function AppShell({profile, children}: {profile: DrillInstructorP
   const name = displayName(profile);
   const avatarUrl = avatarAssetUrl(profile.avatarNumber || profile.avaterNumber || 1);
   const showTopBar = isStudentHomeSurface(pathname);
+  const fromHere = `?returnTo=${encodeURIComponent(pathname)}`;
 
   useEffect(() => setRouteLoading(""), [pathname]);
 
@@ -58,10 +59,9 @@ export default function AppShell({profile, children}: {profile: DrillInstructorP
 
   const items = [
     {href: "/app/profile", label: "My profile", detail: "Account and training identity"},
-    {href: "/app/leaderboards", label: "Leaderboards", detail: "Squad and unit standings"},
-    {href: "/app/ranks", label: "Ranks", detail: "Recruit-to-General progression"},
-    {href: "/app/terms", label: "Terms of use", detail: "Rules for using Drill Instructor"},
-    {href: "/app/privacy", label: "Privacy policy", detail: "How your information is handled"},
+    {href: `/app/leaderboards${fromHere}`, label: "Leaderboards", detail: "Squad and unit standings"},
+    {href: `/app/ranks${fromHere}`, label: "Ranks", detail: "The path from Recruit to General"},
+    {href: `/app/terms${fromHere}`, label: "Terms & privacy", detail: "Service rules and how data is handled"},
     {href: "/app/credits", label: "Credits", detail: "Artwork acknowledgements"},
     {href: "/app/contact", label: "Help & support", detail: "Questions, feedback, or support"},
   ];

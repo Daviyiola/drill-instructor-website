@@ -1,0 +1,1 @@
+{"status":"PASS","passageAssetId":"act-english-source-03-a","actualWordCount":356,"checks":{"longPassageRange":true,"exactTargetCount":true,"targetOrder":true,"nonOverlappingTargets":true,"rendererSafeHtml":true,"reportingCategoryBalance":true,"independentFromSource":true}}

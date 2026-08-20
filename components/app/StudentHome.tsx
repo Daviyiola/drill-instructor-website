@@ -189,13 +189,12 @@ export default function StudentHome() {
                       alt=""
                       className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/25" />
                     <Link
                       href={`/app/bootcamps/${id}`}
                       className="absolute inset-0 z-10 rounded-[2rem] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-brand-gold"
                       aria-label={`Open ${bootcampName(item)} bootcamp`}
                     />
-                    <div className="pointer-events-none relative flex h-full flex-col p-6">
+                    <div className="pointer-events-none relative flex h-full flex-col p-6 drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)]">
                       <div className="flex items-center justify-between">
                         <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider">
                           {entitled ? "Full access" : "Practice access"}

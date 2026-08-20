@@ -6,6 +6,7 @@ const {requireBearerUid, allowCors} = require("./_auth");
 const {
   approvedEducatorCount,
   bad,
+  buildRecommendedEducatorAccess,
   cleanStr,
   errText,
   hasAnotherActiveAdmin,
@@ -242,13 +243,21 @@ exports.handler = async (req, res) => {
     const plan = isObject(school.plan) ? school.plan : {};
     const activeBootcamp = cleanSelectedBootcamp(body, plan);
     const firstApproval = oldStatus !== "approved" && newStatus === "approved";
-    const accessInput = isObject(body.access) ? body.access : targetRow.access;
+    // Older clients did not send an access mode and could approve an educator
+    // without a usable bootcamp/subject scope. First approval now defaults to
+    // the school's active bootcamps, all subjects, students, and groups. Newer
+    // clients send "custom" after presenting that recommended setup for review.
+    const accessMode = cleanStr(body.accessMode, 20).toLowerCase();
+    const useRecommendedAccess = firstApproval && accessMode !== "custom";
+    const accessInput = useRecommendedAccess ?
+      buildRecommendedEducatorAccess(plan) :
+      (isObject(body.access) ? body.access : targetRow.access);
 
     const normalizedAccess = normalizeAccess(
         accessInput,
         targetRow.access,
         activeBootcamp,
-        firstApproval,
+        firstApproval && accessMode !== "custom",
     );
 
     if (newStatus === "approved" && !isActivePlan(plan)) {

@@ -529,19 +529,19 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
             </p>
           )}
 
-          <div className="mt-8 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+          <div className="mt-8 grid grid-cols-1 items-center gap-2 min-[300px]:grid-cols-3 sm:gap-3">
             <button
               type="button"
               disabled={index === 0}
               onClick={() => move(index - 1)}
-              className="min-h-12 justify-self-start rounded-2xl border border-slate-200 bg-white px-8 text-lg font-normal disabled:opacity-35"
+              className="min-h-12 w-full min-w-0 rounded-2xl border border-slate-200 bg-white px-2 text-sm font-normal disabled:opacity-35 sm:px-6 sm:text-base lg:px-8 lg:text-lg"
             >
               Previous
             </button>
             <button
               type="button"
               onClick={() => setShowSubmit(true)}
-              className="min-h-12 w-full min-w-40 rounded-2xl border-2 border-brand-green px-10 text-lg font-black text-brand-green sm:min-w-60"
+              className="min-h-12 w-full min-w-0 rounded-2xl border-2 border-brand-green px-2 text-sm font-semibold text-brand-green sm:px-6 sm:text-base lg:px-10 lg:text-lg"
             >
               Submit
             </button>
@@ -549,7 +549,7 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
               <button
                 type="button"
                 onClick={() => move(index + 1)}
-                className="min-h-12 justify-self-end rounded-2xl bg-brand-green px-9 text-lg font-normal text-white"
+                className="min-h-12 w-full min-w-0 rounded-2xl bg-brand-green px-2 text-sm font-normal text-white sm:px-6 sm:text-base lg:px-9 lg:text-lg"
               >
                 Next
               </button>

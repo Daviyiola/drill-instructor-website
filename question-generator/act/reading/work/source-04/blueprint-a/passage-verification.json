@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 4,
+  "blueprint": "A",
+  "passageAssetId": "act-reading-s04-a",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 672,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "Uses recovery, memory, and circulation of objects; contains no workplace apprenticeship, skilled craft, sensory vocation, or professional identity arc.",
+    "Independently composed for this replacement audit."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

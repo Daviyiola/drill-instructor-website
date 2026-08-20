@@ -7,9 +7,9 @@ import BrandedLoadingOverlay from "@/components/app/BrandedLoadingOverlay";
 import {useAuth} from "@/components/app/AuthProvider";
 
 const artists = [
-  {name: "brgfx", href: "https://www.freepik.com/author/brgfx"},
-  {name: "macrovector_official", href: "https://www.freepik.com/author/macrovector-official"},
-  {name: "upklyak", href: "https://www.freepik.com/author/upklyak"},
+  {name: "brgfx", href: "https://www.magnific.com/author/brgfx"},
+  {name: "macrovector", href: "https://www.magnific.com/author/macrovector"},
+  {name: "upklyak", href: "https://www.magnific.com/author/upklyak"},
 ];
 
 export default function Page() {
@@ -26,7 +26,7 @@ export default function Page() {
       <section className="mt-7 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm sm:p-9">
         <p className="text-xs font-medium uppercase tracking-[0.2em] text-brand-green/65">Acknowledgements</p>
         <h1 className="mt-2 text-4xl font-semibold tracking-tight">Credits</h1>
-        <p className="mt-5 leading-7 text-slate-600">Vector and illustration artwork used throughout Drill Instructor is sourced from <a href="https://www.freepik.com" target="_blank" rel="noreferrer" className="font-medium text-brand-green underline underline-offset-4">Freepik</a>. We are grateful to the artists whose work helps bring the training experience to life.</p>
+        <p className="mt-5 leading-7 text-slate-600">Vector and illustration artwork used throughout Drill Instructor is sourced from <a href="https://www.magnific.com" target="_blank" rel="noreferrer" className="font-medium text-brand-green underline underline-offset-4">Magnific (formerly Freepik)</a>. We are grateful to the artists whose work helps bring the training experience to life.</p>
         <div className="mt-7 grid gap-3 sm:grid-cols-2">{artists.map((artist) => <a key={artist.name} href={artist.href} target="_blank" rel="noreferrer" className="rounded-2xl border border-slate-200 px-4 py-4 text-sm font-medium transition hover:border-brand-green hover:bg-brand-mist">{artist.name}<span className="ml-2 text-slate-400" aria-hidden>↗</span></a>)}</div>
       </section>
     </article>

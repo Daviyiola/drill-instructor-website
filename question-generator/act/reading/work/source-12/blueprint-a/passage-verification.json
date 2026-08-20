@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 12,
+  "blueprint": "A",
+  "passageAssetId": "act-reading-s12-a",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 655,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "The orchard and radio-shop narratives, relationships, and objects are original.",
+    "No source family, migration, water, art, or city motifs remain."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

@@ -164,7 +164,7 @@ export default function SignUpPage() {
 
               <label className="flex items-start gap-3 text-sm leading-5 text-slate-600">
                 <input type="checkbox" checked={termsAccepted} onChange={(event) => setTermsAccepted(event.target.checked)} className="mt-1 h-4 w-4 accent-[#4B5320]" />
-                <span>I agree to the <Link className="font-semibold text-brand-green underline" href="/terms">Terms of Use and Privacy Policy</Link>.</span>
+                <span>I agree to the <Link className="font-semibold text-brand-green underline" href="/terms">Terms of Use</Link> and acknowledge the <Link className="font-semibold text-brand-green underline" href="/privacy">Privacy Policy</Link>.</span>
               </label>
               {error && <p role="alert" className="rounded-xl bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
               <button type="submit" disabled={submitting} className="min-h-12 w-full rounded-2xl bg-brand-green px-5 text-sm font-bold text-white transition hover:bg-brand-darkolive disabled:cursor-wait disabled:opacity-65">

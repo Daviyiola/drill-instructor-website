@@ -1,0 +1,7 @@
+{
+  "source_analysis":{"sourceId":7,"required_passage_class":"LONG","required_question_count":10,"passage_type":"informational","reusable_architecture":"Establish a specialist's methods, introduce an unusual institutional collaboration, show observations becoming a project, and conclude with the collaboration's result.","copyright_risk_notes":["Do not reuse NASA, space travel, an artist residency, performance art, electronic music, violins, Mars, robots, or source chronology."]},
+  "blueprints":[
+    {"blueprint_id":"A","new_topic_domain":"A wildlife ecologist helping railway engineers design safer turtle crossings","passage_type":"informational","rhetorical_arc":"Introduce track mortality; explain field observation; show engineering modifications and monitoring; conclude with a repeatable collaboration model."},
+    {"blueprint_id":"B","new_topic_domain":"A costume designer helping a robotics laboratory develop flexible gripping surfaces","passage_type":"informational","rhetorical_arc":"Introduce material-folding expertise; observe rigid-gripper limitations; prototype layered fabric surfaces; conclude with mutual influence between craft and engineering."}
+  ]
+}

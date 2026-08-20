@@ -1,0 +1,8 @@
+{
+  "sourceId":null,"reviewType":"cross-bank originality","scale":"1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles":[
+    {"blueprint":"A","passageAssetId":"act-english-gap-long-a","nearestGeneratedContentWordJaccard":0.0696,"sharedFiveGramCount":0,"longestExactWordRun":2,"decision":"PASS","notes":"The oral-history narrative uses an original bus-route map, late-shift transfer practice, interview-source evaluation, and change from scripted questioning to evidence-led follow-up."},
+    {"blueprint":"B","passageAssetId":"act-english-gap-long-b","nearestGeneratedContentWordJaccard":0.0986,"sharedFiveGramCount":0,"longestExactWordRun":3,"decision":"PASS","notes":"The kayak narrative shares only general instructional vocabulary with an earlier field-learning passage. Its current, ferry angle, fixed landmark, drift correction, physical action, and concluding insight are independent."}
+  ],
+  "pairDistinctness":{"decision":"PASS","notes":"A is a seated oral-history interview driven by documentary evidence and memory; B is an outdoor physical-learning narrative driven by current, angle, and visual feedback. Their characters, actions, settings, imagery, and realizations are distinct."}
+}

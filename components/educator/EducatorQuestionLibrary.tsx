@@ -63,6 +63,7 @@ type Config = {
   modules: string[];
   practiceTests: number[];
   questionCount: number;
+  shuffleQuestions: boolean;
 };
 
 type SelectionTarget = {
@@ -80,15 +81,6 @@ function referenceImages(bootcamp: string, sources: string[]) {
   return questionImageUrls(sources, bootcamp);
 }
 
-function shuffled<T>(rows: T[]) {
-  const result = [...rows];
-  for (let index = result.length - 1; index > 0; index -= 1) {
-    const swap = Math.floor(Math.random() * (index + 1));
-    [result[index], result[swap]] = [result[swap], result[index]];
-  }
-  return result;
-}
-
 export default function EducatorQuestionLibrary({
   bootcamp,
   initialMode = "browse",
@@ -104,6 +96,10 @@ export default function EducatorQuestionLibrary({
     searchParams.get("setup") === "1";
   const startInSetup = autoBrowse;
   const requestedReturnPath = searchParams.get("returnTo") || "";
+  const bootcampHomePath = `/app/educator/bootcamps/${bootcamp}`;
+  const drillsPath = `${bootcampHomePath}/drills`;
+  const standaloneReturnPath = requestedReturnPath === bootcampHomePath ||
+    requestedReturnPath === drillsPath ? requestedReturnPath : bootcampHomePath;
   const drillConfigKey = user && returnDrillId ?
     `di.educatorDrillConfig.${user.uid}.${bootcamp}.${returnDrillId}` : "";
   const safeReturnPath = requestedReturnPath.startsWith(
@@ -124,7 +120,6 @@ export default function EducatorQuestionLibrary({
   const [bookmarkIds, setBookmarkIds] = useState<Record<string, boolean>>({});
   const [bookmarkGroups, setBookmarkGroups] = useState<Record<string, string[]>>({});
   const [selectedIds, setSelectedIds] = useState<Record<string, boolean>>({});
-  const [shuffleQuestions, setShuffleQuestions] = useState(false);
   const [query, setQuery] = useState("");
   const [subject, setSubject] = useState("all");
   const [selectedModules, setSelectedModules] = useState<string[]>([]);
@@ -208,6 +203,7 @@ export default function EducatorQuestionLibrary({
                   practiceTests: Array.isArray(row.practiceTests) ?
                     row.practiceTests.map(Number).filter(Number.isFinite) : [],
                   questionCount,
+                  shuffleQuestions: row.shuffleQuestions === true,
                 }];
               });
               if (configured.length) setConfigs(configured);
@@ -377,6 +373,7 @@ export default function EducatorQuestionLibrary({
       modules: [...info.modules],
       practiceTests: [...practiceTests],
       questionCount: Math.min(20, Number(info.questionCount || 20)),
+      shuffleQuestions: false,
     }]);
   }
 
@@ -461,18 +458,16 @@ export default function EducatorQuestionLibrary({
         bootcamp,
         subjects: configs.map((row) => ({...row, timeLimitMin: Math.max(1, row.questionCount)})),
       });
-      const hydratedPreview = response.preview.map((question) => ({
+      const browsed = response.preview.map((question) => ({
         ...question,
         groups: bookmarkGroups[question.id] || [],
       }));
-      const browsed = shuffleQuestions ? shuffled(hydratedPreview) :
-        hydratedPreview;
       setQuestions(returnDrillId ? [
         ...selectedQuestions.filter((selectedQuestion) =>
           !browsed.some((question) => question.id === selectedQuestion.id)),
         ...browsed,
       ] : browsed);
-      rememberQuestions(hydratedPreview);
+      rememberQuestions(browsed);
       setDatasetVersion(response.blueprint.datasetVersion);
       setCorrectionRevision(response.blueprint.correctionRevision || 0);
       if (!returnDrillId) setSelectedIds({});
@@ -523,19 +518,21 @@ export default function EducatorQuestionLibrary({
 
   async function saveGroups() {
     if (!user || !groupQuestion) return;
+    const pendingQuestion = groupQuestion;
     const added = newGroup.trim();
     const nextGroups = [...new Set([...groupDraft, ...(added ? [added] : [])])];
+    setGroupQuestion(null);
     setSaving(true);
     try {
       await callFunction(user, "setEducatorBookmarkGroupsHttps", {
         bootcamp,
-        questionId: groupQuestion.id,
+        questionId: pendingQuestion.id,
         groups: nextGroups,
       });
-      setQuestions((rows) => rows.map((row) => row.id === groupQuestion.id ? {...row, groups: nextGroups} : row));
-      setBookmarkGroups((value) => ({...value, [groupQuestion.id]: nextGroups}));
-      setGroupQuestion(null);
+      setQuestions((rows) => rows.map((row) => row.id === pendingQuestion.id ? {...row, groups: nextGroups} : row));
+      setBookmarkGroups((value) => ({...value, [pendingQuestion.id]: nextGroups}));
     } catch (reason) {
+      setGroupQuestion(pendingQuestion);
       setError((reason as Error).message);
     } finally {
       setSaving(false);
@@ -545,6 +542,7 @@ export default function EducatorQuestionLibrary({
   async function deleteGroup() {
     if (!user || !groupPendingDelete) return;
     const deleted = groupPendingDelete;
+    setGroupPendingDelete("");
     setSaving(true);
     try {
       await callFunction(user, "deleteEducatorBookmarkGroupHttps", {bootcamp, group: deleted});
@@ -560,8 +558,8 @@ export default function EducatorQuestionLibrary({
       ));
       setGroupDraft((rows) => rows.filter((group) => group !== deleted));
       if (groupFilter === deleted) setGroupFilter("all");
-      setGroupPendingDelete("");
     } catch (reason) {
+      setGroupPendingDelete(deleted);
       setError((reason as Error).message);
     } finally {
       setSaving(false);
@@ -572,6 +570,7 @@ export default function EducatorQuestionLibrary({
     event?.preventDefault();
     if (!user || !selectedQuestions.length ||
         (!returnDrillId && !draftName.trim())) return;
+    if (!returnDrillId) setShowNameDialog(false);
     setSaving(true);
     const grouped = new Map<string, BankQuestion[]>();
     selectedQuestions.forEach((question) => grouped.set(
@@ -619,7 +618,7 @@ export default function EducatorQuestionLibrary({
     } catch (reason) {
       setError((reason as Error).message);
       setSaving(false);
-      setShowNameDialog(false);
+      if (!returnDrillId) setShowNameDialog(true);
     }
   }
 
@@ -633,7 +632,7 @@ export default function EducatorQuestionLibrary({
 
   if (initialMode === "browse" && !questions.length) {
     return <main className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10">
-      <Link href={autoBrowse ? configureReturnPath : returnDrillId ? safeReturnPath : `/app/educator/bootcamps/${bootcamp}/drills`} className="inline-flex items-center gap-2 text-sm text-slate-700"><span className="grid h-8 w-8 place-items-center rounded-full bg-white shadow-sm"><span className="h-2.5 w-2.5 rotate-45 border-b-[3px] border-l-[3px] border-brand-green" /></span>{autoBrowse ? "Back to configure" : returnDrillId ? "Return to drill" : "Drills"}</Link>
+      <Link href={autoBrowse ? configureReturnPath : returnDrillId ? safeReturnPath : standaloneReturnPath} className="inline-flex items-center gap-2 text-sm text-slate-700"><span className="grid h-8 w-8 place-items-center rounded-full bg-white shadow-sm"><span className="h-2.5 w-2.5 rotate-45 border-b-[3px] border-l-[3px] border-brand-green" /></span>{autoBrowse ? "Back to configure" : returnDrillId ? "Return to drill" : standaloneReturnPath === drillsPath ? "Drills" : `${bootcamp.toUpperCase()} home`}</Link>
       <header className="mt-6"><p className="text-xs uppercase tracking-[.2em] text-brand-green/65">Question library</p><h1 className="mt-2 text-3xl font-semibold">Browse questions</h1><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Choose subjects, practice tests, modules, and the maximum number of questions you want to inspect.</p></header>
       {error && <p className="mt-5 rounded-2xl bg-red-50 p-4 text-sm text-red-700">{error}</p>}
       <section className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -649,7 +648,13 @@ export default function EducatorQuestionLibrary({
         return <article key={config.subject} className="rounded-3xl border border-slate-200 bg-white p-5 sm:p-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div><p className="text-lg font-medium">{config.subject}</p><p className="mt-1 text-xs text-slate-500">Choose at least one practice test and module.</p></div>
-            <label className="flex items-center gap-3 text-sm text-slate-600">Maximum questions<input type="number" min={1} max={Math.min(300, Number(info?.questionCount || 300))} value={config.questionCount} onChange={(event) => patchConfig(config.subject, {questionCount: Math.max(1, Number(event.target.value || 1))})} className="h-11 w-20 rounded-xl border border-slate-200 px-3 text-center outline-none focus:border-brand-green" /></label>
+            <div className="flex flex-wrap items-center gap-4">
+              <label className="flex items-center gap-3 text-sm text-slate-600">Maximum questions<input type="number" min={1} max={Math.min(300, Number(info?.questionCount || 300))} value={config.questionCount} onChange={(event) => patchConfig(config.subject, {questionCount: Math.max(1, Number(event.target.value || 1))})} className="h-11 w-20 rounded-xl border border-slate-200 px-3 text-center outline-none focus:border-brand-green" /></label>
+              <div className="flex items-center gap-3">
+                <span><span className="block text-sm text-slate-700">Randomize</span></span>
+                <button type="button" role="switch" aria-label={`Randomize ${config.subject} questions`} aria-checked={config.shuffleQuestions} onClick={() => patchConfig(config.subject, {shuffleQuestions: !config.shuffleQuestions})} className={`relative h-8 w-14 rounded-full transition ${config.shuffleQuestions ? "bg-brand-green" : "bg-slate-300"}`}><span className={`absolute top-1 h-6 w-6 rounded-full bg-white shadow transition ${config.shuffleQuestions ? "left-7" : "left-1"}`} /></button>
+              </div>
+            </div>
           </div>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
             <button type="button" onClick={() => openSelection({subject: config.subject, kind: "practiceTests"})} className="flex min-h-16 items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-brand-mist/45 px-4 text-left transition hover:border-brand-green/40 hover:bg-brand-green/5">
@@ -663,7 +668,6 @@ export default function EducatorQuestionLibrary({
           </div>
         </article>;
       })}</section>
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4"><div><p className="text-sm font-medium">Shuffle while browsing</p><p className="mt-1 text-xs text-slate-500">Mix the generated question order before review.</p></div><button type="button" role="switch" aria-checked={shuffleQuestions} onClick={() => setShuffleQuestions((value) => !value)} className={`relative h-8 w-14 rounded-full transition ${shuffleQuestions ? "bg-brand-green" : "bg-slate-300"}`}><span className={`absolute top-1 h-6 w-6 rounded-full bg-white shadow transition ${shuffleQuestions ? "left-7" : "left-1"}`} /></button></div>
       <button type="button" disabled={!configs.length} onClick={() => void generateQuestions()} className="mt-6 min-h-14 w-full rounded-2xl bg-brand-green px-6 text-sm text-white transition hover:bg-brand-green/90 disabled:bg-slate-300">BROWSE QUESTIONS</button>
       {selectionTarget && selectionConfig && <div className="fixed inset-0 z-[70] grid place-items-center bg-black/55 p-4">
         <section className="flex max-h-[88vh] w-full max-w-xl flex-col overflow-hidden rounded-[2rem] bg-white shadow-2xl">

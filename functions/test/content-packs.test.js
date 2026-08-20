@@ -36,12 +36,13 @@ test("Functions initialize the production content-pack bucket", () => {
   );
 });
 
-test("ACT deterministic test relabeling matches the source plan", () => {
+test("ACT finalized practice tests match the production form plan", () => {
   const questions = normalizedQuestions("act");
   const expected = {
-    Mathematics: [45, 45, 45, 45, 45, 45, 45, 45, 10],
-    Science: [40, 40, 40, 40, 8],
-    English: [50, 50],
+    Mathematics: [45, 45, 45, 45, 45, 45, 45, 45],
+    Science: [40, 40, 40, 40],
+    English: [50, 50, 50, 50, 50, 50, 50, 50],
+    Reading: [36, 36, 36, 36, 36, 36, 36, 36],
   };
   for (const [subject, counts] of Object.entries(expected)) {
     const actual = counts.map((_, index) => questions.filter((question) =>
@@ -49,8 +50,23 @@ test("ACT deterministic test relabeling matches the source plan", () => {
     ).length);
     assert.deepEqual(actual, counts);
   }
-  assert.equal(questions.some((question) =>
-    question.subject === "Reading"), false);
+});
+
+test("SAT finalized practice tests match official section sizes", () => {
+  const questions = normalizedQuestions("sat");
+  const expected = {
+    "Math": [44, 44, 44, 44],
+    "Read. & Writ.": [54, 54],
+  };
+  for (const [subject, counts] of Object.entries(expected)) {
+    const actual = counts.map((_, index) => questions.filter((question) =>
+      question.subject === subject && question.practiceYear === index + 1,
+    ).length);
+    assert.deepEqual(actual, counts);
+    assert.equal(questions.filter((question) =>
+      question.subject === subject && question.practiceYear > counts.length,
+    ).length, 0);
+  }
 });
 
 test("authored labels take precedence over ACT fallback grouping", () => {
@@ -72,6 +88,14 @@ test("ACT accepts distributed authored labels and rejects placeholders", () => {
   assert.equal(hasUsableAuthoredActTestLabels(
       [{practiceYear: 3}, {practiceYear: 3}], "Science",
   ), true);
+  assert.equal(hasUsableAuthoredActTestLabels(
+      Array.from({length: 16}, () => ({practiceYear: 1})),
+      "Reading",
+  ), true);
+  assert.equal(hasUsableAuthoredActTestLabels(
+      Array.from({length: 37}, () => ({practiceYear: 1})),
+      "Reading",
+  ), false);
 });
 
 test("canonical questions expose stable ids and relative WebP assets", () => {
@@ -103,9 +127,15 @@ test("educator draft hydration preserves exact saved order", () => {
 test("ACT preserves every multi-image reference as an ordered array", () => {
   const questions = normalizedQuestions("act");
   const multiImage = questions.filter((row) => row.imageSources.length > 1);
-  assert.equal(multiImage.length, 162);
-  const firstScience = questions.find((row) => row.id === "science_1");
-  assert.deepEqual(firstScience.imageSources, [
+  assert.equal(multiImage.length, 154);
+  const sourceImageSet = questions.find((row) =>
+    row.imageSources.join("|") === [
+      "assets/Sci1.webp",
+      "assets/Sci2.webp",
+      "assets/Sci3.webp",
+    ].join("|"));
+  assert.ok(sourceImageSet);
+  assert.deepEqual(sourceImageSet.imageSources, [
     "assets/Sci1.webp",
     "assets/Sci2.webp",
     "assets/Sci3.webp",
@@ -143,6 +173,63 @@ test("native free manifests expose only Tests 1 and 2", () => {
         manifest.questionCount,
     );
   }
+});
+
+test("native drill setup caches the canonical server catalog", () => {
+  const root = path.join(__dirname, "..", "..");
+  const manager = fs.readFileSync(path.join(
+      root, "Drill_Instructor", "qml", "Components",
+      "ContentPackManager.qml",
+  ), "utf8");
+  const drills = fs.readFileSync(path.join(
+      root, "Drill_Instructor", "qml", "Student", "Bootcamps",
+      "Drills.qml",
+  ), "utf8");
+  const database = fs.readFileSync(path.join(
+      root, "Drill_Instructor", "assets", "scripts", "DBHelper.js",
+  ), "utf8");
+
+  assert.match(manager, /getStudentDrillCatalogHttps/);
+  assert.match(manager, /DBHelper\.cacheBootcampCatalog/);
+  assert.match(manager, /repositoryManifest\.datasetVersion/);
+  assert.match(database, /bootcamp_catalog_cache/);
+  assert.match(drills, /getCachedServerCatalog\(bootcampId\)/);
+  assert.match(drills, /refreshCanonicalCatalog\(\)/);
+  assert.doesNotMatch(drills, /configuredModules/);
+});
+
+test("native ACT and SAT fallback metadata matches the canonical catalog",
+    () => {
+      const nativeModel = require(path.join(
+          __dirname, "..", "..", "Drill_Instructor", "assets", "scripts",
+          "BootcampModel.js",
+      ));
+      for (const bootcamp of ["act", "sat"]) {
+        const fallback = nativeModel.getBootcampData(bootcamp);
+        const canonical = buildCatalog(bootcamp);
+        assert.equal(fallback.version, canonical.datasetVersion);
+        assert.deepEqual(
+            fallback.modules.map((subject) => ({
+              name: subject.subject,
+              modules: subject.modules,
+              practiceYears: subject.practiceYears,
+            })),
+            canonical.subjects.map((subject) => ({
+              name: subject.name,
+              modules: subject.modules,
+              practiceYears: subject.practiceYears,
+            })),
+        );
+      }
+    });
+
+test("native model excludes unreleased UTME and WAEC configuration", () => {
+  const nativeModel = require(path.join(
+      __dirname, "..", "..", "Drill_Instructor", "assets", "scripts",
+      "BootcampModel.js",
+  ));
+  assert.deepEqual(nativeModel.getBootcampData("utme"), {});
+  assert.deepEqual(nativeModel.getBootcampData("waec"), {});
 });
 
 test("native package excludes duplicate full banks and image trees", () => {

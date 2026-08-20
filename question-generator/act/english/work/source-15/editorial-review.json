@@ -1,0 +1,9 @@
+{
+  "sourceId":15,
+  "scale":"1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles":[
+    {"blueprint":"A","passageAssetId":"act-english-source-15-a","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":2,"paragraphFunctionSequence":3,"overallRhetoricalArchitecture":3,"questionLogicTransfer":2,"disguisedRewriteRisk":1,"overallSimilarity":1.8},"decision":"PASS","notes":"The narrative follows a baker diagnosing a flour-measurement problem. It shares no artist, studio, medium, music, photographic technique, or quoted reflection with the source."},
+    {"blueprint":"B","passageAssetId":"act-english-source-15-b","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":2,"paragraphFunctionSequence":3,"overallRhetoricalArchitecture":3,"questionLogicTransfer":2,"disguisedRewriteRisk":1,"overallSimilarity":1.8},"decision":"PASS","notes":"The narrative follows a volunteer diagnosing a mechanical clock. Its event, setting, obstruction, tools, and resolution are independently constructed."}
+  ],
+  "pairDistinctness":{"decision":"PASS","notes":"A is a family-recipe baking narrative driven by measurement; B is a public-library repair narrative driven by mechanical observation. Their plots and vocabularies are distinct."}
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "skill_tested": "Evaluating the contribution of a character detail to the narrative",
+    "question": "If the writer deleted the underlined portion, the paragraph would primarily lose:",
+    "options": ["an indication that the narrator valued not only the father's mechanical knowledge but also the way he approached repairs", "a claim that the narrator's father worked professionally as a bicycle mechanic", "an explanation of why the bicycle was painted blue", "a contrast between repairing bicycles and repairing automobiles"],
+    "correctAnswer": "an indication that the narrator valued not only the father's mechanical knowledge but also the way he approached repairs",
+    "step1": "The underlined portion identifies the father's patience as a quality the narrator admired and tried to copy.",
+    "step2": "That detail establishes an emotional and thematic connection later renewed by the careful repair process.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Forming the possessive of a singular compound noun",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["co-ops tool wall", "co-op's tool wall", "co-ops' tool wall", "co-op tool's wall"],
+    "correctAnswer": "co-op's tool wall",
+    "step1": "The wall belongs to one neighborhood repair cooperative, shortened here to 'co-op.'",
+    "step2": "Adding an apostrophe and s forms the possessive of that singular noun.",
+    "difficulty": "Medium",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Selecting a precise verb for a careful diagnosis",
+    "question": "Which choice is clearest and most precise in context?",
+    "options": ["attacked", "bothered", "examined", "performed"],
+    "correctAnswer": "examined",
+    "step1": "Lena observes the bicycle and tests possible causes before making a repair.",
+    "step2": "'Examined' precisely describes that careful diagnostic process.",
+    "difficulty": "Medium",
+    "module": "Word Choice and Usage"
+  },
+  {
+    "skill_tested": "Using a subject pronoun in a compound subject",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["me", "myself", "mine", "I"],
+    "correctAnswer": "I",
+    "step1": "The pronoun is part of the compound subject performing the action 'compared.'",
+    "step2": "The subject pronoun 'I,' rather than the object pronoun 'me,' is required in that position.",
+    "difficulty": "Hard",
+    "module": "Pronouns"
+  },
+  {
+    "skill_tested": "Removing a redundant time expression",
+    "question": "Which choice is most concise while preserving the sentence's meaning?",
+    "options": ["Then,", "At that exact point in time,", "It was then at that moment that", "During that point at the time,"],
+    "correctAnswer": "Then,",
+    "step1": "The narrative sequence already makes clear that the realization occurs after the measurements.",
+    "step2": "'Then' marks that sequence directly without the redundant words in the other choices.",
+    "difficulty": "Medium",
+    "module": "Conciseness and Redundancy"
+  },
+  {
+    "skill_tested": "Choosing a transition that connects instruction with imitation",
+    "question": "Which transition is most logical in context?",
+    "options": ["On the other hand,", "Following her example,", "Nevertheless,", "Previously,"],
+    "correctAnswer": "Following her example,",
+    "step1": "Lena demonstrates a gradual process of applying pressure and checking measurements.",
+    "step2": "'Following her example' shows that the narrator participates by recording each reading as part of that process.",
+    "difficulty": "Hard",
+    "module": "Transitions and Logical Relationships"
+  },
+  {
+    "skill_tested": "Using the correct comparative form",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["more straighter than before", "most straight compared with before", "straighter than before", "more straightest than it was"],
+    "correctAnswer": "straighter than before",
+    "step1": "The sentence compares the hanger's alignment after the adjustment with its earlier alignment.",
+    "step2": "'Straighter' is the correct comparative form; adding 'more' would create a double comparative.",
+    "difficulty": "Hard",
+    "module": "Modifiers and Comparisons"
+  },
+  {
+    "skill_tested": "Placing a reflective statement after the events that support it",
+    "question": "The sentence about changing the narrator's approach would most logically be placed at which point?",
+    "options": ["Point A", "Point B", "Point C", "Point D"],
+    "correctAnswer": "Point D",
+    "step1": "The paragraph first identifies the reminder, the lesson it represented, and the narrator's return to the cooperative.",
+    "step2": "At Point D, the reflective statement synthesizes those events before the passage describes the narrator's continuing volunteer work.",
+    "difficulty": "Hard",
+    "module": "Organization and Cohesion"
+  },
+  {
+    "skill_tested": "Using the present perfect for continuing activity",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["had volunteered", "have volunteered", "will volunteer", "volunteering"],
+    "correctAnswer": "have volunteered",
+    "step1": "The phrase 'Since that afternoon' establishes a period beginning in the past and continuing to the present.",
+    "step2": "The present-perfect form 'have volunteered' correctly describes repeated activity during that period.",
+    "difficulty": "Hard",
+    "module": "Verb Tense and Form"
+  },
+  {
+    "skill_tested": "Evaluating whether a conclusion unifies the narrative's personal and practical lessons",
+    "question": "Should the writer keep or delete the final sentence?",
+    "options": ["Delete it, because the narrator has decided never to repair the bicycle again.", "Keep it, because it proves that every bicycle problem requires help from a cooperative.", "Keep it, because it connects the bicycle's personal history with the narrator's new appreciation for patient, shared problem-solving.", "Delete it, because a conclusion should introduce a different form of transportation."],
+    "correctAnswer": "Keep it, because it connects the bicycle's personal history with the narrator's new appreciation for patient, shared problem-solving.",
+    "step1": "The narrative begins with lessons from the narrator's father and develops through a careful repair learned from Lena.",
+    "step2": "The conclusion brings those experiences together without claiming that the original attachment has been replaced.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  }
+]

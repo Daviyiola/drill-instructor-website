@@ -1,0 +1,102 @@
+[
+  {
+    "skill_tested": "Ordering purpose, expectation, and complication logically",
+    "question": "Which sequence makes the opening paragraph most logical?",
+    "options": ["1, 2, 3", "2, 3, 1", "3, 1, 2", "2, 1, 3"],
+    "correctAnswer": "2, 3, 1",
+    "step1": "Sentence 2 establishes why the narrator is at the marsh, and sentence 3 explains the preparation that created confidence.",
+    "step2": "Sentence 1 then introduces the fog that challenges the narrator's visually based preparation.",
+    "difficulty": "Hard",
+    "module": "Organization and Cohesion"
+  },
+  {
+    "skill_tested": "Selecting a natural and precise verb for producing sound",
+    "question": "Which choice is clearest and most precise in context?",
+    "options": ["make", "manufacture", "construct", "assemble"],
+    "correctAnswer": "make",
+    "step1": "The narrator initially perceives the marsh's many sounds as a single rustle.",
+    "step2": "'Make' expresses producing that sound naturally; the other choices imply deliberate fabrication.",
+    "difficulty": "Medium",
+    "module": "Word Choice and Usage"
+  },
+  {
+    "skill_tested": "Using a colon to introduce an explanation made of complete clauses",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [", a dry rattle came from the reeds, and three clear whistles sounded from a willow", "; because a dry rattle came from the reeds, and three clear whistles sounded from a willow", " a dry rattle came from the reeds; and three clear whistles sounded from a willow", ": a dry rattle came from the reeds, and three clear whistles sounded from a willow"],
+    "correctAnswer": ": a dry rattle came from the reeds, and three clear whistles sounded from a willow",
+    "step1": "The independent clause before the underlined text announces the parts into which Noor separates the sound.",
+    "step2": "A colon correctly introduces the explanation that names those parts.",
+    "difficulty": "Hard",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Using a pronoun that agrees with an indefinite human antecedent",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["it", "one", "they", "we"],
+    "correctAnswer": "they",
+    "step1": "The pronoun refers distributively to each person described as an observer.",
+    "step2": "Singular 'they' is an appropriate pronoun for a person whose gender is not specified.",
+    "difficulty": "Medium",
+    "module": "Pronouns"
+  },
+  {
+    "skill_tested": "Choosing a transition that states a practical consequence",
+    "question": "Which transition is most logical in context?",
+    "options": ["Therefore,", "Similarly,", "Nevertheless,", "Meanwhile,"],
+    "correctAnswer": "Therefore,",
+    "step1": "Noor tells the narrator not to record a call unless it can be identified confidently.",
+    "step2": "'Therefore' introduces the resulting priority: reliable identification matters more than completing the sheet.",
+    "difficulty": "Hard",
+    "module": "Transitions and Logical Relationships"
+  },
+  {
+    "skill_tested": "Placing an instructional step before the observation it guides",
+    "question": "The sentence about Noor asking for a description would most logically be placed at which point?",
+    "options": ["Point A", "Point B", "Point C", "Point D"],
+    "correctAnswer": "Point B",
+    "step1": "The request establishes the method the narrator uses in the following sentence to report notes, a pause, and clicks.",
+    "step2": "Point B places the instruction after the pair reaches the cattails and immediately before the narrator applies it.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Maintaining agreement between a singular subject and verb",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["have been", "were", "are", "was"],
+    "correctAnswer": "was",
+    "step1": "The subject is the singular noun 'sequence,' not the plural noun 'calls' in the prepositional phrase.",
+    "step2": "The singular past-tense verb 'was' agrees with 'sequence.'",
+    "difficulty": "Hard",
+    "module": "Subject-Verb Agreement"
+  },
+  {
+    "skill_tested": "Maintaining a restrained reflective tone",
+    "question": "Which choice best matches the passage's tone?",
+    "options": ["I was now an unbeatable bird-identification champion.", "I had instantly mastered every sound in the marsh.", "I was beginning to contribute reliably.", "I had become the greatest bird expert the marsh had ever known."],
+    "correctAnswer": "I was beginning to contribute reliably.",
+    "step1": "The narrator describes gradual learning, cautious identification, and satisfaction in making a supported contribution.",
+    "step2": "The correct choice reflects that modest progress without the exaggeration of the other choices.",
+    "difficulty": "Medium",
+    "module": "Style and Tone"
+  },
+  {
+    "skill_tested": "Using the past perfect for an action completed before another past event",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["was identifying", "will identify", "had identified", "identifies"],
+    "correctAnswer": "had identified",
+    "step1": "The identifications were completed before the past event described as the fog lifting.",
+    "step2": "The past-perfect form 'had identified' clearly establishes that sequence of past events.",
+    "difficulty": "Hard",
+    "module": "Verb Tense and Form"
+  },
+  {
+    "skill_tested": "Evaluating whether a conclusion captures the narrator's expanded method",
+    "question": "Should the writer keep or delete the final sentence?",
+    "options": ["Delete it, because the narrator concludes that binoculars are useless during every survey.", "Keep it, because it shows that listening complements rather than replaces seeing and states the broader lesson of the experience.", "Delete it, because the passage should end by listing additional marsh species.", "Keep it, because it proves that sounds always identify birds more reliably than sight does."],
+    "correctAnswer": "Keep it, because it shows that listening complements rather than replaces seeing and states the broader lesson of the experience.",
+    "step1": "The narrative begins with dependence on visual identification and develops through learning to use sound carefully.",
+    "step2": "The final sentence accurately presents listening as an added form of attention rather than an absolute replacement.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  }
+]

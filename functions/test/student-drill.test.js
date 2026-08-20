@@ -11,6 +11,7 @@ const {
   gradeSession,
   normalizeLegacyResult,
   normalizedQuestions,
+  orderedSelectQuestions,
   publicQuestion,
   publicSession,
   questionStimulusKey,
@@ -73,6 +74,19 @@ test("educator catalog exposes the complete practice-test contract", () => {
   for (const subject of catalog.subjects) {
     assert.deepEqual(subject.availablePracticeYears, subject.practiceYears);
   }
+});
+
+test("ordered educator browsing starts early and keeps groups", () => {
+  const candidates = [
+    {id: "q-4", practiceYear: 2, passage: "Later", imageSources: []},
+    {id: "q-2", practiceYear: 1, passage: "Shared", imageSources: []},
+    {id: "q-1", practiceYear: 1, passage: "Shared", imageSources: []},
+    {id: "q-3", practiceYear: 1, passage: "", imageSources: []},
+  ];
+  assert.deepEqual(
+      orderedSelectQuestions(candidates, 3).map((row) => row.id),
+      ["q-1", "q-2", "q-3"],
+  );
 });
 
 test("maps mobile challenge states into the three-stage inbox", () => {

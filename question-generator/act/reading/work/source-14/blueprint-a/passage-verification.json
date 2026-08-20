@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 14,
+  "blueprint": "A",
+  "passageAssetId": "act-reading-s14-a",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 658,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "A descriptive analysis of live collective timing; no translation, replica, authenticity dispute, access policy, substitution, or opposing debate positions.",
+    "Independently composed for this replacement audit."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

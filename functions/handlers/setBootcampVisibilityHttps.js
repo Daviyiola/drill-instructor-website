@@ -1,6 +1,6 @@
 "use strict";
 
-const admin = require("firebase-admin");
+const {getDatabase, ServerValue} = require("firebase-admin/database");
 const {allowCors, requireBearerUid} = require("./_auth");
 const {
   normalizeBootcamp,
@@ -33,7 +33,7 @@ async function handler(req, res) {
       });
     }
 
-    const db = admin.database();
+    const db = getDatabase();
     const account = await resolveBootcampAccount(db, uid);
     if (isVisible && !account.available.includes(bootcamp)) {
       return res.status(403).json({
@@ -51,7 +51,7 @@ async function handler(req, res) {
         next.visible : {};
       if (isVisible) next.visible[bootcamp] = true;
       else delete next.visible[bootcamp];
-      next.updatedAt = admin.database.ServerValue.TIMESTAMP;
+      next.updatedAt = ServerValue.TIMESTAMP;
       return next;
     });
 

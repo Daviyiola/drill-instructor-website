@@ -82,6 +82,18 @@ function keys(obj) {
 }
 
 /**
+ * A disabled platoon/school is omitted from every unit-ranking aggregate,
+ * rather than merely hidden from the platoon list.
+ *
+ * @param {unknown} node Candidate platoon node
+ * @return {boolean} Whether its members may contribute to rankings
+ */
+function rankingEnabled(node) {
+  return !(node && typeof node === "object" &&
+    node.platoonPermissions === false);
+}
+
+/**
  * Scheduled aggregation:
  * - Computes totalPoints + memberCount for platoon, battalion, corps
  * - Computes Bayesian shrinkage score per level
@@ -171,6 +183,7 @@ exports.aggregateUnitPoints = onSchedule(
 
             const platoon = battalion[platoonName];
             if (!platoon || typeof platoon !== "object") continue;
+            if (!rankingEnabled(platoon)) continue;
 
             let platoonTotal = 0;
 
@@ -359,3 +372,5 @@ exports.aggregateUnitPoints = onSchedule(
       console.log("Aggregation + Bayesian scoring complete.");
     },
 );
+
+exports.rankingEnabled = rankingEnabled;

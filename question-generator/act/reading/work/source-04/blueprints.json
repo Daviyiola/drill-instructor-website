@@ -1,0 +1,78 @@
+{
+  "source_passage_id": 4,
+  "source_passage_type": "Paired Passages",
+  "source_architecture_summary": "Two memoir-like passages use sensory descriptions of workplaces to explain vocation: one reflects backward through accumulated memory, while the other captures a first recognition of belonging.",
+  "source_information_density": "High",
+  "two_blueprint_feasibility": "Strong",
+  "feasibility_notes": "Both blueprints replace newspaper work, ink, offices, reporters, and every source anecdote while preserving opportunities to compare sensory detail, tone, and vocational identity.",
+  "blueprints": [
+    {
+      "blueprint_label": "A",
+      "blueprint_focus": "Two narrators reconsider how ordinary objects preserve human stories: one sorts belongings after a flood, while another follows the changing life of a folded city map.",
+      "act_reading_passage_type": "Paired Passages",
+      "overall_reading_skill_family": "Sensory function, tone, vocation inference, and comparison",
+      "rhetorical_or_narrative_arc": "Workplace inventory, skilled worker or process, sensory interpretation, identity realization",
+      "information_density_requirements": [
+        "Specific tools and processes",
+        "A sensory motif",
+        "A revealing coworker",
+        "Contrasting temporal perspectives"
+      ],
+      "safe_replacement_domains": [
+        "Wooden boatbuilding",
+        "Theater costuming",
+        "Craft apprenticeship"
+      ],
+      "question_opportunity_types": [
+        "Sensory function",
+        "Tone comparison",
+        "Character inference",
+        "Style comparison",
+        "Context vocabulary"
+      ],
+      "recommended_modules": [
+        "Function and Structure",
+        "Inference and Implication",
+        "Comparative Passage Analysis",
+        "Character and Relationship Analysis",
+        "Vocabulary in Context"
+      ],
+      "primary_module": "Comparative Passage Analysis",
+      "distinctness_notes": "Uses recovery, memory, and circulation of objects; contains no workplace apprenticeship, skilled craft, sensory vocation, or professional identity arc."
+    },
+    {
+      "blueprint_label": "B",
+      "blueprint_focus": "Two narrators learn that demanding public-service work is organized by quiet routines outsiders rarely notice.",
+      "act_reading_passage_type": "Paired Passages",
+      "overall_reading_skill_family": "Perspective, understated leadership, structural comparison, and theme",
+      "rhetorical_or_narrative_arc": "Initial surface impression, observation of expert routine, small crisis, revised understanding of the work",
+      "information_density_requirements": [
+        "Operational detail",
+        "Understated mentor",
+        "Moment of pressure",
+        "Revised definition of competence"
+      ],
+      "safe_replacement_domains": [
+        "Ferry terminal",
+        "Emergency food logistics",
+        "Public operations"
+      ],
+      "question_opportunity_types": [
+        "Mentor characterization",
+        "Function of detail",
+        "Narrative shift",
+        "Paired theme",
+        "Difference in tone"
+      ],
+      "recommended_modules": [
+        "Character and Relationship Analysis",
+        "Function and Structure",
+        "Central Ideas and Themes",
+        "Comparative Passage Analysis",
+        "Sequence and Relationships"
+      ],
+      "primary_module": "Character and Relationship Analysis",
+      "distinctness_notes": "Focuses invisible coordination under pressure, separate from Blueprint A's sensory craft and vocational discovery."
+    }
+  ]
+}

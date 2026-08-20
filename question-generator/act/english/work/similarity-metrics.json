@@ -1,0 +1,697 @@
+{
+  "generatedAt": "2026-08-20T02:44:01.452Z",
+  "comparisons": [
+    {
+      "sourceId": 1,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-01-a",
+      "contentWordJaccard": 0.0432,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "and the"
+      }
+    },
+    {
+      "sourceId": 1,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-01-b",
+      "contentWordJaccard": 0.0457,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "and then"
+      }
+    },
+    {
+      "sourceId": 2,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-02-a",
+      "contentWordJaccard": 0.0415,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "and i"
+      }
+    },
+    {
+      "sourceId": 2,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-02-b",
+      "contentWordJaccard": 0.0381,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "and i"
+      }
+    },
+    {
+      "sourceId": 3,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-03-a",
+      "contentWordJaccard": 0.0317,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "the same"
+      }
+    },
+    {
+      "sourceId": 3,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-03-b",
+      "contentWordJaccard": 0.0149,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "as a"
+      }
+    },
+    {
+      "sourceId": 4,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-04-a",
+      "contentWordJaccard": 0.0446,
+      "trigramOverlap": {
+        "count": 2,
+        "rate": 0.0055248618784530384,
+        "examples": [
+          "i was waiting",
+          "i saw a"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "i was waiting"
+      }
+    },
+    {
+      "sourceId": 4,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-04-b",
+      "contentWordJaccard": 0.0538,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "to me"
+      }
+    },
+    {
+      "sourceId": 5,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-05-a",
+      "contentWordJaccard": 0.0194,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "is not"
+      }
+    },
+    {
+      "sourceId": 5,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-05-b",
+      "contentWordJaccard": 0.0144,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.005813953488372093,
+        "examples": [
+          "is not simply"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "is not simply"
+      }
+    },
+    {
+      "sourceId": 6,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-06-a",
+      "contentWordJaccard": 0.02,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 1,
+        "text": "in"
+      }
+    },
+    {
+      "sourceId": 6,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-06-b",
+      "contentWordJaccard": 0.0196,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 1,
+        "text": "in"
+      }
+    },
+    {
+      "sourceId": 7,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-07-a",
+      "contentWordJaccard": 0.0233,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "the first"
+      }
+    },
+    {
+      "sourceId": 7,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-07-b",
+      "contentWordJaccard": 0.0181,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "the first"
+      }
+    },
+    {
+      "sourceId": 8,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-08-a",
+      "contentWordJaccard": 0.046,
+      "trigramOverlap": {
+        "count": 2,
+        "rate": 0.010471204188481676,
+        "examples": [
+          "that can be",
+          "can be compared"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 4,
+        "text": "that can be compared"
+      }
+    },
+    {
+      "sourceId": 8,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-08-b",
+      "contentWordJaccard": 0.0723,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "to a"
+      }
+    },
+    {
+      "sourceId": 9,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-09-a",
+      "contentWordJaccard": 0.0265,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "as a"
+      }
+    },
+    {
+      "sourceId": 9,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-09-b",
+      "contentWordJaccard": 0.0149,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.002967359050445104,
+        "examples": [
+          "a site specific"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "a site specific"
+      }
+    },
+    {
+      "sourceId": 10,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-10-a",
+      "contentWordJaccard": 0.0388,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "to the"
+      }
+    },
+    {
+      "sourceId": 10,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-10-b",
+      "contentWordJaccard": 0.0357,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "able to"
+      }
+    },
+    {
+      "sourceId": 11,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-11-a",
+      "contentWordJaccard": 0.0393,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "in a"
+      }
+    },
+    {
+      "sourceId": 11,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-11-b",
+      "contentWordJaccard": 0.0219,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "into a"
+      }
+    },
+    {
+      "sourceId": 12,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-12-a",
+      "contentWordJaccard": 0.0408,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.0027100271002710027,
+        "examples": [
+          "when i was"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "when i was"
+      }
+    },
+    {
+      "sourceId": 12,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-12-b",
+      "contentWordJaccard": 0.0673,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "i was"
+      }
+    },
+    {
+      "sourceId": 13,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-13-a",
+      "contentWordJaccard": 0.0203,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "for example"
+      }
+    },
+    {
+      "sourceId": 13,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-13-b",
+      "contentWordJaccard": 0.0263,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "water in"
+      }
+    },
+    {
+      "sourceId": 14,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-14-a",
+      "contentWordJaccard": 0.0446,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "to make"
+      }
+    },
+    {
+      "sourceId": 14,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-14-b",
+      "contentWordJaccard": 0.0433,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "heat and"
+      }
+    },
+    {
+      "sourceId": 15,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-15-a",
+      "contentWordJaccard": 0.0058,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "of the"
+      }
+    },
+    {
+      "sourceId": 15,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-15-b",
+      "contentWordJaccard": 0.0169,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "top of"
+      }
+    },
+    {
+      "sourceId": 16,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-16-a",
+      "contentWordJaccard": 0.0417,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "of the"
+      }
+    },
+    {
+      "sourceId": 16,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-16-b",
+      "contentWordJaccard": 0.0152,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "of the"
+      }
+    },
+    {
+      "sourceId": 18,
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-18-a",
+      "contentWordJaccard": 0.0237,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "in the"
+      }
+    },
+    {
+      "sourceId": 18,
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-18-b",
+      "contentWordJaccard": 0.0342,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "in the"
+      }
+    }
+  ]
+}

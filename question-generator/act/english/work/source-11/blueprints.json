@@ -1,0 +1,14 @@
+{
+  "source_analysis": {
+    "sourceId": 11,
+    "required_passage_class": "SHORT",
+    "required_question_count": 5,
+    "assigned_passage_type": "informational",
+    "reusable_architecture": "Introduce a surprising biological ability, establish the organism's ordinary structure or condition, explain the sequence that enables the response, and end by distinguishing the real adaptation from an exaggerated interpretation.",
+    "copyright_risk_notes": ["Do not reuse Turritopsis dohrnii, Christian Sommer, jellyfish, hydroid colonies, life-cycle reversal, the 1988 discovery, or the phrase 'immortal jellyfish.'"]
+  },
+  "blueprints": [
+    {"blueprint_id":"A","new_topic_domain":"The dehydration tolerance of resurrection ferns","passage_type":"informational","rhetorical_arc":"Describe apparently dead-looking dry fronds; explain water loss and protective cellular changes; show rapid recovery after rain; clarify that tolerance is not unlimited."},
+    {"blueprint_id":"B","new_topic_domain":"The limb-regeneration process of axolotls","passage_type":"informational","rhetorical_arc":"Introduce regrowth after injury; explain wound covering and blastema formation; describe coordinated rebuilding; clarify that regeneration is organized repair rather than instant replacement."}
+  ]
+}

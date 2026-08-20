@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 8,
+  "blueprint": "B",
+  "passageAssetId": "act-reading-s08-b",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 657,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "No romance, migration, arranged meetings, cultural courtship, car journey, or source imagery is retained.",
+    "The narrative concerns sibling grief, archival evidence, and negotiated memory."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

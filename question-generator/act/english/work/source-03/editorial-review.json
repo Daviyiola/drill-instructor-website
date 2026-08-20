@@ -1,0 +1,8 @@
+{
+  "sourceId":3,"scale":"1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles":[
+    {"blueprint":"A","passageAssetId":"act-english-source-03-a","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":2,"centralConceptualTheme":3,"paragraphFunctionSequence":4,"overallRhetoricalArchitecture":4,"questionLogicTransfer":3,"disguisedRewriteRisk":2,"overallSimilarity":2.5},"decision":"PASS","notes":"The tactile-map passage uses accessibility design, navigation testing, and distinct examples; only the abstract creator-process-purpose arc transfers."},
+    {"blueprint":"B","passageAssetId":"act-english-source-03-b","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":2,"paragraphFunctionSequence":4,"overallRhetoricalArchitecture":4,"questionLogicTransfer":3,"disguisedRewriteRisk":2,"overallSimilarity":2.3},"decision":"PASS","notes":"The sonification passage uses scientific measurements and auditory mappings with no source artist, setting, medium, imagery, or quotation."}
+  ],
+  "pairDistinctness":{"decision":"PASS","notes":"A concerns tactile spatial navigation; B concerns auditory scientific analysis. Their media, evidence, users, and purposes are distinct."}
+}

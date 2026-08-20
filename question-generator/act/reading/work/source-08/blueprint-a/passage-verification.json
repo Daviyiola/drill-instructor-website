@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 8,
+  "blueprint": "A",
+  "passageAssetId": "act-reading-s08-a",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 677,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "A problem-solving neighbor narrative about evidence and infrastructure; no courtship, orchestrated meeting, family approval, resistance, or commitment decision.",
+    "Independently composed for this replacement audit."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

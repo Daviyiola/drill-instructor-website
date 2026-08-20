@@ -1,0 +1,1 @@
+{"status":"PASS","passageAssetId":"act-english-gap-long-a","actualWordCount":349,"checks":{"longPassageRange":true,"exactTargetCount":true,"targetOrder":true,"nonOverlappingTargets":true,"rendererSafeHtml":true,"reportingCategoryBalance":true,"crossBankOriginality":true}}

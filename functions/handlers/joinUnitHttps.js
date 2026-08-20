@@ -4,6 +4,7 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {requireVerifiedBearerUid, allowCors} = require("./_auth");
+const {studentEnrollmentOpen} = require("./_schoolPolicies");
 
 /**
  * @typedef {import("express").Request} Request
@@ -233,6 +234,13 @@ exports.handler = async function handler(req, res) {
         state: "same",
         selected: {country: country, state: state, school: school},
       });
+      return;
+    }
+
+    // Closing enrollment blocks new school memberships without ejecting or
+    // disrupting students who already belong to the school.
+    if (school && !studentEnrollmentOpen(unitSnap.val())) {
+      bad(res, 403, "SCHOOL_ENROLLMENT_CLOSED");
       return;
     }
 

@@ -34,6 +34,7 @@ export default function EducatorRoster({bootcamp}: {bootcamp: string}) {
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<"name" | "points">("name");
   const [busy, setBusy] = useState(false);
+  const [busyLabel, setBusyLabel] = useState("Refreshing roster");
   const [error, setError] = useState("");
   const [draft, setDraft] = useState<GroupDraft | null>(null);
   const [memberQuery, setMemberQuery] = useState("");
@@ -41,7 +42,7 @@ export default function EducatorRoster({bootcamp}: {bootcamp: string}) {
 
   async function refresh(showBusy = true) {
     if (!user) return;
-    if (showBusy) setBusy(true);
+    if (showBusy) { setBusyLabel("Refreshing roster"); setBusy(true); }
     setError("");
     try {
       const response = await callFunction<EducatorRosterResponse, {bootcamp: string}>(user, "getEducatorRosterHttps", {bootcamp}, {retryTransient: true});
@@ -98,31 +99,35 @@ export default function EducatorRoster({bootcamp}: {bootcamp: string}) {
   async function saveGroup(event: FormEvent) {
     event.preventDefault();
     if (!user || !draft) return;
+    const pendingDraft = draft;
+    setDraft(null);
+    setBusyLabel("Saving group");
     setBusy(true); setError("");
     try {
-      await callFunction(user, draft.group ? "updateEducatorGroupHttps" : "createEducatorGroupHttps", {
-        ...(draft.group ? {groupId: draft.group.rawGroupId || draft.group.id, scope: draft.group.scope, newScope: draft.scope} : {}),
-        name: draft.name, description: draft.description, scope: draft.scope, memberIds: draft.memberIds,
+      await callFunction(user, pendingDraft.group ? "updateEducatorGroupHttps" : "createEducatorGroupHttps", {
+        ...(pendingDraft.group ? {groupId: pendingDraft.group.rawGroupId || pendingDraft.group.id, scope: pendingDraft.group.scope, newScope: pendingDraft.scope} : {}),
+        name: pendingDraft.name, description: pendingDraft.description, scope: pendingDraft.scope, memberIds: pendingDraft.memberIds,
       });
-      setDraft(null);
       await refresh(false);
-    } catch (reason) { setError((reason as Error).message); }
+    } catch (reason) { setDraft(pendingDraft); setError((reason as Error).message); }
     finally { setBusy(false); }
   }
 
   async function removeGroup() {
     if (!user || !confirmDelete) return;
+    const pendingDelete = confirmDelete;
+    setConfirmDelete(null);
+    setBusyLabel("Deleting group");
     setBusy(true); setError("");
     try {
-      await callFunction(user, "deleteEducatorGroupHttps", {groupId: confirmDelete.rawGroupId || confirmDelete.id, scope: confirmDelete.scope});
-      setConfirmDelete(null);
+      await callFunction(user, "deleteEducatorGroupHttps", {groupId: pendingDelete.rawGroupId || pendingDelete.id, scope: pendingDelete.scope});
       await refresh(false);
-    } catch (reason) { setError((reason as Error).message); }
+    } catch (reason) { setConfirmDelete(pendingDelete); setError((reason as Error).message); }
     finally { setBusy(false); }
   }
 
   return <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10">
-    {busy && <BrandedLoadingOverlay label={draft ? "Saving group" : "Refreshing roster"} />}
+    {busy && <BrandedLoadingOverlay label={busyLabel} />}
     <Link href={`/app/educator/bootcamps/${bootcamp}`} className="inline-flex items-center gap-2 text-sm text-slate-700"><span className="grid h-8 w-8 place-items-center rounded-full bg-white shadow-sm"><span className="h-2.5 w-2.5 rotate-45 border-b-[3px] border-l-[3px] border-brand-green" /></span>{bootcamp.toUpperCase()} home</Link>
     <div className="mt-6 flex flex-wrap items-end justify-between gap-4"><div><p className="text-xs uppercase tracking-[.2em] text-brand-green/65">Roster</p><h1 className="mt-2 text-3xl font-semibold tracking-tight">Students and Groups</h1><p className="mt-2 text-sm text-slate-600">Only students and groups authorized for your account appear here.</p></div><button onClick={() => refresh()} className="min-h-10 rounded-xl border border-slate-300 bg-white px-4 text-sm hover:border-brand-green">Refresh</button></div>
     <div className="mt-7 grid grid-cols-2 rounded-2xl bg-white p-1 sm:max-w-md">{(["students", "groups"] as const).map((value) => <button key={value} onClick={() => setTab(value)} className={`min-h-11 rounded-xl text-sm capitalize ${tab === value ? "bg-brand-green text-white" : "text-slate-500"}`}>{value} ({value === "students" ? data?.students.length || 0 : data?.groups.length || 0})</button>)}</div>

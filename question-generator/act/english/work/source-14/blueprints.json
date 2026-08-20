@@ -1,0 +1,7 @@
+{
+  "source_analysis":{"sourceId":14,"required_passage_class":"LONG","required_question_count":10,"assigned_passage_type":"informational","reusable_architecture":"Explain the useful properties of an early material or process, trace practical use across time, identify a limitation that restricted adoption, describe experiments that overcame the limitation, and conclude with the resulting modern application.","copyright_risk_notes":["Do not reuse salicylates, willow or cinchona bark, fever treatment, ancient medicinal records, Edward Stone, Charles von Gerhardt, Felix Hoffmann, aspirin, or the source's medical-development sequence."]},
+  "blueprints":[
+    {"blueprint_id":"A","new_topic_domain":"The development of stable rubber from natural latex through vulcanization","passage_type":"informational","rhetorical_arc":"Explain latex and early rubber use; describe temperature-related limits; trace experiments with heat and sulfur; explain cross-linking; conclude with rubber's expanded practical role."},
+    {"blueprint_id":"B","new_topic_domain":"The shift from harvested ice to mechanical refrigeration","passage_type":"informational","rhetorical_arc":"Explain early cooling and stored ice; describe the ice trade and its limits; introduce vapor-compression machinery; trace practical refinements; conclude with controlled cooling as an engineered service."}
+  ]
+}

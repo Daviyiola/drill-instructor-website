@@ -6,12 +6,14 @@ import {callFunction} from "@/lib/api/client";
 import {useAuth} from "@/components/app/AuthProvider";
 import BrandedLoadingOverlay from "@/components/app/BrandedLoadingOverlay";
 import {questionText} from "@/lib/drills/text";
+import {isFutureLocalDateTime, minimumFutureLocalDateTime} from "@/lib/dates/futureDueDate";
+import {formatSchoolDateTime, resolveSchoolTimeZone} from "@/lib/dates/schoolTime";
 
 type Summary = {totalQ: number; attempted: number; correct: number; wrong: number; unanswered: number; usedSec: number; meanSec: number; points: number; accuracyPct: number};
 type StudentRow = {studentId: string; studentName: string; status: string; assignedAt: string; startedAt: string; submittedAt: string; attemptId: string; summary: Summary};
 type Submissions = {ok: true; drill: {drillId: string; title: string; instructions: string; status: string; assignedCount: number; startedCount: number; submittedCount: number; lateCount: number; dueAt: string}; students: StudentRow[]};
 type OptionPerformance = {label?: string; answer?: string; option?: string; count: number; percentage?: number; isCorrect?: boolean};
-type Agg = {name?: string; subject?: string; module?: string; questionId?: string; question?: string; blueprintIndex?: number; attempted?: number; correct?: number; accuracyPct?: number; avgTimeSec?: number; avgAttempted?: number; avgCorrect?: number; avgAccuracyPct?: number; avgMeanSec?: number; correctPct?: number; options?: OptionPerformance[]; optionDistribution?: OptionPerformance[]};
+type Agg = {name?: string; subject?: string; module?: string; questionId?: string; question?: string; blueprintIndex?: number; attempted?: number; correct?: number; wrong?: number; usedSec?: number; accuracyPct?: number; avgTimeSec?: number; avgAttempted?: number; avgCorrect?: number; avgAccuracyPct?: number; avgMeanSec?: number; correctPct?: number; options?: OptionPerformance[]; optionDistribution?: OptionPerformance[]};
 type Analytics = {ok: true; overall: Agg & {completionPct: number; averageAccuracy?: number; averageTimeSec?: number}; subjects: Agg[]; modules: Agg[]; questions: Agg[]};
 type Draft = {ok: true; full: {title: string; instructions: string; dueAt: string; settings: {scorePolicy?: string; correctionPolicy?: string; shuffleQuestions?: boolean}; release: {scoreReleasedAt?: string | null; correctionsReleasedAt?: string | null} | null}};
 type StudentSortKey = "name" | "status" | "accuracy" | "avgTime";
@@ -35,8 +37,22 @@ function mixedCase(value: string) {
     word.replace(/^([a-z])/, (letter) => letter.toLocaleUpperCase())).join(" ");
 }
 
+function csvCell(value: unknown) {
+  return `"${String(value ?? "").replace(/"/g, '""')}"`;
+}
+
+function downloadCsv(filename: string, rows: unknown[][]) {
+  const csv = `\uFEFF${rows.map((row) => row.map(csvCell).join(",")).join("\r\n")}`;
+  const url = URL.createObjectURL(new Blob([csv], {type: "text/csv;charset=utf-8"}));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
 export default function EducatorDrillDashboard({bootcamp, drillId}: {bootcamp: string; drillId: string}) {
-  const {user} = useAuth();
+  const {user, educatorWorkspace} = useAuth();
   const [submissions, setSubmissions] = useState<Submissions | null>(null);
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [draft, setDraft] = useState<Draft | null>(null);
@@ -47,8 +63,12 @@ export default function EducatorDrillDashboard({bootcamp, drillId}: {bootcamp: s
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [exportOpen, setExportOpen] = useState(false);
+  const [minimumDueAt, setMinimumDueAt] = useState("");
   const [confirmRelease, setConfirmRelease] = useState<"score" | "corrections" | null>(null);
   const [settings, setSettings] = useState({title: "", instructions: "", dueAt: "", scorePolicy: "immediate", correctionPolicy: "manual", shuffleQuestions: true});
+
+  useEffect(() => setMinimumDueAt(minimumFutureLocalDateTime()), []);
 
   async function load() {
     if (!user) return;
@@ -101,6 +121,11 @@ export default function EducatorDrillDashboard({bootcamp, drillId}: {bootcamp: s
   async function saveSettings(event: FormEvent) {
     event.preventDefault();
     if (!user) return;
+    if (settings.dueAt && !isFutureLocalDateTime(settings.dueAt)) {
+      setError("Choose a due date in the future.");
+      return;
+    }
+    setSettingsOpen(false);
     setBusy(true);
     setError("");
     try {
@@ -109,9 +134,9 @@ export default function EducatorDrillDashboard({bootcamp, drillId}: {bootcamp: s
         dueAt: settings.dueAt ? new Date(settings.dueAt).toISOString() : "",
         settings: {scorePolicy: settings.scorePolicy, correctionPolicy: settings.correctionPolicy, shuffleQuestions: settings.shuffleQuestions, shuffleOptions: false},
       });
-      setSettingsOpen(false);
       await load();
     } catch (reason) {
+      setSettingsOpen(true);
       setError((reason as Error).message);
     } finally {
       setBusy(false);
@@ -120,12 +145,14 @@ export default function EducatorDrillDashboard({bootcamp, drillId}: {bootcamp: s
 
   async function release() {
     if (!user || !confirmRelease) return;
+    const pendingRelease = confirmRelease;
+    setConfirmRelease(null);
     setBusy(true);
     try {
-      await callFunction(user, "releaseEducatorAssignmentHttps", {bootcamp, drillId, target: confirmRelease});
-      setConfirmRelease(null);
+      await callFunction(user, "releaseEducatorAssignmentHttps", {bootcamp, drillId, target: pendingRelease});
       await load();
     } catch (reason) {
+      setConfirmRelease(pendingRelease);
       setError((reason as Error).message);
     } finally {
       setBusy(false);
@@ -136,6 +163,57 @@ export default function EducatorDrillDashboard({bootcamp, drillId}: {bootcamp: s
   const overall = analytics?.overall;
   const releaseState = draft?.full.release;
 
+  function exportCsv(kind: "students" | "subjects" | "modules" | "questions") {
+    if (!drill || !analytics) return;
+    const exporter = [educatorWorkspace?.educator.firstName, educatorWorkspace?.educator.lastName].filter(Boolean).join(" ") || user?.email || "Educator";
+    const metadata: unknown[][] = [
+      ["Drill Instructor", "Assignment performance export"],
+      ["Drill", drill.title],
+      ["Exam", bootcamp.toUpperCase()],
+      ["Status", drill.status],
+      ["Due date", drill.dueAt ? formatSchoolDateTime(drill.dueAt, educatorWorkspace?.school) : "No due date"],
+      ["Exported by", exporter],
+      ["School", educatorWorkspace?.school.name || ""],
+      ["School timezone", resolveSchoolTimeZone(educatorWorkspace?.school)],
+      ["Exported at", formatSchoolDateTime(new Date(), educatorWorkspace?.school)],
+      ["Section", mixedCase(kind)],
+      [],
+    ];
+    let table: unknown[][];
+    if (kind === "students") {
+      table = [
+        ["Student", "Status", "Attempted", "Correct", "Wrong", "Unanswered", "Accuracy (%)", "Average time (seconds)", "Submitted at"],
+        ...(submissions?.students || []).map((row) => [row.studentName, row.status, row.summary.attempted, row.summary.correct, row.summary.wrong, row.summary.unanswered, row.summary.accuracyPct, studentAverageTime(row).toFixed(2), row.submittedAt ? formatSchoolDateTime(row.submittedAt, educatorWorkspace?.school) : ""]),
+      ];
+    } else if (kind === "subjects" || kind === "modules") {
+      const rows = kind === "subjects" ? analytics.subjects : analytics.modules;
+      table = [
+        [kind === "subjects" ? "Subject" : "Module", ...(kind === "modules" ? ["Subject"] : []), "Attempted", "Correct", "Wrong", "Accuracy (%)", "Average time (seconds)", "Total time (seconds)"],
+        ...rows.map((row) => [mixedCase(String(row.subject || row.module || row.name || "General")), ...(kind === "modules" ? [row.subject || ""] : []), Number(row.attempted ?? row.avgAttempted ?? 0), Number(row.correct ?? row.avgCorrect ?? 0), Number(row.wrong ?? 0), Number(row.accuracyPct ?? row.avgAccuracyPct ?? 0), Number(row.avgTimeSec ?? row.avgMeanSec ?? 0), Number(row.usedSec ?? 0)]),
+      ];
+    } else {
+      const optionCount = Math.max(0, ...analytics.questions.map((row) => (row.optionDistribution || row.options || []).length));
+      const optionHeaders = Array.from({length: optionCount}, (_, index) => {
+        const label = String.fromCharCode(65 + index);
+        return [`Option ${label}`, `${label} selections`, `${label} percent`, `${label} correct`];
+      }).flat();
+      table = [
+        ["Question #", "Subject", "Module", "Question", "Attempted", "Correct", "Wrong", "Accuracy (%)", "Average time (seconds)", ...optionHeaders],
+        ...analytics.questions.map((row, index) => {
+          const options = row.optionDistribution || row.options || [];
+          const optionCells = Array.from({length: optionCount}, (_, optionIndex) => {
+            const option = options[optionIndex];
+            return [option?.answer ?? option?.option ?? option?.label ?? "", option?.count ?? "", option?.percentage ?? "", option ? (option.isCorrect ? "Yes" : "No") : ""];
+          }).flat();
+          return [Number(row.blueprintIndex || index + 1), row.subject || "", mixedCase(row.module || "General"), questionText(row.question || ""), Number(row.attempted || 0), Number(row.correct || 0), Number(row.wrong ?? Math.max(0, Number(row.attempted || 0) - Number(row.correct || 0))), Number(row.accuracyPct ?? row.correctPct ?? 0), Number(row.avgTimeSec ?? row.avgMeanSec ?? 0), ...optionCells];
+        }),
+      ];
+    }
+    const filename = `drill-instructor-${bootcamp}-${drill.title}-${kind}.csv`.toLowerCase().replace(/[^a-z0-9.-]+/g, "-");
+    downloadCsv(filename, [...metadata, ...table]);
+    setExportOpen(false);
+  }
+
   return <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10">
     {busy && <BrandedLoadingOverlay label="Updating assignment" />}
     <Link href={`/app/educator/bootcamps/${bootcamp}/drills`} className="inline-flex items-center gap-2 text-sm text-slate-700">
@@ -145,6 +223,8 @@ export default function EducatorDrillDashboard({bootcamp, drillId}: {bootcamp: s
       <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
         <div><p className="text-xs uppercase tracking-[.2em] text-brand-green/65">{drill?.status}</p><h1 className="mt-2 text-3xl font-semibold">{drill?.title || "Drill dashboard"}</h1><p className="mt-2 text-sm text-slate-600">{drill?.instructions || "Submission and performance overview."}</p></div>
         <div className="flex flex-wrap gap-2">
+          <Link href={`/app/educator/bootcamps/${bootcamp}/drills/${drillId}/questions`} className="inline-flex min-h-11 items-center rounded-xl border border-slate-300 bg-white px-4 text-sm">View questions</Link>
+          <button onClick={() => setExportOpen(true)} className="min-h-11 rounded-xl border border-slate-300 bg-white px-4 text-sm">Export CSV</button>
           <button onClick={() => setSettingsOpen(true)} className="min-h-11 rounded-xl border border-slate-300 bg-white px-4 text-sm">Settings</button>
           {!releaseState?.scoreReleasedAt && <button onClick={() => setConfirmRelease("score")} className="min-h-11 rounded-xl border border-slate-300 bg-white px-4 text-sm">Release scores</button>}
           {!releaseState?.correctionsReleasedAt && <button onClick={() => setConfirmRelease("corrections")} className="min-h-11 rounded-xl bg-brand-green px-4 text-sm text-white">Release corrections</button>}
@@ -178,7 +258,8 @@ export default function EducatorDrillDashboard({bootcamp, drillId}: {bootcamp: s
         </div>
       </section> : <Breakdown rows={tab === "subjects" ? analytics?.subjects || [] : tab === "modules" ? analytics?.modules || [] : analytics?.questions || []} kind={tab} />}
     </>}
-    {settingsOpen && <div className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/45 p-4"><form onSubmit={saveSettings} className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-[2rem] bg-white p-6"><div className="flex justify-between"><h2 className="text-2xl font-medium">Assignment settings</h2><button type="button" onClick={() => setSettingsOpen(false)} className="grid h-9 w-9 place-items-center rounded-full bg-brand-mist text-xl">×</button></div><label className="mt-5 block text-sm">Title<input value={settings.title} onChange={(event) => setSettings({...settings, title: event.target.value})} className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 px-3" /></label><label className="mt-4 block text-sm">Instructions<textarea value={settings.instructions} onChange={(event) => setSettings({...settings, instructions: event.target.value})} className="mt-2 min-h-24 w-full rounded-xl border border-slate-200 p-3" /></label><label className="mt-4 block text-sm">Due date<input type="datetime-local" value={settings.dueAt} onChange={(event) => setSettings({...settings, dueAt: event.target.value})} className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 px-3" /></label><div className="mt-4 grid gap-4 sm:grid-cols-2"><label className="text-sm">Score policy<select value={settings.scorePolicy} onChange={(event) => setSettings({...settings, scorePolicy: event.target.value})} className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 px-3"><option value="immediate">Immediate</option><option value="on_due_date">On due date</option><option value="manual">Manual</option></select></label><label className="text-sm">Correction policy<select value={settings.correctionPolicy} onChange={(event) => setSettings({...settings, correctionPolicy: event.target.value})} className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 px-3"><option value="immediate">Immediate</option><option value="on_due_date">On due date</option><option value="manual">Manual</option></select></label></div><button className="mt-6 min-h-12 w-full rounded-2xl bg-brand-green text-white">SAVE SETTINGS</button></form></div>}
+    {settingsOpen && <div className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/45 p-4"><form onSubmit={saveSettings} className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-[2rem] bg-white p-6"><div className="flex justify-between"><h2 className="text-2xl font-medium">Assignment settings</h2><button type="button" onClick={() => setSettingsOpen(false)} className="grid h-9 w-9 place-items-center rounded-full bg-brand-mist text-xl">×</button></div><label className="mt-5 block text-sm">Title<input value={settings.title} onChange={(event) => setSettings({...settings, title: event.target.value})} className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 px-3" /></label><label className="mt-4 block text-sm">Instructions<textarea value={settings.instructions} onChange={(event) => setSettings({...settings, instructions: event.target.value})} className="mt-2 min-h-24 w-full rounded-xl border border-slate-200 p-3" /></label><label className="mt-4 block text-sm">Due date<input type="datetime-local" min={minimumDueAt || undefined} value={settings.dueAt} onChange={(event) => setSettings({...settings, dueAt: event.target.value})} className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 px-3" /></label><div className="mt-4 grid gap-4 sm:grid-cols-2"><label className="text-sm">Score policy<select value={settings.scorePolicy} onChange={(event) => setSettings({...settings, scorePolicy: event.target.value})} className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 px-3"><option value="immediate">Immediate</option><option value="on_due_date">On due date</option><option value="manual">Manual</option></select></label><label className="text-sm">Correction policy<select value={settings.correctionPolicy} onChange={(event) => setSettings({...settings, correctionPolicy: event.target.value})} className="mt-2 min-h-11 w-full rounded-xl border border-slate-200 px-3"><option value="immediate">Immediate</option><option value="on_due_date">On due date</option><option value="manual">Manual</option></select></label></div><button className="mt-6 min-h-12 w-full rounded-2xl bg-brand-green text-white">SAVE SETTINGS</button></form></div>}
+    {exportOpen && <div className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/45 p-4"><section className="w-full max-w-lg rounded-[2rem] bg-white p-6"><div className="flex items-center justify-between"><div><p className="text-xs uppercase tracking-wider text-brand-green/60">CSV export</p><h2 className="mt-1 text-2xl font-medium">Choose a table</h2></div><button type="button" onClick={() => setExportOpen(false)} className="grid h-10 w-10 place-items-center rounded-full bg-brand-mist text-xl">×</button></div><p className="mt-3 text-sm leading-6 text-slate-500">Each file includes assignment, school, educator, and export details above its table.</p><div className="mt-5 grid gap-3 sm:grid-cols-2">{(["students", "subjects", "modules", "questions"] as const).map((kind) => <button key={kind} type="button" onClick={() => exportCsv(kind)} className="min-h-14 rounded-2xl border border-slate-200 bg-brand-mist/45 px-4 text-left text-sm capitalize transition hover:border-brand-green hover:bg-brand-green/10">{kind}</button>)}</div></section></div>}
     {confirmRelease && <div className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/45 p-4"><section className="w-full max-w-md rounded-[2rem] bg-white p-6 text-center"><h2 className="text-xl font-medium">Release {confirmRelease}?</h2><p className="mt-3 text-sm text-slate-600">This is irreversible.{confirmRelease === "corrections" ? " Scores will also be released." : " Corrections remain restricted."}</p><div className="mt-6 grid grid-cols-2 gap-3"><button onClick={() => setConfirmRelease(null)} className="min-h-11 rounded-xl border border-slate-300">CANCEL</button><button onClick={release} className="min-h-11 rounded-xl bg-brand-green text-white">RELEASE</button></div></section></div>}
   </div>;
 }

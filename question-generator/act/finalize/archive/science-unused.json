@@ -1,0 +1,172 @@
+{
+  "subject": "Science",
+  "reason": "Removed to preserve exactly four 40-question forms while keeping every stimulus group represented by five or six questions.",
+  "questions": [
+    {
+      "skill_tested": "Synthesize trends across both experiments and channel roughness levels.",
+      "question": "Which statement is best supported by Tables 1 and 2?",
+      "option1": "For a fixed pattern class, rougher channels required higher pump rates in Experiment 1 and larger gate openings in Experiment 2.",
+      "option2": "For a fixed pattern class, rougher channels required lower pump rates in Experiment 1 and smaller gate openings in Experiment 2.",
+      "option3": "For a fixed channel type, pump rate decreased as pattern class increased in Experiment 1.",
+      "option4": "For a fixed channel type, gate opening increased as pattern class increased in Experiment 2.",
+      "correctAnswer": "For a fixed pattern class, rougher channels required higher pump rates in Experiment 1 and larger gate openings in Experiment 2.",
+      "explanation": "<b>Step 1:</b> In Table 1, for any fixed pattern class, pump rate increases from Smooth to Matte to Grooved as roughness increases.<br><br><b>Step 2:</b> In Table 2, for any fixed pattern class, gate opening also increases from Smooth to Matte to Grooved. Thus rougher channels required higher pump rates and larger gate openings.<br><br><b>Answer:</b> For a fixed pattern class, rougher channels required higher pump rates in Experiment 1 and larger gate openings in Experiment 2.",
+      "practiceYear": 1,
+      "difficulty": "Very Hard",
+      "module": "Scientific Conclusions and Predictions",
+      "imageSources": [
+        "ACT/Sci70.png",
+        "ACT/Sci71.png",
+        "ACT/Sci72.png"
+      ],
+      "passage": "Students studied ripple patterns in shallow water flowing through 3 transparent channels. A pattern class equaled the number of interior ripple bands, excluding the inlet and outlet ends.<br><br>Experiment 1 held channel slope at 4° and adjusted pump rate. Experiment 2 held pump rate at 120 mL/s and adjusted outlet gate opening. Channel bottom roughness and pattern class were varied.",
+      "archivedFromQuestion": 162,
+      "archiveReason": "Stimulus-group balancing"
+    },
+    {
+      "skill_tested": "Synthesize module mapping, graph trends, and researcher claims",
+      "question": "Which statement is best supported by the introduction and Figure 1?",
+      "option1": "Module L's output decreases as humidity increases, while Module N's output increases as humidity increases.",
+      "option2": "Module M's output decreases continuously from 20% to 80% relative humidity.",
+      "option3": "Module N's output is strongest at 20% relative humidity and weakest at 80% relative humidity.",
+      "option4": "Module L and Module M produce the same signal at 50% relative humidity.",
+      "correctAnswer": "Module L's output decreases as humidity increases, while Module N's output increases as humidity increases.",
+      "explanation": "<b>Step 1:</b> The introduction states that Module L produces the moisture-pulse signal and Module N produces the vent-open signal.<br><br><b>Step 2:</b> Figure 1 shows the moisture-pulse signal decreases from 62 to 8 as humidity increases, while the vent-open signal increases from 5 to 66.<br><br><b>Answer:</b> Module L's output decreases as humidity increases, while Module N's output increases as humidity increases.",
+      "practiceYear": 1,
+      "difficulty": "Hard",
+      "module": "Scientific Conclusions and Predictions",
+      "imageSources": [
+        "ACT/Sci13.png",
+        "ACT/Sci15.png"
+      ],
+      "passage": "An automated greenhouse used 3 control modules to regulate the humidity of a seedling room. Module L produced the moisture-pulse signal, Module M produced the mixing-fan signal, and Module N produced the vent-open signal. <br><br>Figure 1 shows the strength of each signal at different humidity levels. Four researchers' interpretations of the control system are summarized in Table 1.",
+      "archivedFromQuestion": 36,
+      "archiveReason": "Stimulus-group balancing"
+    },
+    {
+      "skill_tested": "Compare absolute changes across model, exposure, and recovery conditions",
+      "question": "Which listed comparison shows the greatest absolute difference in average signal index?",
+      "option1": "Model Q vs. Model R in Table 1",
+      "option2": "15 s vs. 45 s lamp exposure in Figure 1",
+      "option3": "45 s vs. 90 s lamp exposure in Figure 1",
+      "option4": "2 s vs. 50 s recovery delay in Figure 2",
+      "correctAnswer": "15 s vs. 45 s lamp exposure in Figure 1",
+      "explanation": "<b>Step 1:</b> Calculate each difference: Model Q vs. Model R is 31 − 24 = 7; 15 s vs. 45 s lamp exposure is 31 − 19 = 12; 45 s vs. 90 s lamp exposure is 39 − 31 = 8; 2 s vs. 50 s recovery delay is 31 − 21 = 10.<br><br><b>Step 2:</b> The greatest absolute difference is 12, from 15 s to 45 s lamp exposure in Figure 1.<br><br><b>Answer:</b> 15 s vs. 45 s lamp exposure in Figure 1: 12",
+      "practiceYear": 1,
+      "difficulty": "Very Hard",
+      "module": "Data Analysis and Trends",
+      "imageSources": [
+        "ACT/Sci42.png",
+        "ACT/Sci43.png",
+        "ACT/Sci44.png"
+      ],
+      "passage": "Students tested 2 light-sensor models. Each sensor was exposed to a bright lamp, placed in darkness for a recovery delay, and then measured. Response was recorded as a signal index from 0 to 50. Each condition used 6 sensors. A signal index of 30 or greater was considered reliable.<br><br>In Experiment 1, sensor model was varied while lamp-exposure duration was held at 45 s and recovery delay was held at 2 s. In Experiment 2, lamp-exposure duration was varied while Model Q was used and recovery delay was held at 2 s. In Experiment 3, recovery delay was varied while Model Q was used and lamp-exposure duration was held at 45 s.",
+      "archivedFromQuestion": 101,
+      "archiveReason": "Stimulus-group balancing"
+    },
+    {
+      "skill_tested": "Compare changes across fertilizer intervals for multiple strains",
+      "question": "From 8 mg/L to 22 mg/L in Table 1, which strain had the greatest decrease in growth index?",
+      "option1": "Strain J, decreasing by 2",
+      "option2": "Strain K, decreasing by 8",
+      "option3": "Strain L, decreasing by 15",
+      "option4": "Strain M, decreasing by 11",
+      "correctAnswer": "Strain L, decreasing by 15",
+      "explanation": "<b>Step 1:</b> Compare each strain at 8 mg/L and 22 mg/L: J changes from 71 to 69, K from 68 to 60, L from 66 to 51, and M from 61 to 50.<br><br><b>Step 2:</b> The decreases are 2, 8, 15, and 11, respectively. The greatest decrease is 15 for Strain L.<br><br><b>Answer:</b> Strain L, decreasing by 15",
+      "practiceYear": 1,
+      "difficulty": "Hard",
+      "module": "Data Analysis and Trends",
+      "imageSources": [
+        "ACT/Sci37.png",
+        "ACT/Sci38.png"
+      ],
+      "passage": "Researchers grew 4 algae strains in identical containers for 6 days. Growth index was measured on a scale from 0 to 100. A growth index of 65 or greater was considered suitable for pond starter cultures.<br><br>In Study 1, fertilizer concentration was varied while light exposure was held at 10 hr/day. In Study 2, light exposure was varied while fertilizer concentration was held at 8 mg/L.",
+      "archivedFromQuestion": 89,
+      "archiveReason": "Stimulus-group balancing"
+    },
+    {
+      "skill_tested": "Synthesize retention decrease and dry-mass increase over the leafing phase",
+      "question": "From 4 weeks to 10 weeks, by how much did dry mass increase, and which group had the smallest retention decrease over the same interval?",
+      "option1": "Dry mass increased by 0.54 g; Group A had the smallest retention decrease.",
+      "option2": "Dry mass increased by 0.54 g; Group C had the smallest retention decrease.",
+      "option3": "Dry mass increased by 0.72 g; Group B had the smallest retention decrease.",
+      "option4": "Dry mass increased by 0.90 g; Group C had the smallest retention decrease.",
+      "correctAnswer": "Dry mass increased by 0.54 g; Group C had the smallest retention decrease.",
+      "explanation": "<b>Step 1:</b> Figure 2 shows dry mass increased from 0.18 g at 4 weeks to 0.72 g at 10 weeks, an increase of 0.54 g.<br><br><b>Step 2:</b> From 4 weeks to 10 weeks, retention decreased by 19 percentage points for Group A, 15 for Group B, and 9 for Group C. The smallest decrease was in Group C.<br><br><b>Answer:</b> Dry mass increased by 0.54 g; Group C had the smallest retention decrease.",
+      "practiceYear": 1,
+      "difficulty": "Hard",
+      "module": "Data Analysis and Trends",
+      "imageSources": [
+        "ACT/Sci32.png",
+        "ACT/Sci33.png",
+        "ACT/Sci34.png"
+      ],
+      "passage": "Students grew greenhouse seedlings for 10 weeks. Shoot span was defined as stem height plus longest leaf length. The sprout phase lasted from 0–4 weeks, and the leafing phase lasted from 4–10 weeks. Figure 2 shows average shoot span and dry mass for a baseline set of seedlings grown with no seed coating.<br><br>During the sprout phase, only shoot span was measured. During the leafing phase, both shoot span and dry mass were measured. Three other groups received different seed coatings. Tray size, water volume, light duration, starting seed number, and base soil type were held constant.",
+      "archivedFromQuestion": 78,
+      "archiveReason": "Stimulus-group balancing"
+    },
+    {
+      "skill_tested": "Synthesize package properties, pressure data, and unit conversion",
+      "question": "Which statement is best supported by Tables 1 and 2 and the pressure conversion given in the passage?",
+      "option1": "In Study 4, Package C had the largest surface-area-to-mass ratio and required 18,000 Pa.",
+      "option2": "In Study 4, Package A had the largest surface-area-to-mass ratio and required 18,000 Pa.",
+      "option3": "In Study 1, Package C had the smallest surface-area-to-mass ratio and required 6,000 Pa.",
+      "option4": "In Study 1, Package B had the largest surface-area-to-mass ratio and required 9,000 Pa.",
+      "correctAnswer": "In Study 4, Package C had the largest surface-area-to-mass ratio and required 18,000 Pa.",
+      "explanation": "<b>Step 1:</b> Table 1 shows that Package C has the largest surface-area-to-mass ratio, 36 cm²/kg.<br><br><b>Step 2:</b> Table 2 shows that Package C required 18 kPa in Study 4. Since 1 kPa = 1,000 Pa, 18 kPa = 18,000 Pa.<br><br><b>Answer:</b> In Study 4, Package C had the largest surface-area-to-mass ratio and required 18,000 Pa.",
+      "practiceYear": 1,
+      "difficulty": "Hard",
+      "module": "Scientific Conclusions and Predictions",
+      "imageSources": [
+        "ACT/Sci23.png",
+        "ACT/Sci24.png",
+        "ACT/Sci25.png"
+      ],
+      "passage": "Students tested a conveyor sorter that used a side air jet to push packages into a collection slot. Each package was released one at a time. The required air pressure was the lowest pressure that moved the package through the target path.<br><br>Three package types had different surface-area-to-mass ratios. In all studies, package shape, air-jet angle, and conveyor surface were held constant. The students tested 2 path offsets and 2 belt speeds. For this device, 1 kPa = 1,000 Pa.",
+      "archivedFromQuestion": 60,
+      "archiveReason": "Stimulus-group balancing"
+    },
+    {
+      "skill_tested": "Synthesize evidence across a graph and table",
+      "question": "Which statement is best supported by Figure 2 and Table 1?",
+      "option1": "The 25 cm fan-distance trial in Table 1 matches the Experiment 1 temperatures at the times shown in both visuals.",
+      "option2": "The 45 cm fan-distance trial cooled the disk more than the 15 cm trial at every listed time.",
+      "option3": "Changing the fan distance caused the starting temperature to increase by 10°C each time.",
+      "option4": "The disk temperature at 25 cm was higher in Table 1 than in Figure 2 at 8 min.",
+      "correctAnswer": "The 25 cm fan-distance trial in Table 1 matches the Experiment 1 temperatures at the times shown in both visuals.",
+      "explanation": "<b>Step 1:</b> Figure 2 gives Experiment 1 temperatures of 96°C, 72°C, 53°C, and 45°C at 0, 2, 5, and 8 min.<br><br><b>Step 2:</b> Table 1 shows the same values for the 25 cm fan-distance trial at those same times.<br><br><b>Answer:</b> The 25 cm fan-distance trial in Table 1 matches the Experiment 1 temperatures at the times shown in both visuals.",
+      "practiceYear": 1,
+      "difficulty": "Hard",
+      "module": "Scientific Conclusions and Predictions",
+      "imageSources": [
+        "ACT/Sci1.png",
+        "ACT/Sci2.png",
+        "ACT/Sci3.png"
+      ],
+      "passage": "Students studied how quickly heated metal disks cooled under different airflow conditions. Each disk was heated to approximately 96°C, placed on an insulated pad, and allowed to cool for 8 min. A surface temperature probe recorded the disk temperature. The same type of aluminum disk was used in all trials.<br><br>Experiment 1<br>A disk with a diameter of 6 cm was placed 25 cm from a small fan set to medium speed. The room temperature was 22°C. The students recorded the disk temperature every 1 min for 8 min. The results are shown in Figure 2.<br><br>Experiment 2<br>The students repeated the procedure from Experiment 1, but changed the fan distance from the disk. The fan remained at medium speed, and each disk had a diameter of 6 cm. Disk temperature was recorded at selected times. The results are shown in Table 1.<br><br>For this setup, the cooling amount was defined as the starting disk temperature minus the disk temperature at a given time. A greater cooling amount indicated that more thermal energy had been transferred from the disk to the surrounding air.",
+      "archivedFromQuestion": 6,
+      "archiveReason": "Stimulus-group balancing"
+    },
+    {
+      "skill_tested": "Synthesize ink properties, pressure data, and unit conversion",
+      "question": "Which statement is best supported by Tables 1 and 2 and the pressure conversion given in the passage?",
+      "option1": "In Study D, Ink Z had the largest response coefficient and required 22,000 Pa.",
+      "option2": "In Study D, Ink X had the largest response coefficient and required 22,000 Pa.",
+      "option3": "In Study A, Ink Z had the smallest response coefficient and required 9,000 Pa.",
+      "option4": "In Study A, Ink Y had the largest response coefficient and required 14,000 Pa.",
+      "correctAnswer": "In Study D, Ink Z had the largest response coefficient and required 22,000 Pa.",
+      "explanation": "<b>Step 1:</b> Table 1 shows that Ink Z has the largest response coefficient, 0.84 mm/kPa.<br><br><b>Step 2:</b> Table 2 shows that Ink Z required 22 kPa in Study D. Since 1 kPa = 1,000 Pa, 22 kPa = 22,000 Pa.<br><br><b>Answer:</b> In Study D, Ink Z had the largest response coefficient and required 22,000 Pa.",
+      "practiceYear": 1,
+      "difficulty": "Hard",
+      "module": "Scientific Conclusions and Predictions",
+      "imageSources": [
+        "ACT/Sci26.png",
+        "ACT/Sci27.png",
+        "ACT/Sci28.png"
+      ],
+      "passage": "Students tested an inkjet calibration device that used an adjustable side air pulse to steer single droplets onto a sensor strip. The required air-pulse pressure was the lowest pressure that placed a droplet at the target mark.<br><br>Three ink types had different response coefficients. The students tested 2 target distances and 2 launch-pulse strengths. Droplet nozzle size, air-pulse angle, room temperature, and sensor-strip material were held constant. For this device, 1 kPa = 1,000 Pa.",
+      "archivedFromQuestion": 66,
+      "archiveReason": "Stimulus-group balancing"
+    }
+  ]
+}

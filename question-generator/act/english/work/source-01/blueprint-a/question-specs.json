@@ -1,0 +1,102 @@
+[
+  {
+    "skill_tested": "Punctuating independent clauses joined by a conjunctive adverb",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["NO CHANGE", "sensible; however, it now", "sensible however; it now", "sensible: however it now"],
+    "correctAnswer": "sensible; however, it now",
+    "step1": "The thought before 'however' and the thought after it can each stand as a complete sentence.",
+    "step2": "A semicolon separates the independent clauses, and a comma follows the conjunctive adverb 'however.'",
+    "difficulty": "Medium",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Maintaining a precise and appropriately formal tone",
+    "question": "Which choice best maintains the passage's measured, analytical tone?",
+    "options": ["NO CHANGE", "blasts a crazy flood of light", "sends substantial light", "catapults an outrageous glow"],
+    "correctAnswer": "sends substantial light",
+    "step1": "The passage uses neutral language to evaluate a public policy rather than conversational or emotional language.",
+    "step2": "'Sends substantial light' states the amount and action precisely without exaggeration or slang.",
+    "difficulty": "Medium",
+    "module": "Style and Tone"
+  },
+  {
+    "skill_tested": "Evaluating whether a detail develops a paragraph's purpose",
+    "question": "Should the writer keep or delete the underlined sentence?",
+    "options": ["Keep it, because it identifies the colors most commonly used on municipal equipment.", "Keep it, because it proves that shielded lamps are more attractive than unshielded lamps.", "Delete it, because the passage never establishes which paint color residents prefer.", "Delete it, because the aesthetic detail does not explain how shielding and adaptive controls reduce wasted light."],
+    "correctAnswer": "Delete it, because the aesthetic detail does not explain how shielding and adaptive controls reduce wasted light.",
+    "step1": "The paragraph explains how shields and controls direct light and reduce unnecessary electricity use.",
+    "step2": "Lamp-post color does not develop that mechanism, so the sentence distracts from the paragraph's purpose.",
+    "difficulty": "Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Maintaining subject-verb agreement across an interrupting phrase",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["NO CHANGE", "have kept", "are keeping", "keeps"],
+    "correctAnswer": "keeps",
+    "step1": "The subject of the verb is the singular noun 'hood'; the phrase 'along with its angled panels' does not change its number.",
+    "step2": "The singular present-tense verb 'keeps' agrees with 'hood.'",
+    "difficulty": "Hard",
+    "module": "Subject-Verb Agreement"
+  },
+  {
+    "skill_tested": "Eliminating redundant wording while preserving meaning",
+    "question": "Which choice most concisely expresses the intended meaning?",
+    "options": ["NO CHANGE", "during the night at times of low nighttime activity", "at nighttime during hours when few people are there", "when few people are present at night"],
+    "correctAnswer": "when few people are present at night",
+    "step1": "The original wording repeats the idea of nighttime in both 'nighttime hours' and 'at night.'",
+    "step2": "The concise choice states both necessary ideas: few people are present, and the condition occurs at night.",
+    "difficulty": "Medium",
+    "module": "Conciseness and Redundancy"
+  },
+  {
+    "skill_tested": "Retaining a counterclaim that strengthens an argument",
+    "question": "Should the writer keep or delete the underlined sentence?",
+    "options": ["Keep it, because it introduces the financial concern that the staged-replacement proposal directly answers.", "Keep it, because it establishes that every municipality has already budgeted for new fixtures.", "Delete it, because any criticism of the proposal weakens the writer's position.", "Delete it, because the paragraph should discuss only the appearance of the fixtures."],
+    "correctAnswer": "Keep it, because it introduces the financial concern that the staged-replacement proposal directly answers.",
+    "step1": "The sentence raises a reasonable objection: replacing all fixtures at once could be expensive.",
+    "step2": "The sentences that follow answer that objection with gradual replacement and long-term maintenance savings, so the counterclaim gives the response a clear purpose.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Correcting a comma splice between independent clauses",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["; it lets", ", which lets", ", it lets", ": and letting"],
+    "correctAnswer": "; it lets",
+    "step1": "'A staged replacement answers that concern' and 'it lets a city install adaptive fixtures' are independent clauses.",
+    "step2": "A semicolon correctly joins the closely related independent clauses without creating a comma splice.",
+    "difficulty": "Hard",
+    "module": "Sentence Structure"
+  },
+  {
+    "skill_tested": "Placing a sentence according to logical sequence and reference",
+    "question": "The underlined sentence would most logically be placed at which point in the paragraph?",
+    "options": ["Point A", "Point B", "Point C", "Point D"],
+    "correctAnswer": "Point D",
+    "step1": "The phrase 'those observations' must refer to observations already described in the paragraph.",
+    "step2": "At Point D, the resident comparisons and responder feedback have just been presented, so approval logically follows the completed evaluation.",
+    "difficulty": "Very Hard",
+    "module": "Organization and Cohesion"
+  },
+  {
+    "skill_tested": "Using a colon to introduce a list after a complete clause",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": ["; clear sidewalks, darker bedroom windows, and lower electric bills", ", clear sidewalks, darker bedroom windows, and lower electric bills", ": clear sidewalks, darker bedroom windows, and lower electric bills", " clear sidewalks; darker bedroom windows; and lower electric bills"],
+    "correctAnswer": ": clear sidewalks, darker bedroom windows, and lower electric bills",
+    "step1": "'The evaluation should focus on three goals' is a complete clause that announces a list.",
+    "step2": "A colon correctly follows the complete clause and introduces the three named goals.",
+    "difficulty": "Hard",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Evaluating whether a conclusion reinforces a passage's central claim",
+    "question": "Should the writer keep or delete the final sentence?",
+    "options": ["Keep it, because it argues that every street should receive the same maximum amount of light.", "Keep it, because it restates the passage's central standard that lighting should be directed and appropriately measured.", "Delete it, because the passage has not compared the purchase prices of several lamp models.", "Delete it, because a conclusion should introduce a completely new policy concern."],
+    "correctAnswer": "Keep it, because it restates the passage's central standard that lighting should be directed and appropriately measured.",
+    "step1": "The passage recommends shielded, adjustable lighting instead of treating maximum brightness as the goal.",
+    "step2": "The final sentence synthesizes that recommendation by defining successful lighting as an appropriate amount placed where it is needed.",
+    "difficulty": "Hard",
+    "module": "Topic Development"
+  }
+]

@@ -14,6 +14,9 @@ function routeLabel(path: string) {
   if (path.includes("/profile")) return "Loading your profile";
   if (path.includes("/contact")) return "Loading support";
   if (path.includes("/credits")) return "Loading credits";
+  if (path.includes("/leaderboards")) return "Loading leaderboards";
+  if (path.includes("/ranks")) return "Loading ranks";
+  if (path.includes("/community")) return "Loading ranks and leaderboards";
   if (path.includes("/terms")) return "Loading terms";
   if (path.includes("/privacy")) return "Loading privacy policy";
   return "Loading educator workspace";
@@ -32,6 +35,11 @@ export default function EducatorShell({workspace, children}: {workspace: Educato
   const avatarUrl = avatarAssetUrl(safeAvatarNumber(workspace.educator.avatarNumber));
   const canAdmin = workspace.caller.adminAccess || workspace.caller.superAdmin;
   const showTopBar = isEducatorHomeSurface(pathname);
+  const bootcampOverviewPath = /^\/app\/educator\/bootcamps\/[^/]+$/.test(pathname) ? pathname : "";
+  const administrationHref = bootcampOverviewPath
+    ? `/app/educator/admin?returnTo=${encodeURIComponent(bootcampOverviewPath)}`
+    : "/app/educator/admin";
+  const fromHere = `?returnTo=${encodeURIComponent(pathname)}`;
 
   useEffect(() => setRouteLoading(""), [pathname]);
 
@@ -51,9 +59,9 @@ export default function EducatorShell({workspace, children}: {workspace: Educato
 
   const items = [
     {href: "/app/educator/profile", label: "My profile", detail: "Identity and school membership"},
-    ...(canAdmin ? [{href: "/app/educator/admin", label: "Administration", detail: "School access and permissions"}] : []),
-    {href: "/app/terms", label: "Terms of use", detail: "Rules for using Drill Instructor"},
-    {href: "/app/privacy", label: "Privacy policy", detail: "How school and account data is handled"},
+    ...(canAdmin ? [{href: administrationHref, label: "Administration", detail: "School access and permissions"}] : []),
+    {href: `/app/educator/community${fromHere}`, label: "Ranks & leaderboards", detail: "Rank guide and unit standings"},
+    {href: `/app/terms${fromHere}`, label: "Terms & privacy", detail: "Service rules and how data is handled"},
     {href: "/app/credits", label: "Credits", detail: "Artwork acknowledgements"},
     {href: "/app/contact", label: "Help & support", detail: "Questions, feedback, or support"},
   ];

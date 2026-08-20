@@ -127,6 +127,7 @@ function normalizeSchool(schoolId, school) {
     name: cleanStr(school && school.name, 100),
     country: cleanStr(school && school.country, 100),
     state: cleanStr(school && school.state, 100),
+    timezone: cleanStr(school && school.timezone, 80),
   };
 }
 
@@ -490,6 +491,35 @@ function normalizeAccess(
   };
 }
 
+/**
+ * Build a useful, explicit first-approval access set from the school plan.
+ * New bootcamps added to the plan later are not silently granted.
+ *
+ * @param {Object} plan School plan
+ * @return {Object} Recommended educator access
+ */
+function buildRecommendedEducatorAccess(plan) {
+  const bootcamps = {};
+  const subjectsByBootcamp = {};
+  const planBootcamps = isObject(plan) && isObject(plan.bootcamps) ?
+    plan.bootcamps : {};
+
+  for (const rawBootcamp of Object.keys(planBootcamps)) {
+    const bootcamp = cleanStr(rawBootcamp, 40).toLowerCase();
+    if (!bootcamp || !planHasBootcamp(plan, bootcamp)) continue;
+    bootcamps[bootcamp] = true;
+    subjectsByBootcamp[bootcamp] = {all: true};
+  }
+
+  return {
+    bootcamps,
+    subjectsByBootcamp,
+    groups: {all: true},
+    students: {all: true},
+    platoons: {},
+  };
+}
+
 function validateAccessAgainstPlan(access, plan) {
   if (!access || typeof access !== "object") return null;
 
@@ -613,6 +643,7 @@ module.exports = {
   addSchoolMemberCandidates,
   approvedEducatorCount,
   bad,
+  buildRecommendedEducatorAccess,
   buildSubjectCatalogForPlan,
   cleanStr,
   collectCandidateStudentIds,

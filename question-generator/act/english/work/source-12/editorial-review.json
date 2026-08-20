@@ -1,0 +1,21 @@
+{
+  "sourceId": 12,
+  "scale": "1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles": [
+    {
+      "blueprint": "A",
+      "passageAssetId": "act-english-source-12-a",
+      "scores": {"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":2,"centralConceptualTheme":5,"paragraphFunctionSequence":5,"overallRhetoricalArchitecture":5,"questionLogicTransfer":3,"disguisedRewriteRisk":4,"overallSimilarity":3.3},
+      "decision": "PASS",
+      "notes": "The passage retains only the abstract arc of expanding a personally meaningful practice. Its bicycle diagnosis, cooperative setting, measurement process, second mentor, and volunteer outcome are independently constructed and do not reproduce the source's travel or musical events."
+    },
+    {
+      "blueprint": "B",
+      "passageAssetId": "act-english-source-12-b",
+      "scores": {"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":3,"paragraphFunctionSequence":4,"overallRhetoricalArchitecture":4,"questionLogicTransfer":3,"disguisedRewriteRisk":3,"overallSimilarity":2.5},
+      "decision": "PASS",
+      "notes": "The marsh survey focuses on visual limitations, disciplined listening, evidence thresholds, and field observation; it shares no characters, objects, locations, events, or cultural details with the source."
+    }
+  ],
+  "pairDistinctness": {"decision":"PASS","notes":"A is an indoor mechanical repair narrative organized around a family bicycle and cooperative work; B is an outdoor field-survey narrative organized around fog, bird calls, and evidence. Their plots and sensory vocabularies are distinct."}
+}

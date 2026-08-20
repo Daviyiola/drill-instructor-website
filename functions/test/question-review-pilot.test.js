@@ -22,6 +22,7 @@ test("academic pilot is stable and covers every current subject", () => {
     "act:Mathematics",
     "act:Science",
     "act:English",
+    "act:Reading",
     "sat:Math",
     "sat:Read. & Writ.",
   ]));

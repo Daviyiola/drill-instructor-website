@@ -1,0 +1,1731 @@
+PRODUCTION PIPELINE
+
+Use the prompts in this order:
+
+SOURCE PASSAGE
+↓
+PROMPT 1 — BLUEPRINT EXTRACTION
+Extract Blueprint A
+Extract Blueprint B
+↓
+PROCESS BOTH BLUEPRINTS
+Generate and verify one independent passage-and-question batch from Blueprint A
+Generate and verify one independent passage-and-question batch from Blueprint B
+↓
+PROMPT 2 — PASSAGE ASSET GENERATION
+Generate 650-850 word passage
+Include visible passage-type header
+Include <br><br> formatting
+Include paragraph anchors
+Build sufficient information density
+↓
+PROMPT 3 — PASSAGE VERIFICATION
+Verify ACT-likeness
+Verify originality
+Verify information density
+Verify difficulty ceiling
+Verify visible passage-type header
+Reject/revise weak passage before questions
+↓
+PROMPT 4 — QUESTION GENERATION
+Generate exactly 9 questions
+3 Medium
+4 Hard
+2 Very Hard
+↓
+PROMPT 5 — QUESTION VERIFICATION
+Verify answer accuracy
+Verify module
+Verify difficulty
+Verify distractors
+Verify passage coverage
+Correct or replace failed questions
+Return one complete corrected importable batch
+↓
+IMPORT Generated asset into a staging file for human review. 
+
+PRODUCTION INPUTS
+
+Each passage run receives:
+
+source_passage_id
+blueprint_label
+start_question_number
+source passage and source question stems
+
+Question numbering must begin at start_question_number and continue sequentially for exactly 9 questions.
+Never infer numbering from an example in this prompt.
+
+
+//prompt 1 - ACT READING BLUEPRINT EXTRACTION
+
+You are an ACT Reading content analyst for Drill Instructor.
+
+I will provide ONE ACT-style Reading source passage with source questions.
+
+Your task is NOT to generate a new passage or new questions.
+
+Your task is to extract exactly TWO distinct copyright-safe passage-generation blueprints from the source.
+
+Each blueprint must be capable of generating a complete, original ACT Reading passage asset.
+
+BLUEPRINT PURPOSE
+
+A blueprint is an abstract reusable model of the source passage's:
+
+passage type
+overall organization
+paragraph roles
+rhetorical or narrative progression
+information density
+relationships among ideas or events
+level of inference
+ACT Reading reasoning opportunities
+
+A blueprint must preserve useful ACT-style architecture WITHOUT preserving distinctive source content.
+
+TWO-BLUEPRINT REQUIREMENT
+
+Blueprint A and Blueprint B must both be viable for a complete passage and 9-question batch.
+They must differ materially in replacement domain, passage progression, examples or events, and question-opportunity emphasis.
+Do not create Blueprint B by merely renaming the people, institutions, objects, or setting used by Blueprint A.
+The two generated passages must not share a thesis, narrative situation, signature analogy, evidence sequence, or central conflict.
+If the source architecture is narrow, preserve different abstract reasoning relationships in each blueprint rather than duplicating one plan.
+
+SOURCE HYGIENE
+
+The supplied source material is for structural analysis only.
+
+Ignore and never reproduce:
+
+copyright notices or source attributions
+printed line numbers
+OCR corruption or encoding artifacts
+page furniture
+publisher-specific wording
+distinctive names, quotations, anecdotes, or factual sequences
+
+SOURCE VISUAL POLICY
+
+This production run is text-only.
+
+If a source contains a graph, diagram, photograph, or questions that depend on a visual:
+
+do not reproduce or adapt the visual
+do not preserve visual-dependent question logic
+extract only reasoning patterns supported by the written passage
+design the new blueprint with enough textual density to support all 9 questions independently
+record the excluded visual-dependent opportunities in feasibility_notes
+
+The presence of a source visual does not authorize image generation.
+
+Blueprint A and Blueprint B, when both are produced, must each independently represent a complete passage design.
+
+Do NOT divide the source into halves.
+
+Do NOT make Blueprint A describe one section and Blueprint B describe another section.
+
+Both blueprints must be capable of independently generating full-length passages.
+
+ACT READING PASSAGE TYPES
+
+Use exactly one of these passage types:
+
+[
+"Literary Narrative",
+"Social Science",
+"Humanities",
+"Natural Science",
+"Paired Passages"
+]
+
+Definitions:
+
+Literary Narrative
+
+Fictional or narrative prose centered on characters, experiences, relationships, observations, conflicts, or personal development.
+
+Social Science
+
+Passages about human behavior, society, education, psychology, economics, anthropology, sociology, institutions, communities, or related topics.
+
+Humanities
+
+Passages about art, music, literature, architecture, history of culture, philosophy, artistic practice, language, performance, or other humanistic subjects.
+
+Natural Science
+
+Passages about biology, ecology, astronomy, geology, physics, environmental science, scientific observation, natural processes, or related scientific topics.
+
+Paired Passages
+
+Two passages addressing a shared subject from meaningfully different perspectives, approaches, arguments, interpretations, or emphases.
+
+The passage type must describe the CONTENT AND STRUCTURE of the passage.
+
+Do not use "Informational" as the act_reading_passage_type.
+
+"Informational" may describe a general presentation style, but the passage must still be classified as Social Science, Humanities, Natural Science, or another exact allowed passage type.
+
+DRILL INSTRUCTOR ACT READING MODULE TAXONOMY
+
+Use only these question modules:
+
+Author's Purpose and Perspective
+
+Use when the student must determine the author's purpose, viewpoint, attitude, perspective, rhetorical intention, or reason for including particular material.
+
+Central Ideas and Themes
+
+Use when the student must determine the passage's main idea, central claim, primary theme, major insight, or overall message.
+
+Character and Relationship Analysis
+
+Use primarily for Literary Narrative passages when the question concerns character motivation, traits, attitudes, development, relationships, or interactions.
+
+Comparative Passage Analysis
+
+Use only for Paired Passages when the student must compare or contrast ideas, perspectives, claims, methods, emphases, or likely responses across Passage A and Passage B.
+
+Function and Structure
+
+Use when the student must determine the role of a sentence, paragraph, example, description, quotation, transition, structural shift, or section.
+
+Inference and Implication
+
+Use when the answer is not directly stated but is strongly supported by textual evidence.
+
+Sequence and Relationships
+
+Use when the student must understand chronology, cause and effect, contrast, comparison, problem and solution, stages of development, or relationships among events or ideas.
+
+Textual Details
+
+Use when the answer is explicitly stated or can be located directly in the passage.
+
+Vocabulary in Context
+
+Use when the student must determine the meaning or effect of a word or phrase as it is used in the passage.
+
+Allowed Reading modules:
+
+[
+"Author's Purpose and Perspective",
+"Central Ideas and Themes",
+"Character and Relationship Analysis",
+"Comparative Passage Analysis",
+"Function and Structure",
+"Inference and Implication",
+"Sequence and Relationships",
+"Textual Details",
+"Vocabulary in Context"
+]
+
+PASSAGE TYPE and QUESTION MODULE are separate classifications.
+
+Do not confuse them.
+
+TWO-BLUEPRINT SAFETY RULE
+
+Generate TWO blueprints only when the source genuinely supports two substantially different passage designs.
+
+Do NOT create Blueprint B merely to satisfy the requested count.
+
+If producing Blueprint B would require preserving the source's distinctive:
+
+events
+examples
+historical sequence
+character relationships
+evidence progression
+argument progression
+imagery
+dialogue
+rhetorical moves
+question logic
+
+too closely, generate only Blueprint A.
+
+In that case set:
+
+"two_blueprint_feasibility": "Weak"
+
+Quality and copyright safety are more important than producing two blueprints.
+
+BLUEPRINT DISTINCTNESS REQUIREMENTS
+
+If two blueprints are generated, they must differ substantially in:
+
+subject matter
+replacement domain
+people or characters
+organizations or locations
+examples
+events
+evidence
+paragraph development
+rhetorical progression
+narrative progression
+question-opportunity emphasis
+conclusion strategy
+
+They may preserve broad ACT-style features such as:
+
+passage type
+approximate length
+information density
+broad organizational logic
+level of inference
+type of structural relationships
+difficulty profile
+
+Two blueprints must NOT simply be:
+
+"same passage architecture with different nouns."
+
+CRITICAL COPYRIGHT-SAFETY RULES
+Do not copy source wording.
+Do not closely paraphrase source sentences.
+Do not preserve distinctive names, characters, institutions, places, quotations, examples, anecdotes, objects, or events.
+Do not preserve distinctive metaphors, imagery, jokes, descriptions, dialogue, or symbolic objects.
+Do not create a synonym-swapped version of the source.
+Do not preserve the source's exact question order.
+Do not preserve distinctive answer-choice logic.
+Do not preserve a distinctive sequence of examples if that sequence could identify the source.
+Do not reproduce the source's specific factual progression merely in a new domain.
+Extract only general ACT Reading architecture and reasoning patterns.
+A passage generated from the blueprint should not allow someone familiar with the source to reconstruct the original passage.
+Safe replacement domains must be meaningfully distant from the source.
+Broad rhetorical relationships may be retained, such as:
+claim → qualification
+problem → response
+historical development → consequence
+observation → interpretation
+character expectation → later complication
+Distinctive expressive details may NOT be retained.
+SOURCE INFORMATION-DENSITY ANALYSIS
+
+Analyze whether the source contains:
+
+multiple concrete details
+specific examples
+historical developments
+narrative developments
+competing or qualified ideas
+causal relationships
+comparisons
+changes in perspective
+local details contributing to broader claims
+later passages that develop or complicate earlier material
+multiple inference opportunities
+
+The blueprint should preserve the approximate DENSITY and COMPLEXITY of the source without preserving its content.
+
+Do not reduce a dense ACT passage to a simplistic five-paragraph essay.
+
+QUESTION-DIFFICULTY PRINCIPLES
+Medium
+
+May involve:
+
+locating a relevant detail
+identifying a clearly supported central idea
+determining a straightforward paragraph function
+resolving vocabulary from nearby context
+recognizing an explicit relationship
+making a strongly supported local inference
+Hard
+
+Must require more than direct retrieval.
+
+Examples:
+
+combine evidence from different locations
+infer motivation from multiple details
+determine how an example contributes to a broader point
+distinguish implication from explicit statement
+trace development of an idea
+connect an earlier statement to a later example
+distinguish central idea from supporting idea
+determine a relationship between nonadjacent paragraphs
+Very Hard
+
+Must require a dependent reasoning chain of at least TWO meaningful steps.
+
+Examples:
+
+infer an unstated idea, then identify later evidence supporting it
+determine a paragraph's local function, then connect it to the overall purpose
+establish two separate claims, then determine their relationship
+infer a character's belief, then use later behavior to refine the interpretation
+synthesize several details to determine the author's broader perspective
+determine each paired-passage author's position, then compare them
+
+Very Hard questions must NOT become difficult merely because of:
+
+confusing wording
+obscure vocabulary
+excessively long answers
+tiny-detail searching
+outside knowledge
+subjective ambiguity
+OUTPUT FORMAT
+
+Return valid JSON only:
+
+{
+"source_passage_id": "",
+"source_passage_type": "Literary Narrative | Social Science | Humanities | Natural Science | Paired Passages",
+"source_architecture_summary": "",
+"source_information_density": "Moderate | High | Very High",
+"two_blueprint_feasibility": "Strong | Acceptable | Weak",
+"feasibility_notes": "",
+"blueprints": [
+{
+"blueprint_label": "A",
+"blueprint_focus": "",
+"act_reading_passage_type": "Literary Narrative | Social Science | Humanities | Natural Science | Paired Passages",
+"overall_reading_skill_family": "",
+"passage_architecture_observed": "",
+"paragraph_function_pattern": [
+{
+"paragraph_role": 1,
+"function": ""
+}
+],
+"rhetorical_or_narrative_arc": "",
+"information_density_requirements": [],
+"cross_paragraph_connections_required": [],
+"core_reading_reasoning_actions": [],
+"forbidden_context_elements": [],
+"forbidden_language_or_expression_patterns": [],
+"forbidden_event_or_example_sequences": [],
+"forbidden_question_patterns": [],
+"safe_replacement_domains": [],
+"required_passage_features": [],
+"question_opportunity_types": [],
+"medium_question_blueprints": [],
+"hard_question_blueprints": [],
+"very_hard_question_blueprints": [],
+"must_not_preserve": [],
+"quality_requirements_for_new_passage": [],
+"recommended_modules": [],
+"primary_module": "",
+"distinctness_notes": ""
+},
+{
+"blueprint_label": "B",
+"blueprint_focus": "",
+"act_reading_passage_type": "Literary Narrative | Social Science | Humanities | Natural Science | Paired Passages",
+"overall_reading_skill_family": "",
+"passage_architecture_observed": "",
+"paragraph_function_pattern": [
+{
+"paragraph_role": 1,
+"function": ""
+}
+],
+"rhetorical_or_narrative_arc": "",
+"information_density_requirements": [],
+"cross_paragraph_connections_required": [],
+"core_reading_reasoning_actions": [],
+"forbidden_context_elements": [],
+"forbidden_language_or_expression_patterns": [],
+"forbidden_event_or_example_sequences": [],
+"forbidden_question_patterns": [],
+"safe_replacement_domains": [],
+"required_passage_features": [],
+"question_opportunity_types": [],
+"medium_question_blueprints": [],
+"hard_question_blueprints": [],
+"very_hard_question_blueprints": [],
+"must_not_preserve": [],
+"quality_requirements_for_new_passage": [],
+"recommended_modules": [],
+"primary_module": "",
+"distinctness_notes": ""
+}
+],
+"blueprint_distinctness_check": {
+"different_subject_matter": true,
+"different_specific_examples_or_events": true,
+"different_evidence_or_detail_sets": true,
+"different_paragraph_development": true,
+"different_question_opportunity_emphasis": true,
+"different_conclusion_strategy": true,
+"source_reconstruction_risk": "Low | Moderate | High",
+"notes": ""
+}
+}
+
+If only one safe blueprint can be produced, return only Blueprint A in the blueprints array.
+
+Return valid JSON only.
+
+//prompt 2 - ACT READING PASSAGE ASSET GENERATION
+//taking the first blueprint
+You are an expert ACT Reading passage developer for Drill Instructor.
+
+I will provide ONE approved copyright-safe ACT Reading blueprint.
+
+Your task is to create ONE fully original ACT-style Reading passage asset from that blueprint.
+
+Do NOT generate questions yet.
+
+ACT READING PASSAGE TYPES
+
+Use exactly one:
+
+[
+"Literary Narrative",
+"Social Science",
+"Humanities",
+"Natural Science",
+"Paired Passages"
+]
+
+The selected type must match the blueprint's act_reading_passage_type.
+
+VISIBLE PASSAGE-TYPE HEADER REQUIREMENT
+
+The passage field must begin with a visible passage-type header.
+
+Use one of these EXACT uppercase labels:
+
+LITERARY NARRATIVE
+SOCIAL SCIENCE
+HUMANITIES
+NATURAL SCIENCE
+PAIRED PASSAGES
+
+Format the beginning as:
+
+<b>[PASSAGE TYPE]:</b> [One concise ACT-style framing sentence.]<br><br>
+
+Examples:
+
+<b>HUMANITIES:</b> This passage discusses changes in the design and use of early scientific illustrations.<br><br>
+
+<b>NATURAL SCIENCE:</b> This passage describes research into how coastal plants respond to changing soil conditions.<br><br>
+
+<b>SOCIAL SCIENCE:</b> This passage examines how public libraries changed their services during a period of rapid urban growth.<br><br>
+
+<b>LITERARY NARRATIVE:</b> This passage is an original narrative about a young mechanic learning to work alongside her grandfather.<br><br>
+
+For Paired Passages:
+
+<b>PAIRED PASSAGES:</b> The following passages present different perspectives on restoring historic public spaces.<br><br>
+
+Then include:
+
+<b>Passage A</b><br>
+
+and later:
+
+<br><br><b>Passage B</b><br>
+
+HEADER SAFETY RULES
+
+Do NOT invent:
+
+real author names
+fake book titles attributed to real people
+fake essay titles attributed to real publications
+publishers
+copyright statements
+publication dates
+adaptation credits
+
+unless those details were explicitly supplied to you as approved metadata.
+
+For fully generated material, use neutral framing such as:
+
+"This passage discusses..."
+"This passage examines..."
+"This passage describes..."
+"This passage presents..."
+"This passage is an original narrative about..."
+
+The header is metadata for the student.
+
+Do NOT use the header itself as substantive evidence for future Reading questions.
+
+DRILL INSTRUCTOR ACT READING MODULE TAXONOMY
+
+Allowed modules:
+
+[
+"Author's Purpose and Perspective",
+"Central Ideas and Themes",
+"Character and Relationship Analysis",
+"Comparative Passage Analysis",
+"Function and Structure",
+"Inference and Implication",
+"Sequence and Relationships",
+"Textual Details",
+"Vocabulary in Context"
+]
+
+The passage should support multiple modules naturally.
+
+Do NOT force all nine modules into one passage.
+
+CRITICAL ORIGINALITY RULES
+Do not use the source's names, characters, institutions, events, examples, quotations, factual sequence, distinctive imagery, or narrative situation.
+Do not reproduce or closely paraphrase source sentences.
+Do not create a renamed version of the source.
+Use a genuinely new subject from the blueprint's safe replacement domains.
+All prose must be newly composed.
+Invent new evidence, examples, observations, chronology, people, events, and details.
+Preserve only broad ACT-style reasoning architecture.
+Do not mention the original source.
+Do not use copyrighted fictional characters or fictional universes.
+The passage must be self-contained.
+No outside knowledge should be necessary to answer questions.
+ACT-LIKENESS REQUIREMENTS
+
+For a single passage:
+
+Target approximately 650-850 words EXCLUDING the passage-type header.
+Use approximately 5-8 substantive paragraphs.
+Maintain information density comparable to authentic ACT Reading passages.
+Do not artificially shorten the passage to simplify question generation.
+Paragraphs should vary naturally in length.
+Avoid repetitive paragraph structure.
+Use mature but accessible prose appropriate for high-school readers.
+Avoid unnecessarily obscure vocabulary.
+Avoid generic AI-style exposition.
+Avoid encyclopedia-like lists of facts.
+Develop ideas through relationships, examples, qualifications, events, or consequences.
+
+For paired passages:
+
+Target approximately 300-450 words for Passage A.
+Target approximately 300-450 words for Passage B.
+Keep combined length appropriate for an ACT Reading set.
+INFORMATION-DENSITY REQUIREMENTS
+
+The passage must contain enough substantive material to support at least 9 distinct questions without repeatedly testing the same sentences.
+
+For a single passage:
+
+At least 3 paragraphs must contain meaningful concrete details, events, examples, evidence, observations, or explanations.
+At least 2 ideas introduced earlier must be developed, qualified, contrasted, illustrated, or reconsidered later.
+Include at least one meaningful connection between nonadjacent paragraphs.
+Include several locally important details that also contribute to broader passage development.
+Include plausible distinctions between central and supporting ideas.
+Do not make the main idea recoverable simply by reading the opening sentence.
+Do not explicitly explain every inference.
+Include enough nuance to support strong distractors.
+STRUCTURAL REQUIREMENTS
+
+Each paragraph must perform a meaningful role.
+
+Possible roles include:
+
+introduce the subject
+establish a situation
+present a common assumption
+qualify an assumption
+provide historical background
+describe an event
+present evidence
+provide a concrete example
+introduce a competing explanation
+shift perspective
+explain a process
+establish cause and effect
+develop a consequence
+complicate an earlier idea
+return to an earlier point
+broaden implications
+conclude
+
+Do not mechanically announce paragraph functions in the passage.
+
+LITERARY NARRATIVE REQUIREMENTS
+
+If the passage type is Literary Narrative:
+
+include identifiable characters
+include meaningful relationships or interactions
+include believable motivations
+reveal characterization partly through actions, observations, thoughts, or dialogue
+include tension, uncertainty, change, realization, disagreement, or development
+avoid melodrama
+avoid simplistic moral lessons
+include details whose significance becomes clearer later
+support Character and Relationship Analysis
+support cross-paragraph inference
+NONFICTION REQUIREMENTS
+
+If Social Science, Humanities, or Natural Science:
+
+establish a clear subject
+include multiple substantive details or examples
+develop a broader explanation, claim, historical progression, interpretation, or argument
+include at least one idea that is qualified, complicated, or developed
+include meaningful relationships among ideas
+use examples as part of a larger structure
+avoid generic textbook prose
+provide enough nuance for inference and structure questions
+PAIRED PASSAGE REQUIREMENTS
+
+If Paired Passages:
+
+both passages must discuss a genuinely shared subject
+each passage must stand independently
+perspectives must meaningfully differ
+avoid making them simple opposites
+include plausible areas of agreement
+include meaningful differences in emphasis, method, argument, interpretation, or assumptions
+support at least 2 strong Comparative Passage Analysis questions
+QUESTION-SUPPORT REQUIREMENTS
+
+The passage should support approximately 9-11 high-quality questions.
+
+General passage opportunities should include where naturally supported:
+
+Textual Details
+Inference and Implication
+Function and Structure
+Central Ideas and Themes
+Author's Purpose and Perspective
+Sequence and Relationships
+Vocabulary in Context
+
+Literary Narrative should naturally support:
+
+Character and Relationship Analysis
+
+Paired Passages should naturally support:
+
+Comparative Passage Analysis
+
+Do NOT force modules that do not fit.
+
+DIFFICULTY CEILING REQUIREMENTS
+
+The passage must support:
+
+Medium questions requiring careful reading
+Hard questions requiring inference, structural analysis, synthesis, or cross-paragraph reasoning
+at least TWO Very Hard question opportunities requiring dependent reasoning across multiple pieces of evidence
+
+If the passage cannot support at least TWO genuine Very Hard opportunities, strengthen the passage before returning it.
+
+MOBILE RENDERING REQUIREMENTS
+
+The passage field must be ready for responsive mobile display.
+
+Use <br><br> between paragraphs.
+Do not rely only on newline characters.
+Do not add printed-test line numbers such as (5), (10), (15).
+Do not manually insert line wrapping inside paragraphs.
+Do not use fixed-width formatting.
+Do not use tabs for indentation.
+Do not include page numbers.
+Do not include copyright lines.
+Do not include decorative Unicode.
+Keep quotation marks and apostrophes safe for standard rendering.
+Do not place literal double quotation marks inside the passage string.
+Use single quotation marks for dialogue or quoted terms, or <b>...</b> when the intent is emphasis rather than quotation.
+Do not use smart double quotation marks.
+
+Future questions should reference:
+
+paragraph number
+short quoted phrase
+character
+event
+example
+named concept
+
+rather than screen-dependent line numbers.
+
+PARAGRAPH ANCHORS
+
+For every substantive paragraph, record:
+
+paragraph_id
+start_excerpt
+function
+
+start_excerpt should contain approximately the first 4-10 words of the actual paragraph.
+
+Do NOT include the passage-type header as a numbered paragraph.
+
+For Paired Passages, identify passage letter as well.
+
+OUTPUT FORMAT
+
+Return valid JSON only:
+
+{
+"passage_asset_id": "",
+"act_reading_passage_type": "Literary Narrative | Social Science | Humanities | Natural Science | Paired Passages",
+"passage_type_display_label": "LITERARY NARRATIVE | SOCIAL SCIENCE | HUMANITIES | NATURAL SCIENCE | PAIRED PASSAGES",
+"passage_title": "Passage I",
+"passage": "",
+"imageSources": [],
+"passage_word_count": 0,
+"paragraphs": [
+{
+"paragraph_id": 1,
+"passage_section": "Single | A | B",
+"start_excerpt": "",
+"function": ""
+}
+],
+"cross_paragraph_connections": [
+{
+"earlier_paragraph": 1,
+"later_paragraph": 4,
+"relationship": ""
+}
+],
+"question_opportunities": [
+{
+"skill": "",
+"difficulty": "Medium | Hard | Very Hard",
+"module": "Author's Purpose and Perspective | Central Ideas and Themes | Character and Relationship Analysis | Comparative Passage Analysis | Function and Structure | Inference and Implication | Sequence and Relationships | Textual Details | Vocabulary in Context",
+"uses_paragraphs": [],
+"reason_this_is_supported": ""
+}
+],
+"answerability_notes": [],
+"originality_notes": [],
+"passage_quality_self_check": {
+"correct_passage_type_header": true,
+"header_matches_passage_type": true,
+"header_contains_no_fake_attribution": true,
+"word_count_in_target_range": true,
+"clear_central_focus": true,
+"paragraphs_have_distinct_functions": true,
+"information_density_is_act_appropriate": true,
+"contains_multiple_specific_details": true,
+"contains_cross_paragraph_connections": true,
+"supports_direct_detail_questions": true,
+"supports_inference_questions": true,
+"supports_structure_questions": true,
+"supports_context_vocabulary_questions": true,
+"supports_at_least_two_very_hard_questions": true,
+"requires_no_outside_knowledge": true,
+"text_only_asset": true,
+"mobile_formatting_ready": true,
+"copyright_safe": true
+}
+}
+
+Return valid JSON only.
+
+//prompt 3 -ACT READING PASSAGE ASSET VERIFIER
+You are verifying an ACT Reading passage asset for Drill Instructor.
+
+I will provide ONE generated ACT Reading passage asset JSON.
+
+Your task is to determine whether the passage is strong enough to generate ACT-style Reading questions.
+
+Do NOT generate questions.
+
+ACT READING PASSAGE TYPES
+
+Allowed passage types:
+
+[
+"Literary Narrative",
+"Social Science",
+"Humanities",
+"Natural Science",
+"Paired Passages"
+]
+
+Allowed visible labels:
+
+[
+"LITERARY NARRATIVE",
+"SOCIAL SCIENCE",
+"HUMANITIES",
+"NATURAL SCIENCE",
+"PAIRED PASSAGES"
+]
+
+ALLOWED READING MODULES
+
+[
+"Author's Purpose and Perspective",
+"Central Ideas and Themes",
+"Character and Relationship Analysis",
+"Comparative Passage Analysis",
+"Function and Structure",
+"Inference and Implication",
+"Sequence and Relationships",
+"Textual Details",
+"Vocabulary in Context"
+]
+
+CHECK 1 — PASSAGE-TYPE HEADER
+
+Verify that:
+
+the passage begins with the correct bold passage-type label
+the label is one of the exact allowed values
+the visible label matches act_reading_passage_type
+the framing sentence is concise and ACT-like
+the framing sentence does not invent an author, publication, book, copyright holder, or source attribution
+the header is clearly metadata and not necessary to answer substantive Reading questions
+
+Correct format example:
+
+<b>HUMANITIES:</b> This passage discusses...<br><br>
+
+Flag a mismatch between metadata and visible passage type as Critical.
+
+CHECK 2 — ACT-LIKENESS
+
+Determine whether the passage:
+
+resembles authentic ACT Reading in complexity
+has sufficient information density
+uses mature but accessible prose
+has natural paragraph development
+contains meaningful specific material
+avoids generic AI-style exposition
+avoids excessive simplification
+avoids being unnecessarily academic
+has natural paragraph-length variation
+avoids a repetitive formula
+
+For nonfiction:
+
+Does it read like an essay, article, or adapted informational piece?
+Are examples integrated into broader development?
+Are ideas qualified or developed?
+
+For Literary Narrative:
+
+Is characterization shown through behavior or interaction?
+Are motivations nuanced enough for inference?
+Does the narrative develop rather than simply deliver a moral?
+
+For Paired Passages:
+
+Do both passages have meaningful substance?
+Is each viewpoint independently coherent?
+CHECK 3 — INFORMATION DENSITY
+
+Check whether:
+
+at least 3 substantive paragraphs contain meaningful details, examples, events, or evidence
+multiple ideas recur or develop across paragraphs
+at least one meaningful relationship spans nonadjacent paragraphs
+the passage contains both central and supporting ideas
+the passage has enough specific content to create plausible distractors
+the passage supports 9 questions without repeatedly targeting the same section
+the passage supports more than direct retrieval
+
+Flag the asset if most questions would necessarily concentrate on only 2-3 obvious sentences.
+
+CHECK 4 — ORIGINALITY SAFETY
+
+Determine whether the passage:
+
+avoids source wording
+avoids copied names or distinctive entities
+avoids source-specific examples
+avoids distinctive narrative events
+avoids the same recognizable sequence of evidence
+meaningfully changes the subject
+does not resemble a renamed version
+stands independently
+
+Assign:
+
+Green = clearly transformed
+
+Yellow = generally transformed but some similarities deserve review
+
+Red = too derivative
+
+CHECK 5 — PASSAGE INTEGRITY
+
+Check:
+
+central focus
+logical progression
+paragraph relationships
+chronology
+cause/effect relationships
+clear references
+consistency of facts
+consistency of character motivations
+absence of contradictions
+natural transitions
+appropriate conclusion
+supported but unstated inferences
+CHECK 6 — QUESTION SUPPORT
+
+Determine whether the passage supports at least 9 high-quality questions.
+
+Evaluate support for:
+
+Textual Details
+Inference and Implication
+Function and Structure
+Central Ideas and Themes
+Author's Purpose and Perspective
+Sequence and Relationships
+Vocabulary in Context
+
+Where appropriate:
+
+Character and Relationship Analysis
+Comparative Passage Analysis
+
+Do NOT penalize nonfiction for lacking Character and Relationship Analysis.
+
+Do NOT penalize a single passage for lacking Comparative Passage Analysis.
+
+CHECK 7 — DIFFICULTY CEILING
+
+A strong passage must support genuine Hard and Very Hard items.
+
+Hard opportunities should include:
+
+synthesis
+inference
+structural reasoning
+cross-paragraph relationships
+motivation analysis
+cause/effect reasoning
+qualification of claims
+contextual interpretation
+
+Very Hard opportunities must permit at least TWO dependent reasoning operations.
+
+Examples:
+
+infer a viewpoint, then identify later supporting evidence
+determine local function, then connect it to overall purpose
+infer motivation, then refine it using later behavior
+establish two separate claims, then determine their relationship
+establish each paired-passage viewpoint, then compare them
+
+If the passage cannot support at least TWO legitimate Very Hard questions, flag it for revision.
+
+CHECK 8 — MODULE FIT
+
+Verify that every proposed question opportunity uses an exact allowed module.
+
+Important distinctions:
+
+Textual Details
+
+Explicitly stated.
+
+Inference and Implication
+
+Must infer beyond direct wording.
+
+Function and Structure
+
+What a particular textual element DOES.
+
+Author's Purpose and Perspective
+
+Why the author presents material or what perspective the author takes.
+
+Central Ideas and Themes
+
+What the passage fundamentally communicates.
+
+Character and Relationship Analysis
+
+Character motivation, development, traits, interaction, or relationships.
+
+Comparative Passage Analysis
+
+Requires reasoning across BOTH passages.
+
+Sequence and Relationships
+
+Chronology, causation, comparison, contrast, progression, or relationships.
+
+Vocabulary in Context
+
+Meaning or effect in the specific passage context.
+
+CHECK 9 — MOBILE AND APP COMPATIBILITY
+
+Check:
+
+<br><br> separates paragraphs
+imageSources exists and is an array
+imageSources is [] for this text-only production run
+no artificial line numbers appear
+no manual line wrapping appears
+no tabs or fixed-width formatting appear
+paragraph anchors exist
+start excerpts match the actual paragraph
+quotation marks render safely
+no unsupported decorative formatting is required
+passage length is practical for mobile reading
+Paired Passages are clearly separated
+REQUIRED-FIX CLASSIFICATION
+
+Critical:
+Must fix before question generation.
+
+Moderate:
+Should fix because it materially affects ACT quality, originality, answerability, difficulty, or question diversity.
+
+Minor:
+Optional polish.
+
+OUTPUT FORMAT
+
+Return valid JSON only:
+
+{
+"overall_status": "Approved | Needs minor revision | Needs major revision | Reject",
+"passage_type_header_status": "Correct | Issue",
+"act_likeness_score": 1,
+"information_density_score": 1,
+"originality_risk": "Green | Yellow | Red",
+"passage_integrity_score": 1,
+"question_support_score": 1,
+"difficulty_ceiling_score": 1,
+"module_fit_score": 1,
+"app_compatibility_score": 1,
+"dominant_modules": [],
+"weakly_supported_modules": [],
+"unsupported_modules": [],
+"critical_issues": [],
+"moderate_issues": [],
+"minor_issues": [],
+"strong_question_opportunities": [],
+"weak_question_opportunities": [],
+"very_hard_question_opportunities": [],
+"recommended_revision_summary": "",
+"ready_for_question_generation": true
+}
+
+All scores must use a scale from 1-10.
+
+Return valid JSON only.
+
+//prompt 4 - ACT READING QUESTION GENERATION
+You are an expert ACT Reading question developer for Drill Instructor.
+
+I will provide ONE approved ACT Reading passage asset JSON.
+
+Generate exactly 9 ACT-style Reading questions from it.
+
+QUESTION DISTRIBUTION:
+
+3 Medium
+4 Hard
+2 Very Hard
+
+Use only the supplied passage.
+
+ACT READING PASSAGE TYPES
+
+The asset will use one of:
+
+[
+"Literary Narrative",
+"Social Science",
+"Humanities",
+"Natural Science",
+"Paired Passages"
+]
+
+Passage type determines which question modules are naturally appropriate.
+
+Do NOT treat the visible passage-type header as substantive textual evidence.
+
+ALLOWED MODULES
+
+[
+"Author's Purpose and Perspective",
+"Central Ideas and Themes",
+"Character and Relationship Analysis",
+"Comparative Passage Analysis",
+"Function and Structure",
+"Inference and Implication",
+"Sequence and Relationships",
+"Textual Details",
+"Vocabulary in Context"
+]
+
+MODULE DEFINITIONS
+Author's Purpose and Perspective
+
+Author's purpose, viewpoint, attitude, rhetorical intention, perspective, or reason for presenting material.
+
+Central Ideas and Themes
+
+Main idea, central claim, theme, major insight, or overall message.
+
+Character and Relationship Analysis
+
+Character motivation, traits, development, interactions, attitudes, or relationships.
+
+Use primarily for Literary Narrative.
+
+Comparative Passage Analysis
+
+Comparison of perspectives, arguments, ideas, methods, emphases, or likely responses across Passage A and Passage B.
+
+Use only for Paired Passages.
+
+Function and Structure
+
+Purpose or role of a sentence, paragraph, example, quotation, description, transition, or structural shift.
+
+Inference and Implication
+
+An idea not directly stated but strongly supported by evidence.
+
+Sequence and Relationships
+
+Chronology, cause/effect, comparison, contrast, problem/solution, development, or relationships among events or ideas.
+
+Textual Details
+
+Explicitly stated information.
+
+Vocabulary in Context
+
+Meaning or effect of a word or phrase as used in context.
+
+Each question's module must match the actual reasoning required.
+
+QUESTION COVERAGE
+
+Across the 9 questions, include where supported:
+
+at least 1 Textual Details
+at least 1 Inference and Implication
+at least 1 Function and Structure
+at least 1 Central Ideas and Themes OR Author's Purpose and Perspective
+at least 1 Sequence and Relationships
+at least 1 Vocabulary in Context
+
+For Literary Narrative:
+
+Include at least 1 Character and Relationship Analysis question if strongly supported.
+
+For Paired Passages:
+
+Include at least 2 Comparative Passage Analysis questions.
+
+Do NOT force Character and Relationship Analysis into nonfiction.
+
+Do NOT use Comparative Passage Analysis for a single passage.
+
+PASSAGE REFERENCE RULES
+
+Do NOT use fixed line numbers.
+
+The passage is responsive and may wrap differently across devices.
+
+Instead refer to:
+
+paragraph number
+Passage A or Passage B
+character
+event
+example
+concept
+short quoted word or phrase
+
+Examples:
+
+"According to the third paragraph..."
+
+"The author's discussion of ___ primarily serves to..."
+
+"As used in the fourth paragraph, '___' most nearly means..."
+
+"The example involving ___ primarily supports..."
+
+"The narrator's reaction to ___ suggests that..."
+
+"Both Passage A and Passage B indicate that..."
+
+HEADER RULE
+
+Do NOT create a question whose answer depends on the visible header such as:
+
+<b>HUMANITIES:</b> This passage discusses...
+
+The framing sentence exists for presentation only.
+
+All substantive questions must be answerable from the actual passage body.
+
+CRITICAL QUESTION RULES
+Use only the passage body.
+Do not require outside knowledge.
+Every question must have exactly 4 answer choices.
+Every question must have exactly one clearly best answer.
+Distractors must be plausible.
+Do not repeatedly test the same detail.
+Spread questions across the passage.
+Do not manufacture ambiguity.
+Keep stems concise and ACT-like.
+Keep answer choices reasonably parallel.
+Avoid obvious keyword giveaways.
+Avoid absurd distractors.
+Do not use "all of the above."
+Do not use "none of the above."
+Do not make a question answerable using general knowledge alone.
+Avoid excessive quotation from the passage.
+MEDIUM DIFFICULTY
+
+Medium questions may require:
+
+direct but careful retrieval
+straightforward inference
+contextual vocabulary
+explicit relationship recognition
+clear paragraph function
+clearly supported central idea
+
+Medium must still require attentive reading.
+
+Distractors should remain plausible.
+
+HARD DIFFICULTY
+
+Every Hard question must require more than direct retrieval.
+
+A Hard question should require at least one meaningful reasoning operation such as:
+
+combine evidence from two locations
+infer from multiple details
+connect a detail to a broader claim
+determine why a structural shift occurs
+distinguish central from supporting ideas
+infer character motivation
+establish cause and effect from separated evidence
+interpret a word using broader context
+determine how an example develops or qualifies an earlier idea
+
+A Hard question is NOT genuinely Hard if the student can:
+
+locate one sentence
+match its wording
+select a direct paraphrase
+VERY HARD DIFFICULTY
+
+Each Very Hard question must require a dependent chain of at least TWO meaningful reasoning operations.
+
+Examples:
+
+Infer the author's attitude from several details, then identify another example consistent with that attitude.
+Determine a paragraph's local function, then determine how that function contributes to the passage's overall purpose.
+Infer a character's motive, then use later behavior to refine the inference.
+Establish two separate claims, then determine their relationship.
+Infer a broader principle from several paragraphs, then determine which statement would be most consistent with it.
+For Paired Passages, determine each author's position separately, then identify their likely agreement or disagreement.
+
+Very Hard must NOT rely on:
+
+confusing language
+obscure vocabulary
+tiny details
+excessive answer length
+outside knowledge
+ambiguous interpretation
+DISTRACTOR DESIGN
+
+Use ACT-style distractors based on common reading errors:
+
+true statement that does not answer the question
+detail from the wrong paragraph
+interpretation that is too broad
+interpretation that is too narrow
+cause/effect reversal
+chronology reversal
+character-attitude reversal
+confusing an author's view with another person's view
+unsupported inference
+partially correct interpretation missing an important qualification
+describing what a paragraph says rather than what it does
+dictionary meaning that is wrong in context
+answer supported by only one passage when both are required
+answer consistent with an early claim but contradicted or qualified later
+
+Wrong answers should often be plausible enough to tempt a student who read incompletely.
+
+Answer choices must be parallel in specificity, qualification, syntax, and visible length. The correct answer must not be identifiable because it is the only choice that preserves nuance, because it is substantially longer than the distractors, or because every distractor has been made longer. When the correct answer requires a qualification, write plausible distractors with comparable qualifications drawn from realistic incomplete readings, reversals, overstatements, or misplaced evidence. Never add empty words merely to equalize length.
+
+Before finalizing each question, compare the four choices without looking at the key. If either the longest or shortest choice visibly stands apart, revise the entire option set. Across a nine-question batch, neither a longest-choice nor a shortest-choice guessing strategy may be expected to answer more than four questions correctly, counting ties fractionally.
+
+EXPLANATION REQUIREMENTS
+
+Medium questions:
+
+Use:
+
+Step 1: ...<br><br>Step 2: ...<br><br>Answer: ...
+
+Hard questions:
+
+Use three sequential reasoning steps:
+
+Step 1: ...<br><br>Step 2: ...<br><br>Step 3: ...<br><br>Answer: ...
+
+Very Hard questions:
+
+Use up to three reasoning steps:
+
+Step 1: ...<br><br>Step 2: ...<br><br>Step 3: ...<br><br>Answer: ...
+
+Do not merely repeat the correct option.
+
+EXPLANATION FORMATTING
+
+Do not wrap Step 1, Step 2, Step 3, or Answer in <b> or <strong> tags.
+Separate explanation steps with exactly <br><br>.
+Bold tags may be used only inside passage, question, or option text when textual emphasis is genuinely needed.
+
+STRING SAFETY
+
+The generated question records are JavaScript object-literal data.
+Do not place literal double quotation marks inside any string value.
+When a question refers to a word or short phrase, use single quotation marks around it.
+When emphasis is preferable to quotation, use <b>...</b>.
+Use apostrophes normally where grammatically required.
+Do not use smart double quotation marks.
+
+OUTPUT FORMAT
+
+Return one JavaScript object literal only.
+
+The outer object must use the supplied start_question_number as its first unquoted numeric key and contain exactly 9 sequential numeric keys.
+All field keys must be unquoted.
+String values must use double-quoted JavaScript strings and must follow STRING SAFETY above.
+Do not include variable declarations, module exports, comments, markdown fences, or prose.
+
+Use this exact object shape for each question value inside the numbered outer object:
+
+{
+skill_tested: "",
+question: "",
+option1: "",
+option2: "",
+option3: "",
+option4: "",
+correctAnswer: "",
+explanation: "",
+practiceYear: 1,
+difficulty: "Medium | Hard | Very Hard",
+module: "Author's Purpose and Perspective | Central Ideas and Themes | Character and Relationship Analysis | Comparative Passage Analysis | Function and Structure | Inference and Implication | Sequence and Relationships | Textual Details | Vocabulary in Context",
+imageSources: [],
+passage: "{{shared_passage}}"
+}
+
+FIELD RULES:
+
+correctAnswer must exactly match one of option1-option4.
+passage must be exactly "{{shared_passage}}".
+imageSources must be an array and must be [] for this text-only production run.
+Do not repeat the complete passage.
+Do not include markdown.
+Return the JavaScript object literal only.
+
+//prompt 5 - ACT READING QUESTION VERIFICATION
+You are verifying ACT Reading questions for Drill Instructor.
+
+I will provide:
+
+ONE approved ACT Reading passage asset
+the generated Reading question JavaScript object
+the start_question_number
+
+Your job is to review the generated questions quickly and practically.
+
+Apply every required correction and return the entire batch in importable form.
+Preserve approved questions unless a change is required for batch balance, numbering, or consistency.
+
+ALLOWED MODULES
+
+[
+"Author's Purpose and Perspective",
+"Central Ideas and Themes",
+"Character and Relationship Analysis",
+"Comparative Passage Analysis",
+"Function and Structure",
+"Inference and Implication",
+"Sequence and Relationships",
+"Textual Details",
+"Vocabulary in Context"
+]
+
+CHECK 1 — PASSAGE DEPENDENCE
+
+For each question determine:
+
+Is it answerable entirely from the passage body?
+Does it accidentally rely on the passage-type header?
+Does it require outside knowledge?
+Does it reference the correct paragraph?
+Does it reference the correct character or event?
+Does it reference the correct Passage A or Passage B?
+Is an inference sufficiently supported?
+Does a vocabulary question depend on context rather than trivia?
+CHECK 2 — READING REASONING ACCURACY
+
+Check:
+
+Is the keyed answer genuinely best?
+Does textual evidence support it?
+Is the explanation accurate?
+Are motives inferred rather than invented?
+Are chronology and cause/effect correct?
+Does a Function and Structure question test what material DOES?
+Does an Author's Purpose and Perspective question distinguish the author's view from views merely discussed?
+Does a Central Ideas and Themes question capture the passage broadly enough?
+For Paired Passages, does the question correctly represent both texts?
+CHECK 3 — ANSWER CONSISTENCY
+
+Check:
+
+correctAnswer exactly matches one option
+exactly one option is defensible
+explanation supports the keyed answer
+explanation ends with the correct answer
+no alternative choice is equally defensible
+CHECK 4 — DISTRACTOR QUALITY
+
+Strong distractors should be:
+
+plausible
+connected to the passage
+meaningfully different
+clearly inferior after careful reading
+
+Flag:
+
+accidentally correct answers
+nearly synonymous choices
+absurd answers
+unrelated choices
+keyword giveaways
+choices that can be eliminated without reading
+answer-length giveaways
+distractors copied randomly from unrelated passage details
+CHECK 5 — ACT-LIKENESS
+
+Evaluate:
+
+stem style
+answer-choice style
+concision
+reasoning quality
+clarity
+difficulty
+plausibility of distractors
+
+The question should test Reading skill rather than test-taking tricks.
+
+CHECK 6 — DIFFICULTY CALIBRATION
+Medium
+
+May use direct evidence or one straightforward inference.
+
+Still must require careful reading.
+
+Hard
+
+Must require more than direct lookup.
+
+Should require at least one of:
+
+synthesis
+inference
+structural reasoning
+cross-paragraph connection
+motivation analysis
+broader contextual interpretation
+cause/effect reasoning
+claim qualification
+
+If one sentence gives the answer directly and the correct option merely paraphrases it, the question is generally too easy for Hard.
+
+Very Hard
+
+Must require at least TWO dependent reasoning operations.
+
+For every Hard and Very Hard question, state the reasoning chain explicitly.
+
+Downgrade difficulty if the item can be solved simply by:
+
+finding one sentence
+matching repeated words
+spotting a keyword
+eliminating obviously unrelated answers
+
+Very Hard should NOT mean:
+
+obscure detail search
+convoluted question wording
+overly long choices
+ambiguity
+outside knowledge
+CHECK 7 — MODULE ACCURACY
+
+Important distinctions:
+
+Textual Details
+
+Explicitly stated.
+
+Inference and Implication
+
+Must be inferred.
+
+Function and Structure
+
+What a specific part of the text DOES.
+
+Author's Purpose and Perspective
+
+Why the author presents material or what broader viewpoint the author takes.
+
+Central Ideas and Themes
+
+What the passage fundamentally communicates.
+
+Character and Relationship Analysis
+
+Character traits, motivations, development, relationships, or interaction.
+
+Comparative Passage Analysis
+
+Requires reasoning from BOTH Passage A and Passage B.
+
+Sequence and Relationships
+
+Chronology, cause/effect, comparison, contrast, progression, or relationships.
+
+Vocabulary in Context
+
+Meaning or effect based on the specific context.
+
+CHECK 8 — QUESTION DIVERSITY
+
+Determine whether the batch:
+
+spreads questions across the passage
+avoids repeatedly testing the same paragraph
+contains multiple reasoning types
+does not overuse direct-detail questions
+includes meaningful inference
+includes structural reasoning
+uses Hard questions appropriately
+uses Very Hard questions that synthesize multiple parts
+
+Flag the batch if more than half of the questions can be answered from only one or two paragraphs.
+
+CHECK 9 — PASSAGE-TYPE APPROPRIATENESS
+
+Verify:
+
+For Literary Narrative:
+
+Character and Relationship Analysis is used where naturally appropriate.
+
+For Social Science, Humanities, and Natural Science:
+
+do not classify ordinary references to people as Character and Relationship Analysis.
+
+For Paired Passages:
+
+Comparative Passage Analysis questions genuinely require both passages.
+
+Do not use the visible passage-type header itself as evidence for an answer.
+
+CHECK 10 — APP COMPATIBILITY
+
+Check:
+
+all fields are present
+passage contains "{{shared_passage}}"
+imageSources exists, is an array, and is [] for this text-only run
+no fixed line-number references appear
+paragraph references are correct
+quoted phrase anchors actually occur in the passage
+explanation HTML is clean
+quotation marks and apostrophes render safely
+correctAnswer exactly matches an option
+no literal double quotation marks occur inside string values
+single quotation marks or <b>...</b> are used for quoted terms
+no Step or Answer label is wrapped in bold tags
+explanation steps use exactly <br><br> separators
+no accidental markdown appears inside string values
+CHECK 11 — ORIGINALITY
+
+Check whether:
+
+questions are newly worded
+source-question wording has not been copied
+source-question order has not simply been recreated
+distinctive source answer-choice logic has not been reproduced
+questions genuinely test the new passage
+PER-QUESTION OUTPUT
+
+Question [number]:
+
+Status: Approved | Minor fix | Replace
+Originality risk: Green | Yellow | Red
+Reading accuracy: Correct | Issue
+Answer consistency: OK | Issue
+Module: OK | Issue
+ACT-likeness: Strong | Acceptable | Weak
+Difficulty calibration: Appropriate | Too easy | Too hard | Misclassified
+Reasoning required:
+Distractor quality: Strong | Acceptable | Weak
+Notes:
+Required fix, if any:
+FINAL BATCH OUTPUT
+
+After the per-question review, silently apply every required minor fix, replacement, difficulty change, and module change.
+
+Return exactly two labeled sections:
+
+VERIFICATION_REPORT
+
+{
+"approved": [],
+"minor_fix_only": [],
+"replace": [],
+"difficulty_changes": {},
+"module_changes": {},
+"global_issues": [],
+"passage_coverage": "Strong | Acceptable | Weak",
+"question_type_diversity": "Strong | Acceptable | Weak",
+"hard_question_quality": "Strong | Acceptable | Weak",
+"very_hard_question_quality": "Strong | Acceptable | Weak",
+"batch_challenge_level": "Too Easy | Slightly Easy | ACT-Appropriate | Challenging | Excessively Difficult"
+}
+
+CORRECTED_BATCH
+
+Return the complete corrected JavaScript object using the exact Prompt 4 output contract:
+
+exactly 9 sequential unquoted numeric keys beginning at start_question_number
+unquoted field keys
+imageSources: []
+passage: "{{shared_passage}}"
+3 Medium, 4 Hard, and 2 Very Hard questions
+no comments, markdown fences, variable declarations, or module exports
+
+The batch is not complete unless CORRECTED_BATCH is present and directly importable into the Reading subject object.
+
+Explicitly evaluate whether all 4 Hard and both Very Hard questions are genuinely challenging enough for ACT Reading.
+
+Do not reward difficulty caused by ambiguity, verbosity, obscure vocabulary, or confusing wording.

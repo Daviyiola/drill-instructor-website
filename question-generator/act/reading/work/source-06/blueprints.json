@@ -1,0 +1,80 @@
+{
+  "source_passage_id": 6,
+  "source_passage_type": "Informational",
+  "source_architecture_summary": "The source explains why an unusually capable member remains identified with a group, how shared practice shapes the individual's method, and how trusted advocates carefully create a separate opportunity without severing formative ties.",
+  "source_information_density": "High",
+  "two_blueprint_feasibility": "Strong",
+  "feasibility_notes": "Both blueprints discard the singer, family group, songs, record labels, quotations, and all source chronology while retaining tensions among individual ability, inherited method, trust, and expansion.",
+  "blueprints": [
+    {
+      "blueprint_label": "A",
+      "blueprint_focus": "Researchers study how the placement and design of public benches influence brief social behavior without determining it.",
+      "act_reading_passage_type": "Social Science",
+      "overall_reading_skill_family": "Motivation, artistic development, group influence, and qualification",
+      "rhetorical_or_narrative_arc": "Exceptional group contribution, preference for shared work, external invitation, cautious transition, adapted independent method",
+      "information_density_requirements": [
+        "Cooperative process",
+        "Individual strength",
+        "Trustworthy advocate",
+        "New constraints",
+        "Qualified independence"
+      ],
+      "safe_replacement_domains": [
+        "Textile art",
+        "Cooperative craft",
+        "Public installation"
+      ],
+      "question_opportunity_types": [
+        "Purpose",
+        "Motivation",
+        "Paragraph function",
+        "Cause and effect",
+        "Context phrase"
+      ],
+      "recommended_modules": [
+        "Author's Purpose and Perspective",
+        "Inference and Implication",
+        "Function and Structure",
+        "Sequence and Relationships",
+        "Textual Details"
+      ],
+      "primary_module": "Inference and Implication",
+      "distinctness_notes": "An observational public-space study with competing variables; no performer, family group, independent career, mentorship, or authorship conflict."
+    },
+    {
+      "blueprint_label": "B",
+      "blueprint_focus": "Biologists investigate how bats select roost temperatures that trade energy savings against readiness for flight.",
+      "act_reading_passage_type": "Natural Science",
+      "overall_reading_skill_family": "Professional formation, evidence, collaboration, and intellectual independence",
+      "rhetorical_or_narrative_arc": "Team role, distinctive observation, reluctance to claim, mentor challenge, independent argument, retained collaborative checks",
+      "information_density_requirements": [
+        "Survey protocol",
+        "Unexpected pattern",
+        "Mentor intervention",
+        "Competing explanation",
+        "Evidence-based resolution"
+      ],
+      "safe_replacement_domains": [
+        "Field ecology",
+        "Collaborative research",
+        "Scientific interpretation"
+      ],
+      "question_opportunity_types": [
+        "Evidence relationship",
+        "Character motivation",
+        "Function",
+        "Inference",
+        "Central claim"
+      ],
+      "recommended_modules": [
+        "Sequence and Relationships",
+        "Inference and Implication",
+        "Function and Structure",
+        "Central Ideas and Themes",
+        "Author's Purpose and Perspective"
+      ],
+      "primary_module": "Sequence and Relationships",
+      "distinctness_notes": "A physiological field experiment centered on temperature, torpor, and predation risk; no creative collective, solo identity, mentor, career, or credit claim."
+    }
+  ]
+}

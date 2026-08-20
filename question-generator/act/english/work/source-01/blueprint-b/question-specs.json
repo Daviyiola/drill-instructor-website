@@ -1,0 +1,152 @@
+[
+  {
+    "skill_tested": "Punctuating independent clauses joined by a conjunctive adverb",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "NO CHANGE",
+      "substantial nevertheless, its usefulness",
+      "substantial: nevertheless its usefulness",
+      "substantial; nevertheless, its usefulness"
+    ],
+    "correctAnswer": "substantial; nevertheless, its usefulness",
+    "step1": "The clauses before and after 'nevertheless' are independent.",
+    "step2": "A semicolon separates the clauses, and a comma follows the conjunctive adverb.",
+    "difficulty": "Medium",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Maintaining a measured and appropriately formal tone",
+    "question": "Which choice best maintains the passage's analytical tone?",
+    "options": [
+      "NO CHANGE",
+      "a bonkers way to burn through cash",
+      "an inefficient use of household funds",
+      "an unforgivable financial catastrophe"
+    ],
+    "correctAnswer": "an inefficient use of household funds",
+    "step1": "The passage presents a practical policy argument in neutral language.",
+    "step2": "The correct choice identifies the inefficiency precisely without slang or exaggeration.",
+    "difficulty": "Medium",
+    "module": "Style and Tone"
+  },
+  {
+    "skill_tested": "Evaluating whether a detail supports a paragraph's purpose",
+    "question": "Should the writer keep or delete the underlined sentence?",
+    "options": [
+      "Keep it, because handle color determines whether a tool can be safely lent.",
+      "Keep it, because the passage argues that libraries should stock colorful equipment.",
+      "Delete it, because the passage does not identify the manufacturer of each screwdriver.",
+      "Delete it, because handle colors do not help explain how a lending collection would be selected or used."
+    ],
+    "correctAnswer": "Delete it, because handle colors do not help explain how a lending collection would be selected or used.",
+    "step1": "The paragraph explains how a library could choose equipment and organize loans.",
+    "step2": "The colors of screwdriver handles do not develop that explanation and interrupt the paragraph's focus.",
+    "difficulty": "Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Selecting a pronoun with a clear antecedent",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "its",
+      "our",
+      "their",
+      "his or her"
+    ],
+    "correctAnswer": "its",
+    "step1": "The return date belongs to the singular, nonhuman noun 'equipment.'",
+    "step2": "The singular possessive pronoun 'its' agrees with that clear antecedent.",
+    "difficulty": "Hard",
+    "module": "Pronouns"
+  },
+  {
+    "skill_tested": "Eliminating redundant wording while preserving meaning",
+    "question": "Which choice most concisely expresses the intended meaning?",
+    "options": [
+      "NO CHANGE",
+      "for years",
+      "over the course of many continuing years",
+      "for a period lasting years in duration"
+    ],
+    "correctAnswer": "for years",
+    "step1": "The original phrase repeats the idea of an extended duration.",
+    "step2": "'For years' conveys the full intended duration directly and without repetition.",
+    "difficulty": "Medium",
+    "module": "Conciseness and Redundancy"
+  },
+  {
+    "skill_tested": "Retaining a counterclaim that an argument directly addresses",
+    "question": "Should the writer keep or delete the underlined sentence?",
+    "options": [
+      "Keep it, because it introduces the damage and completeness concerns that the checkout safeguards address.",
+      "Keep it, because it proves that library employees oppose all new lending programs.",
+      "Delete it, because effective arguments should never acknowledge a possible difficulty.",
+      "Delete it, because the paragraph is primarily about selecting paint colors for equipment."
+    ],
+    "correctAnswer": "Keep it, because it introduces the damage and completeness concerns that the checkout safeguards address.",
+    "step1": "The sentence states a plausible concern about lending unfamiliar equipment.",
+    "step2": "The inspection, checklist, demonstration, and testing policies that follow directly answer that concern.",
+    "difficulty": "Very Hard",
+    "module": "Topic Development"
+  },
+  {
+    "skill_tested": "Correcting a comma splice between independent clauses",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      ", it can",
+      "; it can",
+      ", being able to",
+      ": which can"
+    ],
+    "correctAnswer": "; it can",
+    "step1": "'A checkout procedure can reduce that risk' and 'it can include a brief inspection' are complete clauses.",
+    "step2": "A semicolon correctly joins the related clauses without a coordinating conjunction.",
+    "difficulty": "Hard",
+    "module": "Sentence Structure"
+  },
+  {
+    "skill_tested": "Placing a sentence according to evidence and logical sequence",
+    "question": "The underlined sentence would most logically be placed at which point in the paragraph?",
+    "options": [
+      "Point A",
+      "Point B",
+      "Point C",
+      "Point D"
+    ],
+    "correctAnswer": "Point D",
+    "step1": "The phrase 'those records' requires the pilot's records and the staff response to have already been described.",
+    "step2": "At Point D, the pilot data and resulting adjustments are complete, so the expansion decision logically follows.",
+    "difficulty": "Very Hard",
+    "module": "Organization and Cohesion"
+  },
+  {
+    "skill_tested": "Using a colon to introduce a list after a complete clause",
+    "question": "Which choice makes the sentence most grammatically acceptable?",
+    "options": [
+      "; what residents borrow, what staff can maintain, and what the budget can support",
+      ", what residents borrow, what staff can maintain, and what the budget can support",
+      ": what residents borrow, what staff can maintain, and what the budget can support",
+      " what residents borrow; what staff can maintain; and what the budget can support"
+    ],
+    "correctAnswer": ": what residents borrow, what staff can maintain, and what the budget can support",
+    "step1": "'The evidence would answer three important questions' is a complete clause that announces a list.",
+    "step2": "A colon correctly introduces the three parallel questions named afterward.",
+    "difficulty": "Hard",
+    "module": "Punctuation"
+  },
+  {
+    "skill_tested": "Evaluating whether a conclusion appropriately qualifies an argument",
+    "question": "Should the writer keep or delete the final sentence?",
+    "options": [
+      "Keep it, because it clarifies that lending offers an alternative for occasional needs rather than eliminating ownership.",
+      "Keep it, because it guarantees that every resident will stop purchasing household equipment.",
+      "Delete it, because the passage has not argued that libraries should stop lending books.",
+      "Delete it, because a conclusion should introduce an unrelated disadvantage."
+    ],
+    "correctAnswer": "Keep it, because it clarifies that lending offers an alternative for occasional needs rather than eliminating ownership.",
+    "step1": "The passage argues for shared access to equipment that residents use infrequently.",
+    "step2": "The conclusion accurately limits that claim by distinguishing a borrowing option from a total replacement for ownership.",
+    "difficulty": "Hard",
+    "module": "Topic Development"
+  }
+]

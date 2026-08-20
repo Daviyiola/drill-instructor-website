@@ -89,6 +89,18 @@ function asObj(value) {
 }
 
 /**
+ * Convert an RTDB array/map into rows.
+ *
+ * @param {*} value Array or keyed map
+ * @return {Array}
+ */
+function asArr(value) {
+  if (Array.isArray(value)) return value;
+  if (value && typeof value === "object") return Object.values(value);
+  return [];
+}
+
+/**
  * Build full student display name.
  *
  * @param {Object} student Student profile
@@ -144,6 +156,59 @@ function normalizeSummary(summary) {
       Math.round((correct * 10000) / attempted) / 100 :
       0,
   };
+}
+
+/**
+ * Prefer question-attributed time over session overhead for question averages.
+ *
+ * @param {Object} attempt Canonical attempt
+ * @param {number} fallbackSec Session-level fallback
+ * @return {number}
+ */
+function attributedUsedSec(attempt, fallbackSec) {
+  const subjectTotal = asArr(asObj(attempt).subjects).reduce((sum, value) => {
+    const row = asObj(value);
+    return sum + Math.max(0, Number(
+        row.usedSec || row.timeSec || row.time_sec || 0));
+  }, 0);
+
+  if (subjectTotal > 0) return subjectTotal;
+
+  const answerTotal = asArr(asObj(attempt).answers).reduce((sum, value) => {
+    const row = asObj(value);
+    const seconds = Number(row.timeSpentSec || 0) ||
+      (Math.max(0, Number(row.timeTakenMs || 0)) / 1000);
+    return sum + Math.max(0, seconds);
+  }, 0);
+
+  return answerTotal > 0 ? answerTotal : Math.max(0, Number(fallbackSec || 0));
+}
+
+/**
+ * Pick the requested attempt, or the most recently submitted attempt.
+ *
+ * @param {Object} attemptsById Attempt map
+ * @param {string} preferredAttemptId Preferred attempt id
+ * @return {Object|null}
+ */
+function pickAttempt(attemptsById, preferredAttemptId) {
+  const map = asObj(attemptsById);
+  if (preferredAttemptId && map[preferredAttemptId]) {
+    return asObj(map[preferredAttemptId]);
+  }
+
+  let best = null;
+  let bestTime = 0;
+  for (const key of Object.keys(map)) {
+    const row = asObj(map[key]);
+    const parsed = Date.parse(row.submittedAt || row.createdAt || "");
+    const time = Number.isNaN(parsed) ? 0 : parsed;
+    if (!best || time > bestTime) {
+      best = row;
+      bestTime = time;
+    }
+  }
+  return best;
 }
 
 /**
@@ -353,6 +418,11 @@ exports.handler = async (req, res) => {
     const assignedMap = asObj(drill.assignedStudents);
     const rows = [];
 
+    const attemptsSnap = await db
+        .ref(`schools/${ctx.schoolId}/educatorDrillAttempts/${drillId}`)
+        .once("value");
+    const attemptsRoot = asObj(attemptsSnap.val());
+
     const studentIds = Object.keys(assignedMap);
 
     for (const studentId of studentIds) {
@@ -367,7 +437,15 @@ exports.handler = async (req, res) => {
         student = {};
       }
 
-      const summary = normalizeSummary(assigned.summary || {});
+      const attempt = status === "submitted" ? pickAttempt(
+          asObj(attemptsRoot[studentId]),
+          cleanStr(assigned.attemptId, 160),
+      ) : null;
+      const summary = normalizeSummary(
+          asObj(attempt).summary || assigned.summary || {});
+      summary.usedSec = attributedUsedSec(attempt, summary.usedSec);
+      summary.meanSec = summary.attempted > 0 ?
+        Math.floor(summary.usedSec / summary.attempted) : 0;
 
       rows.push({
         studentId,
@@ -432,3 +510,5 @@ exports.handler = async (req, res) => {
     return bad(res, 500, "INTERNAL", details);
   }
 };
+
+exports.attributedUsedSec = attributedUsedSec;

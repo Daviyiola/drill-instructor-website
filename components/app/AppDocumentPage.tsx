@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
 import BrandedLoadingOverlay from "./BrandedLoadingOverlay";
@@ -11,7 +12,7 @@ interface DocumentSection {
   body: string[];
 }
 
-export default function AppDocumentPage({title, updated, introduction, sections}: {title: string; updated: string; introduction: string[]; sections: DocumentSection[]}) {
+export default function AppDocumentPage({title, updated, introduction, sections, alternateHref, alternateLabel}: {title: string; updated: string; introduction: string[]; sections: DocumentSection[]; alternateHref: string; alternateLabel: string}) {
   const router = useRouter();
   const {user, loading, account} = useAuth();
   useEffect(() => {
@@ -21,7 +22,10 @@ export default function AppDocumentPage({title, updated, introduction, sections}
 
   return <main className="min-h-screen bg-brand-mist text-slate-950">
     <article className="mx-auto max-w-3xl px-5 py-10 sm:px-8 sm:py-14">
-      <AppBackLink />
+      <div className="flex items-center justify-between gap-4">
+        <AppBackLink />
+        <Link href={alternateHref} className="rounded-xl border border-brand-green/30 bg-white px-4 py-2 text-sm font-medium text-brand-green transition hover:bg-brand-green/10">{alternateLabel}</Link>
+      </div>
       <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-brand-green/65">Drill Instructor</p>
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">{title}</h1>
       <p className="mt-3 text-sm text-slate-500">Last updated: {updated}</p>

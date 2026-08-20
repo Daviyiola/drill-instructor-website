@@ -1,0 +1,8 @@
+{
+  "sourceId":4,"scale":"1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles":[
+    {"blueprint":"A","passageAssetId":"act-english-source-04-a","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":3,"paragraphFunctionSequence":4,"overallRhetoricalArchitecture":4,"questionLogicTransfer":3,"disguisedRewriteRisk":3,"overallSimilarity":2.5},"decision":"PASS","notes":"The sign-restoration narrative uses independent historical, material, and conservation content; only the abstract observation-to-reconsideration arc transfers."},
+    {"blueprint":"B","passageAssetId":"act-english-source-04-b","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":3,"paragraphFunctionSequence":4,"overallRhetoricalArchitecture":4,"questionLogicTransfer":3,"disguisedRewriteRisk":3,"overallSimilarity":2.5},"decision":"PASS","notes":"The instrument-kite narrative uses outdoor weather measurement, launch mechanics, and data interpretation with no source setting, animal, relationship, or imagery."}
+  ],
+  "pairDistinctness":{"decision":"PASS","notes":"A examines layered historical lettering in an indoor conservation setting; B follows an outdoor launch, physical adjustment, and atmospheric measurement. The rejected letterpress version was removed."}
+}

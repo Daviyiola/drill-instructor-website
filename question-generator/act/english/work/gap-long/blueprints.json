@@ -1,0 +1,8 @@
+{
+  "bundlePurpose":"Supply the two original LONG narrative passages required to complete provisional Forms 5 and 6.",
+  "copyrightBasis":"No source passage is used. Both bundles are original and receive cross-bank rather than source-passage similarity review.",
+  "blueprints":[
+    {"blueprint_id":"A","new_topic_domain":"A student oral historian interviewing a retired bus driver","passage_type":"narrative","rhetorical_arc":"Begin with dependence on prepared questions; introduce a marked route map that does not fit the script; follow the evidence into an unwritten operating practice; document the story; conclude that attentive follow-up reveals what formal records omit."},
+    {"blueprint_id":"B","new_topic_domain":"A novice kayaker learning to cross a river current","passage_type":"narrative","rhetorical_arc":"Begin with confidence based on flat-water practice; let moving water expose the weakness of direct force; learn to use angle and a fixed landmark; complete the crossing; conclude that progress can require aiming somewhere other than the visible destination."}
+  ]
+}

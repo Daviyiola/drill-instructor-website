@@ -11,7 +11,6 @@ module.exports = {
         name: "English",
         modules: [
           "Conciseness and Redundancy",
-          "Idioms and Prepositions",
           "Modifiers, Parallelism, and Comparisons",
           "Organization and Cohesion",
           "Pronoun Agreement and Case",
@@ -22,7 +21,7 @@ module.exports = {
           "Topic Development",
           "Transitions and Logical Relationships",
           "Verb Tense and Form",
-          "Word Choice and Diction",
+          "Word Choice and Usage",
         ],
       },
       {
@@ -48,11 +47,15 @@ module.exports = {
       {
         name: "Reading",
         modules: [
-          "fiction",
-          "historical documents",
-          "history",
-          "science",
-          "social sciences",
+          "Author's Purpose and Perspective",
+          "Central Ideas and Themes",
+          "Character and Relationship Analysis",
+          "Comparative Passage Analysis",
+          "Function and Structure",
+          "Inference and Implication",
+          "Sequence and Relationships",
+          "Textual Details",
+          "Vocabulary in Context",
         ],
       },
       {

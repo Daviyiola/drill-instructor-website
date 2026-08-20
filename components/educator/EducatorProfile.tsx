@@ -15,6 +15,7 @@ export default function EducatorProfile() {
   const {user, educatorWorkspace: workspace, refreshEducatorWorkspace} = useAuth();
   const [form, setForm] = useState({firstName: "", lastName: "", avatarNumber: 1});
   const [busy, setBusy] = useState(false);
+  const [busyLabel, setBusyLabel] = useState("Updating your profile");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [deleteStage, setDeleteStage] = useState<0 | 1 | 2>(0);
@@ -29,7 +30,7 @@ export default function EducatorProfile() {
     event.preventDefault();
     if (!user || busy) return;
     if (!form.firstName.trim() || !form.lastName.trim()) { setError("First and last name are required."); return; }
-    setBusy(true); setError(""); setMessage("");
+    setBusyLabel("Updating your profile"); setBusy(true); setError(""); setMessage("");
     try {
       await callFunction(user, "updateEducatorProfileHttps", {...form, firstName: form.firstName.trim(), lastName: form.lastName.trim()});
       await refreshEducatorWorkspace();
@@ -39,18 +40,20 @@ export default function EducatorProfile() {
 
   async function removeAccount() {
     if (!user || deleteText.trim().toUpperCase() !== "DELETE" || busy) return;
+    setDeleteStage(0);
+    setBusyLabel("Deleting your account");
     setBusy(true); setError("");
     try {
       await callFunction(user, "deleteAccountHttps", {confirmText: "DELETE"});
       sessionStorage.clear();
       await signOut(getFirebaseAuth()).catch(() => undefined);
       router.replace("/app/sign-in?deleted=1");
-    } catch (reason) { setError((reason as Error).message); setDeleteStage(0); setBusy(false); }
+    } catch (reason) { setError((reason as Error).message); setDeleteStage(2); setBusy(false); }
   }
 
   if (!workspace) return null;
   return <div className="mx-auto max-w-5xl px-5 py-8 sm:px-8 lg:px-10">
-    {busy && <BrandedLoadingOverlay label={deleteStage ? "Deleting your account" : "Updating your profile"} />}
+    {busy && <BrandedLoadingOverlay label={busyLabel} />}
     <AppBackLink className="mb-5" />
     <p className="text-xs uppercase tracking-[.2em] text-brand-green/60">Educator account</p>
     <h1 className="mt-2 text-3xl font-semibold">Your profile</h1>

@@ -1,0 +1,702 @@
+{
+  "generatedAt": "2026-08-19T13:37:13.662Z",
+  "scaleNote": "Metrics are descriptive evidence, not the editorial risk score.",
+  "comparisons": [
+    {
+      "sourceId": 1,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s01-a",
+      "sourceWordCount": 933,
+      "generatedWordCount": 800,
+      "contentWordJaccard": 0.0803,
+      "trigramOverlap": {
+        "count": 2,
+        "rate": 0.002509410288582183,
+        "examples": [
+          "as i had",
+          "a group of"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "a group of"
+      }
+    },
+    {
+      "sourceId": 1,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s01-b",
+      "sourceWordCount": 933,
+      "generatedWordCount": 697,
+      "contentWordJaccard": 0.0714,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "passage a"
+      }
+    },
+    {
+      "sourceId": 2,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s02-a",
+      "sourceWordCount": 690,
+      "generatedWordCount": 680,
+      "contentWordJaccard": 0.0652,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 2,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s02-b",
+      "sourceWordCount": 690,
+      "generatedWordCount": 669,
+      "contentWordJaccard": 0.0792,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 3,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s03-a",
+      "sourceWordCount": 704,
+      "generatedWordCount": 682,
+      "contentWordJaccard": 0.0499,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 3,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s03-b",
+      "sourceWordCount": 704,
+      "generatedWordCount": 691,
+      "contentWordJaccard": 0.0626,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 4,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s04-a",
+      "sourceWordCount": 856,
+      "generatedWordCount": 677,
+      "contentWordJaccard": 0.0592,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.001483679525222552,
+        "examples": [
+          "s desk he"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "s desk he"
+      }
+    },
+    {
+      "sourceId": 4,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s04-b",
+      "sourceWordCount": 856,
+      "generatedWordCount": 654,
+      "contentWordJaccard": 0.0388,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "passage a"
+      }
+    },
+    {
+      "sourceId": 5,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s05-a",
+      "sourceWordCount": 719,
+      "generatedWordCount": 674,
+      "contentWordJaccard": 0.0476,
+      "trigramOverlap": {
+        "count": 2,
+        "rate": 0.0029850746268656717,
+        "examples": [
+          "the history of",
+          "it was an"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "the history of"
+      }
+    },
+    {
+      "sourceId": 5,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s05-b",
+      "sourceWordCount": 719,
+      "generatedWordCount": 682,
+      "contentWordJaccard": 0.057,
+      "trigramOverlap": {
+        "count": 2,
+        "rate": 0.0029455081001472753,
+        "examples": [
+          "with too many",
+          "the number of"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "the number of"
+      }
+    },
+    {
+      "sourceId": 6,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s06-a",
+      "sourceWordCount": 847,
+      "generatedWordCount": 657,
+      "contentWordJaccard": 0.0304,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 6,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s06-b",
+      "sourceWordCount": 847,
+      "generatedWordCount": 657,
+      "contentWordJaccard": 0.0414,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 7,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s07-a",
+      "sourceWordCount": 773,
+      "generatedWordCount": 662,
+      "contentWordJaccard": 0.0524,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.001524390243902439,
+        "examples": [
+          "of the same"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "of the same"
+      }
+    },
+    {
+      "sourceId": 7,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s07-b",
+      "sourceWordCount": 773,
+      "generatedWordCount": 679,
+      "contentWordJaccard": 0.048,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 8,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s08-a",
+      "sourceWordCount": 875,
+      "generatedWordCount": 682,
+      "contentWordJaccard": 0.0833,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.0014792899408284023,
+        "examples": [
+          "she did not"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "she did not"
+      }
+    },
+    {
+      "sourceId": 8,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s08-b",
+      "sourceWordCount": 875,
+      "generatedWordCount": 669,
+      "contentWordJaccard": 0.0801,
+      "trigramOverlap": {
+        "count": 5,
+        "rate": 0.007530120481927711,
+        "examples": [
+          "literary narrative this",
+          "narrative this passage",
+          "it was not",
+          "was not the",
+          "to each other"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 4,
+        "text": "literary narrative this passage"
+      }
+    },
+    {
+      "sourceId": 9,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s09-a",
+      "sourceWordCount": 897,
+      "generatedWordCount": 658,
+      "contentWordJaccard": 0.0538,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.0015267175572519084,
+        "examples": [
+          "the city s"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "the city s"
+      }
+    },
+    {
+      "sourceId": 9,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s09-b",
+      "sourceWordCount": 897,
+      "generatedWordCount": 654,
+      "contentWordJaccard": 0.0511,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "passage a"
+      }
+    },
+    {
+      "sourceId": 10,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s10-a",
+      "sourceWordCount": 705,
+      "generatedWordCount": 662,
+      "contentWordJaccard": 0.0511,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.0015174506828528073,
+        "examples": [
+          "more than the"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "more than the"
+      }
+    },
+    {
+      "sourceId": 10,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s10-b",
+      "sourceWordCount": 705,
+      "generatedWordCount": 664,
+      "contentWordJaccard": 0.0693,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 11,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s11-a",
+      "sourceWordCount": 780,
+      "generatedWordCount": 656,
+      "contentWordJaccard": 0.0783,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 11,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s11-b",
+      "sourceWordCount": 780,
+      "generatedWordCount": 677,
+      "contentWordJaccard": 0.0667,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.0014814814814814814,
+        "examples": [
+          "most likely to"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "most likely to"
+      }
+    },
+    {
+      "sourceId": 12,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s12-a",
+      "sourceWordCount": 904,
+      "generatedWordCount": 659,
+      "contentWordJaccard": 0.0656,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "passage a"
+      }
+    },
+    {
+      "sourceId": 12,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s12-b",
+      "sourceWordCount": 904,
+      "generatedWordCount": 665,
+      "contentWordJaccard": 0.0551,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "passage a"
+      }
+    },
+    {
+      "sourceId": 13,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s13-a",
+      "sourceWordCount": 801,
+      "generatedWordCount": 652,
+      "contentWordJaccard": 0.0672,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 13,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s13-b",
+      "sourceWordCount": 801,
+      "generatedWordCount": 660,
+      "contentWordJaccard": 0.0538,
+      "trigramOverlap": {
+        "count": 2,
+        "rate": 0.00303951367781155,
+        "examples": [
+          "part of a",
+          "the price of"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "part of a"
+      }
+    },
+    {
+      "sourceId": 14,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s14-a",
+      "sourceWordCount": 826,
+      "generatedWordCount": 661,
+      "contentWordJaccard": 0.0584,
+      "trigramOverlap": {
+        "count": 3,
+        "rate": 0.004573170731707317,
+        "examples": [
+          "is the result",
+          "the result of",
+          "one of the"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 4,
+        "text": "is the result of"
+      }
+    },
+    {
+      "sourceId": 14,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s14-b",
+      "sourceWordCount": 826,
+      "generatedWordCount": 658,
+      "contentWordJaccard": 0.039,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 15,
+      "blueprint": "A",
+      "passageAssetId": "act-reading-s15-a",
+      "sourceWordCount": 679,
+      "generatedWordCount": 690,
+      "contentWordJaccard": 0.052,
+      "trigramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 2,
+        "text": "this passage"
+      }
+    },
+    {
+      "sourceId": 15,
+      "blueprint": "B",
+      "passageAssetId": "act-reading-s15-b",
+      "sourceWordCount": 679,
+      "generatedWordCount": 676,
+      "contentWordJaccard": 0.0564,
+      "trigramOverlap": {
+        "count": 1,
+        "rate": 0.0014903129657228018,
+        "examples": [
+          "depends on its"
+        ]
+      },
+      "fiveGramOverlap": {
+        "count": 0,
+        "rate": 0,
+        "examples": []
+      },
+      "longestExactWordRun": {
+        "length": 3,
+        "text": "depends on its"
+      }
+    }
+  ]
+}

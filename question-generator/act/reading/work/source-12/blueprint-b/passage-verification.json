@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 12,
+  "blueprint": "B",
+  "passageAssetId": "act-reading-s12-b",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 657,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "The bowling and weather-log narratives and details are original.",
+    "The pair retains only an abstract inheritance-and-place structure from the source."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

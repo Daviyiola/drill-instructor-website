@@ -16,7 +16,7 @@ import {useAuth} from "./AuthProvider";
 import BrandedLoadingOverlay from "./BrandedLoadingOverlay";
 import QuestionRichText from "./QuestionRichText";
 
-type ReviewStatus = "all" | "correct" | "incorrect";
+type ReviewStatus = "all" | "correct" | "incorrect" | "unanswered";
 
 function wasAttempted(answer: DrillAnswerResult) {
   return (
@@ -27,14 +27,14 @@ function wasAttempted(answer: DrillAnswerResult) {
 }
 
 function answerStatus(answer: DrillAnswerResult) {
-  if (!wasAttempted(answer)) return "skipped";
+  if (!wasAttempted(answer)) return "unanswered";
   return answer.isCorrect ? "correct" : "incorrect";
 }
 
 function statusLabel(answer: DrillAnswerResult) {
   const status = answerStatus(answer);
-  return status === "skipped"
-    ? "Skipped"
+  return status === "unanswered"
+    ? "Unanswered"
     : status === "correct"
       ? "Correct"
       : "Incorrect";
@@ -140,16 +140,17 @@ export default function DrillCorrections({
     () => [
       ...new Set(
         (result?.answers || [])
-          .filter(wasAttempted)
+          .filter((answer) => Boolean(educatorContext) || wasAttempted(answer))
           .map((answer) => answer.subject),
       ),
     ],
-    [result],
+    [educatorContext, result],
   );
   const reviewAnswers = useMemo(
-    () =>
-      (result?.answers || []).filter(wasAttempted),
-    [result],
+    () => (result?.answers || []).filter(
+      (answer) => Boolean(educatorContext) || wasAttempted(answer),
+    ),
+    [educatorContext, result],
   );
 
   if (!result) {
@@ -169,7 +170,9 @@ export default function DrillCorrections({
         <div className="max-w-md rounded-3xl bg-white p-8 shadow-sm">
           <h1 className="text-2xl font-black">No corrections to review</h1>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Only answered questions appear in corrections.
+            {educatorContext ?
+              "No question-level submission data is available for this attempt." :
+              "Only answered questions appear in corrections."}
           </p>
           <Link
             href={educatorContext?.resultHref || `/app/drills/${sessionId}/results${
@@ -214,11 +217,25 @@ export default function DrillCorrections({
           if (mapStatus === "incorrect") {
             return answerStatus(answer) === "incorrect";
           }
+          if (mapStatus === "unanswered") {
+            return answerStatus(answer) === "unanswered";
+          }
           return true;
         }),
     }))
     .filter((group) => mapSubject === "all" || group.subject === mapSubject)
     .filter((group) => group.questions.length > 0);
+  const mapStatuses: ReviewStatus[] = educatorContext ?
+    ["all", "correct", "incorrect", "unanswered"] :
+    ["all", "correct", "incorrect"];
+  const mapLegend: Array<[string, string]> = [
+    ["border border-green-300 bg-green-50", "Correct"],
+    ["border border-red-300 bg-red-50", "Incorrect"],
+    ...(educatorContext ? [[
+      "border border-slate-300 bg-slate-100",
+      "Unanswered",
+    ] as [string, string]] : []),
+  ];
 
   function move(nextIndex: number) {
     setIndex(Math.max(0, Math.min(answerCount - 1, nextIndex)));
@@ -419,12 +436,12 @@ export default function DrillCorrections({
               </p>
             )}
 
-            <div className="mt-8 flex items-center justify-between gap-3">
+            <div className="mt-8 grid grid-cols-1 gap-2 min-[280px]:grid-cols-2 sm:gap-3">
               <button
                 type="button"
                 disabled={index === 0}
                 onClick={() => move(index - 1)}
-                className="min-h-12 rounded-2xl border border-slate-200 bg-white px-8 text-sm font-bold disabled:opacity-35"
+                className="min-h-12 w-full min-w-0 rounded-2xl border border-slate-200 bg-white px-2 text-sm font-normal disabled:opacity-35 sm:px-8"
               >
                 Previous
               </button>
@@ -432,7 +449,7 @@ export default function DrillCorrections({
                 type="button"
                 disabled={index === answerCount - 1}
                 onClick={() => move(index + 1)}
-                className="min-h-12 rounded-2xl bg-brand-green px-9 text-sm font-black text-white disabled:opacity-35"
+                className="min-h-12 w-full min-w-0 rounded-2xl bg-brand-green px-2 text-sm font-normal text-white disabled:opacity-35 sm:px-9"
               >
                 Next
               </button>
@@ -534,7 +551,7 @@ export default function DrillCorrections({
               ))}
             </div>
             <div className="mt-2 flex gap-2">
-              {(["all", "correct", "incorrect"] as const).map((status) => (
+              {mapStatuses.map((status) => (
                 <button
                   key={status}
                   type="button"
@@ -551,10 +568,7 @@ export default function DrillCorrections({
             </div>
 
             <div className="mt-5 flex flex-wrap gap-4 text-xs text-slate-600">
-              {[
-                ["border border-green-300 bg-green-50", "Correct"],
-                ["border border-red-300 bg-red-50", "Incorrect"],
-              ].map(([color, label]) => (
+              {mapLegend.map(([color, label]) => (
                 <span key={label} className="inline-flex items-center gap-2">
                   <span className={`h-3 w-3 rounded-full ${color}`} />
                   {label}
@@ -585,7 +599,9 @@ export default function DrillCorrections({
                           className={`relative aspect-square rounded-xl text-xs font-black ${
                             itemStatus === "correct"
                               ? "border border-green-300 bg-green-50 text-green-800"
-                              : "border border-red-300 bg-red-50 text-red-700"
+                              : itemStatus === "incorrect"
+                                ? "border border-red-300 bg-red-50 text-red-700"
+                                : "border border-slate-300 bg-slate-100 text-slate-600"
                           } ${
                             questionIndex === index
                               ? "ring-2 ring-brand-green ring-offset-2"

@@ -1,6 +1,21 @@
 # Mobile Store Deployment Timeline
 
-Last updated: August 11, 2026
+Last updated: August 12, 2026
+
+## Current rollout status
+
+- Google Play organization setup and website verification completed.
+- Apple organization verification remains in progress.
+- Android package ID confirmed as `com.drillinstructor.app`.
+- Android API 36 and Build Tools 36 installed locally.
+- Felgo development and publish builds separated through `DRILL_INSTRUCTOR_PUBLISH`.
+- Publish QML/resources compile successfully.
+- Release manifest reduced to Internet and network-state permissions.
+- Firebase Android app registered as `1:975311339573:android:0bd0a1ffc912415223f17c`.
+- Permanent upload key created and its SHA-1/SHA-256 fingerprints registered with Firebase.
+- First signed AAB produced at `Drill_Instructor/release-artifacts/Drill-Instructor-1.0.0-1.aab`.
+- Public account-deletion request and email-confirmation flow deployed; web route is `/account-deletion`.
+- Remaining Gate 1 work: back up the upload key, install and smoke-test the standalone release, then upload the AAB to Play Internal Testing.
 
 ## Objective
 
@@ -157,7 +172,8 @@ Initial remote notifications:
   - Content rating.
   - Privacy policy.
   - Data Safety form.
-  - Public account-deletion URL.
+- Public account-deletion URL.
+- Account-deletion URL: `https://drillinstructorprep.com/account-deletion`.
   - Support contact information.
 
 An organization account is not subject to the mandatory 12-person, 14-day closed-test requirement applied to newly created personal accounts. Testing remains a product-quality gate.

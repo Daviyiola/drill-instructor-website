@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { callFunction } from "@/lib/api/client";
+import { isFutureLocalDateTime, minimumFutureLocalDateTime } from "@/lib/dates/futureDueDate";
 import { questionImageUrls } from "@/lib/drills/images";
 import { questionText } from "@/lib/drills/text";
 import type { DrillCatalog } from "@/lib/types/drill";
@@ -219,6 +220,7 @@ export default function EducatorDrillBuilder({
   const [title, setTitle] = useState("");
   const [instructions, setInstructions] = useState("");
   const [dueAt, setDueAt] = useState("");
+  const [minimumDueAt, setMinimumDueAt] = useState("");
   const [scorePolicy, setScorePolicy] = useState<Policy>("immediate");
   const [correctionPolicy, setCorrectionPolicy] = useState<Policy>("manual");
   const [shuffleQuestions, setShuffleQuestions] = useState(true);
@@ -248,6 +250,8 @@ export default function EducatorDrillBuilder({
   const [error, setError] = useState("");
   const [publishResult, setPublishResult] = useState("");
   const [confirmAssignment, setConfirmAssignment] = useState(false);
+
+  useEffect(() => setMinimumDueAt(minimumFutureLocalDateTime()), []);
   const [confirmRegenerate, setConfirmRegenerate] = useState(false);
   const [configSelectionTarget, setConfigSelectionTarget] =
     useState<ConfigSelectionTarget | null>(null);
@@ -575,6 +579,8 @@ export default function EducatorDrillBuilder({
   }
   function validateDetails() {
     if (!title.trim()) return "Enter a drill title.";
+    if (dueAt && !isFutureLocalDateTime(dueAt))
+      return "Choose a due date in the future.";
     if (
       (scorePolicy === "on_due_date" || correctionPolicy === "on_due_date") &&
       !dueAt
@@ -994,6 +1000,7 @@ export default function EducatorDrillBuilder({
               <input
                 type="datetime-local"
                 value={dueAt}
+                min={minimumDueAt || undefined}
                 onChange={(e) => setDueAt(e.target.value)}
                 className="mt-2 min-h-12 w-full rounded-2xl border border-slate-200 px-4"
               />

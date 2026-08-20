@@ -159,9 +159,10 @@ function validateCorrections(bootcamp, questions, descriptor) {
 
 function assertActCounts(questions) {
   const expected = {
-    Mathematics: [45, 45, 45, 45, 45, 45, 45, 45, 10],
-    Science: [40, 40, 40, 40, 8],
-    English: [50, 50],
+    Mathematics: [45, 45, 45, 45, 45, 45, 45, 45],
+    Science: [40, 40, 40, 40],
+    English: [50, 50, 50, 50, 50, 50, 50, 50],
+    Reading: [36, 36, 36, 36, 36, 36, 36, 36],
   };
   Object.entries(expected).forEach(([subject, counts]) => {
     const actual = counts.map((_, index) => questions.filter((question) =>
@@ -173,10 +174,46 @@ function assertActCounts(questions) {
           actual.join(","),
       );
     }
+    const unexpectedTests = questions.filter((question) =>
+      question.subject === subject &&
+      (!Number.isInteger(question.practiceYear) ||
+        question.practiceYear < 1 || question.practiceYear > counts.length),
+    );
+    if (unexpectedTests.length) {
+      throw new Error(
+          `act: ${subject} has ${unexpectedTests.length} questions outside ` +
+          `practice tests 1-${counts.length}`,
+      );
+    }
   });
-  if (questions.some((question) => question.subject === "Reading")) {
-    throw new Error("act: Reading must remain omitted until questions exist");
-  }
+}
+
+function assertSatCounts(questions) {
+  const expected = {
+    "Math": [44, 44, 44, 44],
+    "Read. & Writ.": [54, 54],
+  };
+  Object.entries(expected).forEach(([subject, counts]) => {
+    const actual = counts.map((_, index) => questions.filter((question) =>
+      question.subject === subject && question.practiceYear === index + 1,
+    ).length);
+    if (JSON.stringify(actual) !== JSON.stringify(counts)) {
+      throw new Error(
+          `sat: ${subject} expected ${counts.join(",")}; ` +
+          `got ${actual.join(",")}`,
+      );
+    }
+    const unexpected = questions.filter((question) =>
+      question.subject === subject &&
+      (!Number.isInteger(question.practiceYear) || question.practiceYear < 1 ||
+        question.practiceYear > counts.length));
+    if (unexpected.length) {
+      throw new Error(
+          `sat: ${subject} has ${unexpected.length} questions outside ` +
+          `practice tests 1-${counts.length}`,
+      );
+    }
+  });
 }
 
 function indexQuestion(question) {
@@ -331,6 +368,7 @@ async function buildBootcamp(bootcamp) {
   validateQuestions(bootcamp, questions);
   validateCorrections(bootcamp, questions, descriptor);
   if (bootcamp === "act") assertActCounts(questions);
+  if (bootcamp === "sat") assertSatCounts(questions);
 
   const versionRoot = path.join(
       OUTPUT_ROOT, bootcamp, descriptor.datasetVersion,

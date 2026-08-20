@@ -428,12 +428,21 @@ exports.handler = async (req, res) => {
 
     const {educatorId, schoolId} = callerCtx;
 
-    const [schoolSnap, schoolEducatorSnap] = await Promise.all([
-      db.ref(`schools/${schoolId}`).once("value"),
-      db.ref(`schools/${schoolId}/educators/${educatorId}`).once("value"),
-    ]);
+    const [nameSnap, countrySnap, stateSnap, planSnap, schoolEducatorSnap] =
+      await Promise.all([
+        db.ref(`schools/${schoolId}/name`).once("value"),
+        db.ref(`schools/${schoolId}/country`).once("value"),
+        db.ref(`schools/${schoolId}/state`).once("value"),
+        db.ref(`schools/${schoolId}/plan`).once("value"),
+        db.ref(`schools/${schoolId}/educators/${educatorId}`).once("value"),
+      ]);
 
-    const school = schoolSnap.val() || {};
+    const school = {
+      name: nameSnap.val(),
+      country: countrySnap.val(),
+      state: stateSnap.val(),
+      plan: planSnap.val() || {},
+    };
     const schoolEducator = schoolEducatorSnap.val() || {};
 
     if (schoolEducator.status !== "approved") {

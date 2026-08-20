@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 7,
+  "blueprint": "B",
+  "passageAssetId": "act-reading-s07-b",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 671,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "No fungi, forests, plant roots, nutrient exchange, seedlings, parasites, or source metaphors are retained.",
+    "The network is institutional and logistical rather than biological."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

@@ -56,6 +56,14 @@ type GroupAnalytics = {
     subjects: ComprehensionRow[];
     modules: ComprehensionRow[];
   };
+  students?: Array<{
+    studentId: string;
+    analytics: {
+      overview: AnalyticsOverview;
+      subjects: AnalyticsBreakdown[];
+      modules: AnalyticsBreakdown[];
+    };
+  }>;
 };
 
 type GroupResponse = {
@@ -76,6 +84,78 @@ const thresholdDefaults: Record<ThresholdMetric, number> = {
   accuracy: 60,
   avgTime: 90,
 };
+
+// Keep each group/range projection for the lifetime of the educator SPA.
+// Threshold changes are always derived from this answer-free snapshot and
+// never need another Firebase/Functions read.
+const groupAnalyticsCache = new Map<string, GroupResponse>();
+
+function metricValue(
+  row: AnalyticsBreakdown | {overview: AnalyticsOverview} | undefined,
+  metric: ThresholdMetric,
+) {
+  if (!row) return null;
+  const attempted = Number("overview" in row ?
+    row.overview.attempts : row.attempted);
+  if (attempted <= 0) return null;
+  const correct = "overview" in row ?
+    (row.overview.accuracy === null ? 0 :
+      attempted * Number(row.overview.accuracy || 0) / 100) :
+    Number(row.correct || 0);
+  const activeTimeSec = Number("overview" in row ?
+    row.overview.activeTimeSec : row.activeTimeSec);
+  if (metric === "attempts") return attempted;
+  if (metric === "correct") return correct;
+  if (metric === "avgTime") return activeTimeSec / attempted;
+  return correct / attempted * 100;
+}
+
+function passesThreshold(value: number, metric: ThresholdMetric, threshold: number) {
+  return metric === "avgTime" ? value <= threshold : value >= threshold;
+}
+
+function localComprehension(
+  analytics: GroupAnalytics,
+  metric: ThresholdMetric,
+  threshold: number,
+) {
+  const students = analytics.students || [];
+  function rowsFor(level: "subjects" | "modules") {
+    return analytics[level].map((combined) => {
+      const subject = String(combined.subject || "General");
+      const moduleName = level === "modules" ?
+        String(combined.module || "General") : "";
+      const below: ThresholdValue[] = [];
+      const noData: string[] = [];
+      let met = 0;
+      students.forEach((student) => {
+        const row = (student.analytics[level] || []).find((candidate) =>
+          String(candidate.subject || "General") === subject &&
+          (level !== "modules" ||
+            String(candidate.module || "General") === moduleName));
+        const value = metricValue(row, metric);
+        if (value === null) noData.push(student.studentId);
+        else if (passesThreshold(value, metric, threshold)) met += 1;
+        else below.push({studentId: student.studentId, value});
+      });
+      const total = students.length;
+      return {
+        id: level === "modules" ? `${subject}\u0000${moduleName}` : subject,
+        name: level === "modules" ? moduleName : subject,
+        subject,
+        ...(level === "modules" ? {module: moduleName} : {}),
+        percentMet: total ? Math.round(met / total * 1000) / 10 : 0,
+        met,
+        total,
+        below,
+        noData,
+      };
+    }).sort((left, right) => left.percentMet - right.percentMet ||
+      right.noData.length - left.noData.length ||
+      left.name.localeCompare(right.name));
+  }
+  return {metric, threshold, subjects: rowsFor("subjects"), modules: rowsFor("modules")};
+}
 
 function inputDate(date: Date) {
   return date.toISOString().slice(0, 10);
@@ -159,6 +239,16 @@ export default function EducatorGroupAnalytics({
     const rangeDays = Math.max(1, Math.ceil(
       (Date.parse(range.endAt) - Date.parse(range.startAt)) / DAY_MS,
     ));
+    const cacheKey = [user.uid, bootcamp, rawGroupId, scope, preset,
+      customStart, customEnd, focusSubject].join(":");
+    const cached = groupAnalyticsCache.get(cacheKey);
+    if (cached) {
+      setData(cached);
+      setBusy(false);
+      setError("");
+      setExpanded(new Set());
+      return;
+    }
     setBusy(true);
     setError("");
     callFunction<GroupResponse>(user, "getEducatorGroupAnalyticsHttps", {
@@ -171,10 +261,15 @@ export default function EducatorGroupAnalytics({
       subject: focusSubject,
       granularity: rangeDays > 180 ? "month" :
         rangeDays > 30 ? "week" : "day",
-      thresholdMetric,
-      threshold: appliedThreshold,
+      thresholdMetric: "accuracy",
+      threshold: thresholdDefaults.accuracy,
     }, {signal: controller.signal}).then((response) => {
       if (requestId.current !== currentRequest) return;
+      groupAnalyticsCache.set(cacheKey, response);
+      if (groupAnalyticsCache.size > 12) {
+        const oldest = groupAnalyticsCache.keys().next().value;
+        if (oldest) groupAnalyticsCache.delete(oldest);
+      }
       setData(response);
       setExpanded(new Set());
     }).catch((reason: unknown) => {
@@ -187,7 +282,6 @@ export default function EducatorGroupAnalytics({
     });
     return () => controller.abort();
   }, [
-    appliedThreshold,
     bootcamp,
     customEnd,
     customStart,
@@ -195,7 +289,6 @@ export default function EducatorGroupAnalytics({
     preset,
     rawGroupId,
     scope,
-    thresholdMetric,
     user,
   ]);
 
@@ -206,17 +299,27 @@ export default function EducatorGroupAnalytics({
     ]),
   ), [data]);
 
+  const analytics = useMemo(() => {
+    if (!data?.analytics) return null;
+    return {
+      ...data.analytics,
+      comprehension: localComprehension(
+        data.analytics, thresholdMetric, appliedThreshold,
+      ),
+    };
+  }, [appliedThreshold, data, thresholdMetric]);
+
   if (!data && busy) {
     return <BrandedLoadingOverlay label="Loading group analytics" fixed={false} />;
   }
 
-  const analytics = data?.analytics;
   if (!analytics) {
     return <div className="grid min-h-[70vh] place-items-center p-6 text-sm text-red-700">{error || "No group analytics are available."}</div>;
   }
 
   const overview = analytics.overview;
   const groupName = data?.group.name || fallbackName;
+  const groupReturnHref = `/app/educator/bootcamps/${bootcamp}/analytics/groups/${encodeURIComponent(rawGroupId)}?rawGroupId=${encodeURIComponent(rawGroupId)}&scope=${encodeURIComponent(scope)}&name=${encodeURIComponent(groupName)}`;
   const studentCount = data?.group.studentCount || 0;
   const comprehensionRows = focusSubject ?
     analytics.comprehension.modules.filter((row) =>
@@ -468,7 +571,7 @@ export default function EducatorGroupAnalytics({
                         <div className="mt-2 space-y-2">
                           {row.below.map((student) => (
                             <Link key={student.studentId}
-                              href={`/app/educator/bootcamps/${bootcamp}/analytics/students/${encodeURIComponent(student.studentId)}?name=${encodeURIComponent(names.get(student.studentId) || "Student")}`}
+                              href={`/app/educator/bootcamps/${bootcamp}/analytics/students/${encodeURIComponent(student.studentId)}?name=${encodeURIComponent(names.get(student.studentId) || "Student")}&returnTo=${encodeURIComponent(groupReturnHref)}`}
                               className="flex items-center justify-between gap-3 rounded-xl bg-brand-mist px-3 py-2 text-sm transition hover:ring-1 hover:ring-brand-green/30">
                               <span className="truncate">{names.get(student.studentId) || "Student"}</span>
                               <span className="shrink-0 text-xs text-slate-500">{thresholdValue(student.value, thresholdMetric)}</span>
@@ -482,7 +585,7 @@ export default function EducatorGroupAnalytics({
                         <div className="mt-2 space-y-2">
                           {row.noData.map((studentId) => (
                             <Link key={studentId}
-                              href={`/app/educator/bootcamps/${bootcamp}/analytics/students/${encodeURIComponent(studentId)}?name=${encodeURIComponent(names.get(studentId) || "Student")}`}
+                              href={`/app/educator/bootcamps/${bootcamp}/analytics/students/${encodeURIComponent(studentId)}?name=${encodeURIComponent(names.get(studentId) || "Student")}&returnTo=${encodeURIComponent(groupReturnHref)}`}
                               className="block truncate rounded-xl bg-brand-mist px-3 py-2 text-sm transition hover:ring-1 hover:ring-brand-green/30">
                               {names.get(studentId) || "Student"}
                             </Link>

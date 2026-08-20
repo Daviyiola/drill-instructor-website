@@ -1,0 +1,80 @@
+{
+  "source_passage_id": 15,
+  "source_passage_type": "Informational",
+  "source_architecture_summary": "A natural-science history explains how manipulating a material's internal structure changes large-scale performance, moving through invention, process, mechanism, production constraints, and applications.",
+  "source_information_density": "High",
+  "two_blueprint_feasibility": "Strong",
+  "feasibility_notes": "Blueprint A examines thermal tempering of glass; Blueprint B examines encapsulated phase-change materials for thermal storage. Both replace steelmaking, named inventors, dates, furnaces, and source analogies.",
+  "blueprints": [
+    {
+      "blueprint_label": "A",
+      "blueprint_focus": "Researchers study how migratory shorebirds combine fuel, wind, season, and habitat cues when deciding when to depart a stopover.",
+      "act_reading_passage_type": "Natural Science",
+      "overall_reading_skill_family": "Process, internal stress, property change, testing, and scale",
+      "rhetorical_or_narrative_arc": "Brittle-material problem, heating and quenching process, stress mechanism, fracture consequence, quality controls, cutting constraint, bounded applications",
+      "information_density_requirements": [
+        "Heating process",
+        "Surface compression",
+        "Interior tension",
+        "Fracture pattern",
+        "Manufacturing limits"
+      ],
+      "safe_replacement_domains": [
+        "Glass science",
+        "Thermal processing",
+        "Safety materials"
+      ],
+      "question_opportunity_types": [
+        "Sequence",
+        "Mechanism",
+        "Function",
+        "Inference",
+        "Main idea"
+      ],
+      "recommended_modules": [
+        "Sequence and Relationships",
+        "Textual Details",
+        "Function and Structure",
+        "Inference and Implication",
+        "Central Ideas and Themes"
+      ],
+      "primary_module": "Sequence and Relationships",
+      "distinctness_notes": "A behavioral ecology account of departure decisions and probabilistic evidence; no manufactured material, internal structure, heat treatment, invention, industrial scale, or property engineering."
+    },
+    {
+      "blueprint_label": "B",
+      "blueprint_focus": "Microencapsulated phase-change materials store and release heat during melting and freezing, with tradeoffs in leakage, cycling, conductivity, and building integration.",
+      "act_reading_passage_type": "Natural Science",
+      "overall_reading_skill_family": "Phase mechanism, encapsulation, system integration, lifecycle testing, and scale",
+      "rhetorical_or_narrative_arc": "Temperature-swing problem, phase-change mechanism, capsule design, composite integration, cycling tests, timing constraints, qualified use",
+      "information_density_requirements": [
+        "Latent heat",
+        "Melting range",
+        "Capsule shell",
+        "Composite tradeoff",
+        "Climate-operation match"
+      ],
+      "safe_replacement_domains": [
+        "Thermal storage",
+        "Building materials",
+        "Polymer encapsulation"
+      ],
+      "question_opportunity_types": [
+        "Detail",
+        "Cause and effect",
+        "Purpose",
+        "Evidence",
+        "Synthesis"
+      ],
+      "recommended_modules": [
+        "Textual Details",
+        "Sequence and Relationships",
+        "Author's Purpose and Perspective",
+        "Inference and Implication",
+        "Central Ideas and Themes"
+      ],
+      "primary_module": "Inference and Implication",
+      "distinctness_notes": "Uses reversible phase transitions and composite design rather than glass stress."
+    }
+  ]
+}

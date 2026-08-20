@@ -1,0 +1,9 @@
+{
+  "sourceId":13,
+  "scale":"1 = minimal resemblance; 10 = near-copy or strongly disguised rewrite",
+  "bundles":[
+    {"blueprint":"A","passageAssetId":"act-english-source-13-a","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":3,"paragraphFunctionSequence":4,"overallRhetoricalArchitecture":4,"questionLogicTransfer":2,"disguisedRewriteRisk":2,"overallSimilarity":2.3},"decision":"PASS","notes":"The passage concerns urban tree care, thermal mapping, soil readings, and field triage. It shares no organisms, researchers, locations, discoveries, or biological evidence with the source."},
+    {"blueprint":"B","passageAssetId":"act-english-source-13-b","scores":{"wordingAndSyntax":1,"factsEntitiesExamples":1,"subjectMatter":1,"centralConceptualTheme":3,"paragraphFunctionSequence":4,"overallRhetoricalArchitecture":4,"questionLogicTransfer":2,"disguisedRewriteRisk":2,"overallSimilarity":2.3},"decision":"PASS","notes":"The passage explains glacial radar surveys and evidence interpretation. Its setting, instruments, measurements, purposes, and conclusions are independently constructed."}
+  ],
+  "pairDistinctness":{"decision":"PASS","notes":"A focuses on urban vegetation and heat at night; B focuses on glacier interiors and radar. The domains, settings, evidence, and practical uses are distinct."}
+}

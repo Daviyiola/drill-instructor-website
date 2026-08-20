@@ -1,0 +1,22 @@
+PASS — local question verification
+
+Source: 13, Blueprint: A
+Question range: 235-243
+Count: 9
+Difficulty: {"Medium":3,"Hard":4,"Very Hard":2}
+Answer positions: {"option1":3,"option2":2,"option3":2,"option4":2}
+Modules: {"Textual Details":1,"Sequence and Relationships":2,"Central Ideas and Themes":2,"Inference and Implication":2,"Function and Structure":1,"Author's Purpose and Perspective":1}
+
+Verified gates:
+- Contiguous numeric keys and canonical unquoted JS fields
+- Four distinct options per question
+- Correct answer exactly matches one option
+- Canonical Reading modules
+- Required 3 Medium / 4 Hard / 2 Very Hard distribution
+- Plain explanation labels separated by <br><br>
+- Explanation restates the keyed answer
+- imageSources: [] and {{shared_passage}} placeholder contract
+- No literal double quotation marks in string values
+- No full question-and-option duplication across the corpus
+
+The final fragment passed the deterministic validator and corpus audit. Human preview remains the final gate before production import.

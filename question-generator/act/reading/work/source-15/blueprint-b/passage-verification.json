@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 15,
+  "blueprint": "B",
+  "passageAssetId": "act-reading-s15-b",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 668,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "The phase-change mechanism, building examples, and testing discussion are original.",
+    "No steelmaking, alloy, furnace, inventor, or source-scale analogy remains."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

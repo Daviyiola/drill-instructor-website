@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 5,
+  "blueprint": "A",
+  "passageAssetId": "act-reading-s05-a",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 669,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "No zero, number notation, ancient civilization, word history, or named scholar is retained.",
+    "The historical argument concerns interoperability across physical and institutional systems."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

@@ -1,0 +1,24 @@
+{
+  "status": "passed_local_verification",
+  "sourceId": 15,
+  "blueprint": "A",
+  "passageAssetId": "act-reading-s15-a",
+  "checks": {
+    "canonicalPassageType": true,
+    "visiblePassageTypeHeader": true,
+    "actualWordCount": 687,
+    "declaredWordCountMatches": true,
+    "targetWordRange": true,
+    "paragraphFormattingUsesDoubleBreaks": true,
+    "textOnlyImageSources": true,
+    "sourceAttributionAbsent": true,
+    "printedLineNumbersAbsent": true,
+    "exactTwelveWordSourceOverlapAbsent": true,
+    "supportsNineQuestionBatch": true
+  },
+  "originalityNotes": [
+    "A behavioral ecology account of departure decisions and probabilistic evidence; no manufactured material, internal structure, heat treatment, invention, industrial scale, or property engineering.",
+    "Independently composed for this replacement audit."
+  ],
+  "reviewNote": "Passed deterministic corpus validation and local editorial construction review. Retain human preview before production import."
+}

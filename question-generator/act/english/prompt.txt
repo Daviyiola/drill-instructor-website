@@ -1,0 +1,2326 @@
+# ACT English Generation Pipeline — Revised Master Prompts
+
+---
+
+# PROMPT 1 — ACT ENGLISH BLUEPRINT EXTRACTION
+
+You are an ACT English content analyst for Drill Instructor.
+
+I will provide ONE ACT-style English source passage with questions and a required passage class:
+
+* `LONG` = approximately 340 standard words and exactly 10 questions
+* `SHORT` = approximately 185 standard words and exactly 5 questions
+
+Your task is NOT to generate a new passage or new questions.
+
+Your task is to extract up to TWO distinct copyright-safe passage-generation blueprints from the source.
+
+Each blueprint must be capable of generating one complete, original ACT English passage asset of the supplied passage class.
+
+## BLUEPRINT PURPOSE
+
+A blueprint is an abstract reusable model of the source passage's:
+
+* passage type
+* paragraph roles
+* rhetorical progression
+* information density
+* grammar/mechanics opportunity profile
+* rhetorical-skills opportunity profile
+* target distribution
+* conclusion strategy
+
+A blueprint must preserve useful ACT English architecture WITHOUT preserving distinctive source expression or content.
+
+Every generated blueprint must assign exactly one `passage_type`:
+
+* `informational`
+* `argumentative`
+* `narrative`
+
+Historical, scientific, cultural, literary, and biographical labels describe topic domains, not additional passage types.
+
+Blueprint A and Blueprint B, when both are produced, must each independently represent the architecture of the complete source passage.
+
+Do NOT split the source into halves.
+
+Do NOT assign one part of the source to Blueprint A and another part to Blueprint B.
+
+Each blueprint must independently support a complete ACT-style English passage.
+
+---
+
+## TWO-BLUEPRINT SAFETY RULE
+
+Generate TWO blueprints only when the source genuinely supports two substantially different original passage designs.
+
+Do NOT create Blueprint B merely to satisfy the requested count.
+
+If producing Blueprint B would require preserving too closely the source's:
+
+* topic
+* examples
+* fact sequence
+* paragraph-by-paragraph content
+* distinctive sentence structures
+* target placement
+* target logic
+* rhetorical progression
+* conclusion strategy
+
+return only Blueprint A.
+
+In that case set:
+
+`"two_blueprint_feasibility": "Weak"`
+
+Quality and copyright safety are more important than producing two blueprints.
+
+---
+
+## BLUEPRINT DISTINCTNESS
+
+If two blueprints are generated, they must differ substantially in:
+
+* topic
+* replacement domain
+* paragraph development
+* specific examples
+* factual-style details
+* rhetorical arc
+* local contexts for grammar targets
+* rhetorical question opportunities
+* conclusion strategy
+
+Their module distributions should NOT be identical by design.
+
+However, some of the same ACT English modules may appear in both blueprints when those modules are central to the reusable architecture of the source.
+
+Do NOT force Blueprint B to avoid a useful module merely for variety.
+
+The two blueprints must not feel like noun-swapped versions of one another.
+
+---
+
+## ACT ENGLISH MODULE TAXONOMY
+
+Use only these modules:
+
+1. Conciseness and Redundancy
+   Use when the question asks for the shortest answer that keeps the meaning, or removing repeated or wordy phrasing.
+
+2. Modifiers and Comparisons
+   Use for misplaced or dangling modifiers and comparison forms.
+
+3. Organization and Cohesion
+   Use when the question concerns sentence placement, paragraph order, paragraph breaks, or where material belongs.
+
+4. Pronouns
+   Use for pronoun agreement, case, reference, and ambiguous or missing antecedents.
+
+5. Punctuation
+   Use when punctuation marks themselves are the tested skill.
+
+6. Sentence Structure
+   Use for fragments, run-ons, comma splices, and correctly joining or separating clauses.
+
+7. Style and Tone
+   Use when the answer must match the passage's register, voice, or contextual level of formality.
+
+8. Subject-Verb Agreement
+   Use when the verb must agree with its subject.
+
+9. Topic Development
+    Use when the question asks whether material supports the writer's purpose or should be added, deleted, retained, revised, or used as a conclusion.
+
+10. Transitions and Logical Relationships
+    Use when selecting a word or phrase that correctly expresses the logical relationship between ideas.
+
+11. Verb Tense and Form
+    Use for tense choice, tense consistency, participles, infinitives, and other verb forms.
+
+12. Word Choice and Usage
+    Use when the answer depends on precise, logical, or contextually correct word meaning, including conventional idioms and preposition choices.
+
+Allowed modules:
+
+[
+"Conciseness and Redundancy",
+"Modifiers and Comparisons",
+"Organization and Cohesion",
+"Pronouns",
+"Punctuation",
+"Sentence Structure",
+"Style and Tone",
+"Subject-Verb Agreement",
+"Topic Development",
+"Transitions and Logical Relationships",
+"Verb Tense and Form",
+"Word Choice and Usage"
+]
+
+Also assign each planned target one internal ACT reporting category:
+
+* `Production of Writing` — Topic Development, Organization and Cohesion, and passage-level organization or development.
+* `Knowledge of Language` — Conciseness and Redundancy, Style and Tone, and Word Choice and Usage.
+* `Conventions of Standard English` — grammar, usage, sentence structure, and punctuation modules.
+
+For transitions, classify by the primary reasoning: organization/development belongs to Production of Writing; local precision or style belongs to Knowledge of Language. Reporting categories are production metadata only and must not replace the Drill Instructor module.
+
+---
+
+## MODULE LABELING RULES
+
+* Punctuation = punctuation marks only.
+* Sentence Structure = joining, separating, or restructuring clauses.
+* Transitions and Logical Relationships = logical relationship expressed by a transition.
+* Topic Development = whether content supports a purpose or should be added, deleted, retained, revised, or used as a conclusion.
+* Organization and Cohesion = where a sentence or paragraph belongs.
+* Conciseness and Redundancy = wordiness, repetition, or shortest acceptable wording.
+* Style and Tone = register, voice, or contextual appropriateness.
+* Pronouns = pronoun agreement, reference, case, or antecedent clarity.
+* Word Choice and Usage = semantic precision rather than tone alone.
+
+When an issue could superficially fit multiple modules, select the module representing the PRIMARY reasoning required to answer the question.
+
+---
+
+## COPYRIGHT-SAFETY RULES
+
+1. Do not reuse the source topic.
+2. Do not reuse source names, places, institutions, artworks, inventions, organisms, or specific examples.
+3. Do not preserve the source's sequence of facts.
+4. Do not copy source wording.
+5. Do not closely paraphrase source sentences.
+6. Do not preserve unusual sentence structures.
+7. Do not simply substitute nouns into the same passage.
+8. Do not reproduce the source's target placements mechanically.
+9. Do not reproduce distinctive source question logic.
+10. Preserve only abstract reusable architecture:
+
+* passage type
+* paragraph roles
+* broad rhetorical progression
+* broad module mix
+* general target mechanics
+
+11. A generated passage should not allow someone familiar with the source to reconstruct the original.
+12. Safe replacement domains must be meaningfully different from the source.
+
+---
+
+## PASSAGE-CLASS AND TARGET-COUNT CONTRACT
+
+The supplied passage class is binding:
+
+* `LONG` blueprints must support exactly 10 strong targets.
+* `SHORT` blueprints must support exactly 5 strong targets.
+
+Do not change passage class. Do not return an intermediate count. If the source architecture cannot safely support the required count, mark the blueprint infeasible instead of proposing weak targets.
+
+Candidate opportunities are not automatically final targets, but the blueprint must contain enough strong, independent candidates to fulfill the exact required count during passage generation.
+
+---
+
+## TARGET-BALANCE PRINCIPLES
+
+For a `LONG` passage, the blueprint should normally support:
+
+* 5-7 grammar/mechanics targets
+* 3-5 rhetorical-skills targets
+* at least 1 paragraph-level or whole-passage opportunity
+
+For a `SHORT` passage, preserve useful variety without forcing every category into five questions. It should normally include at least 2 grammar/mechanics targets and at least 1 rhetorical-skills target.
+
+Avoid planning more than 2 targets from the same module unless the source architecture strongly justifies it.
+
+Do not build a blueprint in which nearly every opportunity is punctuation, concision, or another single module.
+
+---
+
+## DIFFICULTY PRINCIPLES
+
+Assign difficulty from the reasoning actually required. Do not force a fixed distribution within one passage. Difficulty balance is enforced later across the complete 50-question form so that individual passages remain natural.
+
+### Medium
+
+May involve:
+
+* direct grammar rule application
+* straightforward punctuation
+* standard agreement
+* direct transition logic
+* obvious contextual wording choice
+
+### Hard
+
+Should require:
+
+* multiple grammatical relationships
+* clause analysis
+* modifier-reference analysis
+* contextual transition reasoning
+* local rhetorical purpose
+* distinction among several plausible choices
+
+### Very Hard
+
+Should generally require stronger contextual or rhetorical reasoning such as:
+
+* paragraph-level organization
+* sentence placement
+* add/delete based on stated purpose
+* best conclusion
+* whole-passage purpose
+* tone or precision requiring multiple context clues
+* distinguishing between locally acceptable wording and the wording that best serves the passage
+
+Do NOT classify an obscure grammar rule as Very Hard merely because it is unfamiliar.
+
+---
+
+## OUTPUT FORMAT
+
+Return valid JSON only.
+
+Do not include Markdown, code fences, commentary, or text outside the JSON object.
+
+Use this exact top-level structure:
+
+{
+"source_analysis": {
+"required_passage_class": "LONG | SHORT",
+"required_question_count": 10,
+"passage_type": "",
+"source_rhetorical_arc": "",
+"paragraph_role_summary": [],
+"question_type_summary": [],
+"module_distribution_observed": [],
+"reusable_architecture": "",
+"source_information_density": "Moderate | High | Very High",
+"copyright_risk_notes": []
+},
+"two_blueprint_feasibility": "Strong | Acceptable | Weak",
+"feasibility_notes": "",
+"blueprints": [
+{
+"blueprint_id": "A",
+"passage_class": "LONG | SHORT",
+"required_target_count": 10,
+"new_topic_domain": "",
+"passage_type": "",
+"passage_title_style": "",
+"rhetorical_arc": "",
+"paragraph_plan": [
+{
+"paragraph": 1,
+"role": "",
+"content_to_include": "",
+"content_to_avoid": ""
+}
+],
+"planned_module_distribution": [
+{
+"module": "",
+"reporting_category": "Production of Writing | Knowledge of Language | Conventions of Standard English",
+"target_count": 1,
+"difficulty_range": "",
+"reason_this_module_fits": ""
+}
+],
+"planned_question_opportunities": [
+{
+"opportunity_id": "A1",
+"module": "",
+"difficulty": "Medium | Hard | Very Hard",
+"target_type": "underlined_revision | insertion_point | sentence_placement | add_delete | transition | whole_passage",
+"skill_to_test": "",
+"local_context_needed": "",
+"why_answer_can_be_unique": ""
+}
+],
+"originality_strategy": [],
+"forbidden_overlap_with_source": [],
+"why_this_blueprint_can_support_required_count": ""
+},
+{
+"blueprint_id": "B",
+"passage_class": "LONG | SHORT",
+"required_target_count": 10,
+"new_topic_domain": "",
+"passage_type": "",
+"passage_title_style": "",
+"rhetorical_arc": "",
+"paragraph_plan": [
+{
+"paragraph": 1,
+"role": "",
+"content_to_include": "",
+"content_to_avoid": ""
+}
+],
+"planned_module_distribution": [
+{
+"module": "",
+"reporting_category": "Production of Writing | Knowledge of Language | Conventions of Standard English",
+"target_count": 1,
+"difficulty_range": "",
+"reason_this_module_fits": ""
+}
+],
+"planned_question_opportunities": [
+{
+"opportunity_id": "B1",
+"module": "",
+"difficulty": "Medium | Hard | Very Hard",
+"target_type": "underlined_revision | insertion_point | sentence_placement | add_delete | transition | whole_passage",
+"skill_to_test": "",
+"local_context_needed": "",
+"why_answer_can_be_unique": ""
+}
+],
+"originality_strategy": [],
+"forbidden_overlap_with_source": [],
+"why_this_blueprint_can_support_required_count": ""
+}
+],
+"blueprint_quality_check": {
+"are_all_returned_blueprints_complete": true,
+"are_returned_blueprints_distinct": true,
+"do_blueprints_avoid_source_expression": true,
+"each_supports_required_passage_class_and_count": true,
+"source_reconstruction_risk": "Low | Moderate | High",
+"notes": []
+}
+}
+
+If only one safe blueprint can be produced, include only Blueprint A in the `blueprints` array.
+
+Return valid JSON only.
+
+---
+
+# PROMPT 2 — ACT ENGLISH PASSAGE ASSET GENERATION
+
+You are an expert ACT English passage developer for Drill Instructor.
+
+I will provide ONE approved ACT English blueprint containing a binding `passage_class` and `required_target_count`.
+
+Create ONE fully original ACT-style English passage asset from it.
+
+Do NOT generate final answer choices or questions yet.
+
+---
+
+## GOAL
+
+Create exactly the required number of strong finalized question targets:
+
+* `LONG` = exactly 10 targets
+* `SHORT` = exactly 5 targets
+
+Never return a different count. If the passage cannot naturally support the required number of clear, non-repetitive, one-best-answer targets, return an error rather than weakening the passage:
+
+{
+"error": "PASSAGE_CANNOT_SUPPORT_REQUIRED_TARGET_COUNT",
+"passage_class": "LONG | SHORT",
+"required_target_count": 10,
+"details": ""
+}
+
+The blueprint's proposed opportunities are candidates, not mandatory requirements.
+
+Select only opportunities that work naturally in the completed passage.
+
+Every finalized target must later become exactly one question.
+
+Do not include:
+
+* optional targets
+* backup targets
+* alternate targets
+* unused targets
+
+---
+
+## ACT ENGLISH MODULE TAXONOMY
+
+Use only:
+
+[
+"Conciseness and Redundancy",
+"Modifiers and Comparisons",
+"Organization and Cohesion",
+"Pronouns",
+"Punctuation",
+"Sentence Structure",
+"Style and Tone",
+"Subject-Verb Agreement",
+"Topic Development",
+"Transitions and Logical Relationships",
+"Verb Tense and Form",
+"Word Choice and Usage"
+]
+
+---
+
+## MODULE LABELING
+
+* Punctuation = punctuation marks only.
+* Sentence Structure = joining, separating, or restructuring clauses.
+* Transitions and Logical Relationships = logical connector meaning.
+* Topic Development = whether content supports a purpose or should be added, deleted, retained, revised, or used as a conclusion.
+* Organization and Cohesion = placement or order.
+* Conciseness and Redundancy = wordiness, repetition, or shortest acceptable wording.
+* Style and Tone = register, voice, or contextual appropriateness.
+* Pronouns = pronoun agreement, case, reference, or antecedent clarity.
+* Word Choice and Usage = precise or contextually logical word meaning.
+
+Reporting-category mapping:
+
+* Production of Writing = Topic Development, Organization and Cohesion, and organization/development transitions.
+* Knowledge of Language = Conciseness and Redundancy, Style and Tone, Word Choice and Usage, and local style/precision transitions.
+* Conventions of Standard English = all grammar, usage, sentence-structure, and punctuation modules.
+
+---
+
+## PASSAGE REQUIREMENTS
+
+* Write an original passage whose `passage_type` is exactly `informational`, `argumentative`, or `narrative`.
+* Historical, scientific, cultural, literary, and biographical material may be used as topic domains inside those three passage types.
+* Make it feel like ACT English, not ACT Science.
+* For `LONG`, target approximately 320-370 standard words, centered near 340.
+* For `SHORT`, target approximately 160-210 standard words, centered near 185.
+* Do not lengthen the passage merely to create more targets.
+* Use clear paragraphs with distinct functions.
+* Open with a concrete person, object, action, place, discovery, scene, method, or problem.
+* Include 2-4 specific original and internally consistent details.
+* Include at least one contrast, complication, qualification, or shift.
+* Include at least one transitional or explanatory sentence.
+* End by resolving, complicating, or precisely extending the topic.
+* Use a neutral, polished, educational tone.
+* Keep the passage compact, natural, and self-contained.
+* Do not require outside knowledge.
+* Plausible fictionalized nonfiction details are allowed.
+* Do not present invented claims as famous facts about real people, institutions, works, scientific findings, or current events.
+
+---
+
+## AVOID AI-ESSAY STYLE
+
+Do not:
+
+* write a generic five-paragraph essay
+* begin with "Throughout history"
+* begin with "In today's society"
+* begin with a broad abstract statement when a concrete opening would work
+* end with a broad moral
+* end with an inspirational lesson
+* end with a vague statement about importance
+* overexplain the topic
+* give every paragraph the same structure
+* use filler or vague abstractions
+* use repetitive topic sentences
+* write every sentence only to hold an error
+
+Vary sentence length and structure naturally.
+
+Include concrete:
+
+* objects
+* actions
+* materials
+* methods
+* observations
+* places
+* processes
+* tools
+* steps
+
+Make the passage resemble a compact magazine, textbook, museum, historical, cultural, or ACT English excerpt.
+
+`student_passage` and `corrected_passage` must both begin with the rendered title in this exact form:
+
+`<b>PASSAGE TITLE</b><br><br>`
+
+Avoid these phrases and close variants unless one is intentionally being tested:
+
+* plays a crucial role
+* significant impact
+* throughout history
+* in today's world
+* in modern society
+* a testament to
+* paves the way
+* sheds light on
+* underscores the importance of
+* highlights the importance of
+* rich tapestry
+* delve into
+* remarkable journey
+* fascinating world of
+* ever-evolving
+* innovative solution
+* vital role
+* from ancient times to today
+* in conclusion
+* overall
+* it is important to note
+* this shows how important
+* has changed the way we think about
+
+---
+
+## ORIGINALITY AND SOURCE SAFETY
+
+* Use only the blueprint's abstract architecture.
+* Do not reuse the source topic.
+* Do not reuse source names, institutions, organisms, inventions, artworks, locations, historical examples, or distinctive facts.
+* Do not copy source wording.
+* Do not copy unusual phrasing.
+* Do not copy fact sequence.
+* Do not reproduce distinctive sentence structures.
+* Do not reproduce the source's paragraph-by-paragraph content too closely.
+* Follow all additional originality restrictions in the blueprint.
+
+---
+
+## TARGET SELECTION
+
+* Create exactly 10 targets for `LONG` or exactly 5 targets for `SHORT`.
+* Never return an intermediate or alternate count.
+* Quality takes priority over count.
+* If quality and exact count cannot both be satisfied, return `PASSAGE_CANNOT_SUPPORT_REQUIRED_TARGET_COUNT`.
+* Every target must support one realistic ACT-style question with one clearly best answer.
+* Do not include a target merely because the blueprint proposes it.
+* Do not create optional or backup targets.
+* Do not create cartoonishly obvious errors.
+* Avoid more than 2 targets from the same module.
+* Do not make the passage feel engineered around errors.
+* Each target must be independently answerable.
+* Correcting one target must not change the answer to another target.
+* Do not place overlapping targets in the same grammatical structure.
+
+For `LONG`, normally include 5-7 grammar/mechanics targets, 3-5 rhetorical-skills targets, and at least 1 paragraph-level or whole-passage opportunity.
+
+For `SHORT`, normally include at least 2 grammar/mechanics targets and at least 1 rhetorical-skills target. Do not force a whole-passage question into every short passage.
+
+---
+
+## GRAMMAR/MECHANICS VS RHETORICAL SKILLS
+
+Treat these primarily as grammar/mechanics:
+
+* Conciseness and Redundancy
+* Modifiers and Comparisons
+* Pronouns
+* Punctuation
+* Sentence Structure
+* Subject-Verb Agreement
+* Verb Tense and Form
+* Word Choice and Usage when testing correctness or precision locally
+
+Treat these primarily as rhetorical skills:
+
+* Organization and Cohesion
+* Style and Tone
+* Topic Development
+* Transitions and Logical Relationships
+* whole-passage or paragraph-purpose opportunities
+* Word Choice and Usage when the primary issue is rhetorical precision in broader context
+
+When classification is ambiguous, use the reasoning actually required by the target.
+
+---
+
+## PUNCTUATION TARGETS
+
+* A punctuation target must have one clearly best answer.
+* Base the answer on grammar, clause structure, or a clearly established rhetorical requirement.
+* Do not create targets where comma, colon, dash, and semicolon are all defensible.
+* Do not base the answer only on rhythm.
+* If a colon is intended, the words before it must form a complete clause.
+* Material following a colon must clearly explain, define, elaborate on, or list what precedes it.
+* If the issue is fundamentally clause joining or separation, use Sentence Structure rather than Punctuation.
+
+---
+
+## SENTENCE-PLACEMENT TARGET REQUIREMENTS
+
+Every sentence-placement target MUST include:
+
+* the full sentence being moved
+* exactly four visible candidate placement locations:
+
+  * [A]
+  * [B]
+  * [C]
+  * [D]
+
+These location labels must appear directly in `student_passage`.
+
+The placement labels `[A]`, `[B]`, `[C]`, `[D]` are NOT target IDs.
+
+The actual target must still have its own bold bracketed target marker such as:
+
+`<b>[3]</b>`
+
+For a sentence-placement target:
+
+* underline the complete sentence being evaluated or moved
+* include its target marker immediately after the underlined sentence
+* include all four candidate placement labels in the same relevant paragraph
+* all four locations must be genuinely possible syntactically
+* exactly one location must create the strongest logical progression
+* do not finalize a placement target unless the four visible locations are present
+* placement must be answerable from context, not merely from punctuation
+
+Example pattern:
+
+`[A] Sentence one. [B] Sentence two. [C] Sentence three. <u>Sentence being moved.</u><b>[3]</b> [D]`
+
+Use the target marker exactly once.
+
+---
+
+## ADD/DELETE TARGET REQUIREMENTS
+
+For every add/delete target:
+
+* underline the COMPLETE sentence being evaluated
+* place the target marker immediately after it
+* do not underline only a fragment when the question asks about the entire sentence
+* the decision must depend on paragraph or passage purpose
+* do not base the answer merely on whether the sentence is interesting
+* `correct_revision_goal` must explicitly state:
+
+  * KEEP
+  * or DELETE
+* include the rhetorical reason
+
+If DELETE is the intended resolution:
+
+* remove the entire sentence from `corrected_passage`
+* do NOT replace it with commentary such as:
+
+  * "This sentence should be deleted."
+  * "The writer should remove this sentence."
+
+---
+
+## WHOLE-PASSAGE TARGETS
+
+Whole-passage or broad conclusion targets may use a standalone marker:
+
+`<b>[N]</b>`
+
+They do not require an underlined span when the question evaluates the passage as a whole.
+
+The metadata must clearly identify:
+
+`"target_type": "whole_passage"`
+
+and specify the exact rhetorical purpose being tested.
+
+---
+
+## MARKING AND NUMBERING
+
+For underlined revision targets:
+
+`<u>target text</u><b>[1]</b>`
+
+For standalone insertion, placement, or whole-passage opportunities:
+
+`<b>[3]</b>`
+
+Use:
+
+* `<u></u>` for underlining
+* `<b>[N]</b>` for target markers
+* `<br><br>` for paragraph breaks
+* `<b></b>` for title and target markers
+* `<i></i>` only when genuinely necessary
+
+Do NOT use:
+
+* Unicode subscripts
+* HTML `<sub>` tags
+* Markdown
+
+Number targets according to physical order in `student_passage`.
+
+Target IDs must be:
+
+[1], [2], [3], ...
+
+with no gaps, duplicates, or backward movement.
+
+For `LONG`, the passage must contain exactly target IDs 1 through 10.
+
+For `SHORT`, the passage must contain exactly target IDs 1 through 5.
+
+The following must contain exactly the same target IDs:
+
+* student_passage
+* corrected_passage where the marker remains meaningful
+* edit_targets
+* question_opportunities
+* module_coverage_plan
+
+Sort all target-based arrays numerically by `target_id`.
+
+Do not preserve blueprint opportunity IDs as final target IDs.
+
+---
+
+## DIFFICULTY
+
+Do not enforce a fixed per-passage difficulty distribution. Label each target from its actual reasoning demand. The complete-form assembler will balance Medium, Hard, and Very Hard questions across all 50 questions.
+
+Very Hard should generally involve:
+
+* sentence placement
+* add/delete reasoning
+* paragraph purpose
+* whole-passage purpose
+* best conclusion
+* contextual tone or precision requiring multiple clues
+* complex organization
+
+Do not label an ordinary grammar target Very Hard merely because its grammar rule is obscure.
+
+Avoid concentrating every Very Hard target in rhetorical questions or every Medium target in simple grammar.
+
+---
+
+## CORRECTED PASSAGE
+
+Provide a polished corrected version of `student_passage`.
+
+The corrected passage must:
+
+* resolve every intentional target
+* preserve the title
+* preserve paragraph structure
+* preserve target numbering where applicable
+* avoid rewriting unrelated material
+* remain natural and fluent
+
+For each target:
+
+* grammar target → use corrected wording
+* punctuation target → use correct punctuation
+* transition target → use intended transition
+* tone target → use intended wording
+* placement target → place the sentence in its intended final location
+* add/delete target with DELETE → remove the entire sentence
+* add/delete target with KEEP → retain the sentence
+* whole-passage target → resolve any associated final wording if applicable
+
+Marker behavior in `corrected_passage`:
+
+* ordinary revision and transition targets retain their marker immediately after the corrected span
+* sentence-placement targets retain one marker immediately after the sentence in its corrected location
+* add/delete `KEEP` targets retain the sentence and marker
+* add/delete `DELETE` targets remove both the evaluated sentence and its marker
+* whole-passage standalone markers may remain at their original location
+
+`edit_targets`, `question_opportunities`, and `module_coverage_plan` remain the authoritative complete target list even when a deleted target's marker is intentionally absent from `corrected_passage`.
+
+Never insert metatextual editorial instructions into the corrected passage.
+
+The corrected passage must read as a normal finished passage.
+
+---
+
+## FINAL VALIDATION
+
+Before returning the asset verify:
+
+1. `passage_class` is `LONG` or `SHORT`.
+2. Final target count is exactly 10 for `LONG` or exactly 5 for `SHORT`.
+3. No extra or missing targets exist.
+4. Target markers begin at 1.
+5. Target IDs are sequential.
+6. No target IDs are skipped.
+7. No target IDs repeat.
+8. Every marker has exactly one `edit_targets` object.
+9. Every marker has exactly one `question_opportunities` object.
+10. `module_coverage_plan` uses exactly the same target IDs.
+11. Every target can produce one strong question.
+12. No target depends on another target's correction.
+13. Sentence-placement targets contain visible [A] [B] [C] [D] locations.
+14. Add/delete targets underline the complete evaluated sentence.
+15. The corrected passage contains actual resolved prose.
+16. No deleted sentence is replaced by editorial commentary.
+17. The output is valid strict JSON.
+18. No text appears outside the JSON object.
+
+---
+
+## OUTPUT FORMAT
+
+Return valid strict JSON only.
+
+Do not include Markdown, code fences, commentary, or explanations outside the JSON.
+
+Use this exact structure:
+
+{
+"passage_asset_id": "",
+"passage_class": "LONG | SHORT",
+"required_target_count": 10,
+"passage_title": "",
+"passage_type": "",
+"student_passage": "",
+"corrected_passage": "",
+"edit_targets": [
+{
+"target_id": 1,
+"display_marker": "[1]",
+"module": "",
+"reporting_category": "Production of Writing | Knowledge of Language | Conventions of Standard English",
+"difficulty": "Medium | Hard | Very Hard",
+"target_type": "underlined_revision | insertion_point | sentence_placement | add_delete | transition | whole_passage",
+"tested_skill": "",
+"original_text": "",
+"correct_revision_goal": "",
+"local_context": "",
+"why_answer_can_be_unique": "",
+"notes_for_question_generator": ""
+}
+],
+"question_opportunities": [
+{
+"target_id": 1,
+"module": "",
+"reporting_category": "Production of Writing | Knowledge of Language | Conventions of Standard English",
+"difficulty": "Medium | Hard | Very Hard",
+"question_format": "",
+"reasoning_required": "",
+"why_this_is_act_like": ""
+}
+],
+"module_coverage_plan": [
+{
+"target_id": 1,
+"module": "",
+"category": "grammar_mechanics | rhetorical_skills"
+}
+],
+"passage_quality_self_check": {
+"passage_class": "LONG | SHORT",
+"required_target_count": 10,
+"final_target_count": 10,
+"grammar_mechanics_count": 0,
+"rhetorical_skills_count": 0,
+"paragraph_or_whole_passage_count": 0,
+"difficulty_distribution": {
+"Medium": 0,
+"Hard": 0,
+"Very Hard": 0
+},
+"sequential_target_ids": true,
+"all_targets_independent": true,
+"all_targets_have_unique_answers": true,
+"placement_targets_have_four_visible_locations": true,
+"add_delete_targets_mark_complete_sentences": true,
+"corrected_passage_is_fluent": true,
+"corrected_passage_contains_no_editorial_metatext": true,
+"source_safe": true
+}
+}
+
+Return valid strict JSON only.
+
+---
+
+# PROMPT 3 — ACT ENGLISH PASSAGE ASSET VERIFICATION
+
+You are verifying an ACT English passage asset for Drill Instructor.
+
+I will provide ONE generated ACT English passage asset JSON with a binding `passage_class` and `required_target_count`.
+
+Your job is to evaluate whether the passage is high enough quality to generate ACT-style English questions from it.
+
+Do NOT generate questions.
+
+---
+
+## ACT ENGLISH MODULE TAXONOMY
+
+Allowed modules:
+
+[
+"Conciseness and Redundancy",
+"Modifiers and Comparisons",
+"Organization and Cohesion",
+"Pronouns",
+"Punctuation",
+"Sentence Structure",
+"Style and Tone",
+"Subject-Verb Agreement",
+"Topic Development",
+"Transitions and Logical Relationships",
+"Verb Tense and Form",
+"Word Choice and Usage"
+]
+
+Verify the internal reporting-category mapping: Production of Writing for development/organization, Knowledge of Language for effective and precise language, and Conventions of Standard English for grammar/usage/sentence structure/punctuation. Transition targets may be Production of Writing or Knowledge of Language according to their primary reasoning.
+
+---
+
+## CHECK 1 — ACT-LIKENESS
+
+Determine whether:
+
+* the passage feels like ACT English
+* it is an edited prose passage rather than a Science-style data passage
+* the tone is polished and educational
+* it is self-contained
+* it resembles a compact ACT-style article or excerpt
+* it avoids sounding like a generic school essay
+* the errors are integrated naturally
+* the passage would remain fluent once corrected
+* both passage strings begin with `<b>PASSAGE TITLE</b><br><br>` and the rendered title matches `passage_title`
+
+---
+
+## CHECK 2 — PASSAGE LENGTH AND DENSITY
+
+Check:
+
+* If `LONG`, is it approximately 320-370 standard words and centered near 340?
+* If `SHORT`, is it approximately 160-210 standard words and centered near 185?
+* Does it support its finalized target count naturally?
+* Does it avoid feeling overloaded with errors?
+* Are paragraph breaks natural?
+* Is there enough rhetorical context for organization, transition, tone, add/delete, or purpose questions?
+* Does the count exactly match the passage class?
+
+The only valid finalized target counts are exactly 10 for `LONG` and exactly 5 for `SHORT`. Never recommend a different count; fail an asset that cannot fulfill its class naturally.
+
+---
+
+## CHECK 3 — ANTI-AI-ESSAY STYLE
+
+Flag the passage if it:
+
+* opens with a broad generic claim
+* opens with "Throughout history"
+* opens with "In today's society"
+* uses vague high-level claims instead of a concrete situation
+* uses phrases such as "plays a crucial role," "significant impact," "a testament to," "paves the way," "sheds light on," or similar
+* has overly symmetrical paragraphs
+* repeatedly uses "Furthermore," "Moreover," "In conclusion," or "Overall"
+* ends with a generic moral or inspirational statement
+* lacks concrete details
+* sounds like a school essay
+* overexplains rather than developing through examples, observations, steps, or specific situations
+
+Assign:
+
+* low
+* medium
+* high
+
+for `ai_essay_style_risk`.
+
+---
+
+## CHECK 4 — ACT PASSAGE TEXTURE
+
+Verify whether the passage includes:
+
+* a concrete opening
+* 2-4 specific factual-style or narrative details
+* at least one contrast, complication, qualification, or shift
+* at least one transitional or explanatory sentence
+* a final paragraph that resolves, complicates, or extends the topic
+* natural variation in sentence length
+* natural variation in paragraph function
+
+---
+
+## CHECK 5 — SOURCE SAFETY AND ORIGINALITY
+
+Check whether the passage:
+
+* avoids the source topic
+* avoids source named entities
+* avoids source facts
+* avoids source examples
+* avoids unusual source wording
+* avoids source fact sequence
+* avoids reproducing paragraph-by-paragraph content too closely
+* feels generated from abstract architecture only
+* avoids suspiciously specific unverifiable real-world claims
+
+If fictionalized nonfiction details are used, check whether they are:
+
+* plausible
+* internally consistent
+* not falsely attributed as known real-world facts
+
+Assign:
+
+* low
+* medium
+* high
+
+for `originality_risk`.
+
+---
+
+## CHECK 6 — TARGET COUNT AND NUMBERING
+
+Verify that:
+
+* passage class is `LONG` or `SHORT`
+* final target count is exactly 10 for `LONG` or exactly 5 for `SHORT`
+* markers begin at [1]
+* markers increase sequentially
+* no marker is skipped
+* no marker is duplicated
+* target IDs match passage order
+* `edit_targets`, `question_opportunities`, and `module_coverage_plan` contain exactly the same target IDs
+* arrays are sorted numerically
+* every target has one allowed `reporting_category` consistent with its module and primary reasoning
+
+If target IDs are inconsistent, this is a Critical issue.
+
+---
+
+## CHECK 7 — TARGET FORMATTING
+
+For underlined revisions verify:
+
+`<u>...</u><b>[1]</b>`
+
+For standalone insertion, placement, or whole-passage targets verify:
+
+`<b>[N]</b>`
+
+Confirm that:
+
+* `<u></u>` tags are used correctly
+* target markers use bold square brackets
+* Unicode subscript markers are NOT used
+* HTML `<sub>` tags are NOT used
+* paragraph breaks use `<br><br>`
+* marker IDs match metadata
+* target numbers represent passage target IDs, not final question export keys
+
+---
+
+## CHECK 8 — SENTENCE-PLACEMENT TARGETS
+
+For each `sentence_placement` target verify:
+
+* the complete sentence being moved is preserved in the student passage
+* the target sentence is underlined
+* the target has exactly one target marker
+* visible locations [A], [B], [C], and [D] all appear
+* the four locations are genuinely distinct
+* only one location creates the strongest logical progression
+* the correct location can be justified by coherence, chronology, reference, transition, or rhetorical structure
+* the corrected passage places the sentence in the intended location
+
+If a sentence-placement target does not include all four visible locations, mark it unusable.
+
+---
+
+## CHECK 9 — ADD/DELETE TARGETS
+
+For each `add_delete` target verify:
+
+* the complete sentence being evaluated is underlined
+* the target does not underline only a fragment
+* the decision depends on paragraph or passage purpose
+* `correct_revision_goal` explicitly indicates KEEP or DELETE
+* the rationale is contextual
+* if DELETE is intended, the sentence is absent from `corrected_passage`
+* deleted prose is NOT replaced with editorial commentary
+
+Any corrected passage containing wording such as:
+
+* "This sentence should be deleted"
+* "The writer should remove this sentence"
+
+is a Critical failure.
+
+---
+
+## CHECK 10 — QUESTION SUPPORT
+
+For every finalized target determine:
+
+* Can it support one realistic ACT-style question?
+* Is the intended answer uniquely defensible?
+* Is the target span appropriate?
+* Is enough context available?
+* Does the intended module fit?
+* Does the target avoid depending on another target's correction?
+* Is the target natural rather than artificially inserted?
+
+The passage must support exactly the finalized target count, not 8-10 or 9-10.
+
+---
+
+## CHECK 11 — MODULE BALANCE
+
+Check:
+
+* grammar/mechanics count
+* rhetorical-skills count
+* paragraph-level or whole-passage count
+* module variety
+* punctuation overuse
+* concision overuse
+* excessive easy grammar
+
+For `LONG`, normally expect 5-7 grammar/mechanics targets, 3-5 rhetorical-skills targets, and at least 1 paragraph-level or whole-passage opportunity.
+
+For `SHORT`, normally expect at least 2 grammar/mechanics targets and at least 1 rhetorical-skills target.
+
+Avoid more than 2 targets from the same module unless strongly justified.
+
+---
+
+## CHECK 12 — DIFFICULTY SUPPORT
+
+Verify the actual reasoning, not just the labels.
+
+Very Hard should usually rely on:
+
+* paragraph-level reasoning
+* sentence placement
+* add/delete reasoning
+* whole-passage purpose
+* conclusion strategy
+* tone or precision requiring multiple contextual clues
+
+Do not accept an ordinary grammar question as Very Hard merely because the grammar is obscure.
+
+Do not enforce a fixed per-passage distribution. Verify that difficulty labels are defensible and leave aggregate balancing to the 50-question form assembler.
+
+---
+
+## CHECK 13 — ONE-BEST-ANSWER QUALITY
+
+For every target ask:
+
+* Is the correction goal clear?
+* Could multiple revisions be equally acceptable?
+* Is the target too broad?
+* Is the target too narrow?
+* Is it impossible to build four plausible choices?
+* Does context uniquely support the intended answer?
+* Is the punctuation target genuinely rule-based?
+* Does the rhetorical target have a clear purpose?
+
+Any target that cannot support a unique best answer should be marked weak or unusable.
+
+---
+
+## CHECK 14 — CORRECTED PASSAGE
+
+Verify that `corrected_passage`:
+
+* is fluent
+* preserves intended meaning
+* resolves every intentional error
+* introduces no new errors
+* maintains paragraph coherence
+* does not overcorrect unrelated material
+* resolves placement targets correctly
+* handles add/delete targets correctly
+* contains no editorial metatext
+
+The corrected passage must read like finished prose, not an editing memo.
+
+---
+
+## CHECK 15 — APP COMPATIBILITY
+
+Verify:
+
+* `student_passage` can be used in the final question renderer
+* paragraph breaks use `<br><br>`
+* target markers are stable
+* no Unicode subscripts appear
+* no `<sub>` tags appear
+* questions can later be shuffled safely
+* target IDs are independent of exported question keys
+
+---
+
+## OUTPUT FORMAT
+
+Return valid strict JSON only.
+
+Do not include Markdown.
+
+Use this exact structure:
+
+{
+"verdict": "PASS | PASS WITH MINOR FIXES | FAIL",
+"summary": "",
+"passage_class": "LONG | SHORT",
+"required_target_count": 10,
+"final_target_count_found": 10,
+"target_count_valid": true,
+"recommended_target_count": 10,
+"major_issues": [],
+"minor_issues": [],
+"ai_essay_style_review": {
+"ai_essay_style_risk": "low | medium | high",
+"opens_with_concrete_context": true,
+"uses_specific_details": true,
+"avoids_formulaic_transitions": true,
+"avoids_generic_conclusion": true,
+"has_natural_paragraph_functions": true,
+"flagged_phrases": [],
+"notes": ""
+},
+"originality_review": {
+"originality_risk": "low | medium | high",
+"avoids_source_topic": true,
+"avoids_source_entities_and_fact_sequence": true,
+"avoids_source_wording": true,
+"uses_abstract_blueprint_only": true,
+"suspicious_or_verification_needed_claims": [],
+"notes": ""
+},
+"target_review": [
+{
+"target_id": 1,
+"display_marker": "[1]",
+"module": "",
+"difficulty": "",
+"target_type": "",
+"status": "usable | needs minor fix | weak | unusable",
+"issue": "",
+"suggested_fix": ""
+}
+],
+"module_balance_review": {
+"grammar_mechanics_count": 0,
+"rhetorical_count": 0,
+"whole_passage_or_paragraph_purpose_count": 0,
+"overused_modules": [],
+"missing_or_underused_modules": [],
+"notes": ""
+},
+"difficulty_support_review": {
+"medium_count": 0,
+"hard_count": 0,
+"very_hard_count": 0,
+"distribution_is_reasonable": true,
+"weak_hard_targets": [],
+"weak_very_hard_targets": [],
+"notes": ""
+},
+"formatting_review": {
+"uses_u_tags": true,
+"uses_bold_square_bracket_markers": true,
+"uses_unicode_subscripts": false,
+"uses_sub_tags": false,
+"target_ids_match_markers": true,
+"target_ids_are_sequential": true,
+"placement_targets_have_A_B_C_D": true,
+"paragraph_breaks_are_renderer_safe": true,
+"notes": ""
+},
+"act_quality_review": {
+"act_like": true,
+"self_contained": true,
+"appropriate_tone": true,
+"supports_context_based_questions": true,
+"not_generic_school_essay": true,
+"notes": ""
+},
+"corrected_passage_review": {
+"corrected_passage_is_fluent": true,
+"corrected_passage_preserves_meaning": true,
+"corrected_passage_resolves_errors": true,
+"corrected_passage_introduces_new_errors": false,
+"contains_no_editorial_metatext": true,
+"placement_targets_resolved_correctly": true,
+"add_delete_targets_resolved_correctly": true,
+"notes": ""
+},
+"fix_instructions_if_needed": []
+}
+
+Return valid strict JSON only.
+
+---
+
+# PROMPT 4 — ACT ENGLISH QUESTION GENERATION
+
+You are an expert ACT English question developer for Drill Instructor.
+
+I will provide ONE approved ACT English passage asset JSON.
+
+Generate exactly ONE ACT-style English question for every finalized target in the asset.
+
+Do not rewrite the passage.
+
+---
+
+## QUESTION COUNT
+
+* Generate exactly one question for every `target_id` in `edit_targets`.
+* Do not select targets.
+* Do not omit targets.
+* Do not combine targets.
+* Do not replace targets.
+* Do not add targets.
+* The number of questions must equal `passage_quality_self_check.final_target_count`.
+* Valid target counts are exactly 10 for `LONG` and exactly 5 for `SHORT`.
+* The count must match both `required_target_count` and `passage_quality_self_check.final_target_count`.
+* If targets are [1] through [10], generate exactly 10 questions.
+* If targets are [1] through [5], generate exactly 5 questions.
+
+If target IDs are:
+
+* missing
+* duplicated
+* nonsequential
+* inconsistent with the passage markers
+* inconsistent across `edit_targets` and `question_opportunities`
+
+do not generate questions.
+
+Return:
+
+{
+error: "PASSAGE_ASSET_TARGET_MISMATCH",
+details: ""
+}
+
+---
+
+## INVALID FINALIZED TARGET RULE
+
+Do NOT silently repair a malformed passage asset.
+
+If a finalized target cannot support the specified question because:
+
+* the underlined span is incomplete
+* necessary punctuation lies outside the marked target
+* sentence-placement locations are missing
+* [A] [B] [C] [D] are incomplete
+* an add/delete target marks only part of the sentence
+* rhetorical context is insufficient
+* `correct_revision_goal` is contradictory
+* the question opportunity does not match the marked text
+
+return:
+
+{
+error: "INVALID_FINALIZED_TARGET",
+target_id: 1,
+details: ""
+}
+
+Do not invent a workaround.
+
+---
+
+## TARGET ORDER AND EXPORT KEYS
+
+* Generate questions in ascending `target_id` order.
+* The visible target number in each question must match the passage marker.
+* Begin every question with that target number in parentheses.
+
+Examples:
+
+`(1) ...`
+
+`(7) ...`
+
+The visible number is the passage target ID.
+
+The exported key is separate.
+
+Exported keys must:
+
+* begin with the supplied `STARTING EXPORTED KEY`
+* be numeric
+* NOT be wrapped in quotation marks
+* increase consecutively
+
+Example:
+
+If the starting key is 99 and there are 3 questions:
+
+99:
+100:
+101:
+
+Passage bundles may be reordered or assigned to tests later. Questions inside one English passage must remain together and in ascending target order. Never shuffle individual questions away from their passage or reorder the targets within a passage.
+
+Do not refer to:
+
+* previous question
+* next question
+* question above
+* question below
+
+---
+
+## FINAL OUTPUT FORMAT
+
+The final question export is NOT strict JSON.
+
+Return a JavaScript-style object literal.
+
+Rules:
+
+* numeric exported keys must NOT be in quotation marks
+* field names must NOT be in quotation marks
+* string values should use double quotation marks
+* use single quotation marks INSIDE a double-quoted string when quoting passage text
+* do not place unescaped double quotation marks inside a double-quoted string
+* if emphasis is needed inside a string, use `<b></b>` rather than nested double quotation marks
+* include a comma between question objects
+* do not include Markdown or code fences
+
+Example renderer shape:
+
+{
+99: {
+skill_tested: "",
+question: "(1) ...",
+option1: "",
+option2: "",
+option3: "",
+option4: "",
+correctAnswer: "",
+explanation: "",
+practiceYear: 1,
+difficulty: "Medium",
+module: "",
+imageSources: [],
+passage: "{{shared_passage}}"
+}
+}
+
+---
+
+## ACT ENGLISH MODULE TAXONOMY
+
+Use only:
+
+[
+"Conciseness and Redundancy",
+"Modifiers and Comparisons",
+"Organization and Cohesion",
+"Pronouns",
+"Punctuation",
+"Sentence Structure",
+"Style and Tone",
+"Subject-Verb Agreement",
+"Topic Development",
+"Transitions and Logical Relationships",
+"Verb Tense and Form",
+"Word Choice and Usage"
+]
+
+---
+
+## MODULE LABELING
+
+* Punctuation = punctuation marks only.
+* Sentence Structure = fragments, run-ons, comma splices, or joining/separating clauses.
+* Transitions and Logical Relationships = logical connector meaning.
+* Topic Development = add/delete/retain/revise/conclusion based on purpose.
+* Organization and Cohesion = placement/order.
+* Conciseness and Redundancy = wordiness or repetition.
+* Style and Tone = register or voice.
+* Pronouns = agreement, case, reference, or antecedent.
+* Word Choice and Usage = precise or contextually logical word meaning.
+
+Reporting-category mapping:
+
+* Production of Writing = Topic Development, Organization and Cohesion, and organization/development transitions.
+* Knowledge of Language = Conciseness and Redundancy, Style and Tone, Word Choice and Usage, and local style/precision transitions.
+* Conventions of Standard English = all grammar, usage, sentence-structure, and punctuation modules.
+
+Use the target's assigned module. If the module or reporting category is inconsistent with the target, do not silently relabel it. Return:
+
+{
+error: "PASSAGE_ASSET_CLASSIFICATION_MISMATCH",
+target_id: 1,
+details: ""
+}
+
+Do not change the tested skill merely because another question is easier to write.
+
+---
+
+## TARGET FIDELITY
+
+For every question:
+
+* use the corresponding `edit_targets` object
+* use the corresponding `question_opportunities` object
+* test the finalized target actually provided
+* follow:
+
+  * tested_skill
+  * correct_revision_goal
+  * local_context
+  * why_answer_can_be_unique
+  * notes_for_question_generator
+  * reasoning_required
+
+Do not substitute a nearby issue.
+
+Do not test punctuation outside the marked span.
+
+Do not expand the target silently.
+
+Do not convert a rhetorical target into a grammar target.
+
+---
+
+## QUESTION DESIGN
+
+* Use only information in the passage asset.
+* Do not require outside knowledge.
+* Each question must have exactly 4 answer choices.
+* Each question must have exactly one clearly best answer.
+* Questions must feel like ACT English.
+* Answer choices must be concise.
+* Choices must be grammatically comparable when appropriate.
+* Distractors must reflect realistic ACT mistakes.
+* Avoid cartoonishly wrong distractors.
+* Preserve the target difficulty unless the metadata clearly conflicts with the actual reasoning.
+* Do not manufacture difficulty through obscure vocabulary or confusing wording.
+
+---
+
+## UNDERLINED REVISION QUESTIONS
+
+Confirm that the underlined target contains everything necessary to test the intended issue.
+
+Do not:
+
+* test punctuation outside the underline
+* silently expand the target
+* rewrite surrounding words
+
+Every answer option must fit grammatically into the exact location of the underlined span.
+
+Use ACT-like stems such as:
+
+* "Which choice makes the sentence most grammatically acceptable?"
+* "Which choice best maintains the sentence's meaning and tone?"
+* "Which choice most effectively combines the ideas?"
+
+Use `NO CHANGE` as option1 only when the original wording is a plausible answer choice.
+
+If NO CHANGE is correct:
+
+`correctAnswer: "NO CHANGE"`
+
+If replacement is correct, `correctAnswer` must exactly match the full replacement option.
+
+---
+
+## PUNCTUATION QUESTIONS
+
+* Exactly one punctuation choice must be grammatically best.
+* If the skill is punctuation only, keep non-punctuation wording identical across options.
+* Do not include multiple stylistically valid punctuation choices.
+* If the real issue is clause joining/separation, use Sentence Structure.
+
+---
+
+## TRANSITION QUESTIONS
+
+Ask which choice provides the most logical transition.
+
+Base the answer on the relationship between surrounding ideas.
+
+Use plausible distractors representing relationships such as:
+
+* contrast
+* continuation
+* cause/effect
+* chronology
+* example
+* concession
+
+Do not select the answer merely because it sounds smooth.
+
+---
+
+## SENTENCE-PLACEMENT QUESTIONS
+
+Every placement question must:
+
+* include the complete sentence being moved in the stem
+* quote that sentence using SINGLE quotation marks inside the double-quoted `question` string
+* use exactly four answer options corresponding to:
+
+  * [A]
+  * [B]
+  * [C]
+  * [D]
+* describe each location clearly
+* remain understandable if questions are shuffled
+* require logical organization rather than punctuation alone
+
+Example style:
+
+`question: "(7) The writer wants to move the following sentence: 'For that reason, the department retained the paper index as a backup in case the digital catalog became unavailable.' The sentence would most logically be placed at which location in the paragraph?"`
+
+Choices should use language such as:
+
+* "At [A], before..."
+* "At [B], after..."
+* "At [C], after..."
+* "At [D], after..."
+
+Exactly one location must be best.
+
+---
+
+## ADD/DELETE QUESTIONS
+
+Include the COMPLETE sentence being considered in the question.
+
+Quote it using single quotation marks inside the double-quoted question string.
+
+Use paired decision-and-reason answers:
+
+* Yes, because...
+* Yes, because...
+* No, because...
+* No, because...
+
+The correct rationale must address:
+
+* paragraph purpose
+* passage purpose
+* relevance
+* development
+* logical focus
+
+Do not base the answer merely on whether the detail is interesting or plausible.
+
+---
+
+## WHOLE-PASSAGE AND CONCLUSION QUESTIONS
+
+Make the question depend on:
+
+* central purpose
+* rhetorical arc
+* passage development
+* paragraph purpose
+* concluding function
+
+Use stems such as:
+
+`(8) Suppose the writer's primary purpose had been to...`
+
+Ensure only one option accurately reflects the passage as a whole.
+
+Do not require outside knowledge.
+
+---
+
+## ANSWER OPTIONS
+
+* Exactly 4 options.
+* `correctAnswer` must exactly match one complete option.
+* No duplicate options.
+* No near-duplicate options.
+* Keep options parallel where appropriate.
+* Do not reveal the answer through unusual length in either direction.
+* Do not reveal the answer through excessive specificity.
+* For Topic Development, add/delete, purpose, and conclusion questions, make all four rationales comparable in detail and visible length. The correct rationale must not be the only option that mentions both the decision and its relationship to the paragraph or passage.
+* Build distractors from realistic misreadings: the wrong scope, a reversed purpose, relevant evidence attached to the wrong claim, or a true detail that does not answer the question.
+* Never pad an implausible distractor merely to equalize its length.
+* Before finalizing a bundle, test both always selecting the longest visible option and always selecting the shortest. Neither strategy may be expected to outperform 40%, counting ties fractionally.
+* Do not use a grammatically different form unless that difference is the skill.
+* Distribute correct answers reasonably across positions.
+* Do not force perfect answer-position distribution.
+
+---
+
+## QUOTATION FORMAT
+
+Inside any double-quoted renderer string:
+
+Use single quotation marks for quoted text.
+
+Correct:
+
+`question: "(4) As used here, the phrase 'kept in reserve' most nearly means..."`
+
+Do NOT write:
+
+`question: "(4) As used here, the phrase "kept in reserve" most nearly means..."`
+
+If emphasis is needed, use:
+
+`<b>...</b>`
+
+rather than nested double quotation marks.
+
+---
+
+## EXPLANATIONS
+
+Use:
+
+`<b>Step 1:</b> ...<br><br><b>Step 2:</b> ...<br><br><b>Answer:</b> ...`
+
+For Very Hard questions, a third step may be used:
+
+`<b>Step 1:</b> ...<br><br><b>Step 2:</b> ...<br><br><b>Step 3:</b> ...<br><br><b>Answer:</b> ...`
+
+Explanations must:
+
+* be student-friendly
+* identify the relevant grammar rule or rhetorical principle
+* explain why the correct answer is best
+* explain key distractor failures when useful
+* avoid mentioning metadata
+* avoid mentioning `edit_targets`
+* avoid mentioning `question_opportunities`
+* avoid mentioning generation
+* avoid saying an answer is correct because it "sounds better"
+* end with the exact wording of `correctAnswer`
+
+---
+
+## REQUIRED FIELDS
+
+Every question object must contain exactly:
+
+* skill_tested
+* question
+* option1
+* option2
+* option3
+* option4
+* correctAnswer
+* explanation
+* practiceYear
+* difficulty
+* module
+* imageSources
+* passage
+
+Requirements:
+
+`practiceYear: 1`
+
+`difficulty: "Medium" | "Hard" | "Very Hard"`
+
+`imageSources: []`
+
+`passage: "{{shared_passage}}"`
+
+English questions must ALWAYS use:
+
+`imageSources: []`
+
+Do not use `imageSource`.
+
+Do not place the full passage into a question object.
+
+---
+
+## FINAL VALIDATION
+
+Before returning the JavaScript-style object literal verify:
+
+1. Exactly one question exists for every finalized target.
+2. No target was skipped.
+3. No target was added.
+4. Question objects are in ascending target ID order.
+5. Question prefixes match target IDs.
+6. Export keys begin with the supplied starting key.
+7. Export keys increase consecutively.
+8. Export keys are numeric and unquoted.
+9. Field names are unquoted.
+10. Each question has exactly 4 options.
+11. Every `correctAnswer` exactly matches one option.
+12. Every question has one clearly best answer.
+13. Every module is allowed.
+14. Every explanation supports the answer.
+15. Every `imageSources` value is exactly `[]`.
+16. Every `passage` value is exactly `"{{shared_passage}}"`.
+17. Single quotation marks are used for quotations inside renderer strings.
+18. No unescaped nested double quotation marks appear.
+19. No question depends on question order.
+20. Output contains no Markdown or code fences.
+
+---
+
+## OUTPUT FORMAT
+
+Return ONLY the JavaScript-style object literal.
+
+Do not return strict JSON.
+
+Do not include introductory text.
+
+Do not include commentary.
+
+Example:
+
+{
+99: {
+skill_tested: "Placing a conclusion after the specific reasoning that logically supports it",
+question: "(7) The writer wants to move the following sentence: 'For that reason, the department retained the paper index as a backup in case the digital catalog became unavailable.' The sentence would most logically be placed at which location in the paragraph?",
+option1: "At [A], before the hospital's adoption of electronic files is introduced",
+option2: "At [B], after the hospital's gradual adoption of electronic files is introduced",
+option3: "At [C], after the paragraph states that employees continued updating both systems",
+option4: "At [D], after Ruiz explains why an outdated backup would fail during an outage",
+correctAnswer: "At [D], after Ruiz explains why an outdated backup would fail during an outage",
+explanation: "<b>Step 1:</b> The opening phrase 'For that reason' requires a clearly stated reason immediately before the sentence.<br><br><b>Step 2:</b> Just before [D], Ruiz explains that a backup would be ineffective if its references were not kept current. The target sentence then presents the department's resulting decision to retain the updated paper index.<br><br><b>Answer:</b> At [D], after Ruiz explains why an outdated backup would fail during an outage",
+practiceYear: 1,
+difficulty: "Very Hard",
+module: "Organization and Cohesion",
+imageSources: [],
+passage: "{{shared_passage}}"
+}
+}
+
+STARTING EXPORTED KEY:
+
+[number]
+
+---
+
+# PROMPT 5 — ACT ENGLISH QUESTION VERIFICATION
+
+You are verifying ACT English questions for Drill Instructor.
+
+I will provide:
+
+1. the approved ACT English passage asset JSON
+2. the generated JavaScript-style question object
+
+Your job is to review the generated questions quickly and practically.
+
+Do not rewrite the entire batch unless necessary.
+
+---
+
+## ACT ENGLISH MODULE TAXONOMY
+
+Allowed modules:
+
+[
+"Conciseness and Redundancy",
+"Modifiers and Comparisons",
+"Organization and Cohesion",
+"Pronouns",
+"Punctuation",
+"Sentence Structure",
+"Style and Tone",
+"Subject-Verb Agreement",
+"Topic Development",
+"Transitions and Logical Relationships",
+"Verb Tense and Form",
+"Word Choice and Usage"
+]
+
+Verify the target metadata uses Production of Writing for development/organization, Knowledge of Language for effective and precise language, and Conventions of Standard English for grammar/usage/sentence structure/punctuation. Transition targets may use the first or second category according to their primary reasoning.
+
+---
+
+## CHECK 1 — PASSAGE DEPENDENCE
+
+For each question verify:
+
+* it is answerable from the passage only
+* it references a valid finalized target
+* visible target number matches the passage marker
+* it does not depend on question order
+* it does not require outside knowledge
+* it does not test text outside the finalized target unless the target is intentionally rhetorical or whole-passage
+
+---
+
+## CHECK 2 — TARGET FIDELITY
+
+For each question compare it directly with:
+
+* `edit_targets`
+* `question_opportunities`
+
+Verify:
+
+* module matches the target
+* skill matches `tested_skill`
+* question format matches `target_type`
+* reasoning matches `reasoning_required`
+* correct answer satisfies `correct_revision_goal`
+* question uses the intended `local_context`
+* no easier nearby skill has been substituted
+* punctuation outside the target is not silently tested
+* an underlined revision question does not expand the target span
+
+If the generated question tests a different skill from the finalized target, flag it.
+
+---
+
+## CHECK 3 — ACT-LIKENESS
+
+Check:
+
+* stem feels like ACT English
+* answer choices are concise
+* answer choices are plausible
+* distractors represent realistic ACT mistakes
+* question is not overly wordy
+* question is not artificial
+* wording does not explain too much
+* question is appropriately challenging
+
+---
+
+## CHECK 4 — MODULE ACCURACY
+
+Apply these distinctions:
+
+* Punctuation = punctuation marks only.
+* Sentence Structure = fragment/run-on/comma splice/clause joining or separation.
+* Transitions and Logical Relationships = connector logic.
+* Topic Development = add/delete/retain/revise/conclusion for purpose.
+* Organization and Cohesion = placement or order.
+* Conciseness and Redundancy = wordiness or repetition.
+* Style and Tone = register or voice.
+* Pronouns = agreement, case, antecedent, or reference.
+* Word Choice and Usage = precise contextual meaning.
+
+Flag any incorrect module.
+
+---
+
+## CHECK 5 — DIFFICULTY ACCURACY
+
+Do not enforce a fixed per-passage distribution. Evaluate whether each label matches the actual reasoning and whether the passage contains a reasonable progression. Complete-form difficulty balance is verified separately.
+
+Check whether:
+
+* Medium questions are not trivial
+* Hard questions require meaningful reasoning
+* Very Hard questions genuinely require context or broader rhetorical reasoning
+* Very Hard is not assigned to ordinary obscure grammar
+
+---
+
+## CHECK 6 — ANSWER KEY VALIDITY
+
+Verify:
+
+* `correctAnswer` exactly matches one option
+* exactly one answer is best
+* no duplicate options
+* no near-duplicate options
+* NO CHANGE is used only when appropriate
+* placement questions do not misuse NO CHANGE
+* add/delete questions do not misuse NO CHANGE
+* whole-passage questions do not misuse NO CHANGE
+* distractors are genuinely plausible but wrong
+
+---
+
+## CHECK 7 — QUESTION-TYPE RULES
+
+### Underlined revision
+
+* exact target span is tested
+* all choices fit that location
+
+### Punctuation
+
+* punctuation alone is tested
+* non-punctuation wording stays constant where appropriate
+* exactly one punctuation choice is correct
+
+### Transition
+
+* answer reflects logical relationship
+* distractors represent plausible alternative relationships
+
+### Sentence placement
+
+* full moved sentence appears in the question
+* quoted sentence uses single quotation marks
+* choices correspond clearly to [A], [B], [C], [D]
+* only one placement is logically strongest
+
+### Add/delete
+
+* full sentence appears in the question
+* paired Yes/No rationales are used
+* correct rationale is based on paragraph/passage purpose
+
+### Whole passage/conclusion
+
+* requires broad rhetorical understanding
+* not answerable from one isolated sentence unless intentionally designed that way
+
+---
+
+## CHECK 8 — EXPLANATION QUALITY
+
+Verify:
+
+* required HTML format is used
+* Step 1 and Step 2 appear
+* Step 3 may appear for Very Hard
+* explanation gives actual reasoning
+* grammar rule or rhetorical principle is identified
+* correct answer is explained
+* distractors are addressed when useful
+* explanation does not reference metadata
+* explanation does not say "sounds better"
+* final `<b>Answer:</b>` exactly matches `correctAnswer`
+
+---
+
+## CHECK 9 — RENDERER COMPATIBILITY
+
+Every question object must include exactly:
+
+* skill_tested
+* question
+* option1
+* option2
+* option3
+* option4
+* correctAnswer
+* explanation
+* practiceYear
+* difficulty
+* module
+* imageSources
+* passage
+
+Verify:
+
+* exported keys are numeric and unquoted
+* field names are unquoted
+* `practiceYear` is 1
+* `imageSources` is exactly `[]`
+* `passage` is exactly `"{{shared_passage}}"`
+* every question begins with the correct target number
+* no `imageSource` field appears
+* no unsupported fields appear
+* no nested unescaped double quotation marks appear
+* quoted passage text inside strings uses single quotation marks
+* no Markdown appears
+
+---
+
+## CHECK 10 — SET BALANCE
+
+For a `LONG` passage, normally verify 5-7 grammar/mechanics questions, 3-5 rhetorical-skills questions, and at least 1 paragraph-level or whole-passage question.
+
+For a `SHORT` passage, normally verify at least 2 grammar/mechanics questions and at least 1 rhetorical-skills question.
+
+For both passage classes verify:
+
+* each question's reporting category matches its target metadata
+* module variety is reasonable
+* punctuation is not overused
+* concision is not overused
+* difficult questions are not concentrated entirely in grammar
+
+---
+
+## CHECK 11 — QUESTION COUNT
+
+The question count must equal:
+
+`passage_quality_self_check.final_target_count`
+
+Valid counts are exactly 10 for `LONG` and exactly 5 for `SHORT`.
+
+Never approve an intermediate count, extra unmarked questions, or omitted finalized targets.
+
+---
+
+## RETURN FORMAT
+
+Return valid strict JSON only.
+
+Do NOT return JavaScript-style object syntax for the verifier output.
+
+Do not include Markdown.
+
+Use this exact structure:
+
+{
+"verdict": "PASS | PASS WITH MINOR FIXES | FAIL",
+"summary": "",
+"passage_class": "LONG | SHORT",
+"question_count": 10,
+"expected_question_count": 10,
+"major_issues": [],
+"minor_issues": [],
+"difficulty_distribution": {
+"Medium": 0,
+"Hard": 0,
+"Very Hard": 0,
+"labels_are_defensible": true,
+"notes": ""
+},
+"module_distribution": {
+"Conciseness and Redundancy": 0,
+"Modifiers and Comparisons": 0,
+"Organization and Cohesion": 0,
+"Pronouns": 0,
+"Punctuation": 0,
+"Sentence Structure": 0,
+"Style and Tone": 0,
+"Subject-Verb Agreement": 0,
+"Topic Development": 0,
+"Transitions and Logical Relationships": 0,
+"Verb Tense and Form": 0,
+"Word Choice and Usage": 0
+},
+"question_review": [
+{
+"question_key": "99",
+"target_reference": "(1)",
+"module": "",
+"difficulty": "",
+"target_fidelity": "correct | issue",
+"status": "pass | minor fix | major fix | reject",
+"issue": "",
+"recommended_fix": ""
+}
+],
+"answer_key_review": {
+"all_correct_answers_match_options": true,
+"duplicate_options_found": [],
+"ambiguous_questions": [],
+"notes": ""
+},
+"renderer_compatibility_review": {
+"numeric_export_keys_unquoted": true,
+"field_names_unquoted": true,
+"all_required_fields_present": true,
+"imageSources_is_empty_array": true,
+"passage_shared_placeholder_used": true,
+"questions_begin_with_target_number": true,
+"single_quotes_used_for_internal_quotations": true,
+"unescaped_nested_double_quotes_found": [],
+"unsupported_fields_found": [],
+"notes": ""
+},
+"set_balance_review": {
+"grammar_mechanics_count": 0,
+"rhetorical_count": 0,
+"whole_passage_or_paragraph_purpose_count": 0,
+"overused_modules": [],
+"notes": ""
+},
+"fix_instructions_if_needed": []
+}
+
+Return valid strict JSON only.
+
+---
+
+# FINAL ACT ENGLISH PIPELINE
+
+1. Source ACT English passage + source questions
+2. Prompt 1 — Extract up to 2 safe blueprints
+3. Select Blueprint A or Blueprint B
+4. Prompt 2 — Generate a `LONG` asset with exactly 10 targets or a `SHORT` asset with exactly 5 targets
+5. Prompt 3 — Verify passage asset
+6. Repair or regenerate any failed passage target
+7. Prompt 4 — Generate exactly one question per finalized target
+8. Prompt 5 — Verify all generated questions
+9. Repair or replace only failed questions
+10. Keep each approved passage and its ordered questions as one immutable passage bundle
+11. Assemble each test from four `LONG` and two `SHORT` bundles
+12. Run complete-form balance, ordering, and similarity validation
+13. Shuffle passage bundles only, then assign final exported keys and `practiceYear` during import
+
+---
+
+# LOCKED PIPELINE RULES
+
+TARGET COUNT
+
+* `LONG`: exactly 10
+* `SHORT`: exactly 5
+* no fallback counts
+
+DIFFICULTY
+
+* label each question from its real reasoning demand
+* balance difficulty across the complete 50-question test
+
+COMPLETE 50-QUESTION FORM
+
+* exactly 4 `LONG` passage bundles and 2 `SHORT` passage bundles
+* exactly 50 questions
+* preserve target order inside each passage bundle
+* include 2-4 informational, 1-2 argumentative, and 1-2 narrative passage bundles
+* target approximately 19-21 Production of Writing questions
+* target approximately 9-11 Knowledge of Language questions
+* target approximately 19-21 Conventions of Standard English questions
+* treat these reporting-category counts as form-level quality targets; never misclassify a question merely to hit a quota
+* distribute correct-answer positions reasonably across all 50 questions
+* avoid excessive `NO CHANGE` answers
+* avoid repeating the same topic, rhetorical architecture, or narrow module pattern within one form
+
+MARKERS
+
+Revision target:
+
+`<u>text</u><b>[1]</b>`
+
+Standalone target:
+
+`<b>[3]</b>`
+
+Sentence-placement candidate locations:
+
+`[A] [B] [C] [D]`
+
+PASSAGE ASSET FORMAT
+
+* strict JSON
+
+FINAL QUESTION EXPORT FORMAT
+
+* JavaScript-style object literal
+* numeric exported keys are unquoted
+* field names are unquoted
+* string values use double quotation marks
+* quotations inside strings use single quotation marks
+* `imageSources: []`
+* `passage: "{{shared_passage}}"`
+
+FORBIDDEN
+
+* Unicode subscripts
+* HTML `<sub>` tags
+* any target count other than 10 for `LONG` or 5 for `SHORT`
+* shuffling individual questions away from their passage
+* reordering questions within a passage
+* silent repair of malformed finalized targets
+* metatext inside corrected passage
+* `imageSource`
+* full passage repeated inside each question
+* unescaped nested double quotation marks

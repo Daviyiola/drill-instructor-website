@@ -1,0 +1,116 @@
+{
+  "formatVersion": 1,
+  "description": "Final form-level balancing after the broad ACT Reading distractor repair.",
+  "repairs": [
+    {
+      "subject": "Reading",
+      "bankIndex": 1,
+      "question": "At the beginning of the passage, the narrator assumes that the pale patch should be:",
+      "options": [
+        "removed with the damaged chair arm.",
+        "dated before any treatment begins.",
+        "stained until it is no longer visible.",
+        "displayed apart from the rest of the chair."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 2,
+      "question": "As used in the final paragraph, the word 'legible' most nearly means:",
+      "options": [
+        "protected from any further treatment.",
+        "restored to its original condition.",
+        "marked with a precise date and maker.",
+        "capable of being interpreted or understood."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 3,
+      "question": "Which statement best expresses the central idea of the passage?",
+      "options": [
+        "Conservation requires judging which changes carry useful evidence and how honestly that evidence can be presented.",
+        "Conservation succeeds only when later alterations are removed to reveal an object's original design.",
+        "Because repairs reveal history, conservators should preserve every later alteration they encounter.",
+        "Museums can interpret repaired furniture only when each alteration has a known maker and date."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 6,
+      "question": "The discussion of the repaired school desk implies that the same physical feature may be:",
+      "options": [
+        "evidence of limited budgets but irrelevant to classroom history.",
+        "evidence of standardized manufacturing in different settings.",
+        "too misleading to display without knowing who made it.",
+        "historically useful in one exhibition and distracting in another."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 7,
+      "question": "The final treatment of the walnut chair is best described as an attempt to:",
+      "options": [
+        "balance visual coherence with the continued visibility of repair evidence.",
+        "make the patch visually dominant from a distance.",
+        "restore the chair to a documented original color.",
+        "give the patch a definite history despite limited evidence."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 13,
+      "question": "Why might warmer roosts be favored after owl recordings?",
+      "options": [
+        "Warm panels may make bats harder for owls to detect.",
+        "Heated walls may block later predator recordings.",
+        "Warm muscles may permit a faster departure if danger returns.",
+        "Warm roosts may increase insects near the cliff."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 14,
+      "question": "The secretly heated boxes strengthen the thermal interpretation because they:",
+      "options": [
+        "measured temperature without using sensors.",
+        "tested the same panels at a second canyon.",
+        "kept bats inside to compare later sounds.",
+        "changed internal warmth without changing the visible exterior cue."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 20,
+      "question": "In Passage A, Leah calls the paper grid her 'horizon' primarily because it helps her:",
+      "options": [
+        "see future effects beyond the vessels' current positions.",
+        "predict when fog will lift along the pier.",
+        "preserve a record of completed crossings.",
+        "combine current locations from all three screens."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 21,
+      "question": "Which statement best expresses a central idea shared by both passages?",
+      "options": [
+        "Public services work best when customers do not notice changes to schedules or deliveries.",
+        "Effective responses preserve the larger system instead of allowing one immediate problem to dominate it.",
+        "Paper plans provide more dependable information than digital systems during disruptions.",
+        "The fairest response is usually the one that restores the original schedule most quickly."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 29,
+      "question": "As used in the second paragraph, the word 'monumental' most nearly emphasizes that the reading tables were:",
+      "options": [
+        "recently constructed.",
+        "difficult to maintain.",
+        "grandly decorated.",
+        "large and imposing."
+      ]
+    }
+  ]
+}

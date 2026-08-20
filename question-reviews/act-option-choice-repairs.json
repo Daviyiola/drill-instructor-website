@@ -1,0 +1,3085 @@
+{
+  "formatVersion": 1,
+  "repairs": [
+    {
+      "subject": "Reading",
+      "bankIndex": 1,
+      "question": "At the beginning of the passage, the narrator assumes that the pale patch should be:",
+      "options": [
+        "removed together with the damaged arm so the chair can be rebuilt.",
+        "dated through laboratory testing before any treatment is considered.",
+        "stained until it is no longer visible.",
+        "displayed separately as evidence unrelated to the rest of the chair."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 2,
+      "question": "As used in the final paragraph, the word 'legible' most nearly means:",
+      "options": [
+        "protected from every form of physical contact or later treatment.",
+        "returned as closely as possible to its original manufactured condition.",
+        "marked with enough information to establish a precise date and maker.",
+        "capable of being interpreted or understood."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 3,
+      "question": "Which statement best expresses the central idea of the passage?",
+      "options": [
+        "Conservation requires judging which changes carry useful evidence and how honestly that evidence can be presented.",
+        "Conservation succeeds only when later alterations are removed so an object's original design can be shown without distraction.",
+        "Because repairs reveal an object's history more clearly than its original design, conservators should preserve every alteration they find.",
+        "Museums can interpret repaired furniture responsibly only when each alteration can be assigned to a known maker and exact date."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 4,
+      "question": "The drawer runner, shortened table leg, and covered upholstery in the third paragraph primarily serve to:",
+      "options": [
+        "demonstrate that routine alterations usually result from flaws in an object's original design.",
+        "show several ways furniture records practical choices made after manufacture.",
+        "identify later repairs that conservators generally remove before an object is exhibited.",
+        "contrast the durability of walnut furniture with pieces made from less suitable materials."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 5,
+      "question": "Why does the author emphasize documenting a harmful repair before removing it?",
+      "options": [
+        "Documentation can establish that a dangerous repair has become harmless enough to retain.",
+        "Written observations can provide museums with a complete substitute for the treated object.",
+        "Documentation can preserve evidence that the physical treatment will destroy.",
+        "Measurements can identify the person responsible for a repair even when no records survive."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 6,
+      "question": "The discussion of the repaired school desk implies that the same physical feature may be:",
+      "options": [
+        "useful evidence of limited school budgets but irrelevant to questions about classroom history.",
+        "evidence of standardized manufacturing in both a classroom and a design exhibition.",
+        "too misleading to display unless the identity of the person who made it can be proven.",
+        "historically useful in one exhibition and distracting in another."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 7,
+      "question": "The final treatment of the walnut chair is best described as an attempt to:",
+      "options": [
+        "balance visual coherence with the continued visibility of repair evidence.",
+        "make the patch visually dominant so visitors will notice it from across the room.",
+        "restore the chair to an original color that the conservators could document precisely.",
+        "give the patch a detailed historical identity despite the limits of the available evidence."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 8,
+      "question": "Which statement best explains the claim that evidence does not announce its own importance?",
+      "options": [
+        "Physical marks become historically meaningful only after conservators remove the changes that obscure an object's original design.",
+        "The relevance assigned to a repair depends partly on the questions and context through which it is presented.",
+        "Repairs made by notable craftspeople deserve interpretation, whereas undocumented changes provide no dependable historical evidence.",
+        "Every surviving mark can support several equally convincing conclusions, so curators should avoid selecting among interpretations."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 9,
+      "question": "By describing conservation as a less tidy responsibility, the narrator most nearly means that conservation:",
+      "options": [
+        "succeeds only when treatment removes visible age while preserving a record of every decision made by an object's owners.",
+        "should retain every alteration as historical evidence even when later work threatens the object's physical stability.",
+        "requires choices among competing forms of value rather than a simple reversal of change.",
+        "can avoid uncertain interpretation when conservators document each mark before deciding whether it should remain visible."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 10,
+      "question": "What is one disadvantage of a cool roost?",
+      "options": [
+        "It requires bats to maintain a high metabolism throughout the resting period.",
+        "It exposes bats to dangerous water loss whenever afternoon temperatures rise.",
+        "It prevents bats from returning to familiar shelters when predator cues are absent.",
+        "A torpid bat may need more time to warm its muscles before flight."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 11,
+      "question": "Why did researchers rotate panels among boxes?",
+      "options": [
+        "To separate temperature effects from preferences for particular locations.",
+        "To ensure that bats encountered the same exterior color at every location.",
+        "To compare changes in body mass among bats using different cliff locations.",
+        "To keep the owl recordings associated with one box throughout the experiment."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 12,
+      "question": "Which statement best summarizes the passage?",
+      "options": [
+        "Bats consistently conserve the most energy by selecting the coolest available shelter, regardless of immediate conditions.",
+        "Bats adjust roost choices as the benefits and costs of warmth change with conditions.",
+        "Bats respond primarily to the visible color of a shelter, while internal temperature has little influence on their choices.",
+        "Bats abandon familiar roosts after hearing predators and avoid returning to those locations during later seasons."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 13,
+      "question": "Why might warmer roosts be favored after owl recordings?",
+      "options": [
+        "Warm exterior panels may make resting bats more difficult for returning owls to detect.",
+        "Heated walls may prevent later predator recordings from being heard inside the boxes.",
+        "Warm muscles may permit a faster departure if danger returns.",
+        "Higher roost temperatures may increase the number of insects available near the cliff."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 14,
+      "question": "The secretly heated boxes strengthen the thermal interpretation because they:",
+      "options": [
+        "measured internal temperature without using the sensors installed in the other boxes.",
+        "tested the same panel treatments at a second canyon with different natural roosts.",
+        "kept bats inside after dawn long enough to compare their responses to later sounds.",
+        "changed internal warmth without changing the visible exterior cue."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 15,
+      "question": "Females carrying young likely favor warmth because:",
+      "options": [
+        "young bats regulate temperature poorly and may grow more slowly when repeatedly cooled.",
+        "adult females lose the ability to enter torpor while they are caring for developing young.",
+        "warmer boxes prevent unrelated adult bats from occupying space needed by the offspring.",
+        "young bats must hear predator recordings before they can safely enter a resting state."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 16,
+      "question": "The hot-afternoon result demonstrates that:",
+      "options": [
+        "temperature stops influencing roost choice once bats have responded to a predator cue.",
+        "a useful trait can become harmful beyond certain conditions.",
+        "dark exterior panels remain beneficial even when they raise the risk of water loss.",
+        "predator risk outweighs reproductive needs and weather in determining every shelter choice."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 17,
+      "question": "Which result most directly weakens the claim that bats merely avoided one cliff location?",
+      "options": [
+        "Sensors showed that wall temperatures differed among boxes positioned on the same cliff face.",
+        "Some tagged bats remained in the cooler boxes until well after sunrise on mild mornings.",
+        "Preferences changed when thermal panels were rotated among locations.",
+        "Females carrying young favored warm boxes even when researchers played no predator sounds."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 18,
+      "question": "The passage treats apparent inconsistency in roost choice as evidence of:",
+      "options": [
+        "random movement among shelters that cannot be connected to any measurable environmental pattern.",
+        "an inability to recognize familiar shelters after panels or heating treatments have been changed.",
+        "a permanent temperature preference established early in life and modified only by reproduction.",
+        "context-sensitive decisions among competing biological demands."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 19,
+      "question": "According to Passage B, why does Rosa leave narrow gaps among boxes?",
+      "options": [
+        "To keep each pantry's frozen products separate from the dry goods already assigned to it",
+        "To make heavily loaded carts easier for the arriving drivers to identify and inspect",
+        "To reserve space for labels that volunteers will attach after the vans reach the center",
+        "To provide places where volunteers can grip and shift boxes"
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 20,
+      "question": "In Passage A, Leah calls the paper grid her 'horizon' primarily because it helps her:",
+      "options": [
+        "see future effects beyond the vessels' current positions.",
+        "predict when fog will lift by comparing visibility at different points along the pier.",
+        "preserve a permanent record of crossings that have already been completed.",
+        "combine the current-location information from all three computer screens in one place."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 21,
+      "question": "Which statement best expresses a central idea shared by both passages?",
+      "options": [
+        "Public services function most effectively when workers prevent customers from learning that schedules or deliveries have changed.",
+        "Effective responses preserve the larger system instead of allowing one immediate problem to dominate it.",
+        "Paper plans give experienced workers more dependable information than digital systems during an operational disruption.",
+        "The fairest response to a public-service problem is usually the one that restores the original schedule as quickly as possible."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 22,
+      "question": "The bell in Passage A primarily represents:",
+      "options": [
+        "the point at which Leah begins gathering the information needed to plan a crossing.",
+        "an outdated public signal that the narrator expects the computer system to replace.",
+        "a simple public signal produced after numerous constraints have been reconciled.",
+        "a warning that changing fog conditions have made the scheduled route unsafe to operate."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 23,
+      "question": "Why does Rosa avoid moving every frozen item immediately after the alarm?",
+      "options": [
+        "She believes the temperature log shows that the freezer is still operating normally despite the alarm.",
+        "She learns that the neighborhood pantries lack enough available space to accept any frozen products.",
+        "She expects the arriving drivers to help the maintenance worker repair the freezer before loading begins.",
+        "A total evacuation could obstruct ordinary work and treat foods with different risks as identical."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 24,
+      "question": "In Passage B, the narrator's view of Rosa's slow checking changes from seeing it as:",
+      "options": [
+        "unnecessary delay to seeing it as preparation that preserved choices.",
+        "careful instruction for volunteers to seeing it as an attempt to avoid responsibility for the freezer.",
+        "efficient preparation of the morning loads to seeing it as the reason the aisles later became blocked.",
+        "a response to an expected freezer emergency to seeing it as a rule used only for ordinary deliveries."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 25,
+      "question": "Leah and Rosa are most similar in that each teaches the narrator primarily by:",
+      "options": [
+        "explaining the reasoning behind every operational decision before an unexpected problem occurs.",
+        "using a disruption to reveal consequences that are not immediately visible.",
+        "allowing one urgent problem to interrupt routine operations so that it receives full attention.",
+        "asking the narrator to choose the final response independently and then evaluating that decision."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 26,
+      "question": "Leah's paper horizon and Rosa's handles made of air are most alike because each:",
+      "options": [
+        "replaces digital equipment that cannot provide useful information during an emergency.",
+        "makes the reasoning behind operational decisions immediately visible to the public.",
+        "occupies space that initially appears unnecessary but protects later options.",
+        "prevents workers from having to revise an established plan when a disruption occurs."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 27,
+      "question": "Taken together, the passages redefine effective action as action that is:",
+      "options": [
+        "fast enough to keep passengers and pantry volunteers from becoming aware of any inconvenience.",
+        "focused on the most visible part of a problem before considering less immediate consequences.",
+        "postponed until workers can develop a response that preserves the original outcome for everyone.",
+        "proportionate to the disruption and informed by its effects across the system."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 28,
+      "question": "According to the third paragraph, the categories of concentration, exchange, and production describe:",
+      "options": [
+        "three architectural zones that planners are expected to include in every modern library.",
+        "successive stages through which a traditional reading room develops into a production space.",
+        "activities that may occur in different places or at different times.",
+        "specialized services that are practical only in large urban branches with separate rooms."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 29,
+      "question": "As used in the second paragraph, the word 'monumental' most nearly emphasizes that the reading tables were:",
+      "options": [
+        "recently constructed as part of an ambitious municipal building program.",
+        "difficult for library employees to maintain as circulation increased.",
+        "reserved for officials who were permitted to request books from controlled stacks.",
+        "large and imposing."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 30,
+      "question": "Which statement best expresses the central claim of the passage?",
+      "options": [
+        "Library change is best understood as the deliberate arrangement of several continuing and newer functions.",
+        "Libraries can meet contemporary needs only by replacing quiet reading areas with workshops and collaborative programs.",
+        "Small libraries can balance competing community needs only by distributing their services among adjoining public buildings.",
+        "Circulation remains the most dependable measure of success because newer activities ultimately increase the use of books."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 31,
+      "question": "The second paragraph primarily serves to:",
+      "options": [
+        "argue that open shelving expanded only after municipal leaders reduced spending on formal education.",
+        "show that libraries had already been changing in response to multiple social and practical forces.",
+        "establish that early patrons preferred independent browsing and circulation aisles to formal reading tables.",
+        "demonstrate that architectural decisions have always determined which activities a public library can support."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 32,
+      "question": "The discussion of sewing machines and recording booths most strongly suggests that production spaces may receive disproportionate attention because they:",
+      "options": [
+        "require equipment whose cost exceeds that of the library's quieter services and traditional collections.",
+        "serve mainly patrons who participate in projects instead of borrowing books or consulting reference materials.",
+        "produce changes that are easier to notice than changes in organization or collection use.",
+        "shift staff attention away from reference questions and toward the maintenance of unfamiliar equipment."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 33,
+      "question": "The rural library's use of headphones and reservable desks is presented primarily as:",
+      "options": [
+        "a complete substitute for separating concentration and collaborative activity with permanent walls.",
+        "evidence that patrons seeking quiet study generally prefer municipal offices to the library itself.",
+        "a temporary arrangement intended to remain in place until the library can construct a workshop.",
+        "a flexible response that reduces, but does not eliminate, a scheduling limitation."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 34,
+      "question": "Which example most clearly demonstrates that the passage's three functions can support one another rather than merely compete?",
+      "options": [
+        "An oral-history group searches newspapers before recording an interview.",
+        "A courthouse branch uses thick masonry walls to protect study rooms from programs in the central hall.",
+        "Staff add colored paths after newcomers have difficulty locating the quiet rooms along an outer corridor.",
+        "A branch located beside a university reserves more space for concentration than for exchange or production."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 35,
+      "question": "Why would the author most likely reject a rule requiring every library to devote equal space to the three functions?",
+      "options": [
+        "The three categories describe only older libraries whose buildings were designed before open shelving became common.",
+        "Community needs, building constraints, and available alternatives change the useful balance among functions.",
+        "An equal allocation of space would prevent staff from recording circulation, reservations, and attendance as separate measures.",
+        "Production activities consistently require more space than concentration and exchange activities combined."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 36,
+      "question": "Taken as a whole, the passage treats tension among library functions as:",
+      "options": [
+        "proof that each library must eventually choose one permanent institutional identity.",
+        "a temporary result of patrons being unfamiliar with production tools and collaborative programs.",
+        "a design problem that can be managed differently but not universally eliminated.",
+        "evidence that historical collections no longer serve the practical needs of modern patrons."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 39,
+      "question": "Which statement best expresses the central idea of the passage?",
+      "options": [
+        "Desert annuals survive unpredictable rainfall primarily by having nearly all seeds germinate as soon as moisture reaches the soil.",
+        "Variation in germination timing distributes risk across uncertain conditions, though every timing strategy has costs.",
+        "Seeds buried deeper in a desert seed bank consistently remain viable longer because they avoid the dangers faced near the surface.",
+        "Researchers can identify the most successful germination strategy by comparing how many seedlings appear after a single storm."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 40,
+      "question": "The controls described in the second paragraph help a seed population avoid:",
+      "options": [
+        "producing seeds with different coat thicknesses in response to conditions experienced by the same parent plant.",
+        "being distributed among soil depths and landscape locations that expose seeds to different environmental signals.",
+        "having every seed respond to a brief rain as though it guarantees a complete season.",
+        "depending on later moisture and suitable temperatures once an individual seed has begun the germination process."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 41,
+      "question": "The fourth paragraph primarily qualifies the comparison between a seed bank and distributing risk by explaining that:",
+      "options": [
+        "dormant seeds avoid the immediate hazards faced by seedlings and therefore remain protected from environmental loss.",
+        "persistent seed banks are useful mainly in locations where rainfall arrives on a relatively dependable schedule.",
+        "seeds stored below ground eventually respond together once a favorable growing season releases their dormancy.",
+        "reducing the danger of one failed season exposes waiting seeds to other dangers."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 42,
+      "question": "Why does the passage indicate that researchers use both buried mesh packets and nearby plots?",
+      "options": [
+        "The packets reveal below-ground seed outcomes while the plots reveal which schedules lead to mature plants.",
+        "The packets measure rainfall absorbed by buried seeds while the plots record changes in surface temperature.",
+        "The packets isolate rapidly germinating seeds while the plots contain only seeds that remain dormant for several seasons.",
+        "The two methods allow every seed to be followed throughout the study without disturbing its position or development."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 44,
+      "question": "Which finding would provide the strongest evidence that a persistent seed-bank strategy benefits a population over several years?",
+      "options": [
+        "After one substantial shower, seedlings from rapid-germinating seeds emerge earlier and in greater numbers than seedlings from the seed bank.",
+        "Dormant seeds remain detectable at several soil depths after a growing season in which rainfall was dependable and plants reproduced.",
+        "Across alternating failed and favorable seasons, some stored seeds survive to germinate and replenish the bank after reproducing.",
+        "Seeds retrieved from mesh packets absorb water at approximately the same time as naturally buried seeds in nearby monitoring plots."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 45,
+      "question": "The final statement that many possibilities remain beneath the visible plants most nearly emphasizes that:",
+      "options": [
+        "researchers cannot draw dependable conclusions about a seed population without removing and examining all of the surrounding soil.",
+        "every seed that remains dormant below ground will eventually become a visible plant during the next favorable growing season.",
+        "above-ground plants provide less useful evidence than dormant seeds regardless of the environmental conditions being studied.",
+        "the plants that emerge represent only some of the population's varied responses to uncertainty."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 46,
+      "question": "According to Passage A, why does the narrator initially feel more like an exhibit label than a useful visitor?",
+      "options": [
+        "Mara records the narrator's explanation instead of using the old tool immediately.",
+        "The apprentices disregard the narrator's repair instructions because they use newer methods in the renovated doorway.",
+        "The renovated theater has converted the former backstage work area into space for digital equipment and public displays.",
+        "Mara asks the narrator to describe the theater's old routines but not to remain when the building reopens."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 48,
+      "question": "Which statement best expresses a central idea shared by both passages?",
+      "options": [
+        "Institutions preserve their traditions most successfully when they resist technologies that replace familiar tools and working methods.",
+        "Professional expertise becomes less credible when its development is connected to personal memories of earlier informal work.",
+        "Returning to former work can reveal that past experience remains useful in altered circumstances.",
+        "People understand the institutions where they once worked more clearly when they observe current changes without participating in them."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 49,
+      "question": "In Passage A, the apprentices' arrival primarily changes the narrator's understanding of the visit by showing that:",
+      "options": [
+        "Mara depends on the narrator because she lacks enough technical knowledge to supervise the apprentices' repair work.",
+        "the digital archive cannot preserve an accurate account of methods that were once demonstrated through physical tools.",
+        "the apprentices value traditional tools more highly than the equipment introduced during the theater's renovation.",
+        "practical knowledge can continue through use even when older customs disappear."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 50,
+      "question": "The references in Passage A to Mara's tablet, the illuminated floor panels, and Mr. Vale's brass keys primarily serve to:",
+      "options": [
+        "contrast institutional methods while preparing the question of what can persist through change.",
+        "establish the narrator's concern that replacing familiar navigation methods has made the renovated theater less safe.",
+        "demonstrate that Mara plans to remove the remaining objects connected with Mr. Vale before reopening the building.",
+        "explain why the theater relies on apprentices who can learn new systems instead of workers experienced with older equipment."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 51,
+      "question": "How does the planning meeting in Passage B affect the narrator's earlier desire to appear exclusively professional?",
+      "options": [
+        "It confirms the narrator's fear that the board distrusts knowledge acquired through informal volunteer work.",
+        "It shows that practical experience and technical calculations can jointly support professional authority.",
+        "It leads the narrator to replace the proposed rainwater system with the less technical approach Mrs. Okafor prefers.",
+        "It persuades the narrator that earlier connections to the greenhouse should be omitted from future presentations."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 52,
+      "question": "At first, both narrators respond to evidence connecting their past and present roles with:",
+      "options": [
+        "pride that their former supervisors have preserved the particular working methods associated with each narrator's earlier role.",
+        "confidence that the institutions consider personal memory more valuable than the practical results of current work.",
+        "concern that the connection will limit how their present contribution is understood.",
+        "relief that returning to a familiar institution will allow someone else to assume responsibility for their present work."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 54,
+      "question": "Taken together, the endings of the passages most strongly support which conclusion about continuity?",
+      "options": [
+        "Continuity can survive visible change when experience is adapted, transmitted, or incorporated into new work.",
+        "Continuity depends on retaining the physical setting and customary tools through which useful knowledge was originally acquired.",
+        "Continuity becomes meaningful only when an institution formally documents each former worker's individual contribution.",
+        "Continuity prevents people from developing professional identities that extend beyond their earliest institutional responsibilities."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 56,
+      "question": "What is the passage's main idea?",
+      "options": [
+        "Movable chairs consistently create conversations because flexible furniture removes the social boundaries between strangers.",
+        "Fixed benches should be replaced because their orientation prevents people sharing a public space from interacting comfortably.",
+        "Researchers can determine why visitors select particular seats by observing repeated patterns in their visible behavior.",
+        "Seating design shapes opportunities for behavior without fully determining why people act as they do."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 57,
+      "question": "Why was the stone wall useful to bus riders?",
+      "options": [
+        "It offered a clear view of arriving buses and adjustable personal distance.",
+        "It remained warmer than the official benches during the hours when most riders waited.",
+        "It faced away from the plaza's busiest routes and protected riders from passing activity.",
+        "It contained built-in schedule displays that allowed riders to monitor delayed vehicles."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 58,
+      "question": "The three-day increase in conversations is presented mainly to:",
+      "options": [
+        "demonstrate that the nearby musician, rather than the chairs or weather, caused strangers to converse.",
+        "illustrate why simultaneous changes make a causal conclusion uncertain.",
+        "show that unusually warm weather has no measurable influence on how visitors use public space.",
+        "establish that reopening the fountain ordinarily reduces social contact among people seated nearby."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 59,
+      "question": "People moved face-to-face chairs more often because that arrangement likely:",
+      "options": [
+        "made each chair more difficult to move without help from another visitor.",
+        "blocked the open views that solitary visitors used to monitor approaching buses.",
+        "demanded more direct attention than some solitary users wanted.",
+        "signaled that the chairs had been reserved for maintenance workers near the fountain."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 60,
+      "question": "How does the passage relate flexibility to successful seating?",
+      "options": [
+        "Flexible furniture eliminates the need to provide seating in locations designed for different activities.",
+        "Movable seats allow researchers to identify each visitor's private reason for choosing a particular arrangement.",
+        "Flexible furniture works best when planners establish one arrangement that visitors are discouraged from changing.",
+        "Flexibility lets users adjust the balance between connection and separation."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 62,
+      "question": "Which finding would best support the passage's conclusion without exceeding its limits?",
+      "options": [
+        "A large majority of interviewed visitors report preferring the same bench for the same personal reason.",
+        "Different seating arrangements repeatedly attract different uses, though interviews reveal varied personal reasons.",
+        "A planner installs one new bench and concludes that its placement will reliably create friendships among strangers.",
+        "Movable chairs remain in their original positions throughout a study despite differences in visitors and schedules."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 63,
+      "question": "Why does the author call the study's limitation useful?",
+      "options": [
+        "It establishes that public furniture has no consistent influence on visible behavior in shared spaces.",
+        "It permits researchers to stop gathering evidence once they have observed one strong seating pattern.",
+        "It redirects planners from controlling behavior toward supporting multiple choices.",
+        "It encourages planners to use the same varied furniture arrangement in every public plaza."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 66,
+      "question": "Which statement best expresses the passage's central claim?",
+      "options": [
+        "The first reusable freight box transformed shipping once carriers recognized that reducing repeated cargo handling would save time.",
+        "Government standards committees contributed the decisive innovation, while engineers and carriers mainly implemented their rules.",
+        "Containerization became transformative through compatible design, operations, information, and institutional agreement.",
+        "Container shipping improved loading efficiency chiefly by eliminating port labor rather than moving work into new occupations and locations."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 67,
+      "question": "Why does the third paragraph emphasize a projecting latch and a weak corner?",
+      "options": [
+        "To show that visible differences among containers were the main obstacle preventing companies from adopting shared designs",
+        "To establish that early transport boxes could not be repaired after repeated lifting weakened their structures",
+        "To explain why compatible containers also had to carry the same types and quantities of cargo",
+        "To illustrate how a small incompatibility can interrupt transfers across an otherwise connected system"
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 68,
+      "question": "The fifth paragraph most strongly suggests that compatible containers became more valuable as adoption spread because:",
+      "options": [
+        "each box could move through more transport modes and locations without being unpacked.",
+        "shared standards gradually required every carrier, port, and manufacturer to operate as one business organization.",
+        "redesigned ports could eliminate the cranes, schedules, and inland connections previously needed to transfer cargo.",
+        "physical compatibility allowed goods to cross organizational boundaries without shared records or identification systems."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 70,
+      "question": "Shared identification formats and standardized corner fittings are similar because both:",
+      "options": [
+        "remove the need for independent carriers and ports by placing every transfer under one organization.",
+        "determine which types of cargo different companies may load into a compatible container.",
+        "allow separate participants to coordinate at a predictable interface.",
+        "solve problems that mattered before container routes expanded but became unnecessary after adoption."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 71,
+      "question": "Why does the passage resist identifying one person as the sole inventor of containerization?",
+      "options": [
+        "Surviving records identify the organizations that adopted containers but provide no evidence about earlier freight experiments.",
+        "Reusable boxes became possible only after modern ports, railways, and highways had already been redesigned around them.",
+        "The metal box reduced cargo handling, but its visible design contributed less than the paperwork used to track it.",
+        "Demonstration, technical refinement, shared standards, and broad adoption made different contributions to the final system."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 72,
+      "question": "Which principle is most consistent with the passage's account of technological change?",
+      "options": [
+        "A technically effective component may remain limited until surrounding systems can use it consistently.",
+        "The most visible object associated with an invention generally contains the innovation chiefly responsible for its success.",
+        "Standardization is most likely to succeed when participants have made no prior investments in competing equipment or procedures.",
+        "Once an interface becomes standardized, the economic and geographic consequences of adopting it largely disappear."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 74,
+      "question": "As used in Passage B, the word 'anecdotal' most nearly describes information regarded as:",
+      "options": [
+        "limited to temperature measurements collected remotely by satellites rather than at street level.",
+        "based on personal reports rather than systematic evidence.",
+        "certain to represent the experiences of every resident within the population being studied.",
+        "expressed in terms too technical for neighborhood residents to interpret or evaluate."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 76,
+      "question": "In Passage A, the contrast between the empty playground and the busy bus stop primarily serves to:",
+      "options": [
+        "demonstrate that measurements taken at playgrounds are less accurate than readings collected near public transportation.",
+        "argue that buses and waiting passengers create the most significant sources of heat within urban neighborhoods.",
+        "explain why fixed temperature sensors should be placed inside occupied buildings instead of along streets.",
+        "show that temperature alone does not determine the amount of human exposure."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 77,
+      "question": "The author of Passage A would most likely view the East Ward residents' route map as:",
+      "options": [
+        "a useful source for identifying where additional measurements and activity data are needed.",
+        "evidence that calibrated instruments should be removed from heat studies in favor of residents' reports.",
+        "a complete measure of the indoor nighttime temperatures experienced by people along each marked route.",
+        "an unreliable source because residents included useful destinations located beyond the study's official boundary."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 78,
+      "question": "The discussion of an apartment remaining hot overnight in Passage A and the discussion of underrepresented night workers in Passage B both emphasize that:",
+      "options": [
+        "night workers consistently experience higher temperatures than residents whose schedules keep them indoors after dark.",
+        "daytime neighborhood studies can miss important dimensions of heat exposure.",
+        "indoor nighttime temperatures can be measured accurately only through residents' memories and personal reports.",
+        "the first sudden heat of spring creates little risk for apartment residents compared with conditions later in summer."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 79,
+      "question": "Based on the final paragraph, when a thermal map and resident map disagree, planners should first:",
+      "options": [
+        "combine the reported temperatures from both maps without first examining differences in their methods or purposes.",
+        "remove residents' reports so that personal memory does not influence the interpretation of calibrated measurements.",
+        "treat the discrepancy as a clue that scale, timing, use, or sampling requires investigation.",
+        "assume that whichever map identifies the warmer location has also identified the more important exposure."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 80,
+      "question": "Taken together, the passages suggest that making a heat study more precise requires:",
+      "options": [
+        "collecting additional temperature readings while excluding accounts of daily movement that cannot be measured by instruments.",
+        "using official neighborhood boundaries to determine which routes, buildings, and residents should count as evidence.",
+        "selecting the mapping method that produces the most urgent-looking result and directing resources toward its hottest location.",
+        "matching reliable physical measurements to clearly defined questions about people, places, and times."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 81,
+      "question": "Which choice best explains why the limitations described in the two passages make the methods complementary rather than mutually exclusive?",
+      "options": [
+        "Instrument surveys can test patterns beyond individual memory, while resident accounts can reveal use and access that instruments do not record.",
+        "The two methods are complementary because they contain the same sampling weaknesses and should therefore produce identical maps.",
+        "Resident workshops provide the calibration required by sensors, while instrument surveys ensure that every language group joins a workshop.",
+        "Each method becomes dependable only when planners discard evidence collected by the other method before comparing results."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 82,
+      "question": "According to the passage, why did dealers sort cloth into grades?",
+      "options": [
+        "To help mills estimate the fiber quality and processing needs of each load",
+        "To ensure that pale paper products were manufactured entirely from clean white linen rather than dyed cotton",
+        "To conceal seams, buttons, and other fasteners that could reduce the price a mill paid for a mixed bale",
+        "To discourage households from saving scraps whose small quantities made warehouse storage less efficient"
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 84,
+      "question": "Which statement best expresses the central idea of the passage?",
+      "options": [
+        "Wood pulp removed the hidden environmental and labor costs that had made the expanding rag trade difficult to sustain.",
+        "Rag dealers disappeared soon after the first successful wood-pulp experiments because textile fibers no longer served specialized uses.",
+        "The shift from rags to wood reorganized papermaking's supply, labor, and risks rather than simply substituting a better ingredient.",
+        "Sorting cloth contributed little to papermaking because mills had to inspect and process every scrap regardless of its assigned grade."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 85,
+      "question": "The theft and artificially dampened bundles are included primarily to show that:",
+      "options": [
+        "adding water to cloth was a legitimate processing method used to produce stronger grades of paper.",
+        "government export restrictions quickly solved shortages by directing all available rags to domestic mills.",
+        "publishers encouraged collectors to acquire stolen textiles when ordinary household supplies became scarce.",
+        "high prices during scarcity encouraged attempts to capture value dishonestly."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 86,
+      "question": "Wood pulp reduced mills' dependence on rag markets mainly because wood:",
+      "options": [
+        "could be produced as a planned industrial input rather than only recovered after another product's use.",
+        "could be converted into paper without the machinery and chemical treatments required to process textile fibers.",
+        "produced paper identical in strength and appearance to every grade previously manufactured from linen and cotton.",
+        "arrived at mills already classified because households sorted discarded wood according to its likely fiber yield."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 87,
+      "question": "The passage mentions later recycling businesses primarily to emphasize that:",
+      "options": [
+        "rag warehouses generally became paper mills once dealers gained enough experience grading textile fibers.",
+        "classification skills from the rag trade remained relevant even as materials and markets changed.",
+        "the introduction of wood pulp made separating reusable materials by composition largely unnecessary.",
+        "textile collectors retained control over later recycling industries because they owned the established transport routes."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 88,
+      "question": "The statement that the rag system transferred risk downward means that:",
+      "options": [
+        "paper mills kept the safest and most profitable work while performing every hazardous sorting task inside their own facilities.",
+        "households protected collectors from changing market conditions by setting stable prices for the cloth they discarded.",
+        "less powerful participants bore low returns, unstable prices, and dangerous work within a profitable supply chain.",
+        "publishers accepted the financial losses caused by contaminated cloth rather than passing those costs to mills and dealers."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 89,
+      "question": "Why does the author reject the claim that wood pulp merely replaced an inferior ingredient?",
+      "options": [
+        "The claim assumes that demand for printed material was declining when rag shortages actually resulted from increasing paper use.",
+        "The claim exaggerates the public recognition received by skilled sorters while ignoring the role of households and collectors.",
+        "The claim treats wood pulp as an unsuccessful experiment even though rag-based papers remained useful for specialized products.",
+        "It overlooks both the complex coordination achieved by the rag system and the new dependencies created by wood production."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 92,
+      "question": "Recurring rhythmic figures function as:",
+      "options": [
+        "signals that tell the audience when to stop clapping and leave the procession route.",
+        "substitutes for rehearsals that would otherwise teach performers how the larger form develops.",
+        "evidence that the ensemble's tempo and spacing remain unchanged throughout a performance.",
+        "checkpoints that reveal position in the larger form."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 93,
+      "question": "Which statement best expresses the passage's main idea?",
+      "options": [
+        "Moving ensembles sustain coordination by combining local cues, learned structure, and flexible correction.",
+        "A procession remains coordinated when every performer follows the lead drummer's sound directly, regardless of distance or echoes.",
+        "Outdoor performance succeeds only when musicians select routes where buildings and crowds cannot interfere with sound.",
+        "Written notation allows a moving ensemble to preserve a shared pulse without relying on visual or physical cues."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 94,
+      "question": "Why do rear players align mainly with nearby musicians?",
+      "options": [
+        "Rear players depend on nearby musicians because they have not memorized the complete composition.",
+        "Nearby cues arrive with less delay than sound from the distant front.",
+        "Leaders stop providing rhythmic and visual signals whenever the procession reaches a turn.",
+        "Local musicians perform separate rhythmic figures that are not played by the front of the ensemble."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 95,
+      "question": "Not reacting equally to every discrepancy requires performers to:",
+      "options": [
+        "ignore changes in a neighboring musician's movement whenever the expected rhythmic figure remains recognizable.",
+        "increase the tempo when an echo arrives late so that the reflected beat rejoins the current pulse.",
+        "distinguish useful evidence from harmless or misleading variation.",
+        "memorize patterns in the audience's clapping so those sounds can replace cues from distant performers."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 96,
+      "question": "Why do rehearsals remove or disrupt familiar cues?",
+      "options": [
+        "To reproduce the acoustic and visual conditions of one procession route as exactly as possible.",
+        "To prevent performers from depending on recurring figures when they locate themselves in the form.",
+        "To teach audience members how to conduct sections when a leader can no longer be seen.",
+        "To train musicians to recognize which remaining cues can guide them."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 97,
+      "question": "Simplifying a transition near a crowd illustrates that:",
+      "options": [
+        "flexible execution can preserve underlying structure under changed conditions.",
+        "ornamental details provide the stable framework that performers must protect when coordination becomes difficult.",
+        "dense crowds inevitably disrupt the shared pulse even when musicians simplify the passage being performed.",
+        "a composition performed in a procession has no recognizable form apart from the route and audience response."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 102,
+      "question": "Which statement best expresses the central idea of the passage?",
+      "options": [
+        "Porous-clay rooms can duplicate mechanical refrigeration across climates when designers expose enough wet surface to moving air.",
+        "Increasing the size and wall area of a cooling room consistently produces the most efficient design for storing any crop.",
+        "Evaporative cooling can extend produce storage when its design and operation match local climate and resources.",
+        "Because porous-clay cooling uses simple materials, it can operate effectively without regular measurement, maintenance, or skilled decisions."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 103,
+      "question": "Why would the same room generally cool less effectively on a humid afternoon than on a dry afternoon?",
+      "options": [
+        "Humid air enlarges the clay pores until too much water enters the room instead of remaining on the outer wall.",
+        "Vegetables stop releasing heat and moisture when humidity rises, reducing the circulation that normally cools the interior.",
+        "Roof shade prevents solar heating only during dry weather because humid air transfers sunlight more effectively.",
+        "Air already containing substantial water vapor accepts additional vapor more slowly."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 106,
+      "question": "Why might dividing a large room into narrower chambers improve passive cooling?",
+      "options": [
+        "Narrow chambers keep interior humidity near zero even when the surrounding air already contains substantial water vapor.",
+        "Dividing the room consistently reduces the amount of wall material and labor required for construction and loading.",
+        "They can reduce poorly circulated central space without requiring electric fans.",
+        "Separate chambers prevent operators from changing loading schedules in ways that interrupt the passive airflow pattern."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 107,
+      "question": "Which additional evidence would most strengthen a claim that the prototype design is broadly useful?",
+      "options": [
+        "Photographs showing that the clay walls retain an appealing and consistent appearance after repeated wetting and drying",
+        "One afternoon temperature reading collected from the coolest sensor location beside a damp section of wall",
+        "An operator's prediction about storage performance recorded before produce is placed in the completed room",
+        "Measurements across dry and humid seasons for several crops, including water use and spoilage rates"
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 108,
+      "question": "The final paragraph suggests that the design's value should be judged primarily by whether it:",
+      "options": [
+        "uses a sustainable mechanism to provide enough cooling for a locally meaningful storage benefit.",
+        "matches mechanical refrigeration across every temperature, crop, climate, and scale where produce must be stored.",
+        "eliminates all losses between harvest and sale rather than merely extending storage for several additional days.",
+        "can be enlarged to serve any crop volume without requiring changes in airflow, wall area, water, or loading practices."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 109,
+      "question": "Why could one bureau economically serve many businesses?",
+      "options": [
+        "Calls from every client arrived together often enough to keep a small group of operators continuously occupied.",
+        "Intermittent calls from different clients could be handled by a shared continuous staff.",
+        "Operators could answer for many businesses without consulting client-specific greetings, contacts, or urgency rules.",
+        "Telephone companies prevented small businesses from employing receptionists who would remain near their individual lines."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 110,
+      "question": "The client cards primarily helped operators:",
+      "options": [
+        "repair damaged telephone connections without waiting for assistance from a technician.",
+        "avoid recording details that callers expected the client's staff to receive later.",
+        "apply the correct greeting, contacts, and urgency rules to each line.",
+        "make professional medical or technical decisions whenever the responsible client was away."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 111,
+      "question": "Which statement best expresses the passage's central idea?",
+      "options": [
+        "Automated message systems eliminated the need for the interpretive, routing, and escalation work once performed by answering bureaus.",
+        "Human operators remained valuable mainly because their experience allowed them to disregard written protocols for individual clients.",
+        "Digital tools restored answering bureaus to their original form by removing centralized scripts, records, and workplace monitoring.",
+        "Answering services evolved as pooling, automation, and specialization repeatedly redistributed the work of receiving and interpreting calls."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 112,
+      "question": "Why could one outdated client card become especially harmful in a larger bureau?",
+      "options": [
+        "Many operators might repeatedly apply the same incorrect instructions across calls.",
+        "Large bureaus relied on operators' memories and therefore stopped maintaining shared client records.",
+        "Callers could remotely alter a physical card and cause operators to follow unauthorized instructions.",
+        "An outdated greeting prevented every call to that client from reaching the bureau's central office."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 113,
+      "question": "The leaking-pipe and patient examples primarily show that skilled operators had to:",
+      "options": [
+        "solve the caller's technical or medical problem before deciding whether the responsible professional should be contacted.",
+        "recognize urgency and escalate appropriately without assuming the client's professional authority.",
+        "refuse to record a message whenever a caller was unwilling or unable to provide complete details.",
+        "replace emergency services by delivering written instructions approved for each client's routine calls."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 114,
+      "question": "According to the passage, automated menus shifted some work by requiring:",
+      "options": [
+        "operators to copy every recorded message by hand as soon as a caller finished speaking.",
+        "clients to predict the timing and subject of each future call before selecting menu categories.",
+        "callers to choose categories and employees to sort stored messages later.",
+        "machines to interpret urgency from changes in a caller's tone before storing the message."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 115,
+      "question": "Specialized bureaus could compete with automated systems chiefly because they:",
+      "options": [
+        "limited the number of messages stored for each client so operators could respond more quickly than individual machines.",
+        "provided basic message capture at a lower cost than every automated recording and menu system.",
+        "served specialized industries without requiring client-specific training, privacy rules, or escalation procedures.",
+        "performed time-sensitive interpretation and constrained escalation that recordings handled poorly."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 116,
+      "question": "How does the paragraph about digital tools complicate a simple human-versus-machine account?",
+      "options": [
+        "It shows that retained human work was itself reorganized by software, scripts, and monitoring.",
+        "It establishes that specialized bureaus stopped employing operators once digital client records became available.",
+        "It demonstrates that centralized digital settings eliminated the possibility of spreading one error across many operators.",
+        "It argues that human answering work remained essentially unchanged even after software entered the bureau."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 117,
+      "question": "The final sentence suggests that every stage of the industry addresses a tension between:",
+      "options": [
+        "the cost of communication equipment and the continuing need to purchase and store paper message slips.",
+        "the immediate timing of incoming communication and the delayed availability of the responsible person.",
+        "callers who prefer automated recordings and businesses that resist allowing customers to use telephones.",
+        "professional decisions that require expertise and a complete absence of rules for routing uncertain calls."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 120,
+      "question": "Which statement best expresses the passage's central idea?",
+      "options": [
+        "Historical recipes should be replaced by standardized instructions that eliminate the need for cooks to consult people, tools, or local conditions.",
+        "A written recipe preserves part of a practice, but understanding and carrying it forward also require context, judgment, and acknowledged variation.",
+        "A recipe has been preserved successfully only when every cook can follow its written quantities and produce an identical dish in any kitchen.",
+        "Digital recordings and searchable archives can preserve a cooking practice completely because they include information omitted from a card."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 121,
+      "question": "The comparison of a recipe card to a musical score primarily emphasizes that a recipe:",
+      "options": [
+        "must be performed with specialized instruments rather than the ordinary tools found in a household kitchen.",
+        "is designed to produce a noticeably different result each time a cook interprets its instructions.",
+        "guides action while leaving some decisions to knowledge and interpretation.",
+        "contains the sequence of motions and judgments required for a successful performance of the dish."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 122,
+      "question": "Why does the author state that the musical-score comparison has limits?",
+      "options": [
+        "Musical scores consistently contain less practical detail than handwritten recipes because performers already know the required motions.",
+        "Abbreviated recipes deliberately invite any interpretation a future cook might bring, just as a composer invites variation.",
+        "Family recipes cannot be represented in writing because their methods depend entirely on observation and spoken instruction.",
+        "Recipe omissions may reflect an assumed audience and can exclude cooks who lack access to shared instruction."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 123,
+      "question": "The three community-cookbook approaches are presented mainly to show that:",
+      "options": [
+        "each method preserves certain kinds of information while sacrificing or altering others.",
+        "standardizing units preserves handwriting and physical evidence more effectively than reproducing cards in facsimile.",
+        "adding commentary from experienced cooks eliminates the uncertainty created by abbreviated historical instructions.",
+        "editors should select one consistent preservation method and apply it to every recipe in a community collection."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 124,
+      "question": "The narrator's new notes are not final primarily because:",
+      "options": [
+        "the narrator records observations about texture and cookware but refuses to include standardized measurements.",
+        "differences in ovens and ingredients will continue to require adaptation.",
+        "the aunt remembers the cake's ingredients but can no longer identify the shallow pan used in her childhood kitchen.",
+        "the original card is treated as an authoritative artifact whose commands cannot be changed through later annotations."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 125,
+      "question": "How does the warning about digital abundance extend the passage's larger argument?",
+      "options": [
+        "It shows that adding recordings and multiple versions can preserve context completely without requiring curators to make selections.",
+        "It argues that searchable tags are consistently less informative than stains and crossed-out ingredients on a physical card.",
+        "It shows that a richer archive may still omit choices and disagreements while appearing comprehensive.",
+        "It establishes that an audio demonstration carries no more information about a cooking practice than a handwritten command."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 126,
+      "question": "The description of the recipe as an invitation to reconstruct a practice suggests that preservation succeeds best when it:",
+      "options": [
+        "fixes one authoritative version of a dish and prevents later cooks from recording changes produced by different conditions.",
+        "removes instructions that depend on practiced judgment so the written record can function independently of a cook's experience.",
+        "ensures that ingredients, cookware, and oven temperatures remain identical across the locations and seasons where a recipe is used.",
+        "retains a usable connection among the artifact, its context, and later informed adaptations."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 127,
+      "question": "According to the second paragraph, why can a conventional rain gauge understate water arriving during fog?",
+      "options": [
+        "It is designed for falling drops, while fog moves horizontally and collects unevenly.",
+        "It measures changes in underground water storage rather than moisture moving through the atmosphere.",
+        "It operates reliably only when nearby tree crowns are dry enough that intercepted droplets cannot enter it.",
+        "It records total precipitation but cannot distinguish water arriving during summer from water arriving during winter."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 130,
+      "question": "Why can a relatively small amount of summer fog water be important to seedlings?",
+      "options": [
+        "It prevents moisture from evaporating from leaves and soil for the remainder of the summer growing season.",
+        "It reaches only exposed clearings where established trees and their competing roots are absent.",
+        "It causes young plants to develop roots deep enough to reach groundwater immediately after a foggy night.",
+        "It arrives when shallow soil may be dry and seedlings cannot reach deep reserves."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 131,
+      "question": "Which statement best describes the relationship between chemical signatures and soil sensors in the passage?",
+      "options": [
+        "Chemical signatures can connect plant water to possible sources, while sensors show whether moisture near roots changes after fog.",
+        "Chemical signatures measure the height and direction of the fog layer, while soil sensors identify the leaf shapes that collect it.",
+        "Both methods independently demonstrate that every molecule found in a plant after a foggy night came directly from fog.",
+        "Soil sensors make comparisons among collectors in clearings and beneath tree crowns unnecessary because they identify every water source."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 132,
+      "question": "The sixth paragraph primarily serves to:",
+      "options": [
+        "reject the earlier physical and chemical evidence that fog water can move from vegetation into soil near plant roots.",
+        "explain why fog effects measured in one setting should not be applied uniformly elsewhere.",
+        "establish that diseases caused by persistent leaf wetness are the principal source of decline in coastal forests.",
+        "argue that exposed ground consistently captures more usable fog moisture than the dense canopy of a mature tree."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 133,
+      "question": "The passage suggests that a fog collector in a clearing and a soil sensor beneath a tree could produce different results because they:",
+      "options": [
+        "cannot collect dependable observations during the same foggy night because one instrument interferes with the other.",
+        "measure stable forms of hydrogen and oxygen whose chemical signatures cancel when the samples are compared.",
+        "measure different stages in the movement and concentration of fog water.",
+        "are designed for separate seasons and therefore cannot provide overlapping evidence about the same transfer pathway."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 134,
+      "question": "Which combination of findings would most strongly support the claim that fog contributes directly to seedling survival?",
+      "options": [
+        "Fog regularly forms above a ridge where mature trees have dense crowns and seedlings are most numerous beneath the canopy.",
+        "A conventional rain gauge remains nearly empty during foggy nights, while prolonged leaf wetness is associated with plant disease.",
+        "Seedlings have shallow roots that cannot reach deep reserves, and the region receives abundant rainfall during the winter season.",
+        "Collectors catch fog, soil moisture rises beneath crowns, seedling tissue carries a matching signature, and survival increases in those moist patches."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 135,
+      "question": "Why does the author argue that rainfall totals alone may misrepresent future forest stress?",
+      "options": [
+        "Climate change may alter a locally uneven water source that standard rainfall instruments do not fully capture.",
+        "Rising temperatures will prevent conventional instruments from recording any rainfall that reaches coastal forests.",
+        "Forests depend entirely on summer fog during dry months and entirely on rainfall throughout the wet winter season.",
+        "The chemical signatures of rain, fog, and groundwater become indistinguishable whenever coastal fog moves farther inland."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 136,
+      "question": "According to Passage A, which changes are generally monitored first after concrete channel walls are removed?",
+      "options": [
+        "The return of every fish species known to have occupied the river before the concrete channel was constructed",
+        "Changes in flow, floodplain contact, and sediment deposition",
+        "The number and movement of visitors using the paths and overlooks added beside the restored reach",
+        "The height and maturity of riverside trees expected eventually to provide shade and woody debris"
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 139,
+      "question": "Passage A's discussion of clear water and abundant algae primarily demonstrates that:",
+      "options": [
+        "visible conditions require context from other indicators before they establish ecological health.",
+        "clear water consistently contains too few nutrients to support the insects and fish expected in a restored river.",
+        "abundant algae provide dependable evidence that excessive runoff has damaged the ecological recovery of a reach.",
+        "scientists should replace physical field observations with visitor counts and reports from stewardship groups."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 140,
+      "question": "The stewardship group's decision to move a path rather than merely post warnings suggests that the group viewed visitor behavior as:",
+      "options": [
+        "fixed by visitors' preferences and largely unrelated to the physical design of paths and access points.",
+        "something that could be redirected through changes to the physical setting.",
+        "a threat serious enough to justify ending public access while riverside vegetation became established.",
+        "a more important measure of restoration success than water quality, fish populations, or bank stability."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 141,
+      "question": "Which statement accurately compares the roles assigned to evidence in the two passages?",
+      "options": [
+        "Passage A rejects seasonal comparison as unreliable, while Passage B rejects laboratory analysis in favor of residents' observations.",
+        "Passage A measures visitor use to evaluate access, while Passage B relies on water temperature to evaluate ecological recovery.",
+        "Passage A combines ecological indicators to interpret recovery, while Passage B uses recurring public presence to widen observation and support stewardship.",
+        "Both passages argue that one successful observation is sufficient to demonstrate that a restored river will remain healthy."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 142,
+      "question": "Why does Passage B call the distinction between amenities and ecological success useful in some circumstances?",
+      "options": [
+        "It establishes that paths, overlooks, and public programs cannot contribute to a river's long-term protection.",
+        "It allows residents' recurring observations to replace scheduled scientific surveys and laboratory measurements.",
+        "It demonstrates that ecological processes become meaningful only when visitors are present to observe them.",
+        "It prevents visitor counts from being treated as direct proof of fish populations or water quality."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 143,
+      "question": "Taken together, the passages most strongly support which conclusion about a restoration project's durability?",
+      "options": [
+        "Ecological processes need time and connected conditions, while informed public involvement can help detect and address threats during that recovery.",
+        "Durability is established once a restored river follows a curved channel and deposits sediment across its reconnected floodplain.",
+        "A project remains durable when public access attracts enough visitors to compensate for delayed biological recovery or poor water quality.",
+        "Public access and ecological monitoring should remain separate so visitor behavior cannot influence the processes scientists measure."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 144,
+      "question": "Which choice best captures the relationship between the final claims of Passage A and Passage B?",
+      "options": [
+        "Passage A rejects quick declarations of failure, while Passage B treats every project that attracts public use as an ecological success.",
+        "Passage A calls for diagnosing stages and barriers in ecological recovery, while Passage B argues that civic relationships can help that recovery persist without substituting for ecological evidence.",
+        "Passage A argues that patience cannot be measured, while Passage B argues that paths and visitor behavior cannot be redesigned after construction.",
+        "Both passages define successful restoration as returning the river and its surrounding community to their exact preconstruction conditions."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 149,
+      "question": "Taken together, the first, fourth, and fifth paragraphs indicate that new lighting possibilities became broadly reproducible only after:",
+      "options": [
+        "directors stopped using older effects whose appearance could not be reproduced exactly by more precise fixtures.",
+        "technical improvements were accompanied by reductions in practical barriers to using the equipment.",
+        "touring companies adopted reduced staging plans that allowed every production to use fewer electrical circuits.",
+        "large urban theaters made their specialized crews and newly installed systems available to smaller companies."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 150,
+      "question": "The passage most strongly suggests that some older lighting methods continued to be used after more precise equipment became available because the older methods:",
+      "options": [
+        "eventually developed enough precision to reproduce every effect available from newer lamps, reflectors, and shutters.",
+        "required less rehearsal because actors had already learned to remain within the broad areas those systems illuminated.",
+        "had acquired expressive qualities that designers could choose for particular productions.",
+        "remained the only equipment that large urban theaters could support with their electrical circuits and trained crews."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 151,
+      "question": "Which statement would the author most likely agree with about the influence of technology on theatrical practice?",
+      "options": [
+        "A technological innovation generally changes artistic practice as soon as inventors demonstrate that the equipment is technically possible.",
+        "The artistic effects of technology depend partly on how people adapt to its limitations and the conditions under which it is used.",
+        "Technological limitations mainly postpone artistic innovation until companies can replace outdated methods with more capable equipment.",
+        "Once improved equipment becomes affordable, earlier conventions no longer influence the choices made in new theatrical productions."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 153,
+      "question": "The written lighting plans in the fifth paragraph and the numbered cue marks in the final paragraph are most similar in that both:",
+      "options": [
+        "eliminate the need for trained operators by allowing any theater employee to reproduce a lighting design.",
+        "require unfamiliar theaters to own equipment identical to the fixtures used when the original plan was created.",
+        "preserve broad washes as the standard lighting method even when more precise transitions can be reproduced.",
+        "convert design choices into repeatable instructions that other people can carry out consistently."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 155,
+      "question": "What is the primary purpose of enclosing spores and nutrients in porous capsules?",
+      "options": [
+        "To make each developing crack wide enough for mineral crystals to grow across the available surfaces",
+        "To increase corrosion of the reinforcing steel so water can reach the biological material more easily",
+        "To protect them during mixing while allowing later activation by water",
+        "To replace structural inspection by ensuring that every crack activates the same sealing response"
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 156,
+      "question": "Which statement best expresses the passage's central idea?",
+      "options": [
+        "Bacterial concrete can rebuild a damaged structure without inspection because its mineral process reverses the forces that create cracks.",
+        "Photographs of surface closure provide the most reliable measure of whether a bacterial repair has protected reinforcing steel.",
+        "Self-sealing concrete becomes economical when capsules are distributed throughout every sidewalk, bridge, tunnel, and foundation.",
+        "A triggered mineral process may seal certain cracks and reduce water entry, but its value depends on limits, testing, and targeted use."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 157,
+      "question": "Why do researchers measure permeability in addition to photographing crack closure?",
+      "options": [
+        "A surface that appears closed may still allow water through a deeper connected path.",
+        "Permeability reveals the precise age and remaining activity of the bacterial spores inside each capsule.",
+        "Photographing a crack changes its width and can disturb the mineral crystals growing along its surface.",
+        "Water flowing through a specimen demonstrates that the concrete contains no steel reinforcement to protect."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 158,
+      "question": "Why are wider cracks generally more difficult for the bacterial process to seal?",
+      "options": [
+        "Water cannot enter a wide opening deeply enough to reach and activate the enclosed bacterial spores.",
+        "Crystals growing from the crack faces may not have enough material to bridge the larger gap.",
+        "Wide cracks remain dry because their exposed surfaces cause incoming moisture to evaporate immediately.",
+        "The porous capsules open only while concrete is intact and become inactive after any visible crack develops."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 160,
+      "question": "Why might expensive self-sealing concrete still be economical in a tunnel lining?",
+      "options": [
+        "The embedded capsules reduce the initial cost of producing and installing the concrete lining.",
+        "Tunnel concrete develops only cracks within the material's sealing range and therefore requires no inspection.",
+        "The method eliminates the operational and safety costs associated with closing a tunnel for maintenance.",
+        "Avoiding a difficult repair may offset the higher material cost over the structure's life."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 161,
+      "question": "The proposed combination of capsules and sensors is based on which division of responsibilities?",
+      "options": [
+        "The material addresses many small water pathways, while sensors direct attention to damage beyond its capacity.",
+        "Sensors seal routine cracks automatically, while bacteria rebuild sections of a structure damaged by changing loads.",
+        "Capsules measure permeability over time, while human inspectors manufacture the calcium carbonate needed for sealing.",
+        "The material prevents cracks from forming, while sensors remove the loads and moisture that would otherwise damage it."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 162,
+      "question": "Why does the author prefer 'self-sealing' to 'self-healing'?",
+      "options": [
+        "The narrower term establishes that bacteria remain active while concrete is dry and structurally intact.",
+        "The narrower term identifies reduction of water pathways without implying repair of every cause or form of damage.",
+        "The term allows researchers to describe the process without specifying permeability or another measurable outcome.",
+        "The term guarantees that controlled laboratory results will be reproduced under decades of changing bridge conditions."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 168,
+      "question": "In Passage B, Arun's actions most strongly contribute to the narrator's change by:",
+      "options": [
+        "requiring the narrator to deliver a prepared explanation exactly as it was written before the public arrived.",
+        "stepping in to answer difficult questions whenever the narrator's technical knowledge appears insufficient.",
+        "placing the narrator in a public role and then allowing independent responses.",
+        "demonstrating that public outreach is more valuable to the observatory than maintaining its equipment and records."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 170,
+      "question": "Which choice best describes a difference between the narrators' final responses to public visibility?",
+      "options": [
+        "Passage A's narrator accepts selective explanation while remaining physically outside the spotlight; Passage B's narrator begins to value direct exchange with a crowd.",
+        "Passage A's narrator decides restoration work should be performed before an audience; Passage B's narrator concludes that visitors should be excluded from technical spaces.",
+        "Passage A's narrator becomes comfortable because the crowd offers applause; Passage B's narrator remains interested chiefly in correcting the comet's predicted arrival date.",
+        "Passage A's narrator gives Elise responsibility for every future explanation; Passage B's narrator transfers responsibility for telescope maintenance to Arun."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 171,
+      "question": "Taken together, the passages most strongly suggest that private precision and public explanation:",
+      "options": [
+        "are fundamentally incompatible because explaining technical work to a public audience inevitably removes its necessary precision.",
+        "can reinforce each other when explanation reveals the reasoning behind careful work.",
+        "serve the same professional purpose and therefore require no distinction between technical practice and communication.",
+        "become useful to workers only after an institution formally recognizes and rewards both kinds of activity."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 174,
+      "question": "Which statement best expresses the passage's central idea?",
+      "options": [
+        "A cooperative uses shared infrastructure most effectively when every member follows the same planting and harvest schedule.",
+        "The central hub should determine which crops each member produces so storage and transportation remain predictable.",
+        "Efficient routes provide a complete measure of success even when distant or smaller farms cannot enter the network.",
+        "Shared infrastructure can turn varied needs into collective capacity, but it requires resilient systems and fair coordination."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 175,
+      "question": "The statement that empty space can move in an accounting sense primarily means that:",
+      "options": [
+        "unused capacity can be reassigned among members whose peak needs occur at different times.",
+        "warehouse walls and cooling equipment are physically moved among local sites as different harvests reach their peaks.",
+        "empty crates are transported from smaller farms to the central hub to reserve space for later orders.",
+        "members can claim unlimited space in advance because coordinators will correct inaccurate forecasts after harvest."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 176,
+      "question": "Why does the passage describe a mislabeled crate as occupying a false position in the schedule?",
+      "options": [
+        "The incorrect label physically prevents coordinators from fitting another crate into the storage room.",
+        "Its incorrect information can cause storage and transport decisions to be made for the wrong destination or time.",
+        "The destination printed on a label changes the temperature required by every product stored nearby.",
+        "A false schedule entry demonstrates that the cooperative can coordinate transport without maintaining physical storage."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 177,
+      "question": "The central hub can become a vulnerability primarily because:",
+      "options": [
+        "the cooperative prohibits smaller sites from cooling produce once the central building begins operating.",
+        "all equipment at the hub must operate without generators, temperature alarms, or access to nearby warehouses.",
+        "concentrating many farms' goods and transfers makes one failure affect a large portion of the network.",
+        "produce that reaches the hub cannot be reassigned to another cooling site or transportation route."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 179,
+      "question": "Why might a lightly used rural cooling site still be valuable to the cooperative?",
+      "options": [
+        "It may provide distant farms their only practical access, a benefit not captured by utilization alone.",
+        "A rural site with low annual use necessarily stores more crates than the central hub during the busiest harvest weeks.",
+        "Limited use protects the site from power failures and removes the need for backup equipment or emergency agreements.",
+        "The site allows distant members to bypass the reservation, labeling, and scheduling rules used elsewhere in the network."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 180,
+      "question": "The phrase 'coordinated difference' in the final paragraph most strongly emphasizes that:",
+      "options": [
+        "members must surrender their independent production decisions so the hub can standardize crops and harvest dates.",
+        "varied crops and schedules can smooth shared demand when linked by accurate information and fair rules.",
+        "uncertainty at one farm should be distributed equally among all members rather than contained through flexible capacity.",
+        "the network becomes coordinated only when every crate passes through the largest building before delivery."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 181,
+      "question": "According to the first paragraph, how does a phase-change material store heat differently from an ordinary wall?",
+      "options": [
+        "It generates cold as its temperature rises, preventing the surrounding wall from storing sensible heat.",
+        "It absorbs substantial energy while melting near a stable temperature.",
+        "It stores additional energy by increasing its mass during each repeated heating and cooling cycle.",
+        "It prevents heat from entering the room whenever the active material remains completely solid."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 183,
+      "question": "Which statement best expresses the passage's central idea?",
+      "options": [
+        "Selecting the material with the largest laboratory heat capacity ensures effective performance across buildings and climates.",
+        "Microencapsulated phase-change materials generate cooling while preventing stored heat from returning to the occupied room.",
+        "A phase-change panel performs best when it remains liquid overnight so that stored daytime heat is retained for the next cycle.",
+        "Phase-change materials can shift heat in time, but useful performance depends on containment, transfer rate, durability, operating temperatures, and system integration."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 185,
+      "question": "Why can increasing the proportion of microcapsules eventually weaken a wall panel?",
+      "options": [
+        "The active cores gain additional mass during melting and place increasing mechanical loads on the surrounding panel.",
+        "Capsules interrupt the binder and their shells contribute little structural strength.",
+        "Adding more capsules consistently reduces the amount of thermal energy the composite can store during a cycle.",
+        "A high concentration of capsules prevents the active material from having a useful melting and freezing range."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 186,
+      "question": "A thick panel can possess high theoretical capacity yet perform poorly during a short hot afternoon if:",
+      "options": [
+        "all capsules complete both melting and freezing immediately when the room begins to warm.",
+        "the finished panel is tested for flame spread, bending strength, and response to moisture.",
+        "heat moves too slowly to reach much of the material before the peak passes.",
+        "conductive additions shorten charging time enough for the panel's center to absorb the afternoon load."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 187,
+      "question": "Why might a capsule that performs well in a sealed vial still fail in a building panel?",
+      "options": [
+        "A sealed vial maintains a lower temperature than any building component and therefore prevents ordinary melting cycles.",
+        "Full-panel tests measure only the appearance of capsule shells rather than storage, heat flow, or mechanical strength.",
+        "The phase-change core loses its ability to absorb energy whenever its shell is placed near a strength-giving binder.",
+        "Manufacturing, cutting, binder interactions, moisture, fire requirements, and mechanical loads introduce additional conditions."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 188,
+      "question": "Why does the author call the thermal-battery comparison both useful and potentially misleading?",
+      "options": [
+        "The panel shifts energy in time like a battery, but it does not create cooling and works only within a limited temperature cycle.",
+        "The panel stores electrical energy like a battery but cannot release the heat it absorbs during melting.",
+        "Batteries and phase-change panels rely on identical chemical reactions even though they release energy at different rates.",
+        "The comparison implies that release timing cannot influence whether stored heat reduces a building's total energy use."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 189,
+      "question": "Which proposed building test would best evaluate the technology according to the passage's full standard of success?",
+      "options": [
+        "Measure the heat capacity of one capsule during a single cycle conducted at the material's ideal transition temperature.",
+        "Compare occupied rooms across repeated weather cycles while tracking panel condition, indoor peaks, reset energy, and release timing.",
+        "Count the capsules before they are mixed into a binder and use that concentration to estimate long-term panel performance.",
+        "Select the product with the highest advertised storage value without measuring its heat-transfer rate or nighttime reset."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 193,
+      "question": "The blue cup causes the narrator of Passage A to recognize that:",
+      "options": [
+        "every dish damaged by the flood should be discarded before volunteers attempt to identify its owner.",
+        "an object's significance may depend on a story supplied by its owner.",
+        "Mrs. Alvarez can identify every displaced resident by matching names written on recovered objects.",
+        "volunteers should classify belongings without speaking to visitors whose memories might change the labels."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 196,
+      "question": "The narrators differ in that Passage A's narrator learns to preserve possible connections, while Passage B's narrator learns to:",
+      "options": [
+        "accept that a meaningful object can continue its life with someone else.",
+        "recover and reunite every object that may have come from the same household before returning any of them.",
+        "replace a worn paper map with digital directions that preserve a more accurate record of each journey.",
+        "prevent strangers from handling personal objects whose marks and creases contain private memories."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 198,
+      "question": "Which statement best compares how meaning develops in the passages?",
+      "options": [
+        "Both passages locate an object's meaning in its original purpose and condition rather than in later use or movement.",
+        "Passage A rejects personal stories as unreliable, while Passage B rejects physical wear as evidence of memory.",
+        "Passage A builds meaning by reuniting scattered clues, whereas Passage B follows meaning as it travels from one user to another.",
+        "Both narrators understand from the beginning which experiences and relationships each object will eventually represent."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 199,
+      "question": "According to the third paragraph, how do Julian's and Mara's approaches differ?",
+      "options": [
+        "Julian examines every paper for personal history, while Mara tests equipment and records its serial numbers for sale.",
+        "Julian plans to preserve everything associated with the cinema, while Mara wants the building emptied as quickly as possible.",
+        "Julian limits his work to the projection booth, while Mara refuses to help sort objects found in the lobby.",
+        "Julian documents equipment for sale, while Mara examines objects and papers for personal meaning."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 200,
+      "question": "As used in the final paragraph, the word 'restrained' most nearly describes an action that is:",
+      "options": [
+        "deliberately kept from becoming overly symbolic or emotional.",
+        "physically prevented by the failed aisle lights from reaching its intended conclusion.",
+        "performed with enough speed to finish sorting before the building must be emptied.",
+        "intended to preserve the cinema and its contents in an unchanged physical condition."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 203,
+      "question": "The notebooks most directly challenge Mara's belief that Julian:",
+      "options": [
+        "does not possess the technical knowledge required to operate or maintain the cinema's projectors.",
+        "has confused the date of the first screening with the later repair marked on the empty film can.",
+        "has already donated the notebooks and every other useful record to the neighborhood film club.",
+        "is indifferent to the cinema and interested only in disposing of equipment."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 204,
+      "question": "The empty film can primarily serves to show that:",
+      "options": [
+        "Mara's memory can invent significance while Julian's initial sorting can dismiss an object before examining it.",
+        "each object Julian places in DISCARD contains a dependable record of the cinema's history that Mara immediately recognizes.",
+        "Julian remembers the theater's opening night accurately, whereas Mara has forgotten which film their father first screened.",
+        "technical records such as serial numbers and scratched dates are less dependable than a title printed on a faded label."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 205,
+      "question": "Replacing three sorting labels with four most strongly indicates that the siblings:",
+      "options": [
+        "have agreed that every object connected with a family memory should remain in their personal collection.",
+        "are creating categories capable of representing both documentary and personal forms of value.",
+        "no longer intend to sell or recycle any property despite the buyer's requirement that the building be empty.",
+        "have decided that members of the local film club should make the final classification for every object."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 206,
+      "question": "Why does the passage emphasize that Mara's and Julian's methods have not merged by evening?",
+      "options": [
+        "To show that cooperation becomes possible only after the siblings abandon the task of sorting the cinema's contents",
+        "To demonstrate that adding FAMILY and CLUB ARCHIVE has failed to resolve any disagreement about value",
+        "To clarify that their relationship improves through mutual correction without requiring identical habits",
+        "To suggest that neither sibling has changed an assumption about the other's work or way of remembering"
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 207,
+      "question": "The final phrase 'made answerable to each other' most nearly suggests that the siblings' memories now:",
+      "options": [
+        "must become identical before either sibling can decide whether an object deserves to be preserved.",
+        "have been replaced by the attendance records, repair notes, and other evidence in their father's notebooks.",
+        "prevent both siblings from accepting that the cinema building will be emptied and transferred to its buyer.",
+        "are tested and supplemented by the other's different evidence and attention."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 209,
+      "question": "Skeptics are most concerned that a complete-looking reconstruction may:",
+      "options": [
+        "make uncertain choices appear historically certain.",
+        "prevent visitors from experiencing the movement, light, heat, and sound created by a completed space.",
+        "preserve so much original material that later researchers cannot distinguish the modern construction.",
+        "display several interpretations at once and therefore make one evidence-based proposal appear inevitable."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 210,
+      "question": "Which statement best expresses the passage's central idea?",
+      "options": [
+        "Historic buildings should be reconstructed only when surviving evidence establishes every structural and decorative detail with certainty.",
+        "Reconstruction can test and communicate spatial claims when evidence, conjecture, modern needs, and later changes remain distinguishable.",
+        "Ruins provide no useful information about past activity because visitors cannot directly experience the spaces that once surrounded them.",
+        "Modern safety and access requirements should be concealed whenever visible interventions would interrupt the illusion of a historical setting."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 211,
+      "question": "Using compatible but visibly dated modern supports primarily allows a project to:",
+      "options": [
+        "avoid making any changes to a historic building in order to satisfy current requirements for safety and public access.",
+        "encourage visitors to interpret the new supports as original parts of the building despite their visible dates.",
+        "meet current needs without presenting new construction as original fabric.",
+        "remove damaged original material once modern supports have assumed its structural and interpretive functions."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 212,
+      "question": "Temporary posts and projected alternate windows are valuable chiefly because they:",
+      "options": [
+        "demonstrate the exact roof volume and window arrangement used by the historical builders.",
+        "eliminate the need for visitors to recognize where the available evidence permits several interpretations.",
+        "protect surviving walls and foundations from weather without adding any modern structural material.",
+        "represent spatial possibilities without requiring one uncertain version to appear permanent."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 213,
+      "question": "A successful trial joint provides evidence that:",
+      "options": [
+        "the tested method can work under the selected conditions, though historical use remains unproven.",
+        "historical builders used the tested joint in every comparable structure even when written evidence is unavailable.",
+        "machine-cut boards and hand-split timber respond identically to the loads imposed by a proposed reconstruction.",
+        "written and material records become unnecessary once one possible joint survives a modern construction test."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 214,
+      "question": "Why should repairs to a reconstruction be recorded after it opens?",
+      "options": [
+        "So replacement pieces installed during maintenance can later be presented as original parts of the historic building",
+        "So future researchers can separate represented historical features from the reconstruction's own aging and maintenance",
+        "So visitors can be prevented from polishing thresholds and producing wear that changes the appearance of new materials",
+        "So the reconstructed building can remain physically and visually unchanged after its documented opening date"
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 216,
+      "question": "Calling a reconstructed space a claim that can be inspected most strongly emphasizes that the reconstruction:",
+      "options": [
+        "becomes authentic only when visitors can no longer distinguish original fabric from modern material.",
+        "must provide one final physical answer to each historical question the project was designed to investigate.",
+        "has interpretive value only when conjectural features are concealed within an apparently complete building.",
+        "embodies an evidence-based interpretation whose assumptions and limits should remain open to examination."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 219,
+      "question": "Which idea is central to both passages?",
+      "options": [
+        "Inherited materials become useful through interpretation that includes context and other people's knowledge.",
+        "Written records and labels preserve all of the practical skill needed to continue work begun by an earlier generation.",
+        "Responsible inheritance requires copying earlier methods without altering them in response to current conditions.",
+        "Evidence whose meaning remains uncertain should be discarded before it can mislead later users of the collection."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 221,
+      "question": "Why does the narrator of Passage B stop sorting objects primarily by appearance?",
+      "options": [
+        "Every object that appears obsolete is eventually identified as a valuable antique by one of Aunt Jo's former customers.",
+        "Mr. Bell asks the narrator to preserve every duplicate object because its appearance records a separate repair.",
+        "An unfamiliar-looking object may have a specialized use recognizable only through practice.",
+        "Once objects are photographed beside a ruler, retaining the physical tools themselves becomes unnecessary."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 222,
+      "question": "Elena in Passage A and the visitors in Passage B serve similar roles by:",
+      "options": [
+        "demonstrating that the narrators should surrender every decision about the inherited materials to more experienced people.",
+        "providing complete written instructions that allow the narrators to master pruning and radio repair independently.",
+        "arguing that inherited notebooks and tools should never be changed, relabeled, or discarded regardless of evidence.",
+        "showing the narrators how to interpret inherited records beyond their literal surfaces."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 223,
+      "question": "The weather notes in Passage A and qualified labels in Passage B both reflect an effort to:",
+      "options": [
+        "add present observations without pretending they form final instructions.",
+        "erase earlier judgments so future readers will not confuse past conditions with current practice.",
+        "replace material evidence and recorded actions with the narrators' personal opinions about each practice.",
+        "make additional observation and interpretation unnecessary for anyone who later uses the records."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 224,
+      "question": "Taken together, the passages suggest that receiving evidence of a practice differs from receiving the practice itself because:",
+      "options": [
+        "material evidence becomes useful only when the original practitioner leaves a complete explanation of every object and decision.",
+        "artifacts can support judgment, but skill still develops through observation, comparison, demonstration, and use.",
+        "practical knowledge cannot remain in notebooks, tools, marks, or other material evidence after a practitioner is gone.",
+        "preserving every inherited object automatically gives its new owner enough mastery to continue the original practice."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 225,
+      "question": "Which choice best describes how both narrators continue the inherited work?",
+      "options": [
+        "Each preserves an unchanged system whose purpose and meaning were already made complete by the earlier practitioner.",
+        "Each abandons the inherited record after discovering that missing context makes its evidence too uncertain to use.",
+        "Each adds a new interpretive layer while acknowledging dependence on earlier and communal knowledge.",
+        "Each achieves full expertise in the inherited practice before adding any new label, observation, or entry."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 228,
+      "question": "Which statement best expresses the passage's central claim?",
+      "options": [
+        "Distributed neighborhood sensors demonstrate that standardized weather stations produce incorrect temperatures for forecasting and comparison.",
+        "Differences in urban heat result primarily from surface color and can therefore be addressed everywhere through additional tree planting.",
+        "Detailed neighborhood maps should determine policy directly without considering who is exposed or how buildings affect that exposure.",
+        "Regional and local measurements answer different questions and are strongest when their scales and limitations are understood."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 230,
+      "question": "Two neighborhoods with the same afternoon maximum may have different heat risks primarily because:",
+      "options": [
+        "only one of the neighborhoods may be represented by the official station used to produce the city's forecast.",
+        "stored heat and limited vegetation may prevent one neighborhood from cooling overnight.",
+        "mobile and fixed sensors cannot record nighttime temperature reliably when they are placed near masonry.",
+        "the neighborhood that cools more quickly necessarily contains more offices with dependable air-conditioning."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 231,
+      "question": "The fourth paragraph rejects assigning one fixed cooling value to every tree mainly because:",
+      "options": [
+        "trees influence measured temperature only when their shade reaches the standardized instruments at an official station.",
+        "shade from trees consistently increases the amount of heat that nearby masonry stores and releases after sunset.",
+        "a feature's effect depends on scale and interactions with surrounding cover, buildings, moisture, and airflow.",
+        "mobile sensors cannot measure local temperatures accurately while passing beneath vegetation or beside irrigated land."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 232,
+      "question": "Why does the passage state that temperature data cannot select a policy by themselves?",
+      "options": [
+        "Distributed sensors cannot identify physical patterns accurately enough to support decisions about neighborhood heat.",
+        "Every neighborhood must adopt the same combination of trees, reflective roofs, adjusted work hours, and cooling centers.",
+        "Official weather stations prevent planners from using distributed measurements when selecting local interventions.",
+        "The appropriate response also depends on exposure, buildings, resources, and residents' circumstances."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 233,
+      "question": "Which study design would best support a claim that one neighborhood consistently retains more nighttime heat than another?",
+      "options": [
+        "Repeat matched nighttime routes, compare calibrated sensors and placements, and document differences in surfaces, vegetation, and airflow.",
+        "Compare one sensor from each neighborhood during a single afternoon when both locations reach their maximum temperature.",
+        "Use the citywide station as the nighttime reading for every block and compare neighborhoods according to their distance from it.",
+        "Collect measurements only from homes whose residents already participate in environmental programs and can maintain equipment."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 234,
+      "question": "A neighborhood sensor reads several degrees above the official station for three evenings. Based on the passage, the most justified interpretation is that:",
+      "options": [
+        "the official station should be removed because a regional record has no value once repeated neighborhood measurements are available.",
+        "the readings may both be valid, with one representing standardized regional conditions and the other a repeatable local environment.",
+        "the neighborhood reading demonstrates that every nearby apartment has the same indoor temperature during those evenings.",
+        "the repeated difference establishes that dark pavement, rather than buildings, vegetation, airflow, or another feature, is the sole cause."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 237,
+      "question": "The technological developments described in the fourth paragraph most directly changed the conditions in the second paragraph by:",
+      "options": [
+        "giving filmmakers more ways to reveal characters without requiring them to cross most of a fixed visible space.",
+        "making it necessary for performers to remain farther from both the camera and the scenery throughout a scene.",
+        "encouraging directors to replace dependable side entrances with poorly illuminated doors near the rear of sets.",
+        "requiring filmmakers to plan character entrances around a smaller number of stable camera positions."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 239,
+      "question": "Based on the first three paragraphs, visible lateral crossings were especially useful to early filmmakers because they allowed directors to:",
+      "options": [
+        "show changes in location clearly without constructing or lighting more than one complete interior set.",
+        "make arrivals and interactions clear while keeping performers within predictable camera and lighting conditions.",
+        "create the visual impression that a stationary camera was continuously moving alongside the performers.",
+        "avoid arranging scenery, marking paths, or assigning entrances before the filming of a crowded scene began."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 241,
+      "question": "Which choice best describes how the significance of lateral screen crossings changes over the course of the passage?",
+      "options": [
+        "They shift from a practical response to constrained production space into a learned visual device for communicating arrival, continuity, and attitude.",
+        "They shift from an expressive technique freely chosen by early directors into a standardized procedure demanded by later editing systems.",
+        "They shift from a way of concealing poorly illuminated scenery into a technique intended mainly to display improvements in camera mobility.",
+        "They shift from a convention understood chiefly by audiences into a technical procedure understood chiefly by directors and camera operators."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 242,
+      "question": "Within the passage as a whole, the fourth paragraph is important primarily because it:",
+      "options": [
+        "shows that technological improvements directly created the expressive meanings that filmmakers later associated with lateral crossings.",
+        "removes much of the convention's practical necessity, allowing its survival to show how a solution can acquire uses beyond its original constraint.",
+        "corrects the boardinghouse example by demonstrating that early directors possessed more staging alternatives than they initially recognized.",
+        "establishes that editing, rather than lighting or camera placement, ultimately caused filmmakers to adopt lateral screen movement."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 243,
+      "question": "Which detail most directly supports the passage's claim that lateral crossings gained purposes beyond the production limits that first encouraged them?",
+      "options": [
+        "Early cameras commonly rested on heavy supports and were positioned before the performers began acting out a scene.",
+        "The boardinghouse set contained three doors, though only the two side doors could remain adequately illuminated.",
+        "Improved lenses, lighting, and camera supports eventually made deeper sets and varied character entrances practical.",
+        "With flexible equipment available, crossings still helped editors preserve direction and filmmakers suggest anticipation or reluctance."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 245,
+      "question": "Why do researchers combine mass with wing length?",
+      "options": [
+        "To estimate wind conditions from differences in the body sizes of birds captured at the same station.",
+        "To compare fuel condition meaningfully among birds whose natural body sizes differ.",
+        "To predict the precise stopover at which each bird will next pause and feed.",
+        "To determine whether carrying a transmitter changes how often a bird feeds."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 246,
+      "question": "Which statement best summarizes the passage?",
+      "options": [
+        "Migrating birds depart after reaching a fixed fuel level that researchers can estimate from mass and wing length.",
+        "Wind conditions determine migration timing, while habitat quality and seasonal urgency mainly affect feeding behavior.",
+        "A bird's departure reflects a changing balance among fuel, weather, season, habitat quality, and risk.",
+        "Because individual stopover decisions involve many variables, researchers cannot investigate them with field evidence."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 247,
+      "question": "How can high fuel partly substitute for favorable wind?",
+      "options": [
+        "Greater reserves may allow a bird to absorb the extra energy cost of flying in less supportive winds.",
+        "Greater reserves physically change a headwind into a tailwind once the bird reaches its cruising altitude.",
+        "Greater reserves remove the seasonal cost of waiting when nesting space is becoming less available.",
+        "Greater reserves prevent the bird from expending energy until it reaches the next stopover habitat."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 249,
+      "question": "Matching birds by date and fuel before comparing wind changes helps researchers:",
+      "options": [
+        "show that every bird encountered the same habitat quality and predation risk before its departure.",
+        "isolate the short-term relationship between changing winds and a bird's decision to depart.",
+        "avoid recording actual departure times because date and fuel already predict each bird's behavior.",
+        "estimate how much nesting space remains at the destination from conditions measured at the stopover."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 250,
+      "question": "Why might a bird leave a poor feeding site with lower reserves?",
+      "options": [
+        "Poor feeding conditions reliably indicate that supportive winds will persist throughout the next stage of migration.",
+        "Low reserves reduce the amount of energy required for flight enough to make additional feeding unnecessary.",
+        "Further waiting may produce little additional fuel while another reachable stop could offer better conditions.",
+        "Predators generally avoid depleted habitats, making immediate departure safer than it would be from a rich site."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 251,
+      "question": "Why is departure time alone insufficient after a falcon appears?",
+      "options": [
+        "A nearby predator may interfere with radio signals, making the recorded departure time too uncertain to interpret.",
+        "Researchers must observe feeding because the birds' direction of flight provides no useful evidence about departure.",
+        "A falcon may reduce feeding or directly prompt departure, so the same timing pattern can arise through different causes.",
+        "The falcon's presence changes seasonal urgency, which researchers cannot distinguish from a change in available fuel."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 252,
+      "question": "Calling the threshold moving most nearly means that:",
+      "options": [
+        "the fuel level sufficient for departure changes as surrounding costs and opportunities change.",
+        "the location where researchers measure departure shifts whenever birds encounter a new weather station.",
+        "fuel has only a temporary role in readiness because weather eventually becomes the sole departure signal.",
+        "each relevant condition changes at a constant rate as the migration season approaches its conclusion."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 253,
+      "question": "Why does Nia first suspect Mr. Vale?",
+      "options": [
+        "He previously complained about the plumbing, and his calm expression seems to Nia like evidence that he expected the outage.",
+        "He admits that he closed the building's main valve after warning the residents that the pipes needed repairs.",
+        "He refuses to enter the utility room with Nia even though he is the only resident who possesses its key.",
+        "He owns the courtyard hose and had been seen moving the cabinet that conceals the building's hidden valve."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 255,
+      "question": "Which theme is most central to the passage?",
+      "options": [
+        "Careful attention to evidence can solve practical problems while also correcting a premature judgment.",
+        "Aging buildings eventually create problems that residents cannot solve without replacing their major systems.",
+        "Public recognition is the most meaningful reward for a person who uses specialized knowledge to help others.",
+        "During an emergency, acting quickly is generally more valuable than pausing to consider unintended consequences."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 256,
+      "question": "Mr. Vale stops Nia from turning the hidden valve chiefly because he is:",
+      "options": [
+        "reluctant to let a younger resident take responsibility for a repair he believes an expert should perform.",
+        "methodical about checking consequences that the available evidence has not yet ruled out.",
+        "certain that the concealed valve controls a different system and cannot have caused the water outage.",
+        "concerned that the sound of restored water will alarm residents before he can explain what happened."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 257,
+      "question": "The third-floor resident's observation helps Nia by:",
+      "options": [
+        "showing that the roof tank still contains water even though none has reached the lower apartments.",
+        "identifying the resident who moved the cabinet and accidentally disturbed the concealed valve behind it.",
+        "locating the likely interruption in relation to the point where the building's pipe branches divide.",
+        "confirming that water stopped in every apartment at precisely the same moment during the morning."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 258,
+      "question": "The traveling cheer after the valve turns primarily:",
+      "options": [
+        "introduces the possibility of a second failure as pressure returns unevenly across the building's pipes.",
+        "shows that residents had noticed the outage only after hearing water begin moving through nearby apartments.",
+        "causes Nia to abandon her hand-drawn map because the residents can now locate the blockage by sound.",
+        "confirms the repair through a sound that follows the restored water across the building."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 260,
+      "question": "The note Check before turning functions most importantly as:",
+      "options": [
+        "a warning that only the building manager may enter the utility room or operate any of its controls.",
+        "both a literal safety instruction and a reminder to examine assumptions before acting on them.",
+        "a criticism of the plumber for delaying a repair that Nia and Mr. Vale could have completed earlier.",
+        "an instruction to leave every unfamiliar valve closed until the entire plumbing plan can be replaced."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 261,
+      "question": "Nia's development is best described as a movement from:",
+      "options": [
+        "avoiding responsibility for the outage to accepting public praise for solving the building's problem.",
+        "trusting the map as a complete explanation to rejecting plans in favor of residents' recollections.",
+        "assigning blame from appearances to testing connections and evidence before reaching a conclusion.",
+        "working without assistance to refusing Mr. Vale's help after recognizing that he had misled her."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 264,
+      "question": "Which statement best expresses the central idea of the passage?",
+      "options": [
+        "Accessible writing improved mainly when designers reproduced the familiar appearance of printed letters more accurately.",
+        "Large tactile characters became easier to identify as printing tools made their outlines more consistent from page to page.",
+        "Specialized notation expanded by assigning every mathematical, musical, and scientific symbol a unique tactile cell.",
+        "Tactile literacy developed through sensory-appropriate design refined by readers, tools, and shared conventions."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 265,
+      "question": "The passage suggests that embossed visible letters appealed to many sighted teachers and printers mainly because the letters:",
+      "options": [
+        "looked familiar to sighted evaluators even though tracing their outlines was inefficient for tactile readers.",
+        "could represent mathematical and musical notation without requiring any additional contextual rules.",
+        "used less material and were simpler to reproduce than compact patterns made from raised dots.",
+        "had already performed well in continuous-reading tests conducted by experienced tactile readers."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 266,
+      "question": "The fourth paragraph indicates that selecting the number and spacing of dot positions required balancing:",
+      "options": [
+        "the visual familiarity of each pattern against the amount of material required to emboss it.",
+        "immediate tactile recognition against the number of distinct meanings the system could express.",
+        "the time available in school schedules against the speed at which mechanical presses produced pages.",
+        "the need for mathematical notation against readers' preference for a system limited to ordinary prose."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 267,
+      "question": "The discussion of patterns that look distinct on a chart but feel ambiguous in text primarily serves to:",
+      "options": [
+        "demonstrate that all compact patterns become equally difficult once readers encounter them in continuous text.",
+        "explain why experienced tactile readers ultimately preferred enlarged versions of familiar printed letters.",
+        "show why visual inspection could not substitute for evidence gathered through actual tactile reading.",
+        "support removing contractions and abbreviations because surrounding cells make shortened forms ambiguous."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 269,
+      "question": "Why does the passage state that the invention is difficult to locate in a single object?",
+      "options": [
+        "Practical tactile literacy emerged from linked advances in sensory design, writing, testing, production, notation, and agreement.",
+        "The earliest raised pages were lost before historians could determine which surviving object first demonstrated fluent reading.",
+        "Compact cells became useful only after designers assigned a unique pattern to every specialized symbol readers might encounter.",
+        "Readers and institutions adopted several competing conventions at once, leaving no evidence that any system preceded another."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 270,
+      "question": "Which design decision would be most consistent with the passage's concluding principle?",
+      "options": [
+        "Design an audio interface whose controls reproduce the appearance and order of printed punctuation as closely as possible.",
+        "Preserve a visual diagram's information while reorganizing it for how listeners perceive sequence and emphasis.",
+        "Preserve the spatial appearance of a chart even when users must reconstruct that appearance entirely through sound.",
+        "Require users of a tactile system to recognize printed-letter shapes before introducing compact tactile patterns."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 272,
+      "question": "Why were ants moved to a flat testing field?",
+      "options": [
+        "To strengthen the scent trail while eliminating changes in slope as a competing directional cue.",
+        "To test the ants' stored route estimate without allowing them to retrace familiar landmarks.",
+        "To prevent the ants from beginning a search before researchers could measure their preferred direction.",
+        "To determine whether walking on a level surface changed the effective length of each ant's stride."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 273,
+      "question": "Which statement best summarizes the passage?",
+      "options": [
+        "Desert ants navigate by following a stable sky signal whose direction remains reliable across different routes.",
+        "Landmarks provide the most dependable guidance, while other signals matter mainly when landmarks disappear.",
+        "Ants navigate by combining imperfect cues, recalibrating them through experience, and searching when uncertainty remains.",
+        "When directional cues conflict, ants suspend navigation until environmental conditions restore agreement among them."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 274,
+      "question": "Why did experienced ants err in the opposite direction after the filter was removed?",
+      "options": [
+        "They had forgotten the feeder's distance while learning to rely exclusively on the altered sky signal.",
+        "They behaved as though the testing field still contained the filter used during their earlier journeys.",
+        "Their experience under the filter permanently changed the relationship between step count and distance.",
+        "Their earlier calibration briefly persisted after normal sky conditions had been restored."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 277,
+      "question": "What possible benefit does fading calibration provide?",
+      "options": [
+        "It gives every previously traveled route equal influence over the ant's current estimate of direction.",
+        "It eventually removes the need to compare cues once one signal has repeatedly appeared dependable.",
+        "It keeps a temporary local distortion from controlling navigation long after conditions change.",
+        "It preserves extreme errors long enough for ants to distinguish them from ordinary variation in a route."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 278,
+      "question": "Why does the author describe the widening search as part of navigation rather than failure?",
+      "options": [
+        "The widening path always leads directly to food even when the ant has misjudged the nest's location.",
+        "The search replaces directional calculation with a random movement pattern unrelated to prior evidence.",
+        "The behavior demonstrates that the nest has moved since the ant formed its original route estimate.",
+        "The search is a controlled response to uncertainty about the ant's estimated endpoint."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 279,
+      "question": "The experiments most strongly support which principle?",
+      "options": [
+        "Reliable behavior can emerge from repeatedly revising several uncertain signals rather than depending on one flawless cue.",
+        "A navigational compass remains useful only when experience never changes how an animal interprets its signal.",
+        "An animal makes its most accurate decisions when it ignores conflicting evidence and preserves its first estimate.",
+        "Route memory becomes reliable only when familiar landmarks remain visible throughout both travel and testing."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 281,
+      "question": "How does the climatologist initially respond to the weather notebooks in Passage B?",
+      "options": [
+        "She identifies their limitations and requests contextual evidence that could permit careful use of some readings.",
+        "She accepts every reading as directly comparable because the entries cover a longer period than automated records.",
+        "She rejects the notebooks because observations recorded by a volunteer cannot contribute to scientific analysis.",
+        "She treats comments in the margins as more precise measurements than readings from standardized weather stations."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 282,
+      "question": "Which statement best describes an idea shared by both passages?",
+      "options": [
+        "A record becomes useful only when every entry was originally produced for the same clearly stated purpose.",
+        "An ordinary record can gain value when people preserve the context and limitations needed to interpret it.",
+        "Conflicting recollections should be removed before an archive is made available to future researchers.",
+        "Numerical records matter primarily when they document unusual achievements or exceptional environmental events."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 284,
+      "question": "Why is the note about moving the rain gauge important in Passage B?",
+      "options": [
+        "It proves that all measurements taken before the move were distorted enough to exclude from future analysis.",
+        "It allows researchers to reconstruct exact rainfall totals for days on which no measurement was recorded.",
+        "It supports the conclusion that construction of the new roof caused the later changes in local weather.",
+        "It may explain a measurement change caused by the instrument's location rather than by the weather itself."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 285,
+      "question": "The narrator's selection of bowling sheets and the climatologist's selection of weather readings are similar because both:",
+      "options": [
+        "select a useful subset for a stated purpose instead of treating completeness as the only measure of value.",
+        "discard every record whose meaning remains uncertain after it has been compared with nearby evidence.",
+        "preserve only entries containing the highest numerical values because those reveal the clearest long-term pattern.",
+        "exclude records connected to personal memories so later interpretation can rely entirely on the recorded numbers."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 286,
+      "question": "The Passage B narrator's response to excluded pages changes when the narrator realizes that:",
+      "options": [
+        "scientific analysis is the only purpose that can justify keeping a weather notebook after its original use ends.",
+        "a record may retain local and historical value even when some entries do not suit a particular analysis.",
+        "all excluded readings will eventually prove accurate once researchers locate enough standardized stations for comparison.",
+        "the firefighters who recorded the observations no longer remember how the notebooks informed their daily decisions."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 287,
+      "question": "Taken together, the passages suggest that routine records often gain historical significance because they:",
+      "options": [
+        "were originally created with the expectation that future archivists would use them to reconstruct community life.",
+        "contain fewer uncertainties than formal research records because daily observers use the same procedure repeatedly.",
+        "capture recurring practices and surrounding circumstances that may disappear once the routine ends.",
+        "focus on a community's most unusual events rather than recording ordinary activities that later readers already understand."
+      ]
+    },
+    {
+      "subject": "Reading",
+      "bankIndex": 288,
+      "question": "Why do both narrators retain signs of disagreement or uncertainty in their archives?",
+      "options": [
+        "Preserving uncertainty allows future readers to treat every possible interpretation as equally supported by the evidence.",
+        "Conflicting memories can replace damaged physical records without qualification when several witnesses agree on part of an event.",
+        "Flagging uncertain entries instructs future readers to exclude those records from every historical or scientific use.",
+        "Recording evidentiary limits keeps one convenient account from appearing more certain than the surviving material supports."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 4,
+      "question": "(4) Which choice most effectively emphasizes how the documentary changed the public value of Mercer's collection?",
+      "options": [
+        "Through broadcasts, classroom copies, and archive programs, the documentary gave residents several ways to use Mercer's record of neighborhood change.",
+        "Through broadcasts on three local stations, the documentary made Mercer's recordings available to residents during the same weekend.",
+        "By featuring sounds once familiar in the neighborhood, the documentary let residents experience parts of Mercer's private collection.",
+        "By publicizing the archive's transportation recordings, the documentary encouraged greater interest in one part of local history."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 12,
+      "question": "(3) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because differences in intertitles cannot help archivists determine how separate film prints were distributed.",
+        "Delete it, because distribution records explain where prints traveled but not why their surviving scenes or titles differ.",
+        "Keep it, because a documented alteration can be attributed with certainty to the film's original director.",
+        "Keep it, because it offers evidence that may explain differences among prints instead of treating each difference as damage."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 19,
+      "question": "(10) Suppose the writer's primary purpose had been to explain how archivists reconstruct an incomplete silent film without hiding uncertainty. Would this passage accomplish that purpose?",
+      "options": [
+        "No, because it focuses on newly commissioned music rather than the evidence used to compare and restore surviving film prints.",
+        "No, because it presents the first surviving print as a complete authority instead of comparing it with other materials.",
+        "Yes, because it covers comparison, contextual research, digital repair, documented substitutions, and remaining limits.",
+        "Yes, because it reproduces every surviving frame and record needed to create a definitive version of one incomplete film."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 26,
+      "question": "(2) Which choice most effectively contrasts the cards' disadvantages with an advantage that becomes important later in the passage?",
+      "options": [
+        "Despite being slower to search, the paper cards required no password, battery, server, or network connection.",
+        "Yet those inconveniences concealed a practical strength: the cards worked without a password, battery, server, or network.",
+        "Consequently, the cards' bulk and slow searching caused them to remain usable without digital infrastructure.",
+        "Although paper and electronic records differed in predictable ways, staff continued maintaining both formats."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 32,
+      "question": "(8) Which choice most effectively concludes the passage by explaining the broader significance of the hospital's response to the outage?",
+      "options": [
+        "When computers restarted, staff returned to electronic searches, showing that the drawers were useful only during the outage.",
+        "Once service returned, the hospital could abandon the slower paper index because electronic searches again became available.",
+        "The outage showed that paper records were more dependable and efficient than digital records for every hospital search.",
+        "Neither system replaced the other; maintaining both gave the hospital dependable access when the faster one failed."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 33,
+      "question": "(1) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it establishes the narrator's belief that following a prepared list would be sufficient to guide the interview.",
+        "Delete it, because preparing questions in advance conflicts with the narrator's later decision to ask an unscripted question.",
+        "Keep it, because the page's control of the recorder and pencils explains why the narrator cannot change the interview plan.",
+        "Delete it, because the narrator remains dependent on the prepared list even after noticing details outside its categories."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 42,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Delete it, because the narrator's new question suggests that written records are less reliable than spoken memories.",
+        "Keep it, because it recommends that interviewers abandon prepared questions whenever an unexpected detail appears.",
+        "Keep it, because the added question turns the narrator's discovery into a future habit of looking beyond expected categories.",
+        "Delete it, because the passage should conclude by identifying the recorder used to preserve the interview."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 53,
+      "question": "(3) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because mentioning early rubber processing distracts from the passage's account of nineteenth-century industrial experiments.",
+        "Delete it, because the passage focuses on rubber's chemical structure rather than the history of attempts to improve its usefulness.",
+        "Keep it, because the example establishes that every Mesoamerican community processed rubber through an identical method.",
+        "Keep it, because it shows that practical rubber processing preceded the later industrial experiments discussed in the passage."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 60,
+      "question": "(10) Suppose the writer's primary purpose had been to explain how a process made natural rubber more reliable and expanded its uses. Would this passage accomplish that purpose?",
+      "options": [
+        "No, because it describes where rubber-producing plants grow without connecting their material to an industrial process.",
+        "No, because it presents untreated rubber as dependable in every climate before manufacturers began experimenting with it.",
+        "Yes, because it identifies untreated rubber's weakness, explains vulcanization, and describes its expanded uses.",
+        "Yes, because it supplies complete manufacturing instructions for producing every modern object that contains vulcanized rubber."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 75,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Delete it, because it turns one school's project into a recommendation that every paved schoolyard be removed.",
+        "Keep it, because it establishes that a properly designed rain garden will eliminate all local flooding permanently.",
+        "Delete it, because the conclusion should introduce a different environmental project for comparison with the garden.",
+        "Keep it, because it joins the garden's environmental and instructional benefits with the need for an operating plan."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 92,
+      "question": "(8) Which choice most effectively concludes the passage by emphasizing the thornbrush's broader role in restoring the ridge?",
+      "options": [
+        "The crew's final count showed that thornbrush produced new plants in several parts of the restored ridge.",
+        "After completing its final survey, the restoration crew left the exposed ridge and moved to another site.",
+        "Although useful during restoration, thornbrush remained an obstacle whose branches could snag hikers' clothing.",
+        "Once dismissed as an obstacle, thornbrush created protected conditions in which a broader plant community could return."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 110,
+      "question": "(5) The writer is considering deleting the underlined sentence. Should the sentence be kept or deleted?",
+      "options": [
+        "Kept, because it identifies the excavation tool technicians use after sensors measure vibrations inside a pipe.",
+        "Kept, because it explains why crews consult equipment records before confirming the source of an acoustic signal.",
+        "Deleted, because the paragraph concerns confirming acoustic evidence before excavation, not excavation speed.",
+        "Deleted, because the passage maintains that pavement should remain unopened whenever crews suspect a leak."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 113,
+      "question": "(8) Which choice most effectively concludes the passage by emphasizing the broader value of acoustic leak detection?",
+      "options": [
+        "After marking the location, technicians protect the sensors for transport so the equipment remains ready for another test.",
+        "Protective cases allow technicians to carry sensitive acoustic sensors safely between testing locations throughout a city.",
+        "By finding damage before an emergency, acoustic testing lets cities plan repairs instead of merely reacting to failures.",
+        "Municipal crews combine acoustic sensors with many other tools when maintaining pipes, streets, and public infrastructure."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 126,
+      "question": "(4) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because the fixed landmark helps the narrator detect downstream drift that is difficult to feel from the kayak.",
+        "Delete it, because the moving water makes a shoreline landmark shift at the same rate and direction as the kayak.",
+        "Keep it, because the boulder blocks enough current to prevent the narrator's boat from drifting downstream.",
+        "Delete it, because the narrator completes the crossing by relying on paddle strokes rather than any visual reference."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 132,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Delete it, because the narrator's experience demonstrates that an effective route must appear perfectly straight.",
+        "Keep it, because it argues that travelers should ignore a visible destination whenever environmental forces interfere.",
+        "Keep it, because it extends the lesson about compensating for current into an insight about indirect-looking progress.",
+        "Delete it, because the passage should conclude with the kayak's dimensions and the distance of the crossing."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 145,
+      "question": "(5) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because the cover's color helps explain why the narrator initially believes the fan's motor has failed.",
+        "Keep it, because describing the color gives readers enough information to compare the fan with other repairs.",
+        "Delete it, because identifying the cover's appearance without naming the manufacturer makes the description incomplete.",
+        "Delete it, because the cover's color develops neither the diagnosis nor the narrator's role in the repair."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 150,
+      "question": "(10) Should the writer keep or delete the underlined ending?",
+      "options": [
+        "Keep it, because the successful repair changes how the narrator intends to approach broken objects in the future.",
+        "Keep it, because the repair convinces the narrator to train as a professional electrician after leaving the shop.",
+        "Delete it, because the ending does not explain how manufacturers assemble the motor found inside the repaired fan.",
+        "Delete it, because the passage should end with the repair itself rather than reveal a change in the narrator's outlook."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 158,
+      "question": "(3) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because the equipment's color identifies the municipal lighting style that the proposed changes will preserve.",
+        "Keep it, because residents' preference for shielded lamps depends partly on their appearance during daylight hours.",
+        "Delete it, because the passage does not establish whether residents prefer that paint color on municipal equipment.",
+        "Delete it, because the aesthetic detail does not explain how shielding and controls reduce wasted light."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 165,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Keep it, because it recommends providing every street with the same maximum amount of nighttime illumination.",
+        "Keep it, because it restates the passage's standard that lighting should be directed and appropriately measured.",
+        "Delete it, because the passage has not compared the purchase and maintenance costs of several available lamp models.",
+        "Delete it, because an effective conclusion should introduce a policy concern not previously discussed in the passage."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 172,
+      "question": "(7) The writer is considering deleting the following sentence:<br><br>“One foreman was known for playing cards with the station clerk after his shift.”<br><br>Should the writer make this deletion?",
+      "options": [
+        "No, because the foreman's leisure activity provides a useful personal example of relationships among railway employees.",
+        "Yes, because an informational account of railway operations should exclude every detail about individual employees.",
+        "No, because the card games explain why winter closures sometimes delayed freight at the station for several days.",
+        "Yes, because the leisure detail does not develop the paragraph's explanation of operational difficulties."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 182,
+      "question": "(9) Should the writer keep or delete the team's guiding principle?",
+      "options": [
+        "Keep it, because it presents sound as another investigative path rather than a substitute for numerical evidence.",
+        "Keep it, because it establishes that any audible pattern automatically provides an answer to a research question.",
+        "Delete it, because researchers do not return to the original measurements after hearing a pattern in the sound.",
+        "Delete it, because an informational passage should describe procedures without stating the team's guiding principle."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 183,
+      "question": "(10) Suppose the writer's purpose were to explain how sonification can support examination of scientific data. Would this passage accomplish that purpose?",
+      "options": [
+        "No, because it focuses on the history and construction of musical instruments rather than scientific analysis.",
+        "Yes, because it shows how measurements are mapped to sound, simplified, compared, and checked against data.",
+        "No, because it argues that scientists should replace graphs and numerical records with sound-based displays.",
+        "Yes, because it lists every astronomical object whose measurements researchers have converted into sound."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 190,
+      "question": "(7) The writer is considering deleting the following sentence:<br><br>“A proposed caption explains that workers often waited beside the freight landings for incoming boats.”<br><br>Should the writer make this deletion?",
+      "options": [
+        "Yes, because although related to commerce, the detail does not develop the contrast between shipping structures and later fish habitat.",
+        "Yes, because the passage has already established that boats once traveled along the river to reach the freight landings.",
+        "No, because workers waiting for boats adds a useful example of commercial activity associated with the landings.",
+        "No, because the workers' presence explains how abandoned pilings eventually created sheltered areas for young fish."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 202,
+      "question": "(2) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because fragments stored in separate trays cannot reliably be identified as parts of the same vessel.",
+        "Delete it, because an excavation location contributes little to interpreting objects once they enter storage.",
+        "Keep it, because a digital profile preserves more archaeological information than the physical fragment itself.",
+        "Keep it, because a verified match can reconnect evidence separated during excavation and storage."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 215,
+      "question": "(10) Suppose the writer's primary purpose had been to argue that cities should pair formal budgets with accessible guides without sacrificing financial precision. Would this passage accomplish that purpose?",
+      "options": [
+        "No, because it proposes replacing formal budget documents with illustrated summaries designed for general readers.",
+        "No, because it discourages residents from examining detailed budget decisions before those decisions are adopted.",
+        "Yes, because it defines an accessible guide, answers oversimplification concerns, and links to the complete record.",
+        "Yes, because it demonstrates that presenting budget information clearly will make residents support every spending choice."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 216,
+      "question": "(1) If the writer deleted the underlined portion, the paragraph would primarily lose:",
+      "options": [
+        "an indication that the narrator valued both the father's mechanical knowledge and his patient approach to repairs",
+        "evidence that the narrator's father worked professionally as a bicycle mechanic rather than repairing at home",
+        "an explanation of why the bicycle was painted blue before the narrator began trying to restore it",
+        "a contrast between the father's method of repairing bicycles and his approach to repairing automobiles"
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 225,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Delete it, because the narrator's decision not to repair the bicycle again makes the lesson irrelevant to the conclusion.",
+        "Keep it, because the cooperative's assistance proves that every bicycle repair requires help from several people.",
+        "Keep it, because it links the bicycle's family history to a new appreciation for patient, shared problem-solving.",
+        "Delete it, because the passage should conclude by comparing bicycle repair with another form of transportation."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 237,
+      "question": "(7) Should the writer keep or delete the underlined description of the sleeve lifting the cup?",
+      "options": [
+        "Delete it, because describing a successful test repeats the earlier explanation of how the flexible sleeve was designed.",
+        "Delete it, because readers cannot evaluate the test unless the passage identifies the cup's manufacturer and weight.",
+        "Keep it, because lifting one cup proves that the sleeve can securely handle objects of every shape and material.",
+        "Keep it, because the sequence shows how the flexible surface changes shape and maintains contact."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 243,
+      "question": "(3) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because shipbuilding methods applied only to wooden vessels and therefore could not inform iron construction.",
+        "Delete it, because the passage concerns the plants displayed inside the structure rather than the building itself.",
+        "Keep it, because the use of shipbuilding knowledge proves that the palm house was intended to travel across water.",
+        "Keep it, because relevant metal-forming knowledge helped produce the open, curved interior described in the paragraph."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 250,
+      "question": "(10) Suppose the writer's primary purpose had been to explain how restoration balanced a historic palm house's architecture with its continuing use. Would this passage accomplish that purpose?",
+      "options": [
+        "No, because it focuses on the palm species displayed inside the building rather than its architecture and operation.",
+        "No, because it argues that preservation requires the building to cease functioning as an active glasshouse.",
+        "Yes, because it covers the original design, deterioration, and repairs preserving appearance and climate function.",
+        "Yes, because it supplies the engineering drawings and calculations needed to construct a new palm house."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 255,
+      "question": "(5) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because the stitching on Maya's gloves helps determine which section of the mural she is assigned.",
+        "Keep it, because the orange stitching develops the passage's description of the mural's most important color.",
+        "Delete it, because the detail remains incomplete without explaining where Maya purchased the gloves.",
+        "Delete it, because the stitching develops neither the tile-placement task nor the narrator's changing perspective."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 262,
+      "question": "(2) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because membranes occur only in plants that lack the fern's ability to tolerate extended drought.",
+        "Delete it, because the passage concerns the fern's color change rather than the biological basis of its recovery.",
+        "Keep it, because intact membranes prove that the fern can survive any dry period without sustaining damage.",
+        "Keep it, because it explains what remains intact and makes renewed cellular activity possible after rain."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 265,
+      "question": "(5) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Keep it, because it distinguishes drought tolerance from literal death and identifies the basis of recovery.",
+        "Delete it, because the fern's common name already establishes that the plant actually returns from death.",
+        "Keep it, because the sentence demonstrates that no drought can permanently damage any part of the fern.",
+        "Delete it, because the conclusion should identify the other plants that grow on the same trees as the fern."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 280,
+      "question": "(10) Suppose the writer's primary purpose had been to argue for carefully documented open access to public-domain museum images where institutions have authority to release them. Would this passage accomplish that purpose?",
+      "options": [
+        "No, because it argues that releasing digital images requires museums to surrender ownership of the physical objects.",
+        "No, because it recommends withholding all images until institutions have digitized every object in their collections.",
+        "Yes, because it explains benefits, addresses rights and misuse, and proposes a documented phased release.",
+        "Yes, because it establishes that open image files eliminate every institutional cost and unresolved legal question."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 290,
+      "question": "(10) Suppose the writer's purpose were to explain how a designer's process supports accessible navigation. Would this passage accomplish that purpose?",
+      "options": [
+        "Yes, because it compares the production costs and selling prices of conventional maps with tactile maps.",
+        "Yes, because it traces Bose's simplification, texture choices, user testing, and route-focused revisions.",
+        "No, because it concentrates on the history of digital street plans rather than the design of tactile navigation.",
+        "No, because it suggests that travelers should avoid unfamiliar places instead of using accessible maps."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 300,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Delete it, because the proposal ultimately argues that streets used for markets should never carry vehicles again.",
+        "Keep it, because the passage guarantees that every temporary street market will become financially successful.",
+        "Delete it, because an effective conclusion should introduce a different use of public space for comparison.",
+        "Keep it, because it combines the proposal's public benefit with its temporary and transportation-conscious limits."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 306,
+      "question": "(6) Should the writer keep or delete the sentence about maintenance-truck paint?",
+      "options": [
+        "Delete it, because the truck's color develops neither the crossing design, animal behavior, nor monitoring process.",
+        "Keep it, because the white paint helps establish that animals could see the entrance to the new crossing.",
+        "Delete it, because the railway's choice of white rather than green paint conflicts with the surrounding habitat.",
+        "Keep it, because describing nearby maintenance vehicles gives readers useful context for the engineering project."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 307,
+      "question": "(7) Should the writer keep or delete the underlined description of the turtle?",
+      "options": [
+        "Delete it, because a description of one animal cannot support a passage that also presents numerical monitoring results.",
+        "Delete it, because readers cannot evaluate the observation unless the researchers identify the individual turtle.",
+        "Keep it, because the turtle's movement proves that every animal entered the unfamiliar passage without hesitation.",
+        "Keep it, because the sequence shows how an animal physically approached and entered the new passage."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 325,
+      "question": "(10) Suppose the writer's primary purpose had been to explain the transition from harvested ice to controllable mechanical cooling. Would this passage accomplish that purpose?",
+      "options": [
+        "No, because it focuses on icehouse architecture without explaining how ice was harvested or cooling later changed.",
+        "No, because it presents modern refrigeration as a process that still depends primarily on naturally frozen ponds.",
+        "Yes, because it covers the ice trade's limits, the refrigeration cycle, and refinements supporting wider adoption.",
+        "Yes, because it provides the materials and instructions needed to construct a mechanical refrigerator at home."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 335,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Delete it, because the evidence described earlier allows researchers to reconstruct complete ancient recipes.",
+        "Keep it, because the remains demonstrate that people prepared and shared every meal in the same manner.",
+        "Keep it, because it shows how incomplete food remains reveal ordinary choices without supporting an exaggerated claim.",
+        "Delete it, because the passage should conclude by introducing a newly discovered grain species for analysis."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 339,
+      "question": "(4) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because a leaning post does not affect whether a rain gauge produces measurements suitable for comparison.",
+        "Delete it, because the passage should explain the overall project rather than describe one volunteer's observation.",
+        "Keep it, because moving the gauge demonstrates that changing an instrument can alter rainfall that was recorded earlier.",
+        "Keep it, because it shows a participant identifying and documenting a problem that affected data consistency."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 344,
+      "question": "(4) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because the movement of ribbons outdoors provides no information beyond what the team could already see.",
+        "Delete it, because the experiment should rely exclusively on electronic instruments when evaluating airflow.",
+        "Keep it, because the ribbons allow the team to calculate an exact numerical wind speed at every point.",
+        "Keep it, because it explains how the team made small changes in airflow visible before launch."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 350,
+      "question": "(10) Suppose the writer's purpose were to describe an experience that changes a person's opinion of an unfamiliar tool. Would this passage accomplish that purpose?",
+      "options": [
+        "No, because it focuses on commercial kite production rather than the narrator's changing response to one tool.",
+        "Yes, because it identifies every instrument that a professional weather station uses to measure the atmosphere.",
+        "No, because the narrator continues to regard the kite as a toy even after participating in an adjusted launch.",
+        "Yes, because the adjusted launch changes the narrator's view of the kite from toy to atmospheric tool."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 360,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Delete it, because digitizing a cylinder means the physical object no longer contributes to preservation work.",
+        "Keep it, because the recovered sound demonstrates that every damaged recording can be restored perfectly.",
+        "Keep it, because it links the recovered sound with the physical evidence and documentation central to the method.",
+        "Delete it, because the conclusion should introduce a different recording technology for comparison."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 364,
+      "question": "(4) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because the exact letter shape cannot help a conservator distinguish one layer of old lettering from another.",
+        "Delete it, because theater signs consistently use block lettering rather than decorative strokes or script.",
+        "Keep it, because the curling stroke identifies with certainty every former business name painted on the sign.",
+        "Keep it, because the curling stroke provides evidence that the exposed layer differs from the current sign."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 370,
+      "question": "(10) Suppose the writer's purpose were to describe a moment when close observation changes a person's judgment about an ordinary object. Would this passage accomplish that purpose?",
+      "options": [
+        "No, because it focuses on the construction of a new wooden sign rather than observation of an existing object.",
+        "Yes, because it identifies every business that occupied the building and the dates of their painted signs.",
+        "No, because the narrator continues to regard the worn sign as ruined after the layered lettering appears.",
+        "Yes, because observing layered lettering changes the narrator's view of the worn sign into a historical record."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 372,
+      "question": "(2) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because each cell in an axolotl independently contains enough positional information to form an entire limb.",
+        "Delete it, because the passage concerns the blastema's rate of growth rather than the arrangement of regenerated tissue.",
+        "Keep it, because the wrist and shoulder contain identical tissues arranged in the same positions before regeneration.",
+        "Keep it, because it explains how positional information helps new tissue form in the appropriate arrangement."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 385,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Keep it, because it presents borrowing as an alternative for occasional needs rather than a replacement for ownership.",
+        "Keep it, because the lending program guarantees that residents will stop buying household equipment they rarely use.",
+        "Delete it, because the passage does not argue that libraries should replace book lending with lending physical tools.",
+        "Delete it, because the conclusion should introduce a disadvantage unrelated to the program described in the passage."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 400,
+      "question": "(10) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Delete it, because the narrator's experience establishes that binoculars are ineffective during every bird survey.",
+        "Keep it, because it shows that listening complements seeing and states the broader lesson of the experience.",
+        "Delete it, because the passage should conclude by listing additional marsh species detected during the survey.",
+        "Keep it, because the passage proves that sounds identify birds more reliably than visual observation in all conditions."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 8,
+      "question": "(8) The writer is considering deleting the following sentence: 'That uncertainty made the recording worth hearing again because each replay suggested a different connection among its details.' Should the sentence be kept or deleted?",
+      "options": [
+        "Kept, because it explains how unresolved relationships among the sounds encouraged the narrator to listen more closely.",
+        "Kept, because it establishes that Mercer's written notes were too inaccurate for the recording to be interpreted.",
+        "Deleted, because the paragraph should include only details that the archive's time log can confirm independently.",
+        "Deleted, because repeated listening prevents the narrator from identifying the distinct sounds within the recording."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 21,
+      "question": "(2) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it introduces the systematic survey pattern that the following sentence explains.",
+        "Keep it, because dragging the radar equipment is consistently safer and more accurate than carrying it.",
+        "Delete it, because the passage should replace the survey description with the radar unit's purchase price.",
+        "Delete it, because one well-positioned radar reading can provide a complete map of the entire glacier."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 64,
+      "question": "(4) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it gives contrasting examples of the small urban sites where pocket forests can be planted.",
+        "Keep it, because the examples establish that successful pocket forests must be located on school property.",
+        "Delete it, because spaces beside offices and apartments cannot contain enough vegetation to form a forest.",
+        "Delete it, because the paragraph should identify the tree species used rather than describe possible locations."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 104,
+      "question": "(4) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because visible menders must follow a paper plan instead of responding directly to damaged fabric.",
+        "Delete it, because the paragraph should specify one pattern that every maker must use for a successful repair.",
+        "Keep it, because the examples establish that every weakened thread requires the same visible-mending design.",
+        "Keep it, because the examples contrast ways that makers develop designs for visible repairs."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 107,
+      "question": "(2) The writer is considering deleting the underlined sentence. Should the sentence be kept or deleted?",
+      "options": [
+        "Kept, because it shows that a small hidden leak can waste substantial water before becoming visible aboveground.",
+        "Kept, because the amount of water lost allows technicians to calculate the exact width of an underground crack.",
+        "Deleted, because the paragraph already identifies all environmental noises that might interfere with the sensors.",
+        "Deleted, because water loss does not affect the importance of locating a leak before visible damage appears."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 152,
+      "question": "(2) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it gives a concrete example of repeated nighttime measurements used to detect changing conditions.",
+        "Keep it, because taking two measurements proves that every city conducts thermal surveys twice each night.",
+        "Delete it, because naming the crew members would provide more useful context than describing their measurement schedule.",
+        "Delete it, because readings taken before dawn cannot meaningfully be compared with readings taken after sunset."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 161,
+      "question": "(6) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it introduces the financial concern that the staged-replacement proposal directly addresses.",
+        "Keep it, because it establishes that municipalities have already reserved enough money to replace every fixture.",
+        "Delete it, because acknowledging a financial objection weakens the writer's support for replacing the lights.",
+        "Delete it, because the paragraph should discuss the fixtures' appearance rather than the cost of implementing the proposal."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 173,
+      "question": "(8) Suppose the writer's primary purpose had been to explain how the railway crossed steep terrain and how its surviving structures preserve evidence of that engineering solution. Which choice would best conclude the passage?",
+      "options": [
+        "Though no longer a complete railway, the fragments let visitors trace how engineers negotiated the mountain.",
+        "Today, the surviving route matters mainly because it gives hikers a convenient place to exercise and view the mountain.",
+        "The abandoned structures demonstrate that railway transportation made the former mining settlement prosperous.",
+        "The newer railway replaced the route because modern engineering necessarily produces better transportation systems."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 175,
+      "question": "(2) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it provides a specific instance when sound drew attention to a subtle pattern in the data.",
+        "Keep it, because the listener's response proves that every sonification can be understood immediately.",
+        "Delete it, because the example is incomplete unless the passage identifies the listener by name and position.",
+        "Delete it, because comparing sound with a projected graph distracts from the astronomical measurements."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 200,
+      "question": "(8) Suppose the writer's primary purpose had been to explain how practical and collaborative decisions shaped a mural about neighborhood history. Which choice would best conclude the passage?",
+      "options": [
+        "The finished mural recorded neighborhood history and the shared decisions required to make it visible in public.",
+        "The completed mural proved that public art succeeds when every resident accepts the artists' original design.",
+        "The completed mural mattered chiefly because ceramic tiles would preserve its images through changing weather.",
+        "The completed mural transformed the bus stop through an attractive display of colors and decorative patterns."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 205,
+      "question": "(5) Should the writer keep or delete the final sentence?",
+      "options": [
+        "Delete it, because digital comparison makes examination of physical and contextual evidence unnecessary.",
+        "Keep it, because a high-ranked digital match supplies enough evidence to confirm that two fragments join.",
+        "Keep it, because it identifies the additional evidence researchers need before accepting a suggested match.",
+        "Delete it, because the conclusion should explain how ancient craftspeople shaped and fired the pottery."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 227,
+      "question": "(2) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it identifies the ambiguity that leads Mina to compare two different flour measurements.",
+        "Keep it, because the example demonstrates that a useful recipe must give every ingredient's exact weight.",
+        "Delete it, because Mina has already established that the yeast, rather than the flour, caused the problem.",
+        "Delete it, because discussing an old recipe distracts from preparations for the neighborhood breakfast."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 236,
+      "question": "(6) Should the writer keep or delete the sentence about thread colors?",
+      "options": [
+        "Delete it, because the thread colors do not develop the sleeve's flexible structure or its performance.",
+        "Keep it, because silver thread is necessary for flexible components used in every robotic gripper.",
+        "Delete it, because the colors conflict with the visual design normally used for laboratory equipment.",
+        "Keep it, because the available thread colors determine the pressure that the completed gripper applies."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 269,
+      "question": "(4) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it shows a volunteer detecting and correcting a gap in the digitized newspaper issue.",
+        "Keep it, because the seven-page issue establishes a standard length followed by every local newspaper.",
+        "Delete it, because a page missing from one box cannot be found among materials stored in another location.",
+        "Delete it, because an informational account of digitization should describe the system rather than one volunteer's action."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 274,
+      "question": "(4) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it identifies specific evidence that usable museum images make available for close study.",
+        "Delete it, because details such as inscriptions and repairs cannot be examined reliably in photographs.",
+        "Keep it, because the example establishes that every museum object is hidden behind an opaque barrier.",
+        "Delete it, because the passage concerns increasing physical attendance rather than providing digital access."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 282,
+      "question": "(2) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it identifies the user observation that led Bose to change the map's use of texture.",
+        "Keep it, because the observation proves that printed maps always depict building outlines with smooth lines.",
+        "Delete it, because the workshop example is incomplete without identifying the participant who made the comment.",
+        "Delete it, because a comment about distinguishing route lines does not contribute to accessible navigation."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 289,
+      "question": "(9) Should the writer keep or delete Bose's quotation?",
+      "options": [
+        "Keep it, because it distinguishes visual description from the practical decisions the maps are meant to support.",
+        "Keep it, because it argues that tactile maps should reproduce every feature visible on a conventional map.",
+        "Delete it, because the passage describes map design without mentioning any decisions made by travelers.",
+        "Delete it, because an informational passage should conclude with factual description rather than a quotation."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 378,
+      "question": "(3) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because handle color helps staff determine whether a particular tool can be lent safely.",
+        "Keep it, because the colors support the argument that lending collections should contain attractive equipment.",
+        "Delete it, because the description lacks the manufacturer and model of each colored screwdriver.",
+        "Delete it, because the handle colors do not explain how the lending collection would be selected or used."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 381,
+      "question": "(6) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Keep it, because it introduces the damage and completeness concerns that the checkout safeguards address.",
+        "Keep it, because the staff concern demonstrates that library employees oppose all new lending programs.",
+        "Delete it, because acknowledging a possible problem makes the argument for tool lending less persuasive.",
+        "Delete it, because the paragraph should focus on selecting equipment rather than describing checkout safeguards."
+      ]
+    },
+    {
+      "subject": "English",
+      "bankIndex": 387,
+      "question": "(2) Should the writer keep or delete the underlined sentence?",
+      "options": [
+        "Delete it, because handwriting profiles can compare only manuscripts held by the same library or archive.",
+        "Delete it, because discussing measured letterforms shifts the passage from manuscripts to modern handwriting.",
+        "Keep it, because matching letterforms proves that every unsigned manuscript in a group has one scribe.",
+        "Keep it, because it explains a useful conclusion researchers may draw by comparing measured letterforms."
+      ]
+    }
+  ]
+}
