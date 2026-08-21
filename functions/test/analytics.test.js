@@ -146,7 +146,7 @@ test("assignment score releases at due date while corrections stay private", () 
 });
 
 test("pending assignments contribute activity but not performance", () => {
-  const base = attempt({id: "solo", attempted: 100, correct: 80});
+  const base = attempt({id: "solo", attempted: 200, correct: 160});
   const pending = attempt({
     id: "pending",
     attempted: 20,
@@ -253,22 +253,22 @@ test("group analytics returns compact threshold comprehension", () => {
 });
 
 test("higher accuracy cannot lower DIRI when other inputs are fixed", () => {
-  const low = readiness([attempt({correct: 65})], catalog, NOW);
-  const high = readiness([attempt({correct: 85})], catalog, NOW);
+  const low = readiness([attempt({attempted: 200, correct: 130})], catalog, NOW);
+  const high = readiness([attempt({attempted: 200, correct: 170})], catalog, NOW);
   assert.ok(high.score >= low.score);
   assert.ok(high.pillars.performance > low.pillars.performance);
 });
 
 test("fresh distributed practice outranks stale cramming", () => {
   const fresh = readiness([
-    attempt({id: "a", daysAgo: 2, attempted: 50, correct: 40}),
-    attempt({id: "b", daysAgo: 8, attempted: 50, correct: 40}),
+    attempt({id: "a", daysAgo: 2, attempted: 100, correct: 80}),
+    attempt({id: "b", daysAgo: 8, attempted: 100, correct: 80}),
   ], catalog, NOW);
   const staleCram = readiness([
-    attempt({daysAgo: 80, subjects: ["Math"], attempted: 100, correct: 80}),
+    attempt({daysAgo: 80, attempted: 200, correct: 160}),
   ], catalog, NOW);
   assert.ok(fresh.score > staleCram.score);
-  assert.ok(fresh.pillars.coverage > staleCram.pillars.coverage);
+  assert.ok(fresh.pillars.consistency > staleCram.pillars.consistency);
 });
 
 test("progressive coverage rewards subject, module, and test breadth", () => {
@@ -279,17 +279,17 @@ test("progressive coverage rewards subject, module, and test breadth", () => {
     row.practiceYears = [1];
     row.modules[0].module = "Algebra";
   });
-  const broad = narrow.slice(0, 3).concat(
-      Array.from({length: 3}, (_, index) => {
-        const row = attempt({id: `broad-${index}`, attempted: 20, correct: 16,
-          subjects: ["Science"]});
-        row.practiceYears = [2];
-        row.modules[0].module = "Chemistry";
-        return row;
-      }),
-  );
-  assert.ok(readiness(broad, catalog, NOW).pillars.coverage >
-      readiness(narrow, catalog, NOW).pillars.coverage);
+  const broad = narrow.map((row, index) => {
+    const copy = structuredClone(row);
+    copy.attemptId = `broad-${index}`;
+    if (index >= 3) {
+      copy.practiceYears = [2];
+      copy.modules[0].module = "Geometry";
+    }
+    return copy;
+  });
+  assert.ok(readiness(broad, catalog, NOW, "Math").pillars.coverage >
+      readiness(narrow, catalog, NOW, "Math").pillars.coverage);
 });
 
 test("no-attempt periods use null accuracy instead of zero", () => {

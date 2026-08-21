@@ -34,7 +34,7 @@ test("all deterministic calibration personas produce explainable readiness", () 
 });
 
 test("volume raises evidence confidence without masquerading as consistency", () => {
-  const low = readiness([makeAttempt({attempted: 100, accuracy: 100})],
+  const low = readiness([makeAttempt({attempted: 176, accuracy: 100})],
       catalog, NOW);
   const mature = readiness([makeAttempt({attempted: 400, accuracy: 100})],
       catalog, NOW);

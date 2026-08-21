@@ -77,7 +77,7 @@ function withCurrent(values: string[], current: string) {
 
 export default function UserProfile() {
   const router = useRouter();
-  const {user, loading} = useAuth();
+  const {user, loading, updateAccountProfile} = useAuth();
   const [account, setAccount] = useState<ResolvedAccount | null>(null);
   const [form, setForm] = useState<EditableProfile | null>(null);
   const [countries, setCountries] = useState<CountryOption[]>([]);
@@ -262,14 +262,16 @@ export default function UserProfile() {
         platoonName: form.platoonName,
       };
       setForm(nextForm);
-      setAccount({
+      const nextAccount = {
         ...account,
         profile: {
           ...account.profile,
           ...nextForm,
           avaterNumber: nextForm.avatarNumber,
         },
-      });
+      };
+      setAccount(nextAccount);
+      updateAccountProfile(nextAccount.profile);
       setSaved("Your profile has been updated.");
     } catch (reason) {
       setError((reason as Error).message);
@@ -364,20 +366,11 @@ export default function UserProfile() {
       >
         <Link
           href="/app"
-          className="inline-flex min-h-10 items-center gap-2 text-sm font-medium text-brand-green"
+          className="inline-flex min-h-10 items-center gap-2 text-sm font-medium text-slate-700"
         >
-          <svg
-            aria-hidden
-            viewBox="0 0 24 24"
-            className="h-5 w-5 fill-none stroke-current"
-            strokeWidth="1.8"
-          >
-            <path
-              d="m14.5 6.5-5.5 5.5 5.5 5.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-white shadow-sm transition hover:bg-brand-green/10">
+            <span className="h-2.5 w-2.5 rotate-45 border-b-[3px] border-l-[3px] border-brand-green" />
+          </span>
           Bootcamps
         </Link>
 

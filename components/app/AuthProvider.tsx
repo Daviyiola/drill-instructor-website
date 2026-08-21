@@ -17,6 +17,7 @@ import {
   missingFirebaseConfig,
 } from "@/lib/firebase/client";
 import type {
+  DrillInstructorProfile,
   MyBootcampsResponse,
   ResolvedAccount,
   StreakSummary,
@@ -35,6 +36,7 @@ interface AuthState {
   educatorWorkspace: EducatorWorkspace | null;
   refreshEducatorWorkspace: () => Promise<EducatorWorkspace | null>;
   refreshAccount: () => Promise<ResolvedAccount | null>;
+  updateAccountProfile: (profile: DrillInstructorProfile) => void;
   updateBootcamps: (next: MyBootcampsResponse) => void;
   updateStreak: (bootcamp: string, streak: StreakSummary) => void;
 }
@@ -206,6 +208,20 @@ export default function AuthProvider({
     return next;
   }, [user]);
 
+  const updateAccountProfile = useCallback((profile: DrillInstructorProfile) => {
+    setAccount((current) => {
+      if (!current) return current;
+      const next = {
+        ...current,
+        profile: {...current.profile, ...profile},
+      };
+      if (user) {
+        sessionStorage.setItem(`di.account.${user.uid}`, JSON.stringify(next));
+      }
+      return next;
+    });
+  }, [user]);
+
   const updateBootcamps = useCallback((next: MyBootcampsResponse) => {
     setBootcamps(next);
     if (user) {
@@ -243,6 +259,7 @@ export default function AuthProvider({
       educatorWorkspace,
       refreshEducatorWorkspace,
       refreshAccount,
+      updateAccountProfile,
       updateBootcamps,
       updateStreak,
     }),
@@ -256,6 +273,7 @@ export default function AuthProvider({
       loading,
       refreshEducatorWorkspace,
       refreshAccount,
+      updateAccountProfile,
       updateBootcamps,
       updateStreak,
       user,

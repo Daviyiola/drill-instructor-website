@@ -324,7 +324,7 @@ export default function StudentAnalyticsPage({
   const educatorMode = Boolean(educatorStudentId);
   const [catalog, setCatalog] = useState<DrillCatalog | null>(null);
   const [analytics, setAnalytics] = useState<StudentAnalytics | null>(null);
-  const [preset, setPreset] = useState<Preset>("30");
+  const [preset, setPreset] = useState<Preset>("90");
   const [source, setSource] = useState("all");
   const [subject, setSubject] = useState("");
   const [metric, setMetric] = useState<AnalyticsTrendMetric>("attempts");

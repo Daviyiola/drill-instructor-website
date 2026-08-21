@@ -16,14 +16,20 @@ targets instead of using the timer selected by the student or educator.
 ## Eligibility and evidence
 
 - Window: trailing 90 days.
-- Overall DIRI: at least 100 graded attempts.
-- Focused-subject DIRI: at least 60 graded attempts in that subject.
+- Focused-subject DIRI unlocks after two complete section-equivalents have been
+  answered in that subject.
+- Overall DIRI unlocks only when every selected subject independently meets its
+  two-section threshold. Extra work in one subject cannot replace missing
+  evidence in another.
+- Canonical two-section thresholds are: ACT English 100, Mathematics 90,
+  Reading 72, Science 80; SAT Reading and Writing 108, Math 88.
 - Pending assignments may contribute activity and breadth but not mastery.
 - Evidence ceiling:
-  - Overall: 80 at 100 attempts, rising linearly to 100 at 400 attempts.
-  - Focused subject: 80 at 60 attempts, rising linearly to 100 at 240 attempts.
+  - 80 when every selected subject first reaches two section-equivalents.
+  - Rises linearly to 100 as every selected subject approaches a third
+    section-equivalent.
 - Confidence remains separate from score and combines attempts, active weeks, and
-  breadth. Even perfect performance on only 100 questions is capped at 80.
+  breadth. Even perfect performance at the minimum evidence gate is capped at 80.
 
 ## Declared exam subjects
 
@@ -38,10 +44,13 @@ focused-subject analytics view still calculates a separate one-subject DIRI.
 Changing the declaration does not rewrite attempts; it changes which subject rows
 are included in the next calculation.
 
-Evidence floors prevent a selected but unpracticed subject from being hidden:
+Evidence gates prevent a selected but under-practiced subject from being hidden:
 
-- DIRI 85+ requires at least 20 graded attempts in every declared subject.
-- DIRI 90+ requires at least 40 graded attempts in every declared subject.
+- No overall score is returned until every declared subject reaches two complete
+  section-equivalents.
+- DIRI 90+ requires three section-equivalents in every declared subject.
+- A focused subject can unlock independently while overall DIRI remains
+  unavailable.
 - Attempts from unselected subjects do not increase overall DIRI evidence,
   consistency, coverage, or mastery.
 
@@ -136,10 +145,9 @@ DIRI = min(anchored composite − pacing penalty, evidence ceiling)
 Minimum floors prevent one excellent pillar from concealing a material weakness:
 
 - Ready (85+) requires Mastery at least 80, Consistency at least 50, and Breadth
-  at least 60, plus 20 attempts in every declared subject.
+  at least 60, after every selected subject has passed the two-section gate.
 - DIRI 90+ requires Mastery at least 88, Consistency at least 80, Breadth at least
-  80, at least 300 overall attempts (180 for a focused-subject score), and 40
-  attempts in every declared subject.
+  80, and three complete section-equivalents in every declared subject.
 
 The API should return the active limiting constraints so the UI can explain why a
 score is capped instead of presenting a mysterious plateau.
@@ -148,18 +156,17 @@ score is capped instead of presenting a mysterious plateau.
 
 | Hypothetical account | Proposed DIRI | Interpretation |
 |---|---:|---|
-| 90% accuracy, 300 questions, 15 consecutive days | 84.3 | Almost; practice is concentrated into three weeks |
-| 90% accuracy, 300 questions, 15 days distributed across the window | 91.5 | High estimated readiness |
-| 90% accuracy, 400 questions, 20 distributed days | 92.1 | High estimated readiness |
+| Four-subject ACT, 300 balanced questions | No score | Not every selected subject has reached two section-equivalents |
+| 90% accuracy, 400 questions, 20 distributed days | 86.8 | Ready; evidence is above the unlock gate but still maturing |
 | 85% accuracy, 500 questions, excellent consistency/breadth | 89.5 | Ready, but below the 90 threshold |
-| 90% accuracy, 500 questions crammed into one day | 78.6 | Not Ready |
-| 90% accuracy, strong work but latest practice 60 days ago | 83.5 | Almost; stale evidence |
+| 90% accuracy, 500 questions crammed into one day | 78.5 | Not Ready |
+| 90% accuracy, strong work but latest practice 60 days ago | 83.4 | Almost; stale evidence |
 | 90% accuracy, one module/test per subject | 84.9 | Capped below Ready for narrow breadth |
-| 90% accuracy confined to one of several declared ACT subjects | Below 85 | Missing declared-subject evidence prevents Ready |
-| 95%/95%/60% across ACT subjects | 83.7 | Weak subject prevents Ready |
-| 100% accuracy, 100 questions across five weeks | 80.0 maximum | Evidence is not mature enough for Ready |
-| 70% accuracy, 600 questions, perfect consistency/breadth | 75.2 | Cannot be inflated to high readiness |
-| 90% accuracy, excellent evidence, more than 2× target time | 88.5 | Ready with maximum pacing penalty |
+| 90% accuracy confined to one declared ACT subject | No score | Missing selected-subject evidence prevents overall DIRI from unlocking |
+| 95%/95%/60% across ACT subjects | 55.2 | The weak subject anchors Mastery despite strong peers |
+| 100% accuracy, 100 questions across five weeks | No score | The selected-subject evidence gate has not been met |
+| 70% accuracy, 600 questions, perfect consistency/breadth | 75.3 | Cannot be inflated to high readiness |
+| 90% accuracy, excellent evidence, more than twice target time | 88.3 | Ready with maximum pacing penalty |
 
 All prototype checks passed: score bounds, minimum-evidence gating, accuracy
 monotonicity, reward for distributed practice, cramming rejection, stale-practice
@@ -170,7 +177,7 @@ rejection, and prevention of a 90 score from weak accuracy.
 A typical route to 90 is approximately:
 
 - At least 88% recency-weighted mastery with no materially weak subject.
-- At least 300 graded questions.
+- Three complete section-equivalents in every selected subject.
 - Practice distributed across roughly 10 active weeks.
 - Around 15–20 active days, depending on accuracy and breadth.
 - At least 80 breadth, including appropriate module and practice-test variety in

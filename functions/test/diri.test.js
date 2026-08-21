@@ -22,13 +22,65 @@ function score(options, focusedSubject = "") {
 test("launch DIRI is versioned and requires minimum evidence", () => {
   assert.equal(DIRI_FORMULA_VERSION, "diri-3.2");
   assert.equal(score({attempted: 99, accuracy: 100, sessions: 10,
-    daySpacing: 7}).status, "insufficient_data");
+    daySpacing: 7, subjects: ["English"]}, "English").status,
+  "insufficient_data");
   const minimum = score({attempted: 100, accuracy: 100, sessions: 5,
-    daySpacing: 7});
+    daySpacing: 7, subjects: ["English"]}, "English");
   assert.equal(minimum.status, "estimated");
   assert.equal(minimum.evidenceCeiling, 80);
   assert.ok(minimum.score <= 80);
   assert.ok(minimum.confidence < 1);
+});
+
+test("subject DIRI unlocks independently after two section equivalents", () => {
+  const selected = ["Mathematics", "Reading", "Science"];
+  const math = buildHistory({bootcamp: "act", attempted: 90, accuracy: 90,
+    sessions: 6, daySpacing: 5, subjects: ["Mathematics"]});
+  const science = buildHistory({bootcamp: "act", attempted: 80, accuracy: 90,
+    sessions: 6, daySpacing: 5, subjects: ["Science"]});
+  const shortReading = buildHistory({bootcamp: "act", attempted: 71,
+    accuracy: 90, sessions: 6, daySpacing: 5, subjects: ["Reading"]});
+  const lastReading = buildHistory({bootcamp: "act", attempted: 1,
+    accuracy: 100, sessions: 1, daySpacing: 0, subjects: ["Reading"]});
+
+  assert.equal(readiness(math, catalog, NOW, "Mathematics").status,
+      "estimated");
+  const locked = readiness(math.concat(science, shortReading), catalog, NOW,
+      "", selected);
+  assert.equal(locked.status, "insufficient_data");
+  assert.equal(locked.requiredAttempts, 242);
+  assert.equal(readiness(math.concat(science, shortReading, lastReading),
+      catalog, NOW, "", selected).status, "estimated");
+});
+
+test("SAT uses two canonical section equivalents per selected subject", () => {
+  const satCatalog = buildCatalog("sat");
+  const readingWriting = buildHistory({bootcamp: "sat", attempted: 108,
+    accuracy: 90, sessions: 8, daySpacing: 4, subjects: ["Read. & Writ."]});
+  const shortMath = buildHistory({bootcamp: "sat", attempted: 87,
+    accuracy: 90, sessions: 8, daySpacing: 4, subjects: ["Math"]});
+  const lastMath = buildHistory({bootcamp: "sat", attempted: 1,
+    accuracy: 100, sessions: 1, daySpacing: 0, subjects: ["Math"]});
+  assert.equal(readiness(readingWriting.concat(shortMath), satCatalog, NOW)
+      .status, "insufficient_data");
+  const unlocked = readiness(readingWriting.concat(shortMath, lastMath),
+      satCatalog, NOW);
+  assert.equal(unlocked.status, "estimated");
+  assert.equal(unlocked.requiredAttempts, 196);
+});
+
+test("exceptional SAT readiness requires three section equivalents per subject", () => {
+  const satCatalog = buildCatalog("sat");
+  const readingWriting = buildHistory({bootcamp: "sat", attempted: 162,
+    accuracy: 95, sessions: 10, daySpacing: 8,
+    subjects: ["Read. & Writ."], moduleBreadth: "all", testBreadth: "all"});
+  const math = buildHistory({bootcamp: "sat", attempted: 132,
+    accuracy: 95, sessions: 10, daySpacing: 8,
+    subjects: ["Math"], moduleBreadth: "all", testBreadth: "all"});
+  const result = readiness(readingWriting.concat(math), satCatalog, NOW);
+  assert.ok(result.score >= 90);
+  assert.equal(result.contributingAttempts, 294);
+  assert.equal(result.constraints.length, 0);
 });
 
 test("a DIRI of 90 always satisfies every launch guardrail", () => {
@@ -120,7 +172,7 @@ test("declared ACT subjects define readiness without penalizing an omitted optio
   const selected = ["English", "Mathematics", "Science"];
   const history = buildHistory({
     bootcamp: "act",
-    attempted: 420,
+    attempted: 450,
     accuracy: 92,
     sessions: 24,
     daySpacing: 3,
@@ -135,9 +187,9 @@ test("declared ACT subjects define readiness without penalizing an omitted optio
   ]);
   assert.ok(tailored.score >= 90);
   assert.deepEqual(tailored.selectedSubjects, selected);
-  assert.ok(allFour.score < 85);
+  assert.equal(allFour.status, "insufficient_data");
   assert.ok(allFour.constraints.includes(
-      "selected_subject_evidence_below_ready_floor"));
+      "minimum_subject_evidence_not_met"));
 });
 
 test("ACT preference accepts three or four valid catalog subjects", () => {
@@ -157,10 +209,18 @@ test("ACT preference accepts three or four valid catalog subjects", () => {
 });
 
 test("small accuracy improvements cannot reduce DIRI", () => {
+  const base = buildHistory({bootcamp: "act", attempted: 400, accuracy: 50,
+    sessions: 20, daySpacing: 4});
   let previous = -1;
   for (let accuracy = 50; accuracy <= 100; accuracy += 1) {
-    const current = score({attempted: 400, accuracy, sessions: 20,
-      daySpacing: 4}).score;
+    const history = structuredClone(base);
+    history.forEach((attempt) => {
+      attempt.subjects.forEach((row) => {
+        row.correct = Math.floor(row.attempted * accuracy / 100);
+        row.wrong = row.attempted - row.correct;
+      });
+    });
+    const current = readiness(history, catalog, NOW).score;
     assert.ok(current >= previous, `${accuracy}% produced ${current} after ${previous}`);
     previous = current;
   }

@@ -212,7 +212,7 @@ export default function EducatorGroupAnalytics({
   fallbackName: string;
 }) {
   const {user} = useAuth();
-  const [preset, setPreset] = useState<DatePreset>("30");
+  const [preset, setPreset] = useState<DatePreset>("90");
   const [customStart, setCustomStart] = useState(inputDate(
     new Date(Date.now() - 29 * DAY_MS),
   ));

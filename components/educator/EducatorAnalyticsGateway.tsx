@@ -34,7 +34,7 @@ function sortValue(row: GatewayRow, key: SortKey) {
 export default function EducatorAnalyticsGateway({bootcamp}: {bootcamp: string}) {
   const {user} = useAuth();
   const [tab, setTab] = useState<"students" | "groups">("students");
-  const [range, setRange] = useState("30d");
+  const [range, setRange] = useState("90d");
   const [sortBy, setSortBy] = useState<SortKey>("name");
   const [orderBy, setOrderBy] = useState<"asc" | "desc">("asc");
   const [query, setQuery] = useState("");

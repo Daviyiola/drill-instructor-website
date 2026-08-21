@@ -18,6 +18,21 @@ const CANONICAL_SECONDS_PER_QUESTION = Object.freeze({
   "Math": 70 * 60 / 44,
 });
 
+// DIRI unlocks only after two complete section-equivalents have been answered
+// in every selected subject. A third section-equivalent matures the evidence
+// ceiling and is required for exceptional (90+) readiness.
+const CANONICAL_QUESTIONS_PER_SECTION = Object.freeze({
+  "English": 50,
+  "Mathematics": 45,
+  "Reading": 36,
+  "Science": 40,
+  "Read. & Writ.": 54,
+  "Reading and Writing": 54,
+  "Math": 44,
+});
+const MINIMUM_SECTION_EQUIVALENTS = 2;
+const MATURE_SECTION_EQUIVALENTS = 3;
+
 function number(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
@@ -71,6 +86,15 @@ function weightedAccuracy(rows, now) {
   return values.attempted ? values.correct / values.attempted * 100 : 0;
 }
 
+function sectionQuestionCount(descriptor) {
+  const canonical = CANONICAL_QUESTIONS_PER_SECTION[descriptor.name];
+  if (canonical) return canonical;
+  const tests = Array.isArray(descriptor.practiceYears) ?
+    descriptor.practiceYears.length : 0;
+  const questions = number(descriptor.questionCount);
+  return tests && questions ? Math.max(1, Math.round(questions / tests)) : 50;
+}
+
 function readiness(
     attempts,
     catalog,
@@ -83,6 +107,8 @@ function readiness(
     String(subject || "").trim()).filter(Boolean));
   const subjectIncluded = (subject) => focusedSubject ?
     subject === focusedSubject : !selectedSet.size || selectedSet.has(subject);
+  const catalogSubjects = (catalog && catalog.subjects || [])
+      .filter((row) => subjectIncluded(row.name));
   const recent = (attempts || []).filter((attempt) => {
     const submitted = Date.parse(attempt && attempt.submittedAt);
     return Number.isFinite(submitted) && submitted >= cutoff && submitted <= now;
@@ -94,18 +120,37 @@ function readiness(
       .filter((row) => subjectIncluded(row.subject))
       .map((row) => ({...row, submittedAt: attempt.submittedAt})));
   const totals = sumRows(gradedRows);
-  const minimum = focusedSubject ? 60 : 100;
-  if (totals.attempted < minimum) {
+  const gradedSubjectAttempts = {};
+  gradedRows.forEach((row) => {
+    gradedSubjectAttempts[row.subject] =
+      number(gradedSubjectAttempts[row.subject]) + number(row.attempted);
+  });
+  const selectedEvidence = catalogSubjects.map((descriptor) => {
+    const sectionQuestions = sectionQuestionCount(descriptor);
+    return {
+      subject: descriptor.name,
+      attempted: number(gradedSubjectAttempts[descriptor.name]),
+      requiredAttempts: sectionQuestions * MINIMUM_SECTION_EQUIVALENTS,
+      matureAttempts: sectionQuestions * MATURE_SECTION_EQUIVALENTS,
+    };
+  });
+  const minimum = selectedEvidence.reduce(
+      (sum, row) => sum + row.requiredAttempts, 0);
+  const everySubjectHasMinimum = selectedEvidence.length > 0 &&
+    selectedEvidence.every((row) => row.attempted >= row.requiredAttempts);
+  if (!everySubjectHasMinimum || totals.attempted < minimum) {
     return {
       status: "insufficient_data",
       score: null,
-      confidence: round(Math.min(1, totals.attempted / minimum), 2),
+      confidence: round(Math.min(1, minimum ? totals.attempted / minimum : 0), 2),
       contributingAttempts: totals.attempted,
       requiredAttempts: minimum,
       includedSubjects: [...new Set(gradedRows.map((row) => row.subject))],
+      selectedSubjects: catalogSubjects.map((row) => row.name),
+      subjectEvidence: selectedEvidence,
       formulaVersion: DIRI_FORMULA_VERSION,
       pillars: null,
-      constraints: ["minimum_attempts_not_met"],
+      constraints: ["minimum_subject_evidence_not_met"],
     };
   }
 
@@ -135,15 +180,8 @@ function readiness(
   const consistency = .5 * activeWeekScore + .3 * activeDayScore +
     .2 * freshnessScore;
 
-  const catalogSubjects = (catalog && catalog.subjects || [])
-      .filter((row) => subjectIncluded(row.name));
   const subjectAttempts = {};
-  const gradedSubjectAttempts = {};
   const moduleAttempts = {};
-  gradedRows.forEach((row) => {
-    gradedSubjectAttempts[row.subject] =
-      number(gradedSubjectAttempts[row.subject]) + number(row.attempted);
-  });
   scoped.forEach((attempt) => {
     (attempt.subjects || []).forEach((row) => {
       if (subjectIncluded(row.subject)) {
@@ -218,22 +256,17 @@ function readiness(
 
   const weightedComposite = .65 * mastery + .2 * consistency + .15 * breadth;
   const masteryCeiling = mastery + 5;
-  const evidenceTarget = focusedSubject ? 240 : 400;
+  const evidenceTarget = selectedEvidence.reduce(
+      (sum, row) => sum + row.matureAttempts, 0);
   const evidenceCeiling = 80 + 20 * clamp(
       (totals.attempted - minimum) / (evidenceTarget - minimum), 0, 1);
   let score = clamp(Math.min(weightedComposite, masteryCeiling,
       evidenceCeiling) - pacingPenalty);
   const constraints = [];
-  const readySubjectMinimum = 20;
-  const exceptionalSubjectMinimum = 40;
-  const selectedEvidence = catalogSubjects.map((descriptor) => ({
-    subject: descriptor.name,
-    attempted: number(gradedSubjectAttempts[descriptor.name]),
-  }));
   const everySubjectReady = selectedEvidence.every((row) =>
-    row.attempted >= readySubjectMinimum);
+    row.attempted >= row.requiredAttempts);
   const everySubjectExceptional = selectedEvidence.every((row) =>
-    row.attempted >= exceptionalSubjectMinimum);
+    row.attempted >= row.matureAttempts);
   if (mastery < 80) constraints.push("mastery_below_ready_floor");
   if (consistency < 50) constraints.push("consistency_below_ready_floor");
   if (breadth < 60) constraints.push("breadth_below_ready_floor");
@@ -241,7 +274,7 @@ function readiness(
     constraints.push("selected_subject_evidence_below_ready_floor");
   }
   if (constraints.length) score = Math.min(score, 84.9);
-  const highReadinessAttempts = focusedSubject ? 180 : 300;
+  const highReadinessAttempts = evidenceTarget;
   if (mastery < 88 || consistency < 80 || breadth < 80 ||
       totals.attempted < highReadinessAttempts || !everySubjectExceptional) {
     constraints.push("high_readiness_evidence_incomplete");
@@ -249,7 +282,7 @@ function readiness(
   }
   score = round(score);
   const confidence = .5 * Math.min(1, totals.attempted /
-      (focusedSubject ? 240 : 400)) +
+      evidenceTarget) +
     .3 * Math.min(1, activeWeeks / 8) + .2 * breadth / 100;
 
   return {
@@ -288,7 +321,10 @@ function readiness(
 }
 
 module.exports = {
+  CANONICAL_QUESTIONS_PER_SECTION,
   CANONICAL_SECONDS_PER_QUESTION,
   DIRI_FORMULA_VERSION,
+  MINIMUM_SECTION_EQUIVALENTS,
+  MATURE_SECTION_EQUIVALENTS,
   readiness,
 };

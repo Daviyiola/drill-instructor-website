@@ -24,13 +24,13 @@ const BOOTCAMP = "act";
 const SUBJECTS = ["English", "Mathematics", "Reading", "Science"];
 
 const PERSONAS = [
-  {slug: "maya_chen", firstName: "Maya", lastName: "Chen", sessions: 21, base: {English: .92, Mathematics: .91, Reading: .91, Science: .92}},
+  {slug: "maya_chen", firstName: "Maya", lastName: "Chen", sessions: 21, diriSubjects: ["English", "Mathematics", "Reading", "Science"], base: {English: .92, Mathematics: .91, Reading: .91, Science: .92}},
   {slug: "avery_stone", firstName: "Avery", lastName: "Stone", sessions: 19, base: {English: .88, Mathematics: .87, Reading: .86, Science: .87}},
   {slug: "elias_turner", firstName: "Elias", lastName: "Turner", sessions: 17, base: {English: .77, Mathematics: .93, Reading: .69, Science: .91}, modules: {"Reading|Inference and Implication": .55}},
   {slug: "sofia_ramirez", firstName: "Sofia", lastName: "Ramirez", sessions: 17, base: {English: .93, Mathematics: .66, Reading: .90, Science: .69}},
   {slug: "noah_bennett", firstName: "Noah", lastName: "Bennett", sessions: 17, base: {English: .84, Mathematics: .86, Reading: .82, Science: .76}, modules: {"Science|Experimental Design": .20}},
   {slug: "ethan_brooks", firstName: "Ethan", lastName: "Brooks", sessions: 15, auth: true, base: {English: .75, Mathematics: .71, Reading: .73, Science: .70}},
-  {slug: "grace_holloway", firstName: "Grace", lastName: "Holloway", sessions: 19, auth: true, base: {English: .73, Mathematics: .61, Reading: .66, Science: .72}},
+  {slug: "grace_holloway", firstName: "Grace", lastName: "Holloway", sessions: 24, auth: true, diriSubjects: ["English", "Mathematics", "Reading"], base: {English: .73, Mathematics: .61, Reading: .66, Science: .72}},
   {slug: "caleb_morgan", firstName: "Caleb", lastName: "Morgan", sessions: 16, base: {English: .68, Mathematics: .74, Reading: .72, Science: .70}, modules: {"English|Transitions and Logical Relationships": .54, "English|Organization and Cohesion": .58, "Reading|Inference and Implication": .78}},
   {slug: "priya_shah", firstName: "Priya", lastName: "Shah", sessions: 15, base: {English: .61, Mathematics: .55, Reading: .59, Science: .53}, modules: {"Reading|Inference and Implication": .48, "Mathematics|Ratios, Rates and Proportions": .44, "Mathematics|Quadratic Expressions": .46, "Science|Data Representation": .45, "Science|Scientific Conclusions": .47}},
   {slug: "miles_carter", firstName: "Miles", lastName: "Carter", sessions: 15, base: {English: .76, Mathematics: .78, Reading: .68, Science: .75}, modules: {"Reading|Inference and Implication": .55}},
@@ -316,17 +316,19 @@ function soloDayAgo(index, count, personaIndex) {
 }
 
 function subjectsForSession(persona, index) {
-  if (persona.slug === "grace_holloway" && (index <= 8 || index % 2 === 1)) {
+  if (persona.slug === "maya_chen" && index === persona.sessions - 1) {
+    return ["English"];
+  }
+  if (persona.slug === "grace_holloway" && (index <= 8 || index >= 19)) {
     return ["Reading"];
   }
   if (persona.slug === "grace_holloway") {
     // Keep Reading as Grace's visible improvement story without making her
     // overall record artificially one-dimensional. Her remaining sessions
-    // rotate through the other ACT subjects so both the current three-subject
-    // default and the four-subject DIRI preference have credible evidence.
-    const supportingSubjects = ["English", "Mathematics", "Science"];
-    return [supportingSubjects[Math.floor(Math.max(0, index - 10) / 2) %
-      supportingSubjects.length]];
+    // build the English and Mathematics evidence in her saved three-subject
+    // DIRI preference.
+    const supportingSubjects = ["English", "Mathematics"];
+    return [supportingSubjects[(index - 9) % supportingSubjects.length]];
   }
   const primary = SUBJECTS[(index + persona.index) % SUBJECTS.length];
   const subjects = [primary];
@@ -404,9 +406,10 @@ function generateScenario(options = {}) {
       const dayAgo = soloDayAgo(index, persona.sessions, persona.index);
       const startedAt = isoAt(anchorMs, dayAgo, dayAgo % 6 === 0 ? 14 : 18 + (index % 3), (index * 13) % 55);
       const subjects = subjectsForSession(persona, index);
-      const targetCount = persona.slug === "grace_holloway" &&
-        !(subjects.length === 1 && subjects[0] === "Reading") ?
-        22 : 8 + ((index + persona.index) % 7);
+      const targetCount = persona.slug === "maya_chen" ? 36 :
+        persona.slug === "grace_holloway" &&
+          !(subjects.length === 1 && subjects[0] === "Reading") ?
+          30 : 8 + ((index + persona.index) % 7);
       const modulesBySubject = {};
       if (persona.slug === "grace_holloway" && subjects.length === 1 && subjects[0] === "Reading") modulesBySubject.Reading = ["Inference and Implication"];
       if (persona.slug === "noah_bennett" && subjects.includes("Science")) modulesBySubject.Science = ["Experimental Design"];
@@ -715,7 +718,11 @@ function generateScenario(options = {}) {
       delete data[path];
       return [assignment.id, row];
     }));
-    data[`users/${persona.id}`] = {...profile, squadMembers: demoSquadMembers,
+    data[`users/${persona.id}`] = {...profile,
+      ...(persona.diriSubjects ? {analyticsPreferences: {
+        act: {selectedSubjects: persona.diriSubjects, updatedAt: planStart},
+      }} : {}),
+      squadMembers: demoSquadMembers,
       userChallenges: challengeInboxes[persona.id],
       assignedDrills, statsIndex: Object.fromEntries(attemptsByStudent[persona.id]
           .map((attempt) => [attempt.attemptId, attempt])),

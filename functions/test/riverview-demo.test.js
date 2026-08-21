@@ -33,7 +33,7 @@ test("Riverview scenario is deterministic and meets acceptance checks", () => {
   assert.deepEqual(validateScenario(first), {ok: true, errors: []});
   assert.equal(first.report.counts.students, 14);
   assert.equal(first.report.counts.educators, 4);
-  assert.equal(first.report.counts.sessions, 255);
+  assert.equal(first.report.counts.sessions, 260);
   assert.deepEqual(first.report.group.readingInferenceAt60, {meeting: 10, below: 3, noData: 1});
 });
 
@@ -129,6 +129,10 @@ test("Riverview produces natural DIRI evidence states", () => {
   const catalog = buildCatalog("act");
   const analyticsFor = (name) => {
     const student = generated.report.students.find((row) => row.name === name);
+    const preferences = generated.data[`users/${student.id}`]
+        .analyticsPreferences || {};
+    const selectedSubjects = preferences.act && preferences.act.selectedSubjects ||
+      ["English", "Mathematics", "Reading", "Science"];
     return aggregateAnalytics(generated.attemptsByStudent[student.id], {
       bootcamp: "act",
       startAt: new Date(Date.parse(ANCHOR) - 90 * 86400000).toISOString(),
@@ -137,7 +141,7 @@ test("Riverview produces natural DIRI evidence states", () => {
       source: "all",
       subject: "",
       granularity: "week",
-      diriSubjects: ["English", "Mathematics", "Reading", "Science"],
+      diriSubjects: selectedSubjects,
     }, catalog, Date.parse(ANCHOR));
   };
   assert.equal(analyticsFor("Owen Fields").readiness.status, "insufficient_data");
