@@ -265,6 +265,10 @@ async function handler(req, res) {
       activationDate: claimed.activationDate || license.activationDate,
       expirationDate: claimed.expirationDate || license.expirationDate,
       licenseHash: claimed.licenseHash || license.licenseHash,
+      source: "access_code",
+      status: "active",
+      autoRenews: false,
+      cancelAtPeriodEnd: false,
     };
     const finalizedAt = new Date().toISOString();
     const history = buildAccessCodeHistoryEvent(
@@ -275,6 +279,20 @@ async function handler(req, res) {
 
     await db.ref().update({
       [`users/${userId}/testdata/${bootcamp}/license`]: finalizedLicense,
+      [`userEntitlements/${userId}/${bootcamp}/access_code`]: {
+        provider: "access_code",
+        productId: "",
+        planType,
+        status: "active",
+        grantsAccess: true,
+        activationDate: finalizedLicense.activationDate,
+        expirationDate: finalizedLicense.expirationDate,
+        autoRenews: false,
+        cancelAtPeriodEnd: false,
+        paymentNeedsAttention: false,
+        transactionId: history.eventId,
+        updatedAt: finalizedAt,
+      },
       [`subscriptionEvents/${userId}/${bootcamp}/${history.eventId}`]:
         history.event,
       [`accessCodes/${planType}/${code}/claimed`]: false,

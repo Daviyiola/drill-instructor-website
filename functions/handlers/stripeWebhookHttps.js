@@ -8,10 +8,13 @@ const {sendSubscriptionSuccessEmail} = require("./_email");
 const {
   SUPPORTED_BOOTCAMPS,
   cleanSegment,
-  licenseFromSubscription,
   planFromSubscription,
   stripeLedgerEvent,
 } = require("./_stripeBilling");
+const {
+  recomputeStripeEntitlement,
+  stripeSubscriptionRecord,
+} = require("./_stripeEntitlements");
 
 const LICENSE_SALT = defineSecret("LICENSE_SALT");
 const STRIPE_SECRET_KEY = defineSecret("STRIPE_SECRET_KEY");
@@ -116,6 +119,18 @@ async function resolveUserId(db, object) {
 }
 
 /**
+ * Return whether billing writes are forbidden for a deleted user.
+ * @param {Object} db Firebase database
+ * @param {string} userId Custom student id
+ * @return {Promise<boolean>} Whether a deletion tombstone exists
+ */
+async function deletedBillingUser(db, userId) {
+  if (!userId) return false;
+  return (await db.ref(`deletedBillingUsers/${userId}`)
+      .once("value")).exists();
+}
+
+/**
  * Keep customer and subscription indexes current.
  *
  * @param {Object} db Firebase database
@@ -137,15 +152,21 @@ async function updateIndexes(db, userId, subscription, recordedAt) {
     };
   }
   if (subscriptionId) {
-    updates[`stripeSubscriptions/${subscriptionId}`] = {
-      userId,
-      customerId,
-      bootcamp: String(subscription.metadata &&
-        subscription.metadata.bootcamp || ""),
-      planType: planFromSubscription(subscription),
-      status: String(subscription.status || ""),
-      updatedAt: recordedAt,
-    };
+    const previous = (await db.ref(`stripeSubscriptions/${subscriptionId}`)
+        .once("value")).val() || {};
+    const record = stripeSubscriptionRecord(
+        subscription,
+        previous,
+        Date.now(),
+    );
+    record.userId = userId;
+    updates[`stripeSubscriptions/${subscriptionId}`] = record;
+    if (record.bootcamp) {
+      updates[
+          `stripeSubscriptionsByUser/${userId}/${record.bootcamp}/` +
+          subscriptionId
+      ] = true;
+    }
   }
   if (Object.keys(updates).length) await db.ref().update(updates);
 }
@@ -178,24 +199,35 @@ async function syncSubscription(
     });
     return null;
   }
+  if (await deletedBillingUser(db, userId)) {
+    console.info("STRIPE_EVENT_IGNORED_FOR_DELETED_USER", {
+      userId,
+      subscriptionId: objectId(subscription && subscription.id),
+    });
+    return {deleted: true, userId, bootcamp};
+  }
 
   const recordedAt = new Date(
       Number(stripeEvent.created || Math.floor(Date.now() / 1000)) * 1000,
   ).toISOString();
-  const licenseRef = db.ref(
-      `users/${userId}/testdata/${bootcamp}/license`,
+  await updateIndexes(db, userId, subscription, recordedAt);
+  await recomputeStripeEntitlement(
+      db, userId, bootcamp, LICENSE_SALT.value(), Date.now(),
   );
-  const previousLicense = (await licenseRef.once("value")).val() || {};
-  const license = licenseFromSubscription(
-      subscription,
-      userId,
-      LICENSE_SALT.value(),
-      Date.now(),
-      previousLicense,
-  );
-  const updates = {
-    [`users/${userId}/testdata/${bootcamp}/license`]: license,
+  const indexed = (await db.ref(
+      `stripeSubscriptions/${objectId(subscription.id)}`,
+  ).once("value")).val() || {};
+  const license = {
+    planType: indexed.planType || planFromSubscription(subscription),
+    status: indexed.status || String(subscription.status || ""),
+    activationDate: indexed.activationDate || "",
+    expirationDate: indexed.expirationDate || "",
+    stripeSubscriptionId: indexed.subscriptionId ||
+      objectId(subscription.id),
+    cancelAtPeriodEnd: indexed.cancelAtPeriodEnd === true,
+    paymentNeedsAttention: indexed.paymentNeedsAttention === true,
   };
+  const updates = {};
   if (recordEvent) {
     const history = stripeLedgerEvent({
       stripeEventId: stripeEvent.id,
@@ -215,8 +247,7 @@ async function syncSubscription(
         `subscriptionEvents/${userId}/${bootcamp}/${history.eventId}`
     ] = history.event;
   }
-  await db.ref().update(updates);
-  await updateIndexes(db, userId, subscription, recordedAt);
+  if (Object.keys(updates).length) await db.ref().update(updates);
   return {userId, bootcamp, license, recordedAt};
 }
 
@@ -234,7 +265,7 @@ async function handleInvoice(stripe, db, invoice, event) {
   if (!subscriptionId) return;
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
   const context = await syncSubscription(db, subscription, event, false);
-  if (!context) return;
+  if (!context || context.deleted) return;
   const eventTypes = {
     "invoice.paid": ["invoice_paid", "paid"],
     "invoice.payment_failed": ["invoice_payment_failed", "failed"],
@@ -342,7 +373,8 @@ async function handleRefund(stripe, db, object, event) {
       subscription.metadata && subscription.metadata.bootcamp,
       20,
   ).toLowerCase();
-  if (!userId || !SUPPORTED_BOOTCAMPS.has(bootcamp)) return;
+  if (!userId || !SUPPORTED_BOOTCAMPS.has(bootcamp) ||
+      await deletedBillingUser(db, userId)) return;
   const recordedAt = new Date(event.created * 1000).toISOString();
   const history = stripeLedgerEvent({
     stripeEventId: event.id,
@@ -416,6 +448,39 @@ async function handler(req, res) {
           );
           await syncSubscription(db, subscription, event);
         }
+        const checkoutUserId = await resolveUserId(db, object);
+        const checkoutBootcamp = cleanSegment(
+            object && object.metadata && object.metadata.bootcamp,
+            20,
+        ).toLowerCase();
+        if (checkoutUserId && SUPPORTED_BOOTCAMPS.has(checkoutBootcamp) &&
+            !(await deletedBillingUser(db, checkoutUserId))) {
+          await db.ref(
+              `stripeCheckoutReservations/${checkoutUserId}/` +
+              checkoutBootcamp,
+          ).update({
+            status: "completed",
+            sessionId: objectId(object.id),
+            completedAt: new Date().toISOString(),
+          });
+        }
+      } else if (event.type === "checkout.session.expired") {
+        const checkoutUserId = await resolveUserId(db, object);
+        const checkoutBootcamp = cleanSegment(
+            object && object.metadata && object.metadata.bootcamp,
+            20,
+        ).toLowerCase();
+        if (checkoutUserId && SUPPORTED_BOOTCAMPS.has(checkoutBootcamp)) {
+          await db.ref(
+              `stripeCheckoutReservations/${checkoutUserId}/` +
+              checkoutBootcamp,
+          ).update({
+            status: "expired",
+            sessionId: objectId(object.id),
+            checkoutUrl: "",
+            expiredAt: new Date().toISOString(),
+          });
+        }
       } else if ([
         "customer.subscription.created",
         "customer.subscription.updated",
@@ -465,5 +530,6 @@ module.exports = {
   refundInvoiceId,
   releaseWebhookClaim,
   resolveUserId,
+  deletedBillingUser,
   syncSubscription,
 };

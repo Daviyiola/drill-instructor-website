@@ -13,6 +13,10 @@ const STRIPE_WEBHOOK_SECRET = defineSecret("STRIPE_WEBHOOK_SECRET");
 const RESEND_API_KEY = defineSecret("RESEND_API_KEY");
 const SUPPORT_FROM_EMAIL = defineSecret("SUPPORT_FROM_EMAIL");
 const SUPPORT_TO_EMAIL = defineSecret("SUPPORT_TO_EMAIL");
+const APPLE_ROOT_CERTIFICATES_BASE64 = defineSecret(
+    "APPLE_ROOT_CERTIFICATES_BASE64",
+);
+const STORE_TOKEN_HASH_SECRET = defineSecret("STORE_TOKEN_HASH_SECRET");
 
 admin.initializeApp({
   credential: applicationDefault(), // optional if already configured in env
@@ -64,7 +68,7 @@ exports.requestAccountDeletionHttps = onRequest(
 );
 
 exports.confirmAccountDeletionHttps = onRequest(
-    publicStudentOptions,
+    {...publicStudentOptions, secrets: [STRIPE_SECRET_KEY]},
     require("./handlers/confirmAccountDeletionHttps").handler,
 );
 
@@ -338,7 +342,7 @@ exports.getEducatorDrillSubmissionDetailHttps = onRequest(
 );
 
 exports.deleteAccountHttps = onRequest(
-    publicStudentOptions,
+    {...publicStudentOptions, secrets: [STRIPE_SECRET_KEY]},
     require("./handlers/deleteAccountHttps").handler,
 );
 
@@ -408,6 +412,54 @@ exports.createStripeBillingPortalSessionHttps = onRequest(
 exports.getStudentSubscriptionHistoryHttps = onRequest(
     publicStudentOptions,
     require("./handlers/getStudentSubscriptionHistoryHttps").handler,
+);
+
+exports.getStoreCatalogHttps = onRequest(
+    publicStudentOptions,
+    require("./handlers/getStoreCatalogHttps").handler,
+);
+
+exports.getStorePurchaseContextHttps = onRequest(
+    publicStudentOptions,
+    require("./handlers/getStorePurchaseContextHttps").handler,
+);
+
+exports.verifyApplePurchaseHttps = onRequest(
+    {
+      ...publicStudentOptions,
+      secrets: [APPLE_ROOT_CERTIFICATES_BASE64, LICENSE_SALT],
+      timeoutSeconds: 90,
+    },
+    require("./handlers/verifyApplePurchaseHttps").handler,
+);
+
+exports.appleStoreNotificationsHttps = onRequest(
+    {
+      ...publicStudentOptions,
+      cors: false,
+      secrets: [APPLE_ROOT_CERTIFICATES_BASE64, LICENSE_SALT],
+      timeoutSeconds: 90,
+    },
+    require("./handlers/appleStoreNotificationsHttps").handler,
+);
+
+exports.verifyGooglePlayPurchaseHttps = onRequest(
+    {
+      ...publicStudentOptions,
+      secrets: [STORE_TOKEN_HASH_SECRET, LICENSE_SALT],
+      timeoutSeconds: 90,
+    },
+    require("./handlers/verifyGooglePlayPurchaseHttps").handler,
+);
+
+exports.googlePlayNotificationsHttps = onRequest(
+    {
+      ...publicStudentOptions,
+      cors: false,
+      secrets: [STORE_TOKEN_HASH_SECRET, LICENSE_SALT],
+      timeoutSeconds: 90,
+    },
+    require("./handlers/googlePlayNotificationsHttps").handler,
 );
 
 exports.stripeWebhookHttps = onRequest(

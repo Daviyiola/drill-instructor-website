@@ -1,4 +1,5 @@
 "use strict";
+/* eslint-disable max-len */
 
 const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
@@ -29,6 +30,13 @@ const {
   annualUpgradeProducts,
   validateAnnualUpgrade,
 } = require("../handlers/createStripeBillingPortalSessionHttps");
+const {
+  claimCheckoutReservation,
+} = require("../handlers/createStripeCheckoutSessionHttps");
+const {
+  bestStripeRecord,
+  stripeSubscriptionRecord,
+} = require("../handlers/_stripeEntitlements");
 
 const FUTURE_SECONDS = Date.parse("2026-08-24T00:00:00.000Z") / 1000;
 const NOW_MS = Date.parse("2026-07-24T00:00:00.000Z");
@@ -393,4 +401,65 @@ test("Checkout explicitly uses standard Stripe payments", () => {
   );
 
   assert.match(checkout, /managed_payments:\s*\{enabled:\s*false\}/);
+});
+
+test("checkout reservations serialize duplicate requests", async () => {
+  let value = null;
+  const ref = {
+    transaction: async (update) => {
+      const next = update(value);
+      if (next === undefined) return {committed: false};
+      value = next;
+      return {committed: true};
+    },
+    once: async () => ({val: () => value}),
+  };
+  const first = await claimCheckoutReservation(ref, "monthly", NOW_MS);
+  const second = await claimCheckoutReservation(ref, "monthly", NOW_MS + 1);
+  assert.equal(first.decision, "claimed");
+  assert.equal(second.decision, "busy");
+
+  value = {...value, status: "open", checkoutUrl: "https://checkout.test"};
+  const retry = await claimCheckoutReservation(ref, "monthly", NOW_MS + 2);
+  assert.equal(retry.decision, "existing");
+  assert.equal(retry.value.checkoutUrl, "https://checkout.test");
+});
+
+test("Stripe entitlement aggregation is webhook-order independent", () => {
+  const active = stripeSubscriptionRecord(subscription({id: "sub_active"}), {}, NOW_MS);
+  const canceled = stripeSubscriptionRecord(subscription({
+    id: "sub_canceled",
+    status: "canceled",
+  }), {}, NOW_MS);
+  const pastDue = stripeSubscriptionRecord(subscription({
+    id: "sub_past_due",
+    status: "past_due",
+  }), {}, NOW_MS);
+
+  for (const rows of [
+    [canceled, pastDue, active],
+    [active, canceled, pastDue],
+  ]) {
+    const result = bestStripeRecord(rows, NOW_MS);
+    assert.equal(result.selected.subscriptionId, "sub_active");
+    assert.equal(result.active.length, 2);
+  }
+});
+
+test("a canceled Stripe webhook cannot displace another active subscription", () => {
+  const activeOne = stripeSubscriptionRecord(subscription({
+    id: "sub_one",
+    current_period_end: FUTURE_SECONDS,
+  }), {}, NOW_MS);
+  const activeTwo = stripeSubscriptionRecord(subscription({
+    id: "sub_two",
+    current_period_end: FUTURE_SECONDS + 500,
+  }), {}, NOW_MS);
+  const canceled = stripeSubscriptionRecord(subscription({
+    id: "sub_one",
+    status: "canceled",
+  }), activeOne, NOW_MS);
+  const result = bestStripeRecord([canceled, activeTwo], NOW_MS);
+  assert.equal(result.selected.subscriptionId, "sub_two");
+  assert.equal(result.selected.grantsAccess, true);
 });

@@ -24,10 +24,16 @@ function cleanSegment(value, maxLength = 160) {
  * @param {Object|null} license Stored license
  * @param {string} bootcamp Requested bootcamp
  * @param {boolean} active Whether validation passed
+ * @param {Object=} providerRows Safe provider entitlement rows
  * @return {Object} Response payload
  */
-function statusPayload(license, bootcamp, active) {
+function statusPayload(license, bootcamp, active, providerRows = {}) {
   const value = license && typeof license === "object" ? license : {};
+  const activeProviders = Object.entries(providerRows || {})
+      .filter(([, row]) => row && row.grantsAccess === true &&
+        Date.parse(row.expirationDate || "") > Date.now())
+      .map(([provider]) => provider)
+      .sort();
   return {
     status: "success",
     hasActiveLicense: active === true,
@@ -36,11 +42,13 @@ function statusPayload(license, bootcamp, active) {
     activationDate: String(value.activationDate || ""),
     expirationDate: String(value.expirationDate || ""),
     source: String(value.source || "access_code"),
+    autoRenews: value.autoRenews === true,
     stripeManaged: String(value.source || "") === "stripe",
     cancelAtPeriodEnd: value.cancelAtPeriodEnd === true,
     subscriptionStatus: String(value.status || ""),
     paymentNeedsAttention: value.paymentNeedsAttention === true,
     paymentGraceEndsAt: String(value.paymentGraceEndsAt || ""),
+    activeProviders,
   };
 }
 
@@ -76,17 +84,24 @@ async function handler(req, res) {
       return res.status(403).json({error: "Unauthorized access"});
     }
 
-    const license = (await db.ref(
-        `users/${userId}/testdata/${bootcamp}/license`,
-    ).once("value")).val();
+    const [licenseSnap, providersSnap] = await Promise.all([
+      db.ref(`users/${userId}/testdata/${bootcamp}/license`).once("value"),
+      db.ref(`userEntitlements/${userId}/${bootcamp}`).once("value"),
+    ]);
+    const license = licenseSnap.val();
+    const providerRows = providersSnap.val() || {};
 
     if (!license) {
-      return res.status(200).json(statusPayload(null, bootcamp, false));
+      return res.status(200).json(statusPayload(
+          null, bootcamp, false, providerRows,
+      ));
     }
 
     try {
       await assertLicenseActive(db, userId, bootcamp);
-      return res.status(200).json(statusPayload(license, bootcamp, true));
+      return res.status(200).json(statusPayload(
+          license, bootcamp, true, providerRows,
+      ));
     } catch (err) {
       const validationCode = Number(err && err.code);
       if (![400, 403, 409].includes(validationCode)) throw err;
@@ -96,7 +111,9 @@ async function handler(req, res) {
         bootcamp,
         reason: err && err.message || "Invalid license",
       });
-      return res.status(200).json(statusPayload(license, bootcamp, false));
+      return res.status(200).json(statusPayload(
+          license, bootcamp, false, providerRows,
+      ));
     }
   } catch (err) {
     const code = Number(err && err.code);

@@ -121,6 +121,7 @@ https://us-central1-drill-instructor-pro.cloudfunctions.net/stripeWebhookHttps
 Subscribe it to:
 
 - `checkout.session.completed`
+- `checkout.session.expired`
 - `customer.subscription.created`
 - `customer.subscription.updated`
 - `customer.subscription.deleted`
@@ -197,6 +198,23 @@ The expected RTDB server-owned records are:
 - `stripeCustomers/{studentId}`: Stripe Customer mapping
 - `stripeCustomerIndex/{customerId}`: reverse lookup for webhooks
 - `stripeSubscriptions/{subscriptionId}`: subscription ownership/status index
+- `stripeSubscriptionsByUser/{userId}/{bootcamp}/{subscriptionId}`: reverse
+  index used to aggregate every subscription before access is changed
+- `stripeCheckoutReservations/{userId}/{bootcamp}`: expiring checkout lock and
+  recoverable hosted Checkout URL
+- `userEntitlements/{userId}/{bootcamp}/stripe`: provider-safe Stripe access
+  projection; the signed legacy license is derived from all providers
+- `deletedBillingUsers/{userId}`: minimal deletion tombstone that prevents late
+  webhooks from recreating deleted billing data
+
+Checkout and Stripe Customer creation use both RTDB transaction locks and
+Stripe idempotency keys. Subscription webhooks store every subscription and
+recompute access across the complete set, so a cancellation cannot overwrite a
+different active subscription.
+
+Account deletion cancels all recoverable Stripe subscriptions before deleting
+Firebase Auth or billing mappings. If Stripe cannot be reached, deletion fails
+without removing the account so it can be retried safely.
 - `users/{studentId}/testdata/{bootcamp}/license`: current signed entitlement
 - `subscriptionEvents/{studentId}/{bootcamp}`: access and billing history
 - `stripeWebhookEvents/{stripeEventId}`: processed-event audit marker

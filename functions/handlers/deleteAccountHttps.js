@@ -3,7 +3,12 @@
 
 const {getDatabase} = require("firebase-admin/database");
 const {getAuth} = require("firebase-admin/auth");
+const Stripe = require("stripe");
+const {defineSecret} = require("firebase-functions/params");
 const {requireBearerUid, allowCors} = require("./_auth");
+const {appAccountTokenForUid} = require("./_storeAccount");
+
+const STRIPE_SECRET_KEY = defineSecret("STRIPE_SECRET_KEY");
 
 class AccountDeletionError extends Error {
   constructor(status, code) {
@@ -88,13 +93,42 @@ async function assertEducatorCanDelete(db, educatorId) {
   }
 }
 
+async function cancelStripeSubscriptions(stripe, customerId) {
+  if (!customerId) return [];
+  if (!stripe) {
+    throw new AccountDeletionError(503, "BILLING_CANCELLATION_UNAVAILABLE");
+  }
+  const canceled = [];
+  let startingAfter;
+  do {
+    const page = await stripe.subscriptions.list({
+      customer: customerId,
+      status: "all",
+      limit: 100,
+      ...(startingAfter ? {starting_after: startingAfter} : {}),
+    });
+    for (const subscription of page.data || []) {
+      if (["canceled", "incomplete_expired"].includes(subscription.status)) {
+        continue;
+      }
+      await stripe.subscriptions.cancel(subscription.id);
+      canceled.push(subscription.id);
+    }
+    const rows = page.data || [];
+    startingAfter = page.has_more && rows.length ?
+      rows[rows.length - 1].id : "";
+  } while (startingAfter);
+  return canceled;
+}
+
 /**
  * Canonical account deletion used by both authenticated and email-confirmed
  * deletion flows.
  * @param {string} callerFbUid Firebase Auth UID
+ * @param {Object=} options Optional injected services for tests
  * @return {Promise<Object>} Deleted identifiers
  */
-async function deleteAccountByUid(callerFbUid) {
+async function deleteAccountByUid(callerFbUid, options = {}) {
   const db = getDatabase();
   const uidMap = (await db.ref(`uidToCustom/${callerFbUid}`)
       .once("value")).val() || {};
@@ -109,16 +143,31 @@ async function deleteAccountByUid(callerFbUid) {
 
   const updates = {};
   if (studentId) {
-    const [studentSnap, stripeCustomerSnap, blocksSnap, blockedBySnap] =
+    const [studentSnap, stripeCustomerSnap, blocksSnap, blockedBySnap,
+      stripeIndexesSnap] =
       await Promise.all([
         db.ref(`users/${studentId}`).once("value"),
         db.ref(`stripeCustomers/${studentId}`).once("value"),
         db.ref(`studentSocial/${studentId}/blocks`).once("value"),
         db.ref(`studentSocialBlockedBy/${studentId}`).once("value"),
+        db.ref("stripeSubscriptions").orderByChild("userId")
+            .equalTo(studentId).once("value"),
       ]);
     const student = studentSnap.val() || {};
     const stripeCustomer = stripeCustomerSnap.val() || {};
-    const stripeCustomerId = cleanStripeCustomerId(stripeCustomer.customerId);
+    const stripeIndexes = stripeIndexesSnap.val() || {};
+    const indexedCustomerId = Object.values(stripeIndexes)
+        .map((row) => cleanStripeCustomerId(row && row.customerId))
+        .find(Boolean) || "";
+    const stripeCustomerId = cleanStripeCustomerId(
+        stripeCustomer.customerId,
+    ) || indexedCustomerId;
+    let stripe = options.stripe || null;
+    if (stripeCustomerId && !stripe) {
+      const secret = STRIPE_SECRET_KEY.value();
+      if (secret) stripe = new Stripe(secret);
+    }
+    await cancelStripeSubscriptions(stripe, stripeCustomerId);
     const membershipPath = studentMembershipPath(student, studentId);
     if (membershipPath) updates[membershipPath] = null;
 
@@ -127,6 +176,14 @@ async function deleteAccountByUid(callerFbUid) {
     updates[`studentDrills/${studentId}`] = null;
     updates[`subscriptionEvents/${studentId}`] = null;
     updates[`stripeCustomers/${studentId}`] = null;
+    updates[`stripeSubscriptionsByUser/${studentId}`] = null;
+    updates[`stripeCheckoutReservations/${studentId}`] = null;
+    updates[`stripeCustomerReservations/${studentId}`] = null;
+    updates[`userEntitlements/${studentId}`] = null;
+    updates[`storeTransactionsByUser/${studentId}`] = null;
+    const storeAccountToken = appAccountTokenForUid(callerFbUid);
+    updates[`storeAccountTokens/apple/${storeAccountToken}`] = null;
+    updates[`storeAccountTokens/google/${storeAccountToken}`] = null;
     updates[`studentSocial/${studentId}`] = null;
     updates[`studentSocialBlockedBy/${studentId}`] = null;
     Object.keys(blocksSnap.val() || {}).forEach((blockedId) => {
@@ -135,9 +192,16 @@ async function deleteAccountByUid(callerFbUid) {
     Object.keys(blockedBySnap.val() || {}).forEach((blockerId) => {
       updates[`studentSocial/${blockerId}/blocks/${studentId}`] = null;
     });
+    updates[`deletedBillingUsers/${studentId}`] = {
+      deletedAt: new Date().toISOString(),
+      ...(stripeCustomerId ? {stripeCustomerId} : {}),
+    };
     if (stripeCustomerId) {
       updates[`stripeCustomerIndex/${stripeCustomerId}`] = null;
     }
+    Object.keys(stripeIndexes).forEach((subscriptionId) => {
+      updates[`stripeSubscriptions/${subscriptionId}`] = null;
+    });
   }
 
   if (educatorId) {
@@ -187,3 +251,5 @@ module.exports.handler = handler;
 module.exports.AccountDeletionError = AccountDeletionError;
 module.exports.deleteAccountByUid = deleteAccountByUid;
 module.exports.studentMembershipPath = studentMembershipPath;
+module.exports.cancelStripeSubscriptions = cancelStripeSubscriptions;
+module.exports.STRIPE_SECRET_KEY = STRIPE_SECRET_KEY;

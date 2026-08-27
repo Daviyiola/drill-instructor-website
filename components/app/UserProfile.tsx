@@ -777,7 +777,9 @@ export default function UserProfile() {
             {deleteStage === 1 ? (
               <p className="mt-4 text-sm leading-6 text-slate-600">
                 Your Drill Instructor profile, saved progress, unit membership
-                and sign-in access will be permanently removed.
+                and sign-in access will be permanently removed. Apple App
+                Store and Google Play subscriptions must be canceled through
+                the store; deleting this account does not stop store billing.
               </p>
             ) : (
               <>
