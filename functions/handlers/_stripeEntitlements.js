@@ -19,6 +19,19 @@ function stripeObjectId(value) {
   );
 }
 
+function stripeSubscriptionIdFromEntitlement(entitlement, license = {}) {
+  const row = entitlement && typeof entitlement === "object" ?
+    entitlement : {};
+  const canonical = license && typeof license === "object" ? license : {};
+  return cleanSegment(
+      row.transactionId || row.subscriptionId ||
+      (canonical.source === "stripe" &&
+        (canonical.providerTransactionId ||
+          canonical.stripeSubscriptionId)),
+      180,
+  );
+}
+
 function stripeSubscriptionRecord(subscription, previous = {}, nowMs = Date.now()) {
   const period = subscriptionPeriod(subscription);
   const access = subscriptionAccessDetails(subscription, nowMs, previous);
@@ -132,5 +145,6 @@ module.exports = {
   bestStripeRecord,
   recomputeStripeEntitlement,
   stripeObjectId,
+  stripeSubscriptionIdFromEntitlement,
   stripeSubscriptionRecord,
 };

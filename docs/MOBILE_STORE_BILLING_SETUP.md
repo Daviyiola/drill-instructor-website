@@ -76,6 +76,11 @@ Use `APPLE_ENVIRONMENT=Sandbox` for a sandbox-only deployment. Production
 verification requires `APPLE_APP_ID` and fails closed when configuration or
 certificate verification is unavailable.
 
+Apple billing grace is honored only when the verified renewal payload includes
+a future `gracePeriodExpiresDate`. Billing-retry state without an active Apple
+grace period does not grant access. The grace deadline and payment-attention
+state flow through the canonical entitlement shown to clients.
+
 ## Google Play configuration
 
 Non-secret environment values:
@@ -115,6 +120,10 @@ storeTransactionsByUser/{userId}/{bootcamp}/{provider}/{transactionKey}
 storePurchaseSecrets/play_store/{tokenHash}
 storeNotificationEvents/{provider}/{notificationId}
 ```
+
+Notification event claims include an attempt ID. A failed persistence or
+provider-API operation releases only its own claim so Apple or Google can retry;
+an abandoned processing claim becomes recoverable after five minutes.
 
 RTDB client rules must deny reads and writes to all of these paths. The raw
 Google purchase token exists only in the server-private operational path so

@@ -31,10 +31,14 @@ const {
   validateAnnualUpgrade,
 } = require("../handlers/createStripeBillingPortalSessionHttps");
 const {
+  claimCustomerReservation,
   claimCheckoutReservation,
+  findOpenCheckoutSession,
+  findStripeCustomer,
 } = require("../handlers/createStripeCheckoutSessionHttps");
 const {
   bestStripeRecord,
+  stripeSubscriptionIdFromEntitlement,
   stripeSubscriptionRecord,
 } = require("../handlers/_stripeEntitlements");
 
@@ -185,6 +189,23 @@ test("annual upgrade supports shared and separate Stripe products", () => {
     monthlyProductId: "prod_monthly",
     annualProductId: "prod_annual",
   }).map((entry) => entry.product), ["prod_monthly", "prod_annual"]);
+});
+
+test("Stripe subscription ids survive canonical entitlement migration", () => {
+  assert.equal(stripeSubscriptionIdFromEntitlement({
+    transactionId: "sub_provider_row",
+  }, {
+    source: "access_code",
+    providerTransactionId: "code_transaction",
+  }), "sub_provider_row");
+  assert.equal(stripeSubscriptionIdFromEntitlement({}, {
+    source: "stripe",
+    providerTransactionId: "sub_canonical",
+  }), "sub_canonical");
+  assert.equal(stripeSubscriptionIdFromEntitlement({}, {
+    source: "stripe",
+    stripeSubscriptionId: "sub_legacy",
+  }), "sub_legacy");
 });
 
 test("scheduled cancellation is paid; terminal states fail closed", () => {
@@ -423,6 +444,74 @@ test("checkout reservations serialize duplicate requests", async () => {
   const retry = await claimCheckoutReservation(ref, "monthly", NOW_MS + 2);
   assert.equal(retry.decision, "existing");
   assert.equal(retry.value.checkoutUrl, "https://checkout.test");
+});
+
+test("checkout retries retain a stable external operation generation", async () => {
+  let value = null;
+  const ref = {
+    transaction: async (update) => {
+      const next = update(value);
+      if (next === undefined) return {committed: false};
+      value = next;
+      return {committed: true};
+    },
+    once: async () => ({val: () => value}),
+  };
+  const first = await claimCheckoutReservation(ref, "annual", NOW_MS);
+  value = {...value, status: "retryable"};
+  const retry = await claimCheckoutReservation(ref, "annual", NOW_MS + 1000);
+  assert.equal(retry.decision, "claimed");
+  assert.notEqual(retry.attemptId, first.attemptId);
+  assert.equal(retry.operationId, first.operationId);
+});
+
+test("customer retries retain a stable external operation generation", async () => {
+  let value = null;
+  const ref = {
+    transaction: async (update) => {
+      const next = update(value);
+      if (next === undefined) {
+        return {committed: false, snapshot: {val: () => value}};
+      }
+      value = next;
+      return {committed: true, snapshot: {val: () => value}};
+    },
+  };
+  const first = await claimCustomerReservation(ref, NOW_MS);
+  value = {...value, status: "retryable"};
+  const retry = await claimCustomerReservation(ref, NOW_MS + 1000);
+  assert.equal(first.claimed, true);
+  assert.equal(retry.claimed, true);
+  assert.notEqual(retry.attemptId, first.attemptId);
+  assert.equal(retry.operationId, first.operationId);
+});
+
+test("Stripe objects can be recovered from stable server metadata", async () => {
+  const stripe = {
+    customers: {
+      search: async () => ({data: [{
+        id: "cus_recovered",
+        metadata: {userId: "student_example"},
+      }]}),
+    },
+    checkout: {
+      sessions: {
+        list: async () => ({data: [{
+          id: "cs_recovered",
+          status: "open",
+          url: "https://checkout.test/recovered",
+          metadata: {operationId: "operation_one"},
+        }]}),
+      },
+    },
+  };
+  assert.equal(
+      await findStripeCustomer(stripe, "student_example"),
+      "cus_recovered",
+  );
+  assert.equal((await findOpenCheckoutSession(
+      stripe, "cus_recovered", "operation_one",
+  )).id, "cs_recovered");
 });
 
 test("Stripe entitlement aggregation is webhook-order independent", () => {

@@ -6,6 +6,11 @@ const {defineSecret} = require("firebase-functions/params");
 const {cleanSegment} = require("./_stripeBilling");
 const {appleTransactionRecord, createAppleVerifier} = require("./_appleStore");
 const {persistAppleTransaction} = require("./verifyApplePurchaseHttps");
+const {
+  claimStoreNotification,
+  completeStoreNotification,
+  releaseStoreNotificationClaim,
+} = require("./_storeNotificationClaims");
 
 const APPLE_ROOT_CERTIFICATES_BASE64 = defineSecret(
     "APPLE_ROOT_CERTIFICATES_BASE64",
@@ -18,6 +23,7 @@ async function handler(req, res) {
   }
   const signedPayload = String(req.body && req.body.signedPayload || "");
   if (!signedPayload) return res.status(400).send("Missing signed payload");
+  let processingFailure = false;
   try {
     const verifier = createAppleVerifier({
       rootCertificates: APPLE_ROOT_CERTIFICATES_BASE64.value(),
@@ -31,54 +37,73 @@ async function handler(req, res) {
     const eventId = cleanSegment(notification.notificationUUID, 180);
     if (!eventId) return res.status(400).send("Missing notification ID");
     const db = getDatabase();
-    const eventRef = db.ref(`storeNotificationEvents/app_store/${eventId}`);
-    const claim = await eventRef.transaction((current) => current ? undefined : {
-      status: "processing",
-      type: String(notification.notificationType || ""),
-      receivedAt: new Date().toISOString(),
-    });
-    if (!claim.committed) {
+    const attemptId = await claimStoreNotification(
+        db,
+        "app_store",
+        eventId,
+        notification.notificationType,
+    );
+    if (!attemptId) {
       return res.status(200).json({received: true, duplicate: true});
     }
-    const signedTransaction = notification.data &&
-      notification.data.signedTransactionInfo;
-    if (!signedTransaction) {
-      await eventRef.update({status: "ignored", processedAt: new Date().toISOString()});
+    try {
+      const signedTransaction = notification.data &&
+        notification.data.signedTransactionInfo;
+      if (!signedTransaction) {
+        await completeStoreNotification(
+            db, "app_store", eventId, attemptId, {status: "ignored"},
+        );
+        return res.status(200).json({received: true});
+      }
+      const transaction = await verifier.verifyAndDecodeTransaction(
+          signedTransaction,
+      );
+      const renewal = notification.data.signedRenewalInfo ?
+        await verifier.verifyAndDecodeRenewalInfo(
+            notification.data.signedRenewalInfo,
+        ) : null;
+      const record = appleTransactionRecord(transaction, renewal, Date.now());
+      const key = cleanSegment(record.originalTransactionId, 180);
+      const existing = key ? (await db.ref(
+          `storeTransactions/app_store/${key}`,
+      ).once("value")).val() || {} : {};
+      const tokenOwner = record.appAccountToken ?
+        (await db.ref(`storeAccountTokens/apple/${record.appAccountToken}`)
+            .once("value")).val() || {} : {};
+      const userId = cleanSegment(existing.userId || tokenOwner.userId, 160);
+      if (!userId || (await db.ref(`deletedBillingUsers/${userId}`)
+          .once("value")).exists()) {
+        await completeStoreNotification(
+            db,
+            "app_store",
+            eventId,
+            attemptId,
+            {status: userId ? "deleted_user" : "awaiting_client_verification"},
+        );
+        return res.status(200).json({received: true});
+      }
+      await persistAppleTransaction(
+          db, userId, record, LICENSE_SALT.value(), Date.now(),
+      );
+      await completeStoreNotification(
+          db, "app_store", eventId, attemptId,
+      );
       return res.status(200).json({received: true});
+    } catch (processingError) {
+      processingFailure = true;
+      await releaseStoreNotificationClaim(
+          db, "app_store", eventId, attemptId,
+      );
+      throw processingError;
     }
-    const transaction = await verifier.verifyAndDecodeTransaction(
-        signedTransaction,
-    );
-    const renewal = notification.data.signedRenewalInfo ?
-      await verifier.verifyAndDecodeRenewalInfo(
-          notification.data.signedRenewalInfo,
-      ) : null;
-    const record = appleTransactionRecord(transaction, renewal, Date.now());
-    const key = cleanSegment(record.originalTransactionId, 180);
-    const existing = key ? (await db.ref(`storeTransactions/app_store/${key}`)
-        .once("value")).val() || {} : {};
-    const tokenOwner = record.appAccountToken ?
-      (await db.ref(`storeAccountTokens/apple/${record.appAccountToken}`)
-          .once("value")).val() || {} : {};
-    const userId = cleanSegment(existing.userId || tokenOwner.userId, 160);
-    if (!userId || (await db.ref(`deletedBillingUsers/${userId}`)
-        .once("value")).exists()) {
-      await eventRef.update({
-        status: userId ? "deleted_user" : "awaiting_client_verification",
-        processedAt: new Date().toISOString(),
-      });
-      return res.status(200).json({received: true});
-    }
-    await persistAppleTransaction(
-        db, userId, record, LICENSE_SALT.value(), Date.now(),
-    );
-    await eventRef.update({status: "processed", processedAt: new Date().toISOString()});
-    return res.status(200).json({received: true});
   } catch (error) {
     console.error("APPLE_NOTIFICATION_FAILED", {
       message: String(error && error.message || "Unknown error"),
     });
-    return res.status(400).send("Invalid App Store notification");
+    return res.status(processingFailure ? 500 : 400).send(
+        processingFailure ? "App Store notification processing failed" :
+          "Invalid App Store notification",
+    );
   }
 }
 

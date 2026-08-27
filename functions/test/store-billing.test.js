@@ -8,6 +8,11 @@ const {
   entitlementIsActive,
   signedLicense,
 } = require("../handlers/_entitlements");
+const {
+  claimStoreNotification,
+  completeStoreNotification,
+  releaseStoreNotificationClaim,
+} = require("../handlers/_storeNotificationClaims");
 const {appleProduct, googleProduct} = require("../handlers/_storeCatalog");
 const {appleTransactionRecord, parseAppleRoots} =
   require("../handlers/_appleStore");
@@ -73,6 +78,21 @@ function memoryDb(initial = {}) {
           write(`${path}/${key}`, value));
       }
     },
+    transaction: async (update) => {
+      const current = structuredClone(read(path));
+      const next = update(current);
+      if (next === undefined) {
+        return {
+          committed: false,
+          snapshot: {val: () => structuredClone(read(path))},
+        };
+      }
+      write(path, next);
+      return {
+        committed: true,
+        snapshot: {val: () => structuredClone(read(path))},
+      };
+    },
   });
   return {ref, root};
 }
@@ -90,6 +110,18 @@ test("provider aggregation keeps access while any provider remains valid", () =>
       signedLicense("user_demo", "act", result.selected, "secret", NOW).source,
       "access_code",
   );
+});
+
+test("canonical licenses retain provider transaction and grace details", () => {
+  const license = signedLicense("user_demo", "act", {
+    ...entitlement("stripe"),
+    transactionId: "sub_current",
+    paymentNeedsAttention: true,
+    paymentGraceEndsAt: new Date(FUTURE).toISOString(),
+  }, "secret", NOW);
+  assert.equal(license.providerTransactionId, "sub_current");
+  assert.equal(license.paymentNeedsAttention, true);
+  assert.equal(license.paymentGraceEndsAt, new Date(FUTURE).toISOString());
 });
 
 test("store catalog accepts only configured products and base plans", () => {
@@ -121,6 +153,70 @@ test("Apple purchases fail closed for revocation and unsupported products", () =
       /Unsupported Apple product/,
   );
   assert.throws(() => parseAppleRoots(""), /not configured/);
+});
+
+test("Apple billing grace extends access only through Apple's grace date", () => {
+  const expired = NOW - 60 * 60 * 1000;
+  const graceEnds = NOW + 2 * 24 * 60 * 60 * 1000;
+  const value = appleTransactionRecord({
+    productId: "com.drillinstructor.app.act.monthly",
+    originalTransactionId: "2001",
+    transactionId: "2002",
+    purchaseDate: NOW - 31 * 24 * 60 * 60 * 1000,
+    expiresDate: expired,
+  }, {
+    autoRenewStatus: 1,
+    isInBillingRetryPeriod: true,
+    gracePeriodExpiresDate: graceEnds,
+    expirationIntent: 2,
+  }, NOW);
+  assert.equal(value.status, "grace");
+  assert.equal(value.grantsAccess, true);
+  assert.equal(value.paymentNeedsAttention, true);
+  assert.equal(value.expirationDate, new Date(graceEnds).toISOString());
+  assert.equal(value.paymentGraceEndsAt, new Date(graceEnds).toISOString());
+  assert.equal(appleTransactionRecord({
+    productId: "com.drillinstructor.app.act.monthly",
+    originalTransactionId: "2001",
+    transactionId: "2002",
+    expiresDate: expired,
+  }, {
+    isInBillingRetryPeriod: true,
+    gracePeriodExpiresDate: NOW - 1,
+  }, NOW).grantsAccess, false);
+});
+
+test("store notification claims release failures and recover stale attempts", async () => {
+  const db = memoryDb();
+  const first = await claimStoreNotification(
+      db, "app_store", "event_one", "DID_RENEW", NOW,
+  );
+  assert.notEqual(first, "");
+  assert.equal(await claimStoreNotification(
+      db, "app_store", "event_one", "DID_RENEW", NOW + 1000,
+  ), "");
+  await releaseStoreNotificationClaim(
+      db, "app_store", "event_one", first,
+  );
+  const retry = await claimStoreNotification(
+      db, "app_store", "event_one", "DID_RENEW", NOW + 2000,
+  );
+  assert.notEqual(retry, "");
+  await completeStoreNotification(
+      db, "app_store", "event_one", retry, {}, NOW + 3000,
+  );
+  assert.equal(await claimStoreNotification(
+      db, "app_store", "event_one", "DID_RENEW", NOW + 4000,
+  ), "");
+
+  db.root.storeNotificationEvents.play_store = {stale: {
+    status: "processing",
+    attemptId: "dead-worker",
+    claimedAt: new Date(NOW - 10 * 60 * 1000).toISOString(),
+  }};
+  assert.notEqual(await claimStoreNotification(
+      db, "play_store", "stale", "2", NOW,
+  ), "");
 });
 
 test("Google Play pending, hold and expired purchases never grant access", () => {

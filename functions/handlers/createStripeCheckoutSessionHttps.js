@@ -15,9 +15,11 @@ const {
   priceIdFor,
   webAppUrl,
 } = require("./_stripeBilling");
+const {stripeSubscriptionIdFromEntitlement} =
+  require("./_stripeEntitlements");
 
 const STRIPE_SECRET_KEY = defineSecret("STRIPE_SECRET_KEY");
-const RESERVATION_MS = 35 * 60 * 1000;
+const RESERVATION_MS = 60 * 60 * 1000;
 const CREATION_LOCK_MS = 2 * 60 * 1000;
 
 class CheckoutError extends Error {
@@ -35,6 +37,59 @@ async function waitForValue(readValue, predicate, timeoutMs = 4000) {
     await new Promise((resolve) => setTimeout(resolve, 150));
   }
   return null;
+}
+
+async function findStripeCustomer(stripe, studentId) {
+  if (!stripe.customers || typeof stripe.customers.search !== "function") {
+    return "";
+  }
+  const escaped = String(studentId || "").replace(/'/g, "\\'");
+  const result = await stripe.customers.search({
+    query: `metadata['userId']:'${escaped}'`,
+    limit: 10,
+  });
+  const customer = (result.data || []).find((row) => row.deleted !== true &&
+    row.metadata && row.metadata.userId === studentId);
+  return cleanSegment(customer && customer.id, 180);
+}
+
+async function findOpenCheckoutSession(stripe, customerId, operationId) {
+  const result = await stripe.checkout.sessions.list({
+    customer: customerId,
+    limit: 100,
+  });
+  return (result.data || []).find((session) =>
+    session.status === "open" && session.url && session.metadata &&
+    session.metadata.operationId === operationId,
+  ) || null;
+}
+
+async function claimCustomerReservation(ref, nowMs = Date.now()) {
+  const attemptId = crypto.randomUUID();
+  const proposedOperationId = crypto.randomUUID();
+  let operationId = proposedOperationId;
+  const result = await ref.transaction((current) => {
+    const claimedAt = Date.parse(current && current.claimedAt || "");
+    if (current && current.status === "creating" &&
+        Number.isFinite(claimedAt) &&
+        claimedAt > nowMs - CREATION_LOCK_MS) return;
+    const retryingCreation = current &&
+      ["creating", "retryable"].includes(current.status);
+    operationId = String(retryingCreation &&
+      (current.operationId || current.attemptId) || proposedOperationId);
+    return {
+      status: "creating",
+      attemptId,
+      operationId,
+      claimedAt: new Date(nowMs).toISOString(),
+    };
+  });
+  const value = result.snapshot && result.snapshot.val() || {};
+  return {
+    claimed: result.committed === true && value.attemptId === attemptId,
+    attemptId,
+    operationId: String(value.operationId || operationId),
+  };
 }
 
 /**
@@ -60,22 +115,10 @@ async function ensureCustomer(stripe, db, uid, studentId) {
   }
 
   const reservationRef = db.ref(`stripeCustomerReservations/${studentId}`);
-  const attemptId = crypto.randomUUID();
-  let ownsClaim = false;
-  await reservationRef.transaction((current) => {
-    const claimedAt = Date.parse(current && current.claimedAt || "");
-    if (current && current.status === "creating" &&
-        Number.isFinite(claimedAt) &&
-        claimedAt > Date.now() - CREATION_LOCK_MS) return;
-    ownsClaim = true;
-    return {
-      status: "creating",
-      attemptId,
-      claimedAt: new Date().toISOString(),
-    };
-  });
+  const claim = await claimCustomerReservation(reservationRef);
+  const {attemptId, operationId} = claim;
 
-  if (!ownsClaim) {
+  if (!claim.claimed) {
     const recovered = await waitForValue(
         async () => (await db.ref(`stripeCustomers/${studentId}`)
             .once("value")).val() || {},
@@ -95,11 +138,34 @@ async function ensureCustomer(stripe, db, uid, studentId) {
       .filter(Boolean)
       .join(" ");
   try {
+    const recoveredCustomerId = await findStripeCustomer(stripe, studentId);
+    if (recoveredCustomerId) {
+      const now = new Date().toISOString();
+      await db.ref().update({
+        [`stripeCustomers/${studentId}`]: {
+          customerId: recoveredCustomerId,
+          recoveredAt: now,
+          updatedAt: now,
+        },
+        [`stripeCustomerIndex/${recoveredCustomerId}`]: {
+          userId: studentId,
+          updatedAt: now,
+        },
+        [`stripeCustomerReservations/${studentId}`]: {
+          status: "ready",
+          attemptId,
+          operationId,
+          customerId: recoveredCustomerId,
+          updatedAt: now,
+        },
+      });
+      return recoveredCustomerId;
+    }
     const customer = await stripe.customers.create({
       email: authUser.email || undefined,
       name: name || undefined,
       metadata: {userId: studentId},
-    }, {idempotencyKey: `customer-${studentId}-${attemptId}`});
+    }, {idempotencyKey: `customer-${studentId}-${operationId}`});
     const now = new Date().toISOString();
     await db.ref().update({
       [`stripeCustomers/${studentId}`]: {
@@ -114,21 +180,26 @@ async function ensureCustomer(stripe, db, uid, studentId) {
       [`stripeCustomerReservations/${studentId}`]: {
         status: "ready",
         attemptId,
+        operationId,
         customerId: customer.id,
         updatedAt: now,
       },
     });
     return customer.id;
   } catch (error) {
-    await reservationRef.transaction((current) =>
-      current && current.attemptId === attemptId ? null : undefined,
-    );
+    await reservationRef.transaction((current) => {
+      if (!current || current.attemptId !== attemptId) return;
+      return {...current, status: "retryable",
+        failedAt: new Date().toISOString()};
+    });
     throw error;
   }
 }
 
 async function claimCheckoutReservation(ref, planType, nowMs = Date.now()) {
   const attemptId = crypto.randomUUID();
+  const proposedOperationId = crypto.randomUUID();
+  let operationId = proposedOperationId;
   let decision = "busy";
   await ref.transaction((current) => {
     const expiresAt = Date.parse(current && current.expiresAt || "");
@@ -139,23 +210,46 @@ async function claimCheckoutReservation(ref, planType, nowMs = Date.now()) {
       return current;
     }
     const createdAt = Date.parse(current && current.createdAt || "");
+    const operationExpiresAt = Date.parse(current && current.expiresAt || "");
+    const operationIsLive = Number.isFinite(operationExpiresAt) &&
+      operationExpiresAt > nowMs;
     if (current && current.status === "creating" &&
         Number.isFinite(createdAt) &&
         createdAt > nowMs - CREATION_LOCK_MS) {
-      decision = "busy";
+      decision = current.planType === planType ? "busy" : "conflict";
       return;
     }
+    if (current && ["creating", "retryable"].includes(current.status) &&
+        operationIsLive) {
+      if (current.planType !== planType) {
+        decision = "conflict";
+        return;
+      }
+      decision = "claimed";
+      operationId = String(current.operationId || current.attemptId ||
+        proposedOperationId);
+      return {
+        ...current,
+        status: "creating",
+        attemptId,
+        operationId,
+        claimedAt: new Date(nowMs).toISOString(),
+      };
+    }
     decision = "claimed";
+    operationId = proposedOperationId;
     return {
       status: "creating",
       planType,
       attemptId,
+      operationId,
       createdAt: new Date(nowMs).toISOString(),
+      claimedAt: new Date(nowMs).toISOString(),
       expiresAt: new Date(nowMs + RESERVATION_MS).toISOString(),
     };
   });
   const value = (await ref.once("value")).val() || {};
-  return {decision, attemptId, value};
+  return {decision, attemptId, operationId, value};
 }
 
 /**
@@ -200,16 +294,26 @@ async function handler(req, res) {
 
     const db = getDatabase();
     const {studentId} = await resolveStudent(db, uid);
-    const currentLicense = (await db.ref(
-        `users/${studentId}/testdata/${bootcamp}/license`,
-    ).once("value")).val() || {};
+    const [licenseSnap, stripeEntitlementSnap] = await Promise.all([
+      db.ref(`users/${studentId}/testdata/${bootcamp}/license`)
+          .once("value"),
+      db.ref(`userEntitlements/${studentId}/${bootcamp}/stripe`)
+          .once("value"),
+    ]);
+    const currentLicense = licenseSnap.val() || {};
+    const stripeEntitlement = stripeEntitlementSnap.val() || {};
     const currentExpiry = Date.parse(currentLicense.expirationDate || "");
     if (Number.isFinite(currentExpiry) && currentExpiry > Date.now()) {
       return res.status(409).json({
         error: "Active access already exists for this bootcamp",
       });
     }
-    const currentStripeStatus = String(currentLicense.status || "");
+    const currentStripeStatus = String(stripeEntitlement.status ||
+      (currentLicense.source === "stripe" ? currentLicense.status : ""));
+    const currentStripeSubscriptionId = stripeSubscriptionIdFromEntitlement(
+        stripeEntitlement,
+        currentLicense,
+    );
     const recoverableStripeStatuses = new Set([
       "active",
       "incomplete",
@@ -218,8 +322,7 @@ async function handler(req, res) {
       "trialing",
       "unpaid",
     ]);
-    if (currentLicense.source === "stripe" &&
-        cleanSegment(currentLicense.stripeSubscriptionId, 180) &&
+    if (currentStripeSubscriptionId &&
         recoverableStripeStatuses.has(currentStripeStatus)) {
       return res.status(409).json({
         error: "Manage the existing subscription before starting another",
@@ -262,24 +365,33 @@ async function handler(req, res) {
         error: "Checkout is already being prepared. Please try again.",
       });
     }
-    const metadata = {userId: studentId, bootcamp, planType};
+    const metadata = {
+      userId: studentId,
+      bootcamp,
+      planType,
+      operationId: claim.operationId,
+    };
     const returnPath = `/app/bootcamps/${bootcamp}/subscription`;
     try {
-      const session = await stripe.checkout.sessions.create({
-        mode: "subscription",
-        managed_payments: {enabled: false},
-        customer: customerId,
-        client_reference_id: studentId,
-        line_items: [{price: priceId, quantity: 1}],
-        metadata,
-        subscription_data: {metadata},
-        success_url: `${appUrl}${returnPath}?checkout=success` +
-          "&session_id={CHECKOUT_SESSION_ID}",
-        cancel_url: `${appUrl}${returnPath}?checkout=cancelled`,
-        billing_address_collection: "auto",
-        expires_at: Math.floor((Date.now() + RESERVATION_MS) / 1000),
-      }, {idempotencyKey: `checkout-${studentId}-${bootcamp}-` +
-        claim.attemptId});
+      const recoveredSession = await findOpenCheckoutSession(
+          stripe, customerId, claim.operationId,
+      );
+      const session = recoveredSession ||
+        await stripe.checkout.sessions.create({
+          mode: "subscription",
+          managed_payments: {enabled: false},
+          customer: customerId,
+          client_reference_id: studentId,
+          line_items: [{price: priceId, quantity: 1}],
+          metadata,
+          subscription_data: {metadata},
+          success_url: `${appUrl}${returnPath}?checkout=success` +
+            "&session_id={CHECKOUT_SESSION_ID}",
+          cancel_url: `${appUrl}${returnPath}?checkout=cancelled`,
+          billing_address_collection: "auto",
+          expires_at: Math.floor(Date.parse(claim.value.expiresAt) / 1000),
+        }, {idempotencyKey: `checkout-${studentId}-${bootcamp}-` +
+          claim.operationId});
       const openedAt = new Date().toISOString();
       await reservationRef.set({
         status: "open",
@@ -287,14 +399,17 @@ async function handler(req, res) {
         sessionId: session.id,
         checkoutUrl: session.url,
         createdAt: claim.value.createdAt || openedAt,
-        expiresAt: new Date(Date.now() + RESERVATION_MS).toISOString(),
+        expiresAt: session.expires_at ?
+          new Date(session.expires_at * 1000).toISOString() :
+          claim.value.expiresAt,
         attemptId: claim.attemptId,
+        operationId: claim.operationId,
       });
       return res.status(200).json({ok: true, url: session.url});
     } catch (error) {
       await reservationRef.transaction((current) => {
         if (!current || current.attemptId !== claim.attemptId) return;
-        return {...current, status: "expired", checkoutUrl: "",
+        return {...current, status: "retryable", checkoutUrl: "",
           failedAt: new Date().toISOString()};
       });
       throw error;
@@ -317,8 +432,11 @@ async function handler(req, res) {
 
 module.exports = {
   CheckoutError,
+  claimCustomerReservation,
   claimCheckoutReservation,
   ensureCustomer,
+  findOpenCheckoutSession,
+  findStripeCustomer,
   handler,
   waitForValue,
 };

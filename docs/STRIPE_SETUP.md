@@ -207,8 +207,11 @@ The expected RTDB server-owned records are:
 - `deletedBillingUsers/{userId}`: minimal deletion tombstone that prevents late
   webhooks from recreating deleted billing data
 
-Checkout and Stripe Customer creation use both RTDB transaction locks and
-Stripe idempotency keys. Subscription webhooks store every subscription and
+Checkout and Stripe Customer creation use RTDB transaction locks, stable
+operation-generation idempotency keys, and server-controlled Stripe metadata.
+If Stripe creates an object before its Firebase mapping is persisted, the next
+attempt recovers that Customer or open Checkout Session instead of creating a
+duplicate. Subscription webhooks store every subscription and
 recompute access across the complete set, so a cancellation cannot overwrite a
 different active subscription.
 

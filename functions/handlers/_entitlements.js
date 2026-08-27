@@ -44,6 +44,7 @@ function normalizeEntitlement(value, provider) {
     autoRenews: row.autoRenews === true,
     cancelAtPeriodEnd: row.cancelAtPeriodEnd === true,
     paymentNeedsAttention: row.paymentNeedsAttention === true,
+    paymentGraceEndsAt: iso(row.paymentGraceEndsAt),
     transactionId: String(row.transactionId || row.subscriptionId || ""),
     updatedAt: iso(row.updatedAt) || new Date().toISOString(),
   };
@@ -102,6 +103,7 @@ function signedLicense(userId, bootcamp, entitlement, secretSalt, nowMs) {
     autoRenews: entitlement.autoRenews,
     cancelAtPeriodEnd: entitlement.cancelAtPeriodEnd,
     paymentNeedsAttention: entitlement.paymentNeedsAttention,
+    paymentGraceEndsAt: entitlement.paymentGraceEndsAt || "",
     providerTransactionId: entitlement.transactionId,
     updatedAt: new Date(nowMs).toISOString(),
   };
@@ -134,7 +136,9 @@ async function recomputeCanonicalLicense(
       autoRenews: legacy.autoRenews === true,
       cancelAtPeriodEnd: legacy.cancelAtPeriodEnd === true,
       paymentNeedsAttention: legacy.paymentNeedsAttention === true,
-      transactionId: legacy.stripeSubscriptionId || "legacy",
+      paymentGraceEndsAt: legacy.paymentGraceEndsAt,
+      transactionId: legacy.providerTransactionId ||
+        legacy.stripeSubscriptionId || "legacy",
       updatedAt: legacy.updatedAt || new Date(nowMs).toISOString(),
     }, legacyProvider);
     if (migrated) {

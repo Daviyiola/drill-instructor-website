@@ -11,6 +11,8 @@ const {
   priceIdFor,
   webAppUrl,
 } = require("./_stripeBilling");
+const {stripeSubscriptionIdFromEntitlement} =
+  require("./_stripeEntitlements");
 
 const STRIPE_SECRET_KEY = defineSecret("STRIPE_SECRET_KEY");
 
@@ -190,11 +192,24 @@ async function handler(req, res) {
     const returnUrl =
       `${appUrl}/app/bootcamps/${bootcamp}/subscription`;
     if (action === "upgrade_annual") {
-      const license = (await db.ref(
-          `users/${studentId}/testdata/${bootcamp}/license`,
-      ).once("value")).val() || {};
-      if (license.source !== "stripe" || license.planType !== "monthly" ||
-          !cleanSegment(license.stripeSubscriptionId, 180)) {
+      const [stripeEntitlementSnap, licenseSnap] = await Promise.all([
+        db.ref(`userEntitlements/${studentId}/${bootcamp}/stripe`)
+            .once("value"),
+        db.ref(`users/${studentId}/testdata/${bootcamp}/license`)
+            .once("value"),
+      ]);
+      const stripeEntitlement = stripeEntitlementSnap.val() || {};
+      const license = licenseSnap.val() || {};
+      const subscriptionId = stripeSubscriptionIdFromEntitlement(
+          stripeEntitlement,
+          license,
+      );
+      const stripePlanType = String(stripeEntitlement.planType ||
+        (license.source === "stripe" ? license.planType : ""));
+      const stripeStatus = String(stripeEntitlement.status ||
+        (license.source === "stripe" ? license.status : ""));
+      if (stripePlanType !== "monthly" || !subscriptionId ||
+          !["active", "trialing"].includes(stripeStatus)) {
         return res.status(409).json({
           error: "Only an active monthly web subscription can be upgraded",
         });
@@ -208,7 +223,7 @@ async function handler(req, res) {
         });
       }
       const subscription = await stripe.subscriptions.retrieve(
-          cleanSegment(license.stripeSubscriptionId, 180),
+          subscriptionId,
       );
       let upgrade;
       try {

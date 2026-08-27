@@ -50,9 +50,18 @@ function appleTransactionRecord(transaction, renewal, nowMs = Date.now()) {
   const product = appleProduct(transaction && transaction.productId);
   if (!product) throw new Error("Unsupported Apple product");
   const expirationMs = Number(transaction.expiresDate || 0);
+  const graceExpirationMs = Number(renewal &&
+    renewal.gracePeriodExpiresDate || 0);
   const revoked = Number(transaction.revocationDate || 0) > 0;
-  const active = !revoked && expirationMs > nowMs &&
-    transaction.isUpgraded !== true;
+  const upgraded = transaction.isUpgraded === true;
+  const transactionActive = !revoked && !upgraded && expirationMs > nowMs;
+  const graceActive = !revoked && !upgraded &&
+    graceExpirationMs > nowMs && expirationMs <= nowMs;
+  const active = transactionActive || graceActive;
+  const billingRetry = renewal &&
+    Number(renewal.isInBillingRetryPeriod || 0) === 1;
+  const paymentNeedsAttention = Boolean(billingRetry || graceActive ||
+    Number(renewal && renewal.expirationIntent || 0) === 2);
   const autoRenews = renewal ? Number(renewal.autoRenewStatus || 0) === 1 :
     active;
   return {
@@ -60,14 +69,19 @@ function appleTransactionRecord(transaction, renewal, nowMs = Date.now()) {
     bootcamp: product.bootcamp,
     productId: String(transaction.productId || ""),
     planType: product.planType,
-    status: revoked ? "revoked" : (active ? "active" : "expired"),
+    status: revoked ? "revoked" : (graceActive ? "grace" :
+      (transactionActive ? "active" :
+        (paymentNeedsAttention ? "past_due" : "expired"))),
     grantsAccess: active,
     activationDate: new Date(Number(transaction.originalPurchaseDate ||
       transaction.purchaseDate || nowMs)).toISOString(),
-    expirationDate: new Date(expirationMs || nowMs).toISOString(),
+    expirationDate: new Date(graceActive ? graceExpirationMs :
+      (expirationMs || nowMs)).toISOString(),
     autoRenews,
     cancelAtPeriodEnd: active && !autoRenews,
-    paymentNeedsAttention: false,
+    paymentNeedsAttention,
+    paymentGraceEndsAt: graceExpirationMs > 0 ?
+      new Date(graceExpirationMs).toISOString() : "",
     originalTransactionId: String(transaction.originalTransactionId || ""),
     transactionId: String(transaction.transactionId || ""),
     appAccountToken: String(transaction.appAccountToken || "").toLowerCase(),

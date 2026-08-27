@@ -5,6 +5,11 @@ const {getDatabase} = require("firebase-admin/database");
 const {defineSecret} = require("firebase-functions/params");
 const {createGooglePublisher, googleTokenHash} = require("./_googlePlay");
 const {persistGooglePurchase} = require("./verifyGooglePlayPurchaseHttps");
+const {
+  claimStoreNotification,
+  completeStoreNotification,
+  releaseStoreNotificationClaim,
+} = require("./_storeNotificationClaims");
 
 const LICENSE_SALT = defineSecret("LICENSE_SALT");
 const STORE_TOKEN_HASH_SECRET = defineSecret("STORE_TOKEN_HASH_SECRET");
@@ -34,6 +39,7 @@ async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).send("Method not allowed");
   }
+  let processingFailure = false;
   try {
     await verifyPubSubIdentity(req);
     const message = req.body && req.body.message || {};
@@ -48,61 +54,80 @@ async function handler(req, res) {
       return res.status(400).send("Invalid notification");
     }
     const db = getDatabase();
-    const eventRef = db.ref(`storeNotificationEvents/play_store/${messageId}`);
-    const claim = await eventRef.transaction((current) => current ? undefined : {
-      status: "processing",
-      receivedAt: new Date().toISOString(),
-    });
-    if (!claim.committed) {
+    const attemptId = await claimStoreNotification(
+        db,
+        "play_store",
+        messageId,
+        subscription.notificationType,
+    );
+    if (!attemptId) {
       return res.status(200).json({received: true, duplicate: true});
     }
-    const tokenHash = googleTokenHash(
-        purchaseToken, STORE_TOKEN_HASH_SECRET.value(),
-    );
-    const existing = (await db.ref(`storeTransactions/play_store/${tokenHash}`)
-        .once("value")).val() || {};
-    let userId = String(existing.userId || "");
-    let accountId = "";
-    const publisher = createGooglePublisher();
-    if (!userId) {
-      const purchaseResponse = await publisher.purchases.subscriptionsv2.get({
-        packageName,
-        token: purchaseToken,
+    try {
+      const tokenHash = googleTokenHash(
+          purchaseToken, STORE_TOKEN_HASH_SECRET.value(),
+      );
+      const existing = (await db.ref(
+          `storeTransactions/play_store/${tokenHash}`,
+      ).once("value")).val() || {};
+      let userId = String(existing.userId || "");
+      let accountId = "";
+      const publisher = createGooglePublisher();
+      if (!userId) {
+        const purchaseResponse = await publisher.purchases.subscriptionsv2.get({
+          packageName,
+          token: purchaseToken,
+        });
+        accountId = String(purchaseResponse.data &&
+          purchaseResponse.data.externalAccountIdentifiers &&
+          purchaseResponse.data.externalAccountIdentifiers
+              .obfuscatedExternalAccountId || "");
+        const owner = accountId ? (await db.ref(
+            `storeAccountTokens/google/${accountId}`,
+        ).once("value")).val() || {} : {};
+        userId = String(owner.userId || "");
+      }
+      if (!userId || (await db.ref(`deletedBillingUsers/${userId}`)
+          .once("value")).exists()) {
+        await completeStoreNotification(
+            db,
+            "play_store",
+            messageId,
+            attemptId,
+            {status: userId ? "deleted_user" : "awaiting_client_verification"},
+        );
+        return res.status(200).json({received: true});
+      }
+      await persistGooglePurchase({
+        db,
+        publisher,
+        userId,
+        purchaseToken,
+        requestedProductId: "",
+        expectedAccountId: accountId ||
+          String(existing.obfuscatedAccountId || ""),
+        tokenHashSecret: STORE_TOKEN_HASH_SECRET.value(),
+        licenseSalt: LICENSE_SALT.value(),
       });
-      accountId = String(purchaseResponse.data &&
-        purchaseResponse.data.externalAccountIdentifiers &&
-        purchaseResponse.data.externalAccountIdentifiers
-            .obfuscatedExternalAccountId || "");
-      const owner = accountId ? (await db.ref(
-          `storeAccountTokens/google/${accountId}`,
-      ).once("value")).val() || {} : {};
-      userId = String(owner.userId || "");
-    }
-    if (!userId || (await db.ref(`deletedBillingUsers/${userId}`)
-        .once("value")).exists()) {
-      await eventRef.update({
-        status: userId ? "deleted_user" : "awaiting_client_verification",
-        processedAt: new Date().toISOString(),
-      });
+      await completeStoreNotification(
+          db, "play_store", messageId, attemptId,
+      );
       return res.status(200).json({received: true});
+    } catch (processingError) {
+      processingFailure = true;
+      await releaseStoreNotificationClaim(
+          db, "play_store", messageId, attemptId,
+      );
+      throw processingError;
     }
-    await persistGooglePurchase({
-      db,
-      publisher,
-      userId,
-      purchaseToken,
-      requestedProductId: "",
-      expectedAccountId: accountId || String(existing.obfuscatedAccountId || ""),
-      tokenHashSecret: STORE_TOKEN_HASH_SECRET.value(),
-      licenseSalt: LICENSE_SALT.value(),
-    });
-    await eventRef.update({status: "processed", processedAt: new Date().toISOString()});
-    return res.status(200).json({received: true});
   } catch (error) {
     console.error("GOOGLE_PLAY_NOTIFICATION_FAILED", {
       message: String(error && error.message || "Unknown error"),
     });
-    return res.status(400).send("Invalid Google Play notification");
+    return res.status(processingFailure ? 500 : 400).send(
+        processingFailure ? "Google Play notification processing failed" :
+          "Invalid Google Play notification",
+    );
   }
 }
 
