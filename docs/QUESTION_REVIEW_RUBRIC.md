@@ -64,3 +64,11 @@ Review records may propose changes to the prompt, options, answer, explanation,
 passage, or images. They must never edit production data automatically. Changes
 are applied only after approval through the normal dataset or correction-release
 workflow.
+
+## Review identity
+
+A committed review must include the deterministic SHA-256 content fingerprint
+generated for that exact question and dataset version. A matching legacy ID is
+not sufficient: prompt, passage, ordered options, configured answer,
+explanation, image references, or academic metadata changes invalidate the
+review and require a fresh blind assessment.

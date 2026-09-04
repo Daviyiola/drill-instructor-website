@@ -6,6 +6,10 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const {buildReport} = require("./auditQuestionBank");
+const {
+  contentFingerprint,
+  datasetVersionsFor,
+} = require("./questionReviewIdentity");
 
 const REPOSITORY_ROOT = path.resolve(__dirname, "..", "..");
 const OUTPUT_ROOT = path.join(REPOSITORY_ROOT, ".question-audits");
@@ -90,7 +94,7 @@ function pilotQuestions(report) {
     Number(left.sourceId) - Number(right.sourceId));
 }
 
-function blindQuestion(question) {
+function blindQuestion(question, datasets) {
   return {
     id: question.id,
     legacyId: question.legacyId,
@@ -103,13 +107,15 @@ function blindQuestion(question) {
     imageSources: question.imageSources,
     options: question.options,
     deterministicFindings: question.findings,
+    contentFingerprint: contentFingerprint(question, datasets),
     review: reviewTemplate(),
   };
 }
 
-function answerKeyQuestion(question) {
+function answerKeyQuestion(question, datasets) {
   return {
     legacyId: question.legacyId,
+    contentFingerprint: contentFingerprint(question, datasets),
     configuredAnswer: question.configuredAnswer,
     configuredAnswerIndex: question.configuredAnswerIndex,
     explanation: question.explanation,
@@ -119,6 +125,7 @@ function answerKeyQuestion(question) {
 function main() {
   const report = buildReport(["act", "sat"]);
   const questions = pilotQuestions(report);
+  const datasets = datasetVersionsFor(questions);
   fs.mkdirSync(OUTPUT_ROOT, {recursive: true});
   const blindPath = path.join(OUTPUT_ROOT, "academic-pilot-blind.json");
   const keyPath = path.join(OUTPUT_ROOT, "academic-pilot-key.json");
@@ -126,13 +133,16 @@ function main() {
     formatVersion: 1,
     rubric: "docs/QUESTION_REVIEW_RUBRIC.md",
     selectionSeed: "academic-pilot-v1",
+    datasets,
     questionCount: questions.length,
-    questions: questions.map(blindQuestion),
+    questions: questions.map((question) => blindQuestion(question, datasets)),
   }, null, 2)}\n`, "utf8");
   fs.writeFileSync(keyPath, `${JSON.stringify({
     formatVersion: 1,
+    datasets,
     questionCount: questions.length,
-    questions: questions.map(answerKeyQuestion),
+    questions: questions.map((question) =>
+      answerKeyQuestion(question, datasets)),
   }, null, 2)}\n`, "utf8");
   console.log(`Prepared ${questions.length} blind pilot questions.`);
   console.log(`Review: ${blindPath}`);

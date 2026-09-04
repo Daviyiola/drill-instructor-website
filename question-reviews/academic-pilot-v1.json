@@ -2,302 +2,299 @@
   "formatVersion": 1,
   "selectionSeed": "academic-pilot-v1",
   "datasets": {
-    "act": "2026.08.2",
-    "sat": "2026.08.1"
+    "act": "2026.08.4",
+    "sat": "2026.08.2"
   },
   "rubric": "docs/QUESTION_REVIEW_RUBRIC.md",
   "reviewer": "Codex",
   "questionCount": 24,
   "reviews": [
     {
-      "legacyId": "English#14",
-      "independentlyDeterminedAnswerIndex": 3,
+      "legacyId": "English#28",
+      "contentFingerprint": "sha256:15146948299545247d490f6253256d8b419ba271be542746fac64f7bff072f5c",
+      "independentlyDeterminedAnswerIndex": 1,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "The contrast requires However; the explanation distinguishes every distractor.",
+      "notes": "The introductory phrase must modify the people who updated the index, so placing Ruiz and her staff immediately after it removes the dangling modifier.",
       "proposedChanges": null
     },
     {
-      "legacyId": "English#26",
-      "independentlyDeterminedAnswerIndex": 3,
+      "legacyId": "English#169",
+      "contentFingerprint": "sha256:6438279578ab191fd82021e7619dcd5ca1171249180b1db936e700548174cb6e",
+      "independentlyDeterminedAnswerIndex": 2,
       "answerVerdict": "correct",
-      "explanationVerdict": "adequate",
+      "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
-      "confidence": "medium",
-      "notes": "Naming the embankment removes the tested pronoun ambiguity and follows the immediately described structure.",
+      "confidence": "high",
+      "notes": "The idiomatic construction is prevent trains from gaining excessive speed, making option 2 the only grammatically acceptable completion.",
       "proposedChanges": null
     },
     {
-      "legacyId": "English#28",
+      "legacyId": "English#277",
+      "contentFingerprint": "sha256:d4e0f6555905825c18d6063ce9812e084cdac7ef90ba8c7e6e1e5ac43997c924",
       "independentlyDeterminedAnswerIndex": 0,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "Planted correctly continues the paragraph's simple-past sequence.",
+      "notes": "The infinitive “to” states the purpose directly, whereas the other choices add redundant or uncertain wording.",
       "proposedChanges": null
     },
     {
-      "legacyId": "English#74",
-      "independentlyDeterminedAnswerIndex": 1,
+      "legacyId": "English#386",
+      "contentFingerprint": "sha256:4367040d446a4f0917420905d19b8ba07fa776a52af2d5f8f86db0bd9af75f27",
+      "independentlyDeterminedAnswerIndex": 0,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
-      "confidence": "medium",
-      "notes": "Placement at B bridges the described motions and the narrator's difficulty understanding their coordination.",
+      "confidence": "high",
+      "notes": "Commas correctly separate the parallel actions cropped, straightened, and adjusted for contrast without introducing misplaced punctuation.",
       "proposedChanges": null
     },
     {
       "legacyId": "Mathematics#42",
-      "independentlyDeterminedAnswerIndex": 0,
-      "answerVerdict": "ambiguous",
-      "explanationVerdict": "strong",
-      "wordingVerdict": "invalid",
-      "formattingVerdict": "cleanup",
-      "confidence": "high",
-      "notes": "The mathematical result is (−12, 16), but options A and B are identical.",
-      "proposedChanges": {
-        "options": {
-          "option2": "(−27/4, 9)"
-        }
-      }
-    },
-    {
-      "legacyId": "Mathematics#58",
+      "contentFingerprint": "sha256:f51a8a8b6232670f2b91aae11aaa9e1010f68100683ae4643eb8310046049d68",
       "independentlyDeterminedAnswerIndex": 1,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "The excess above room temperature is halved every five minutes.",
+      "notes": "Evaluating the radicals gives (12 − 9)² + 8, which equals 9 + 8 = 17.",
       "proposedChanges": null
     },
     {
-      "legacyId": "Mathematics#268",
+      "legacyId": "Mathematics#58",
+      "contentFingerprint": "sha256:ae55d29b8c8a24224af1886e0b24141182abe878e8eb4744958cb8571227f24b",
       "independentlyDeterminedAnswerIndex": 0,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "There are 55 interior points and 19 have matching residues modulo 3.",
+      "notes": "The vector from R to T is (3, −12); extending it by the 5-to-3 ratio gives (5, −20), so S is (2, −27).",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Mathematics#113",
+      "contentFingerprint": "sha256:31e85cb6d3acc093a4868218e7645c54d3b55d6e84fba01108dbe2a7c727f795",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "A translation four units right adds 4 to −2 while leaving the y-coordinate unchanged, producing (2, 5).",
       "proposedChanges": null
     },
     {
       "legacyId": "Mathematics#294",
-      "independentlyDeterminedAnswerIndex": 1,
-      "answerVerdict": "ambiguous",
+      "contentFingerprint": "sha256:91a1962f33a4c3f86e29ede76ba8a8c52727c307995a6650a46b3ecd5b30f7c8",
+      "independentlyDeterminedAnswerIndex": 2,
+      "answerVerdict": "correct",
       "explanationVerdict": "strong",
-      "wordingVerdict": "invalid",
+      "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "The perimeter is 55 + 5√33, but options B and D are identical.",
-      "proposedChanges": {
-        "options": {
-          "option4": "55 + 5√17"
-        }
-      }
-    },
-    {
-      "legacyId": "Reading#1",
-      "independentlyDeterminedAnswerIndex": 1,
-      "answerVerdict": "correct",
-      "explanationVerdict": "strong",
-      "wordingVerdict": "clear",
-      "formattingVerdict": "clean",
-      "confidence": "high",
-      "notes": "The second paragraph directly contrasts a broad border-light wash with isolating one actor.",
+      "notes": "The triangle’s area is 90 square inches, and dividing that equal area by the parallelogram’s 15-inch base gives a height of 6 inches.",
       "proposedChanges": null
     },
     {
-      "legacyId": "Reading#8",
-      "independentlyDeterminedAnswerIndex": 0,
-      "answerVerdict": "correct",
-      "explanationVerdict": "strong",
-      "wordingVerdict": "clear",
-      "formattingVerdict": "clean",
-      "confidence": "high",
-      "notes": "The control-booth example extends a production-specific constraint into a repeatable convention across theatrical work.",
-      "proposedChanges": null
-    },
-    {
-      "legacyId": "Reading#10",
-      "independentlyDeterminedAnswerIndex": 0,
-      "answerVerdict": "correct",
-      "explanationVerdict": "strong",
-      "wordingVerdict": "clear",
-      "formattingVerdict": "clean",
-      "confidence": "high",
-      "notes": "In context, blocking unambiguously describes planned performer movement and positioning.",
-      "proposedChanges": null
-    },
-    {
-      "legacyId": "Reading#11",
-      "independentlyDeterminedAnswerIndex": 0,
-      "answerVerdict": "correct",
-      "explanationVerdict": "strong",
-      "wordingVerdict": "clear",
-      "formattingVerdict": "clean",
-      "confidence": "high",
-      "notes": "The fourth paragraph supplies camera, lighting, and editing alternatives to crossings within a fixed visible space.",
-      "proposedChanges": null
-    },
-    {
-      "legacyId": "Science#33",
+      "legacyId": "Reading#176",
+      "contentFingerprint": "sha256:76ced783eb6baf082468990d9515e5ac2350405514f017ed111a948295455463",
       "independentlyDeterminedAnswerIndex": 1,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "Researchers A and D reproduce all three module-output mappings in the introduction.",
+      "notes": "A mislabeled crate occupies a false informational position because coordinators may reserve storage and transport for the wrong destination or time.",
       "proposedChanges": null
     },
     {
-      "legacyId": "Science#86",
-      "independentlyDeterminedAnswerIndex": 0,
-      "answerVerdict": "correct",
-      "explanationVerdict": "adequate",
-      "wordingVerdict": "clear",
-      "formattingVerdict": "cleanup",
-      "confidence": "high",
-      "notes": "The passage directly identifies fertilizer concentration as the varied factor.",
-      "proposedChanges": null
-    },
-    {
-      "legacyId": "Science#111",
-      "independentlyDeterminedAnswerIndex": 0,
-      "answerVerdict": "correct",
-      "explanationVerdict": "adequate",
-      "wordingVerdict": "clear",
-      "formattingVerdict": "cleanup",
-      "confidence": "high",
-      "notes": "Period 2 is closest to the 28°C reference line among the listed choices.",
-      "proposedChanges": null
-    },
-    {
-      "legacyId": "Science#156",
-      "independentlyDeterminedAnswerIndex": 0,
+      "legacyId": "Reading#217",
+      "contentFingerprint": "sha256:ace62acc865d19f7291792c0cf2eeae7e2090ee563b6a207340933942f5218b8",
+      "independentlyDeterminedAnswerIndex": 2,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "At every fixed mode, wider tubes lower the tone setting and raise the required pressure.",
+      "notes": "The narrator initially repeats the notebook’s dated instruction without checking present conditions, treating it as a fixed schedule rather than contextual evidence.",
       "proposedChanges": null
     },
     {
-      "legacyId": "Math#37",
+      "legacyId": "Reading#222",
+      "contentFingerprint": "sha256:748b497269d1c4e381703b8dff71ae6c1bf45d99c8686ff81c33bcf63f4723ea",
       "independentlyDeterminedAnswerIndex": 3,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "The table yields f(x) = 2x + 4, so the y-intercept is 4.",
+      "notes": "Elena and the visitors both teach the narrators to interpret inherited records through present practice and context instead of reading their surfaces literally.",
       "proposedChanges": null
     },
     {
-      "legacyId": "Math#50",
-      "independentlyDeterminedAnswerIndex": null,
-      "answerVerdict": "incorrect",
-      "explanationVerdict": "incorrect",
-      "wordingVerdict": "invalid",
-      "formattingVerdict": "blocking",
+      "legacyId": "Reading#227",
+      "contentFingerprint": "sha256:81f566deba8b704e4a8bc5752350d432c229bac73f09dcbb9b0e987ecceb98c8",
+      "independentlyDeterminedAnswerIndex": 2,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "√(13/5) is greater than 1 and cannot be a cosine. The explanation silently changes it to √13/5, which is not an exact option.",
-      "proposedChanges": {
-        "question": "In right triangle PQR, angles P and Q are complementary. If cos(P) = √13/5, what is sin(Q)?",
-        "options": {
-          "option1": "√13/5"
-        },
-        "correctAnswer": "√13/5",
-        "explanation": "Because P and Q are complementary, sin(Q) = cos(P). Therefore, sin(Q) = √13/5."
-      }
+      "notes": "The passage contrasts a map’s appearance of exact, comprehensive measurement with placement errors, sampling gaps, and localized readings.",
+      "proposedChanges": null
     },
     {
-      "legacyId": "Math#166",
+      "legacyId": "Science#86",
+      "contentFingerprint": "sha256:f1cf7e4252139d46138d14cab85e0c5fa0f839848bbac37b134937f2883938a8",
       "independentlyDeterminedAnswerIndex": 0,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "The mathematics is correct; the stored answer uses a hyphen while the option uses the Unicode minus sign.",
-      "proposedChanges": {
-        "correctAnswer": "−1"
-      }
+      "notes": "Explanations A and B attribute banded wings to larval temperature and dietary copper, while C and D depend on inherited marker pairs.",
+      "proposedChanges": null
     },
     {
-      "legacyId": "Math#171",
+      "legacyId": "Science#111",
+      "contentFingerprint": "sha256:89d056c607a99b4312007b3acf821e9cda6e3cc0d391d3a6131da0410ffb930c",
       "independentlyDeterminedAnswerIndex": 1,
       "answerVerdict": "correct",
       "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "The mathematics is correct; the stored answer uses Unicode minus while the matching option uses a hyphen.",
-      "proposedChanges": {
-        "options": {
-          "option2": "−1"
-        }
-      }
+      "notes": "Dry-mass measurements begin at week 4, the start of the leafing phase; the sprout phase records only shoot span.",
+      "proposedChanges": null
     },
     {
-      "legacyId": "Read. & Writ.#25",
-      "independentlyDeterminedAnswerIndex": null,
-      "answerVerdict": "incorrect",
-      "explanationVerdict": "incorrect",
-      "wordingVerdict": "invalid",
-      "formattingVerdict": "clean",
-      "confidence": "high",
-      "notes": "However is a conjunctive adverb and does not make the opening dependent clause needed before the comma; every option leaves a comma splice.",
-      "proposedChanges": {
-        "options": {
-          "option3": "Although"
-        },
-        "correctAnswer": "Although",
-        "explanation": "Although correctly introduces a dependent clause that contrasts improved measurements with the delayed boundary adjustment. The comma then properly separates that clause from the main clause."
-      }
-    },
-    {
-      "legacyId": "Read. & Writ.#98",
+      "legacyId": "Science#148",
+      "contentFingerprint": "sha256:1f23a80c9ff3e1c0e806033440bfda9721fd7c3bd281005a6d0a4377724f2fe0",
       "independentlyDeterminedAnswerIndex": 1,
       "answerVerdict": "correct",
-      "explanationVerdict": "adequate",
+      "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "Individuals is the plural subject required by misjudge.",
+      "notes": "The graph shows 18 spikes during the four-minute interval from 4 to 8 minutes, so the average rate is 18 ÷ 4 = 4.5 spikes per minute.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Science#156",
+      "contentFingerprint": "sha256:695f604e91e333cd1b874dfbe9ee9d5f1bfcb4c28f9314c535b5fba700c3692c",
+      "independentlyDeterminedAnswerIndex": 2,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "Reading the 35 cm row and 5 min column of Table 1 gives a disk temperature of 60°C.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Math#50",
+      "contentFingerprint": "sha256:ae391bca457561a2e51ab4a8d7be5bcc1673500047b1ff42e169153df8af7bba",
+      "independentlyDeterminedAnswerIndex": 2,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The tank drains 1,080 liters in 6 hours, or 180 liters per hour; draining 2,700 liters therefore takes 15 hours.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Math#164",
+      "contentFingerprint": "sha256:1f83f37b974691ed663481394ceffc758d911472ea94064a3ddc891d3b59741a",
+      "independentlyDeterminedAnswerIndex": 2,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "Using g(0) = −2 in f(x) = g(x)(x − 2) gives f(0) = 4, which is the y-intercept of the linear function.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Math#166",
+      "contentFingerprint": "sha256:bd03185a3cd7ca41d316235316fb8b619f2e0d8b7c851b5f6cbf6af4d8709f4f",
+      "independentlyDeterminedAnswerIndex": 3,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The expression simplifies to m⁹n⁻²p³ by adding exponents for each like base. The question is correct, but its module label “Exponential functions” would be more accurately described as “Exponent rules and equivalent expressions.”",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Math#171",
+      "contentFingerprint": "sha256:de7a05d88f61f80dc324f0e64fb5a58e5e6133a41a3fc88fd03bd9eae7f1bfb2",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "Each serving supplies 5% of the daily sodium intake, so x servings supply p = 5x percent.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Read. & Writ.#25",
+      "contentFingerprint": "sha256:7bf895e96465c55e0b3fbcdf7b8a1eddc281864d9d9ee46064ebaed3d6e12173",
+      "independentlyDeterminedAnswerIndex": 3,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "The second clause contrasts the letter’s formally narrow recipient with its broader intended audience, so “however,” correctly follows the semicolon.",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Read. & Writ.#55",
+      "contentFingerprint": "sha256:0848bdee6495dae617a855aceed0e14aacc90d1d5ec1dbecb7298a7d0bf444e7",
+      "independentlyDeterminedAnswerIndex": 0,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "Longer pauses before selecting a response indicate less decisive behavior, which is described most precisely by “hesitantly.”",
+      "proposedChanges": null
+    },
+    {
+      "legacyId": "Read. & Writ.#98",
+      "contentFingerprint": "sha256:ace98668d5e3d756350f983aa8670618c3514d11639afc57604025fd48dfa83f",
+      "independentlyDeterminedAnswerIndex": 2,
+      "answerVerdict": "correct",
+      "explanationVerdict": "strong",
+      "wordingVerdict": "clear",
+      "formattingVerdict": "cleanup",
+      "confidence": "high",
+      "notes": "Option 2 provides the requested overview by identifying the process’s developer and date, its sodium-carbonate product, and representative uses.",
       "proposedChanges": null
     },
     {
       "legacyId": "Read. & Writ.#103",
-      "independentlyDeterminedAnswerIndex": 1,
+      "contentFingerprint": "sha256:a9bd0881cdfb1c6c7ef32ba6ab7949f623c524d5b6d7d96751f9f742c082cb71",
+      "independentlyDeterminedAnswerIndex": 3,
       "answerVerdict": "correct",
-      "explanationVerdict": "adequate",
+      "explanationVerdict": "strong",
       "wordingVerdict": "clear",
       "formattingVerdict": "cleanup",
       "confidence": "high",
-      "notes": "The comma already following the blank opens the nonessential appositive.",
-      "proposedChanges": null
-    },
-    {
-      "legacyId": "Read. & Writ.#115",
-      "independentlyDeterminedAnswerIndex": 2,
-      "answerVerdict": "correct",
-      "explanationVerdict": "adequate",
-      "wordingVerdict": "clear",
-      "formattingVerdict": "cleanup",
-      "confidence": "high",
-      "notes": "The passage introduces behavioral economics and contrasts it with traditional assumptions.",
+      "notes": "Sardines provide 325 mg of calcium per serving, exceeding cheddar cheese at 200 mg and yogurt at 110 mg, so option 3 makes the required comparison.",
       "proposedChanges": null
     }
   ]
