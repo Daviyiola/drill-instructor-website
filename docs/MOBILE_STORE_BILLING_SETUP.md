@@ -14,10 +14,27 @@ Apple products:
 - `com.drillinstructor.app.sat.monthly`
 - `com.drillinstructor.app.sat.annual`
 
+Use a separate auto-renewable subscription group for each bootcamp, with that
+bootcamp's monthly and annual products in the same group. Keeping ACT and SAT
+in separate groups allows a customer to subscribe to both without transferring
+one entitlement into the other.
+
+Configure the monthly products at the local storefront equivalent of $5.99
+USD and the annual products at the equivalent of $49.99 USD. StoreKit metadata,
+not application copy, is authoritative for the customer-visible localized
+price. Changing a product's price does not silently move existing subscribers;
+use App Store Connect's subscriber price-change controls deliberately.
+
 Google products:
 
 - `act_premium`, base plans `monthly` and `annual`
 - `sat_premium`, base plans `monthly` and `annual`
+
+Configure each `monthly` base plan at the local-market equivalent of $5.99 USD
+and each `annual` base plan at the equivalent of $49.99 USD. Google Play's
+returned offer metadata is authoritative for display. Apply any existing-
+subscriber price migration explicitly in Play Console rather than assuming a
+catalog edit reprices renewals.
 
 `getStoreCatalogHttps` returns these identifiers and safe metadata. StoreKit
 and Play Billing remain authoritative for localized titles and prices.

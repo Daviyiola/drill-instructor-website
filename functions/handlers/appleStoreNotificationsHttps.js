@@ -4,7 +4,7 @@
 const {getDatabase} = require("firebase-admin/database");
 const {defineSecret} = require("firebase-functions/params");
 const {cleanSegment} = require("./_stripeBilling");
-const {appleTransactionRecord, createAppleVerifier} = require("./_appleStore");
+const {appleTransactionRecord, verifyApplePayload} = require("./_appleStore");
 const {persistAppleTransaction} = require("./verifyApplePurchaseHttps");
 const {
   claimStoreNotification,
@@ -25,15 +25,14 @@ async function handler(req, res) {
   if (!signedPayload) return res.status(400).send("Missing signed payload");
   let processingFailure = false;
   try {
-    const verifier = createAppleVerifier({
+    const verification = await verifyApplePayload({
       rootCertificates: APPLE_ROOT_CERTIFICATES_BASE64.value(),
       bundleId: process.env.APPLE_BUNDLE_ID,
       appAppleId: process.env.APPLE_APP_ID,
       environment: process.env.APPLE_ENVIRONMENT,
-    });
-    const notification = await verifier.verifyAndDecodeNotification(
-        signedPayload,
-    );
+    }, "verifyAndDecodeNotification", signedPayload);
+    const verifier = verification.verifier;
+    const notification = verification.value;
     const eventId = cleanSegment(notification.notificationUUID, 180);
     if (!eventId) return res.status(400).send("Missing notification ID");
     const db = getDatabase();

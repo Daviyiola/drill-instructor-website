@@ -1,4 +1,5 @@
 import PageShell from "@/components/PageShell";
+import {STUDENT_WEB_PLANS} from "@/lib/billing/catalog";
 
 export const metadata = {
   title: "Pricing",
@@ -24,8 +25,8 @@ const planCards = [
   {
     title: "Premium Student",
     eyebrow: "For students and parents",
-    price: "$6.99",
-    cadence: "/ month ($49.99 per year)",
+    price: STUDENT_WEB_PLANS.monthly.displayPrice,
+    cadence: `/ month (${STUDENT_WEB_PLANS.annual.displayPrice} per year)`,
     desc: "For independent students preparing for one selected exam program.",
     items: [
       "1 selected exam program",

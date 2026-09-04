@@ -4,6 +4,7 @@ import Link from "next/link";
 import {useRouter} from "next/navigation";
 import {FormEvent, useEffect, useMemo, useState} from "react";
 import {callFunction} from "@/lib/api/client";
+import {STUDENT_WEB_PLAN_LIST} from "@/lib/billing/catalog";
 import type {ResolvedAccount} from "@/lib/types/account";
 import AppShell from "./AppShell";
 import {useAuth} from "./AuthProvider";
@@ -65,18 +66,16 @@ const planByLength: Record<number, string> = {
 
 const checkoutPlans: CheckoutPlan[] = [
   {
-    id: "monthly",
-    name: "Monthly",
-    price: "$6.99",
-    cadence: "per month",
+    ...STUDENT_WEB_PLAN_LIST[0],
+    price: STUDENT_WEB_PLAN_LIST[0].displayPrice,
+    cadence: STUDENT_WEB_PLAN_LIST[0].cadenceLabel,
     detail: "Flexible access that renews each month.",
   },
   {
-    id: "annual",
-    name: "Annual",
-    price: "$49.99",
-    cadence: "per year",
-    detail: "Save $33.89 compared with 12 monthly payments.",
+    ...STUDENT_WEB_PLAN_LIST[1],
+    price: STUDENT_WEB_PLAN_LIST[1].displayPrice,
+    cadence: STUDENT_WEB_PLAN_LIST[1].cadenceLabel,
+    detail: "Save $21.89 compared with 12 monthly payments.",
   },
 ];
 
@@ -899,7 +898,7 @@ export default function BootcampSubscription({
                   Annual subscription
                 </span>
                 <span className="text-xl font-semibold text-slate-950">
-                  $49.99/year
+                  {STUDENT_WEB_PLAN_LIST[1].displayPrice}/year
                 </span>
               </div>
             </div>

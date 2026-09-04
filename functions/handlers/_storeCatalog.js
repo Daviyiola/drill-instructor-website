@@ -1,23 +1,7 @@
 "use strict";
 /* eslint-disable require-jsdoc, max-len */
 
-const APPLE_PRODUCTS = Object.freeze({
-  "com.drillinstructor.app.act.monthly": {bootcamp: "act", planType: "monthly"},
-  "com.drillinstructor.app.act.annual": {bootcamp: "act", planType: "annual"},
-  "com.drillinstructor.app.sat.monthly": {bootcamp: "sat", planType: "monthly"},
-  "com.drillinstructor.app.sat.annual": {bootcamp: "sat", planType: "annual"},
-});
-
-const GOOGLE_PRODUCTS = Object.freeze({
-  act_premium: {
-    bootcamp: "act",
-    basePlans: {monthly: "monthly", annual: "annual"},
-  },
-  sat_premium: {
-    bootcamp: "sat",
-    basePlans: {monthly: "monthly", annual: "annual"},
-  },
-});
+const {APPLE_PRODUCTS, GOOGLE_PRODUCTS} = require("./_billingCatalog");
 
 function appleProduct(productId) {
   return APPLE_PRODUCTS[String(productId || "")] || null;

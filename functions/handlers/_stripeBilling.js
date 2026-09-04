@@ -1,6 +1,7 @@
 "use strict";
 
 const crypto = require("crypto");
+const {stripePriceEnvKey} = require("./_billingCatalog");
 
 const SUPPORTED_BOOTCAMPS = new Set(["act", "sat"]);
 const SUPPORTED_PLANS = new Set(["monthly", "annual"]);
@@ -35,8 +36,7 @@ function priceIdFor(bootcamp, planType, env = process.env) {
       !SUPPORTED_PLANS.has(normalizedPlan)) {
     return "";
   }
-  const key = `STRIPE_PRICE_${normalizedBootcamp.toUpperCase()}_` +
-    normalizedPlan.toUpperCase();
+  const key = stripePriceEnvKey(normalizedBootcamp, normalizedPlan);
   return String(env[key] || "").trim();
 }
 

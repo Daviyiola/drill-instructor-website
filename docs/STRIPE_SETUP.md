@@ -58,9 +58,9 @@ Add two recurring prices to each product:
 
 | Bootcamp | Billing period | Price |
 | --- | --- | ---: |
-| ACT | Monthly | $6.99 USD |
+| ACT | Monthly | $5.99 USD |
 | ACT | Annual | $49.99 USD |
-| SAT | Monthly | $6.99 USD |
+| SAT | Monthly | $5.99 USD |
 | SAT | Annual | $49.99 USD |
 
 Use USD, recurring pricing, and a fixed per-unit amount. Do not create a single

@@ -46,6 +46,29 @@ function createAppleVerifier(config) {
   );
 }
 
+function appleVerificationEnvironments(value) {
+  const preferred = appleEnvironment(value);
+  if (preferred === "Xcode") return ["Xcode"];
+  return preferred === "Sandbox" ? ["Sandbox", "Production"] :
+    ["Production", "Sandbox"];
+}
+
+async function verifyApplePayload(config, method, payload) {
+  let lastError;
+  for (const environment of appleVerificationEnvironments(
+      config.environment,
+  )) {
+    try {
+      const verifier = createAppleVerifier({...config, environment});
+      const value = await verifier[method](payload);
+      return {verifier, value, environment};
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error("Unable to verify Apple signed data");
+}
+
 function appleTransactionRecord(transaction, renewal, nowMs = Date.now()) {
   const product = appleProduct(transaction && transaction.productId);
   if (!product) throw new Error("Unsupported Apple product");
@@ -92,7 +115,9 @@ function appleTransactionRecord(transaction, renewal, nowMs = Date.now()) {
 
 module.exports = {
   appleEnvironment,
+  appleVerificationEnvironments,
   appleTransactionRecord,
   createAppleVerifier,
   parseAppleRoots,
+  verifyApplePayload,
 };

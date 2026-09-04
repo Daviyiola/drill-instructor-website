@@ -7,7 +7,7 @@ const {allowCors, requireBearerUid} = require("./_auth");
 const {resolveStudent} = require("./_studentDrill");
 const {cleanSegment} = require("./_stripeBilling");
 const {appAccountTokenForUid} = require("./_storeAccount");
-const {appleTransactionRecord, createAppleVerifier} = require("./_appleStore");
+const {appleTransactionRecord, verifyApplePayload} = require("./_appleStore");
 const {recomputeStoreProvider} = require("./_storeEntitlements");
 
 const APPLE_ROOT_CERTIFICATES_BASE64 = defineSecret(
@@ -56,15 +56,13 @@ async function handler(req, res) {
     if (!signedTransactionInfo) {
       return res.status(400).json({error: "A signed transaction is required"});
     }
-    const verifier = createAppleVerifier({
+    const verification = await verifyApplePayload({
       rootCertificates: APPLE_ROOT_CERTIFICATES_BASE64.value(),
       bundleId: process.env.APPLE_BUNDLE_ID,
       appAppleId: process.env.APPLE_APP_ID,
       environment: process.env.APPLE_ENVIRONMENT,
-    });
-    const transaction = await verifier.verifyAndDecodeTransaction(
-        signedTransactionInfo,
-    );
+    }, "verifyAndDecodeTransaction", signedTransactionInfo);
+    const transaction = verification.value;
     const expectedToken = appAccountTokenForUid(uid).toLowerCase();
     if (String(transaction.appAccountToken || "").toLowerCase() !==
         expectedToken) {

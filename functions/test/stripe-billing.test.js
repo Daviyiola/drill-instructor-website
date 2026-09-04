@@ -17,6 +17,9 @@ const {
   webAppUrl,
 } = require("../handlers/_stripeBilling");
 const {
+  STRIPE_PRICE_ENV_KEYS,
+} = require("../handlers/_billingCatalog");
+const {
   claimWebhookEvent,
   invoiceSubscriptionId,
   objectId,
@@ -41,6 +44,8 @@ const {
   stripeSubscriptionIdFromEntitlement,
   stripeSubscriptionRecord,
 } = require("../handlers/_stripeEntitlements");
+const {readSubscriptionBatch} =
+  require("../handlers/reconcileStripeSubscriptions");
 
 const FUTURE_SECONDS = Date.parse("2026-08-24T00:00:00.000Z") / 1000;
 const NOW_MS = Date.parse("2026-07-24T00:00:00.000Z");
@@ -85,6 +90,70 @@ test("Stripe price ids are scoped by bootcamp and cadence", () => {
   assert.equal(priceIdFor("sat", "annual", env), "price_sat_annual");
   assert.equal(priceIdFor("waec", "monthly", env), "");
   assert.equal(priceIdFor("act", "quarterly", env), "");
+});
+
+test("student web prices are the intended monthly and annual amounts", () => {
+  const webCatalog = fs.readFileSync(path.join(
+      __dirname, "..", "..", "lib", "billing", "catalog.ts"), "utf8");
+  assert.match(webCatalog, /monthly:[\s\S]*?amountCents:\s*599/);
+  assert.match(webCatalog, /annual:[\s\S]*?amountCents:\s*4999/);
+  for (const relative of [
+    ["app", "pricing", "page.tsx"],
+    ["components", "app", "BootcampSubscription.tsx"],
+  ]) {
+    const source = fs.readFileSync(path.join(
+        __dirname, "..", "..", ...relative), "utf8");
+    assert.match(source, /@\/lib\/billing\/catalog/);
+    assert.doesNotMatch(source, /\$6\.99/);
+  }
+});
+
+test("Stripe catalog cannot interchange cadence or bootcamp identifiers", () => {
+  assert.equal(STRIPE_PRICE_ENV_KEYS.act.monthly,
+      "STRIPE_PRICE_ACT_MONTHLY");
+  assert.equal(STRIPE_PRICE_ENV_KEYS.act.annual,
+      "STRIPE_PRICE_ACT_ANNUAL");
+  assert.equal(STRIPE_PRICE_ENV_KEYS.sat.monthly,
+      "STRIPE_PRICE_SAT_MONTHLY");
+  assert.equal(STRIPE_PRICE_ENV_KEYS.sat.annual,
+      "STRIPE_PRICE_SAT_ANNUAL");
+  assert.notEqual(STRIPE_PRICE_ENV_KEYS.act.monthly,
+      STRIPE_PRICE_ENV_KEYS.act.annual);
+  assert.notEqual(STRIPE_PRICE_ENV_KEYS.act.monthly,
+      STRIPE_PRICE_ENV_KEYS.sat.monthly);
+});
+
+test("Stripe reconciliation pages bounded batches and resumes after cursor", async () => {
+  const ids = Array.from({length: 205}, (_, index) =>
+    `sub_${String(index).padStart(3, "0")}`);
+  const db = {
+    ref(name) {
+      assert.equal(name, "stripeSubscriptions");
+      let start = "";
+      let limit = Infinity;
+      const query = {
+        orderByKey: () => query,
+        startAt: (value) => {
+          start = value;
+          return query;
+        },
+        limitToFirst: (value) => {
+          limit = value;
+          return query;
+        },
+        once: async () => ({val: () => Object.fromEntries(ids
+            .filter((id) => !start || id >= start)
+            .slice(0, limit).map((id) => [id, true]))}),
+      };
+      return query;
+    },
+  };
+  const first = await readSubscriptionBatch(db, "", 100);
+  const second = await readSubscriptionBatch(db, first.nextCursor, 100);
+  assert.equal(first.ids.length, 100);
+  assert.equal(second.ids.length, 100);
+  assert.equal(first.ids[99], "sub_099");
+  assert.equal(second.ids[0], "sub_100");
 });
 
 test("Stripe return URL accepts only a clean HTTP origin", () => {

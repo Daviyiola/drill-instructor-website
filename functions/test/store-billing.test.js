@@ -14,7 +14,7 @@ const {
   releaseStoreNotificationClaim,
 } = require("../handlers/_storeNotificationClaims");
 const {appleProduct, googleProduct} = require("../handlers/_storeCatalog");
-const {appleTransactionRecord, parseAppleRoots} =
+const {appleTransactionRecord, appleVerificationEnvironments, parseAppleRoots} =
   require("../handlers/_appleStore");
 const {googlePurchaseRecord, googleTokenHash} =
   require("../handlers/_googlePlay");
@@ -135,6 +135,26 @@ test("store catalog accepts only configured products and base plans", () => {
   assert.equal(googleProduct("sat_premium", "weekly"), null);
 });
 
+test("store products cannot interchange cadence or bootcamp", () => {
+  assert.deepEqual(
+      appleProduct("com.drillinstructor.app.act.monthly"),
+      {bootcamp: "act", planType: "monthly"},
+  );
+  assert.deepEqual(
+      appleProduct("com.drillinstructor.app.act.annual"),
+      {bootcamp: "act", planType: "annual"},
+  );
+  assert.notDeepEqual(
+      appleProduct("com.drillinstructor.app.sat.monthly"),
+      appleProduct("com.drillinstructor.app.act.monthly"),
+  );
+  assert.deepEqual(googleProduct("act_premium", "annual"),
+      {bootcamp: "act", planType: "annual"});
+  assert.deepEqual(googleProduct("sat_premium", "monthly"),
+      {bootcamp: "sat", planType: "monthly"});
+  assert.equal(googleProduct("act_premium", "yearly"), null);
+});
+
 test("Apple purchases fail closed for revocation and unsupported products", () => {
   const base = {
     productId: "com.drillinstructor.app.act.monthly",
@@ -153,6 +173,14 @@ test("Apple purchases fail closed for revocation and unsupported products", () =
       /Unsupported Apple product/,
   );
   assert.throws(() => parseAppleRoots(""), /not configured/);
+});
+
+test("Apple verification tries the configured store environment first", () => {
+  assert.deepEqual(appleVerificationEnvironments("Production"),
+      ["Production", "Sandbox"]);
+  assert.deepEqual(appleVerificationEnvironments("Sandbox"),
+      ["Sandbox", "Production"]);
+  assert.deepEqual(appleVerificationEnvironments("Xcode"), ["Xcode"]);
 });
 
 test("Apple billing grace extends access only through Apple's grace date", () => {
