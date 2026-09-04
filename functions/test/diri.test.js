@@ -228,11 +228,13 @@ test("small accuracy improvements cannot reduce DIRI", () => {
 
 test("native analytics never substitutes its older local DIRI formula", () => {
   const root = path.resolve(__dirname, "../..");
-  const student = fs.readFileSync(path.join(root,
-      "Drill_Instructor/qml/Student/Bootcamps/Analytics.qml"), "utf8");
-  const educator = fs.readFileSync(path.join(root,
-      "Drill_Instructor/qml/Instructor/Bootcamps/EducatorStudentAnalytics.qml"),
-  "utf8");
+  const nested = path.join(root, "Drill_Instructor");
+  const nativeRoot = fs.existsSync(nested) ? nested :
+    path.join(root, "..", "drill_instructor_app");
+  const student = fs.readFileSync(path.join(nativeRoot,
+      "qml/Student/Bootcamps/Analytics.qml"), "utf8");
+  const educator = fs.readFileSync(path.join(nativeRoot,
+      "qml/Instructor/Bootcamps/EducatorStudentAnalytics.qml"), "utf8");
   assert.ok(student.includes("applyCachedCanonicalReadiness()"));
   assert.equal(student.includes("buildReadinessV2(diriRows)"), false);
   assert.equal(educator.includes("buildReadinessV2(diriRows)"), false);

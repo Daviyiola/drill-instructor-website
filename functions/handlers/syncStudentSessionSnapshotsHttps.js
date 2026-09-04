@@ -253,7 +253,10 @@ async function uploadLocalSnapshots(db, studentId, bootcamp, localSnapshots) {
 }
 
 exports.handler = async (req, res) => {
-  if (allowCors(req, res)) return;
+  // Older native clients upload as many as 50 complete local snapshot JSON
+  // blobs even though this endpoint only trusts their session identifiers.
+  // Keep those released clients working while the current app sends IDs only.
+  if (allowCors(req, res, {maxBodyBytes: 8 * 1024 * 1024})) return;
 
   try {
     if (req.method !== "POST") {

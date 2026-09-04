@@ -5,7 +5,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const test = require("node:test");
 
-const {allowCors} = require("../handlers/_auth");
+const {allowCors, requireAppCheck} = require("../handlers/_auth");
 const {
   creditFreeSession,
   creditPaidSession,
@@ -97,6 +97,46 @@ test("CORS handles browser preflight", () => {
   assert.equal(body, "");
   assert.equal(headers["Access-Control-Allow-Origin"], "*");
   assert.match(headers["Access-Control-Allow-Headers"], /Authorization/);
+});
+
+test("shared HTTP boundary rejects bodies over one MiB", () => {
+  let status = 0;
+  let body = null;
+  const res = {
+    set: () => {},
+    status: (value) => {
+      status = value;
+      return res;
+    },
+    json: (value) => {
+      body = value;
+      return res;
+    },
+  };
+  assert.equal(allowCors({
+    method: "POST",
+    headers: {"content-length": String(1024 * 1024 + 1)},
+    body: {},
+  }, res), true);
+  assert.equal(status, 413);
+  assert.deepEqual(body, {error: "REQUEST_BODY_TOO_LARGE"});
+});
+
+test("shared HTTP boundary supports a bounded compatibility override", () => {
+  const res = {set: () => {}};
+  assert.equal(allowCors({
+    method: "POST",
+    headers: {"content-length": String(2 * 1024 * 1024)},
+    body: {},
+  }, res, {maxBodyBytes: 8 * 1024 * 1024}), false);
+});
+
+test("App Check remains a documented opt-in for existing clients", async () => {
+  const previous = process.env.APP_CHECK_ENFORCEMENT;
+  process.env.APP_CHECK_ENFORCEMENT = "disabled";
+  await assert.doesNotReject(requireAppCheck({headers: {}}));
+  if (previous === undefined) delete process.env.APP_CHECK_ENFORCEMENT;
+  else process.env.APP_CHECK_ENFORCEMENT = previous;
 });
 
 test("license generation fails closed without a secret", () => {
@@ -245,7 +285,11 @@ test("access-code activation returns a non-secret entitlement contract", () => {
 });
 
 test("mobile gates use the centralized entitlement contract", () => {
-  const qmlRoot = path.join(__dirname, "..", "..", "Drill_Instructor", "qml");
+  const nestedRoot = path.join(
+      __dirname, "..", "..", "Drill_Instructor", "qml");
+  const siblingRoot = path.join(
+      __dirname, "..", "..", "..", "drill_instructor_app", "qml");
+  const qmlRoot = fs.existsSync(nestedRoot) ? nestedRoot : siblingRoot;
   const main = fs.readFileSync(path.join(qmlRoot, "Main.qml"), "utf8");
   assert.match(main, /function cacheSubscriptionStatus\(/);
   assert.match(main, /function hasActiveSubscription\(/);

@@ -73,24 +73,18 @@ exports.confirmAccountDeletionHttps = onRequest(
 );
 
 exports.createChallengeHttps = onRequest(
-    {secrets: [CHALLENGE_SIGNING_SECRET,
-      LICENSE_SALT],
-    region: "us-central1",
-    timeoutSeconds: 60},
+    {...publicStudentOptions, secrets: [CHALLENGE_SIGNING_SECRET,
+      LICENSE_SALT]},
     require("./handlers/createChallengeHttps").handler,
 );
 
 exports.acceptChallengeHttps = onRequest(
-    {secrets: [LICENSE_SALT],
-      region: "us-central1",
-      timeoutSeconds: 60},
+    {...publicStudentOptions, secrets: [LICENSE_SALT]},
     require("./handlers/acceptChallengeHttps").handler,
 );
 
 exports.decideChallengeHttps = onRequest(
-    {secrets: [LICENSE_SALT],
-      region: "us-central1",
-      timeoutSeconds: 60},
+    {...publicStudentOptions, secrets: [LICENSE_SALT]},
     require("./handlers/decideChallengeHttps").handler,
 );
 
@@ -109,12 +103,12 @@ exports.completeChallengeHttps = onRequest(
 );
 
 exports.bootstrapAccountHttps = onRequest(
-    {region: "us-central1", timeoutSeconds: 60},
+    publicStudentOptions,
     require("./handlers/bootstrapAccountHttps").handler,
 );
 
 exports.bootstrapEducatorAccountHttps = onRequest(
-    {region: "us-central1", timeoutSeconds: 60},
+    publicStudentOptions,
     require("./handlers/bootstrapEducatorAccountHttps").handler,
 );
 
@@ -352,7 +346,7 @@ exports.updateStudentProfileHttps = onRequest(
 );
 
 exports.syncStudentSessionSnapshotsHttps = onRequest(
-    {region: "us-central1", timeoutSeconds: 60},
+    publicStudentOptions,
     require("./handlers/syncStudentSessionSnapshotsHttps").handler,
 );
 
@@ -377,10 +371,7 @@ exports.getStudentEducatorDrillResultHttps = onRequest(
 );
 
 exports.checkEducatorApprovalStatusHttps = onRequest(
-    {
-      region: "us-central1",
-      timeoutSeconds: 60,
-    },
+    publicStudentOptions,
     require("./handlers/checkEducatorApprovalStatusHttps").handler,
 );
 
@@ -478,28 +469,17 @@ exports.reconcileStripeSubscriptions =
       .reconcileStripeSubscriptions;
 
 exports.getMyBootcampsHttps = onRequest(
-    {
-      cors: true,
-      region: "us-central1",
-      timeoutSeconds: 60,
-    },
+    publicStudentOptions,
     require("./handlers/getMyBootcampsHttps"),
 );
 
 exports.setBootcampVisibilityHttps = onRequest(
-    {
-      cors: true,
-      region: "us-central1",
-      timeoutSeconds: 60,
-    },
+    publicStudentOptions,
     require("./handlers/setBootcampVisibilityHttps"),
 );
 
 exports.getUnitRankingsHttps = onRequest(
-    {
-      region: "us-central1",
-      timeoutSeconds: 60,
-    },
+    publicStudentOptions,
     require("./handlers/getUnitRankingsHttps").handler,
 );
 
