@@ -17,16 +17,29 @@ const {
   buildPaper,
   canonicalAssetPaths,
   cleanSegment,
+  compactResult,
   correctionRevisionFor,
   gradeSession,
+  hydrateResult,
   normalizedQuestions,
   publicQuestion,
   publicSession,
   resolveStudent,
+  resolveStudentId,
   subjectTimerKey,
   subjectTimerValue,
   datasetVersionFor,
 } = require("./_studentDrill");
+const {
+  applyProgressPatch,
+  approximateJsonBytes,
+  assertProgressPayloadSize,
+  initialProgress,
+  progressForSession,
+  sanitizeProgressPatch,
+  sessionProgressMetadata,
+  sessionStorageUpdates,
+} = require("./_studentDrillProgress");
 const {
   analyticsAttemptFromResult,
   projectAttempt,
@@ -73,7 +86,7 @@ function sendError(res, error, fallback) {
   if (code === 401 || authCode.startsWith("auth/")) {
     return res.status(401).json({error: "Authentication failed"});
   }
-  if ([400, 403, 404, 409].includes(code)) {
+  if ([400, 403, 404, 409, 413].includes(code)) {
     return res.status(code).json({error: error.message});
   }
   console.error("STUDENT_DRILL_FAILED", {
@@ -152,14 +165,45 @@ function submittedSessionValue(
   const latest = hasSessionState ? current : session;
   if (!latest || latest.studentId !== studentId ||
       latest.status !== "active") return;
+  const questionRows = Array.isArray(latest.questions) ? latest.questions : [];
+  const questionRefs = questionRows.map((question) =>
+    String(question && question.id || "")).filter(Boolean);
+  const durable = {...latest};
+  [
+    "questions", "answers", "bookmarks", "flags", "questionTimes",
+    "timers", "currentQuestionId", "result",
+  ].forEach((field) => delete durable[field]);
   return {
-    ...latest,
-    ...progress,
+    ...durable,
+    schemaVersion: 3,
+    questionRefs,
     status: "submitted",
     submittedAt: endedAt,
     updatedAt: endedAt,
-    result,
+    result: compactResult(result, progress),
   };
+}
+
+/**
+ * Reconstruct v3 review content from the session's pinned immutable bank.
+ * Legacy sessions and results remain self-contained.
+ *
+ * @param {Object} session Stored session
+ * @param {Object} result Stored result
+ * @return {Promise<Object>} Hydrated public result
+ */
+async function hydrateSessionResult(session, result) {
+  if (!result || Number(result.v || 0) < 3) return result;
+  const packs = require("./studentContentPacksHttps");
+  const bank = await packs.questionsForPinnedVersion(
+      session.bootcamp,
+      String(session.datasetVersion || result.datasetVersion || ""),
+      Number(session.correctionRevision || result.correctionRevision || 0),
+  );
+  const byId = new Map(bank.map((question) => [question.id, question]));
+  const refs = Array.isArray(session.questionRefs) ? session.questionRefs :
+    (result.answers || []).map((answer) => answer.id);
+  return hydrateResult(result, refs.map((id) => byId.get(id)).filter(Boolean));
 }
 
 /**
@@ -277,7 +321,9 @@ async function createDrill(req, res) {
       timers,
       currentQuestionId: paper.questions[0] && paper.questions[0].id || "",
     };
-    await db.ref(`studentDrills/${studentId}/${sessionId}`).set(session);
+    await db.ref().update({
+      ...sessionStorageUpdates(studentId, session),
+    });
     return res.status(201).json({ok: true, session: publicSession(session)});
   } catch (error) {
     return sendError(res, error, "Unable to create drill");
@@ -381,24 +427,88 @@ async function saveProgress(req, res) {
   if (rejectNonPost(req, res)) return;
   try {
     const uid = await requireBearerUid(req);
+    const requestBytes = assertProgressPayloadSize(req.body || {});
     const db = getDatabase();
-    const {studentId} = await resolveStudent(db, uid);
-    const {ref, session} = await readSession(
-        db,
-        studentId,
-        req.body && req.body.sessionId,
+    const studentId = await resolveStudentId(db, uid);
+    const sessionId = cleanSegment(req.body && req.body.sessionId, 80);
+    if (!sessionId) {
+      const error = new Error("A valid drill session is required");
+      error.code = 400;
+      throw error;
+    }
+    const metadataRef = db.ref(
+        `studentDrillMetadata/${studentId}/${sessionId}`,
     );
-    if (session.status !== "active") {
+    const progressRef = db.ref(
+        `studentDrillProgress/${studentId}/${sessionId}`,
+    );
+    let metadata = (await metadataRef.once("value")).val();
+    let legacyReadBytes = 0;
+    if (!metadata) {
+      const legacy = await readSession(db, studentId, sessionId);
+      legacyReadBytes = approximateJsonBytes(legacy.session);
+      const legacyMetadata = sessionProgressMetadata(legacy.session);
+      const [metadataClaim] = await Promise.all([
+        metadataRef.transaction((current) => current || legacyMetadata),
+        progressRef.transaction((current) =>
+          current || initialProgress(legacy.session)),
+      ]);
+      metadata = metadataClaim.snapshot.val() || legacyMetadata;
+    }
+    if (metadata.studentId !== studentId) {
+      const error = new Error("Drill session was not found");
+      error.code = 404;
+      throw error;
+    }
+    if (metadata.status !== "active") {
       return res.status(200).json({
         ok: true,
-        status: session.status,
-        savedAt: session.updatedAt,
+        status: metadata.status,
+        savedAt: metadata.updatedAt || metadata.createdAt,
       });
     }
-    const progress = sanitizeProgress(session, req.body || {});
+    const patch = sanitizeProgressPatch(metadata, req.body || {});
     const savedAt = Date.now();
-    await ref.update({...progress, updatedAt: savedAt});
-    return res.status(200).json({ok: true, status: "active", savedAt});
+    let progressReadBytes = 0;
+    const fallback = {
+      v: 1,
+      revision: 0,
+      answers: {},
+      bookmarks: {},
+      flags: {},
+      questionTimes: {},
+      timers: metadata.timerLimits || {},
+      currentQuestionId: metadata.questionIds[0] || "",
+      updatedAt: metadata.createdAt || savedAt,
+    };
+    // The sequence check and dirty merge must share one transaction. Claiming
+    // a sequence in a separate node would leave a race in which an older
+    // invocation could write after a newer one had already claimed its turn.
+    const transaction = await progressRef.transaction((current) => {
+      progressReadBytes = approximateJsonBytes(current || fallback);
+      const applied = applyProgressPatch(current || fallback, patch, savedAt);
+      return applied.stale ? undefined : applied.value;
+    });
+    const stale = !transaction.committed;
+    const progressWriteBytes = stale ? 0 :
+      approximateJsonBytes(transaction.snapshot.val());
+    if (process.env.NODE_ENV !== "production") {
+      console.info("STUDENT_DRILL_PROGRESS_IO", {
+        requestBytes,
+        metadataReadBytes: approximateJsonBytes(metadata),
+        legacyReadBytes,
+        progressReadBytes,
+        progressWriteBytes,
+        stale,
+      });
+    }
+    return res.status(200).json({
+      ok: true,
+      status: "active",
+      savedAt,
+      sequence: patch.sequence,
+      stale,
+    });
   } catch (error) {
     return sendError(res, error, "Unable to save drill progress");
   }
@@ -431,7 +541,13 @@ async function getSession(req, res) {
         challengeId: session.challengeId || "",
       });
     }
-    return res.status(200).json({ok: true, session: publicSession(session)});
+    const progress = (await db.ref(
+        `studentDrillProgress/${studentId}/${session.sessionId}`,
+    ).once("value")).val();
+    return res.status(200).json({
+      ok: true,
+      session: publicSession(progressForSession(session, progress)),
+    });
   } catch (error) {
     return sendError(res, error, "Unable to load drill session");
   }
@@ -580,7 +696,10 @@ async function ensureSessionCredit(db, studentId, ref, session) {
  */
 async function releasedSubmissionResult(db, studentId, session, result) {
   if (session.mode !== "assignment") {
-    return {result, resultStatus: "released"};
+    return {
+      result: await hydrateSessionResult(session, result),
+      resultStatus: "released",
+    };
   }
   const attempt = (await db.ref(
       `users/${studentId}/statsIndex/${session.sessionId}`,
@@ -596,8 +715,10 @@ async function releasedSubmissionResult(db, studentId, session, result) {
       permissions: {canViewScore: false, canViewCorrections: false},
     };
   }
+  const releasedResult = release.correctionsReleased ?
+    await hydrateSessionResult(session, result) : {...result, answers: []};
   return {
-    result: release.correctionsReleased ? result : {...result, answers: []},
+    result: releasedResult,
     resultStatus: release.correctionsReleased ?
       "corrections_released" : "score_released",
     permissions: {
@@ -626,6 +747,16 @@ async function submitDrill(req, res) {
         req.body && req.body.sessionId,
     );
     if (session.status === "submitted" && session.result) {
+      const reconciledAt = Number(session.submittedAt || Date.now());
+      await db.ref().update({
+        [`studentDrillMetadata/${studentId}/${session.sessionId}/status`]:
+          "submitted",
+        [`studentDrillMetadata/${studentId}/${session.sessionId}/updatedAt`]:
+          reconciledAt,
+        [`studentDrillProgress/${studentId}/${session.sessionId}`]: null,
+        [`studentDrillProgressSequences/${studentId}/${session.sessionId}`]:
+          null,
+      });
       const credit = await ensureSessionCredit(db, studentId, ref, session);
       const streak = await recordSubmissionStreak(
           db, studentId, session, session.result, req.body || {},
@@ -663,6 +794,16 @@ async function submitDrill(req, res) {
     if (!claimed.committed) {
       const latest = (await ref.once("value")).val() || {};
       if (latest.status === "submitted" && latest.result) {
+        const reconciledAt = Number(latest.submittedAt || Date.now());
+        await db.ref().update({
+          [`studentDrillMetadata/${studentId}/${latest.sessionId}/status`]:
+            "submitted",
+          [`studentDrillMetadata/${studentId}/${latest.sessionId}/updatedAt`]:
+            reconciledAt,
+          [`studentDrillProgress/${studentId}/${latest.sessionId}`]: null,
+          [`studentDrillProgressSequences/${studentId}/${latest.sessionId}`]:
+            null,
+        });
         const credit = await ensureSessionCredit(
             db,
             studentId,
@@ -717,6 +858,14 @@ async function submitDrill(req, res) {
         releaseFromDrill(assignmentDrill) : null,
     });
     const attemptUpdates = {};
+    attemptUpdates[`studentDrillMetadata/${studentId}/` +
+      `${session.sessionId}/status`] = "submitted";
+    attemptUpdates[`studentDrillMetadata/${studentId}/` +
+      `${session.sessionId}/updatedAt`] = endedAt;
+    attemptUpdates[`studentDrillProgress/${studentId}/${session.sessionId}`] =
+      null;
+    attemptUpdates[`studentDrillProgressSequences/${studentId}/` +
+      `${session.sessionId}`] = null;
     attemptUpdates[`users/${studentId}/statsIndex/${session.sessionId}`] =
       analyticsAttempt;
     // The compact index powers Test Records and analytics. The detail row is
@@ -829,8 +978,13 @@ async function getResult(req, res) {
       error.code = 404;
       throw error;
     }
-    let result = session.result;
+    if (session.status !== "submitted" || !session.result) {
+      const error = new Error("This drill has not been submitted");
+      error.code = 409;
+      throw error;
+    }
     let permissions = null;
+    let correctionsReleased = true;
     const correctionsOnly = req.body && req.body.correctionsOnly === true;
     if (session.mode === "assignment") {
       const attempt = (await db.ref(
@@ -845,19 +999,18 @@ async function getResult(req, res) {
         error.code = 403;
         throw error;
       }
-      if (!release.correctionsReleased && session.result) {
-        result = {...session.result, answers: []};
-      }
+      correctionsReleased = release.correctionsReleased;
       permissions = {
         canViewScore: release.scoreReleased,
         canViewCorrections: release.correctionsReleased,
       };
     }
-    if (session.status !== "submitted" || !session.result) {
-      const error = new Error("This drill has not been submitted");
-      error.code = 409;
-      throw error;
-    }
+    // Do not load archived question content until corrections may be viewed.
+    // This both avoids unnecessary work and keeps answer material out of the
+    // handler's intermediate state for unreleased assignments.
+    let result = correctionsReleased ?
+      await hydrateSessionResult(session, session.result) :
+      {...session.result, answers: []};
     // Results retain the whole paper for its summary, while a correction view
     // needs only attempted rows. Positions retain original numbering.
     if (correctionsOnly && Array.isArray(result && result.answers)) {
@@ -975,7 +1128,7 @@ async function setBookmark(req, res) {
     const body = req.body || {};
     const questionId = cleanSegment(body.questionId, 120);
     const sessionId = cleanSegment(body.sessionId, 80);
-    let ref = null;
+    let progressRef = null;
     let session = null;
     let bootcamp = "";
     let datasetVersion = "";
@@ -986,8 +1139,10 @@ async function setBookmark(req, res) {
 
     if (sessionId) {
       const loaded = await readSession(db, studentId, sessionId);
-      ref = loaded.ref;
       session = loaded.session;
+      progressRef = db.ref(
+          `studentDrillProgress/${studentId}/${loaded.sessionId}`,
+      );
       bootcamp = session.bootcamp;
       datasetVersion = session.datasetVersion;
       correctionRevision = Number(session.correctionRevision || 0);
@@ -1033,10 +1188,14 @@ async function setBookmark(req, res) {
         ...(current && Array.isArray(current.groups) ?
           {groups: current.groups} : {}),
       }));
-      if (ref) await ref.child(`bookmarks/${questionId}`).set(true);
+      if (progressRef && session.status === "active") {
+        await progressRef.child(`bookmarks/${questionId}`).set(true);
+      }
     } else {
       await bookmarkRef.remove();
-      if (ref) await ref.child(`bookmarks/${questionId}`).remove();
+      if (progressRef && session.status === "active") {
+        await progressRef.child(`bookmarks/${questionId}`).remove();
+      }
     }
     return res.status(200).json({
       ok: true,
@@ -1182,11 +1341,16 @@ function bookmarkWithAnswer(bookmark, session, resolvedSource = null) {
       session.result.answers : [];
     const answer = answers.find((row) => row.id === bookmark.id);
     if (!answer) return {...bookmark, answerAvailable: false};
-    const correctIndex = answerIndexForBookmark(answer);
+    const resolvedQuestions = resolvedSource &&
+      Array.isArray(resolvedSource.questions) ? resolvedSource.questions : [];
+    const pinnedQuestion = resolvedQuestions.find((row) =>
+      row.id === bookmark.id);
+    const correctIndex = answerIndexForBookmark(pinnedQuestion || answer);
     return {
       ...bookmark,
       correctIndex,
-      explanation: String(answer.explanation || ""),
+      explanation: String(answer.explanation ||
+        pinnedQuestion && pinnedQuestion.explanation || ""),
       answerAvailable: correctIndex >= 0,
     };
   }
@@ -1254,14 +1418,16 @@ async function getBookmarks(req, res) {
         async (bookmark) => {
           const session =
             sessionMap.get(String(bookmark.sourceSessionId || "")) || null;
-          const source = session || await bookmarkQuestionSession(
-              bookmark,
-              bootcamp,
-          );
+          const needsPinnedSource = !session ||
+            !Array.isArray(session.questions) || !session.questions.length;
+          const pinnedSource = needsPinnedSource ?
+            await bookmarkQuestionSession(bookmark, bootcamp) : null;
+          const source = session && Array.isArray(session.questions) &&
+            session.questions.length ? session : pinnedSource;
           return bookmarkWithAnswer(
               hydrateBookmarkQuestion(bookmark, source, bootcamp),
               session,
-              source,
+              pinnedSource || source,
           );
         },
     ));
@@ -1399,4 +1565,5 @@ module.exports = {
   setBookmarkGroups,
   submitDrill,
   submittedSessionValue,
+  hydrateSessionResult,
 };

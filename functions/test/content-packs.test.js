@@ -17,6 +17,11 @@ const {
   normalizedQuestions,
 } = require("../handlers/_studentDrill");
 
+const repositoryRoot = path.join(__dirname, "..", "..");
+const nestedNativeRoot = path.join(repositoryRoot, "Drill_Instructor");
+const nativeRepositoryRoot = fs.existsSync(nestedNativeRoot) ?
+  nestedNativeRoot : path.join(repositoryRoot, "..", "drill_instructor_app");
+
 test("canonical content coordinates are bootcamp-scoped", () => {
   assert.equal(datasetVersionFor("act"),
       contentVersionFor("act").datasetVersion);
@@ -143,13 +148,12 @@ test("ACT preserves every multi-image reference as an ordered array", () => {
 });
 
 test("native and web delivery sources use imageSources arrays", () => {
-  const root = path.join(__dirname, "..", "..");
   const nativeManager = fs.readFileSync(path.join(
-      root, "Drill_Instructor", "qml", "Components",
+      nativeRepositoryRoot, "qml", "Components",
       "ContentPackManager.qml",
   ), "utf8");
   const webImages = fs.readFileSync(path.join(
-      root, "lib", "drills", "images.ts",
+      repositoryRoot, "lib", "drills", "images.ts",
   ), "utf8");
   assert.match(nativeManager, /function cachedCloudAssets\(/);
   assert.match(nativeManager, /function protectBookmarkAssets\(/);
@@ -159,7 +163,7 @@ test("native and web delivery sources use imageSources arrays", () => {
 test("native free manifests expose only Tests 1 and 2", () => {
   for (const bootcamp of ["act", "sat"]) {
     const filename = path.join(
-        __dirname, "..", "..", "Drill_Instructor", "assets",
+        nativeRepositoryRoot, "assets",
         "content-free", bootcamp, "manifest.json",
     );
     const manifest = JSON.parse(fs.readFileSync(filename, "utf8"));
@@ -176,17 +180,16 @@ test("native free manifests expose only Tests 1 and 2", () => {
 });
 
 test("native drill setup caches the canonical server catalog", () => {
-  const root = path.join(__dirname, "..", "..");
   const manager = fs.readFileSync(path.join(
-      root, "Drill_Instructor", "qml", "Components",
+      nativeRepositoryRoot, "qml", "Components",
       "ContentPackManager.qml",
   ), "utf8");
   const drills = fs.readFileSync(path.join(
-      root, "Drill_Instructor", "qml", "Student", "Bootcamps",
+      nativeRepositoryRoot, "qml", "Student", "Bootcamps",
       "Drills.qml",
   ), "utf8");
   const database = fs.readFileSync(path.join(
-      root, "Drill_Instructor", "assets", "scripts", "DBHelper.js",
+      nativeRepositoryRoot, "assets", "scripts", "DBHelper.js",
   ), "utf8");
 
   assert.match(manager, /getStudentDrillCatalogHttps/);
@@ -201,7 +204,7 @@ test("native drill setup caches the canonical server catalog", () => {
 test("native ACT and SAT fallback metadata matches the canonical catalog",
     () => {
       const nativeModel = require(path.join(
-          __dirname, "..", "..", "Drill_Instructor", "assets", "scripts",
+          nativeRepositoryRoot, "assets", "scripts",
           "BootcampModel.js",
       ));
       for (const bootcamp of ["act", "sat"]) {
@@ -225,7 +228,7 @@ test("native ACT and SAT fallback metadata matches the canonical catalog",
 
 test("native model excludes unreleased UTME and WAEC configuration", () => {
   const nativeModel = require(path.join(
-      __dirname, "..", "..", "Drill_Instructor", "assets", "scripts",
+      nativeRepositoryRoot, "assets", "scripts",
       "BootcampModel.js",
   ));
   assert.deepEqual(nativeModel.getBootcampData("utme"), {});
@@ -233,22 +236,42 @@ test("native model excludes unreleased UTME and WAEC configuration", () => {
 });
 
 test("native package excludes duplicate full banks and image trees", () => {
-  const nativeRoot = path.join(__dirname, "..", "..", "Drill_Instructor");
   const oldDataRoot = path.join(
-      nativeRoot, "qml", "Student", "Bootcamps", "Data",
+      nativeRepositoryRoot, "qml", "Student", "Bootcamps", "Data",
   );
   assert.equal(fs.existsSync(path.join(oldDataRoot, "actData.js")), false);
   assert.equal(fs.existsSync(path.join(oldDataRoot, "satData.js")), false);
 
   const cmake = fs.readFileSync(
-      path.join(nativeRoot, "CMakeLists.txt"), "utf8",
+      path.join(nativeRepositoryRoot, "CMakeLists.txt"), "utf8",
   );
   assert.match(cmake, /assets\/images\/SAT\//);
   assert.match(cmake, /assets\/images\/\(Math\|Sci\)/);
   assert.match(cmake, /assets\/content-free/);
 });
 
-test("revision-zero artifacts contain an empty cumulative overlay", () => {
+test("native history sync uploads canonical session identifiers only", () => {
+  const database = fs.readFileSync(path.join(
+      nativeRepositoryRoot, "assets", "scripts", "DBHelper.js",
+  ), "utf8");
+  const helper = database.slice(
+      database.indexOf("function getUnsyncedSessionSnapshotRows"),
+      database.indexOf("function markSessionSnapshotsSynced"),
+  );
+  assert.match(helper, /session_id: row\.session_id/);
+  assert.doesNotMatch(helper, /json: row\.json/);
+});
+
+test("revision-zero artifacts contain an empty cumulative overlay", (t) => {
+  const artifacts = ["act", "sat"].map((bootcamp) => path.join(
+      repositoryRoot, ".content-packs", bootcamp,
+      contentVersionFor(bootcamp).datasetVersion,
+      "corrections", "0.json",
+  ));
+  if (artifacts.some((filename) => !fs.existsSync(filename))) {
+    t.skip("generated .content-packs are absent; run the content-pack builder");
+    return;
+  }
   for (const bootcamp of ["act", "sat"]) {
     const filename = path.join(
         __dirname, "..", "..", ".content-packs", bootcamp,
@@ -264,7 +287,7 @@ test("revision-zero artifacts contain an empty cumulative overlay", () => {
 
 test("native solo creation sends the shared subjects contract", () => {
   const filename = path.join(
-      __dirname, "..", "..", "Drill_Instructor", "qml", "Student",
+      nativeRepositoryRoot, "qml", "Student",
       "Bootcamps", "Drills.qml",
   );
   const qml = fs.readFileSync(filename, "utf8");
@@ -273,12 +296,10 @@ test("native solo creation sends the shared subjects contract", () => {
 });
 
 test("native drill resume waits for StackView transitions", () => {
-  const nativeRoot = path.join(
-      __dirname, "..", "..", "Drill_Instructor", "qml",
-  );
-  const main = fs.readFileSync(path.join(nativeRoot, "Main.qml"), "utf8");
+  const qmlRoot = path.join(nativeRepositoryRoot, "qml");
+  const main = fs.readFileSync(path.join(qmlRoot, "Main.qml"), "utf8");
   const drills = fs.readFileSync(path.join(
-      nativeRoot, "Student", "Bootcamps", "Drills.qml",
+      qmlRoot, "Student", "Bootcamps", "Drills.qml",
   ), "utf8");
 
   assert.match(main, /if \(mainStack\.busy\)/);
@@ -298,7 +319,7 @@ test("native drill resume waits for StackView transitions", () => {
 test("native content and active-drill modals use explicit close actions",
     () => {
       const qmlRoot = path.join(
-          __dirname, "..", "..", "Drill_Instructor", "qml",
+          nativeRepositoryRoot, "qml",
       );
       const bootcampsRoot = path.join(
           qmlRoot, "Student", "Bootcamps",
@@ -331,7 +352,7 @@ test("native content and active-drill modals use explicit close actions",
 
 test("native expired sessions use one guarded finish path", () => {
   const bootcampsRoot = path.join(
-      __dirname, "..", "..", "Drill_Instructor", "qml", "Student",
+      nativeRepositoryRoot, "qml", "Student",
       "Bootcamps",
   );
   const questions = fs.readFileSync(
@@ -358,7 +379,7 @@ test("native expired sessions use one guarded finish path", () => {
 test("native review navigator avoids iOS anchor and color binding loops",
     () => {
       const review = fs.readFileSync(path.join(
-          __dirname, "..", "..", "Drill_Instructor", "qml", "Student",
+          nativeRepositoryRoot, "qml", "Student",
           "Bootcamps", "Review.qml",
       ), "utf8");
 

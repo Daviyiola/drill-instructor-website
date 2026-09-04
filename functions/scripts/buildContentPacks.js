@@ -16,8 +16,14 @@ const {correctionsFor} = require("../data/contentCorrections");
 
 const REPOSITORY_ROOT = path.resolve(__dirname, "..", "..");
 const OUTPUT_ROOT = path.join(REPOSITORY_ROOT, ".content-packs");
+const NESTED_NATIVE_ROOT = path.join(REPOSITORY_ROOT, "Drill_Instructor");
+const SIBLING_NATIVE_ROOT = path.join(
+    REPOSITORY_ROOT, "..", "drill_instructor_app",
+);
+const NATIVE_ROOT = fs.existsSync(NESTED_NATIVE_ROOT) ?
+  NESTED_NATIVE_ROOT : SIBLING_NATIVE_ROOT;
 const FREE_ROOT = path.join(
-    REPOSITORY_ROOT, "Drill_Instructor", "assets", "content-free",
+    NATIVE_ROOT, "assets", "content-free",
 );
 const FIXED_ZIP_DATE = new Date("2026-01-01T00:00:00.000Z");
 
@@ -427,6 +433,11 @@ async function buildBootcamp(bootcamp) {
 }
 
 async function main() {
+  if (!fs.existsSync(NATIVE_ROOT)) {
+    throw new Error(
+        "Native repository was not found in the nested or sibling layout",
+    );
+  }
   const registry = {};
   for (const bootcamp of Object.keys(CONTENT_VERSIONS).sort()) {
     registry[bootcamp] = await buildBootcamp(bootcamp);

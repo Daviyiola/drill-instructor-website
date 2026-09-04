@@ -18,6 +18,8 @@ const {
   resolveStudent,
   subjectTimerKey,
 } = require("./_studentDrill");
+const {progressForSession, sessionStorageUpdates} =
+  require("./_studentDrillProgress");
 
 /**
  * Reject unsupported methods and handle CORS.
@@ -764,9 +766,12 @@ async function createChallengeSession(req, res) {
     );
     const existing = (await sessionRef.once("value")).val();
     if (existing) {
+      const progress = (await db.ref(
+          `studentDrillProgress/${studentId}/${sessionId}`,
+      ).once("value")).val();
       return res.status(200).json({
         ok: true,
-        session: publicSession(existing),
+        session: publicSession(progressForSession(existing, progress)),
       });
     }
     const paper = challengePaper(challenge);
@@ -799,12 +804,12 @@ async function createChallengeSession(req, res) {
       timers,
       currentQuestionId: paper.questions[0].id,
     };
-    await sessionRef.set(session);
-    await db.ref(
-        `users/${studentId}/userChallenges/${challengeId}`,
-    ).update({
-      sessionId,
-      startedAt: new Date(createdAt).toISOString(),
+    await db.ref().update({
+      ...sessionStorageUpdates(studentId, session),
+      [`users/${studentId}/userChallenges/${challengeId}/sessionId`]:
+        sessionId,
+      [`users/${studentId}/userChallenges/${challengeId}/startedAt`]:
+        new Date(createdAt).toISOString(),
     });
     return res.status(201).json({
       ok: true,

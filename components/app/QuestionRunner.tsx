@@ -26,6 +26,34 @@ interface RunnerState {
   index: number;
 }
 
+type ProgressMapPatch = Record<string, number | boolean | null>;
+interface ProgressChanges {
+  answers?: ProgressMapPatch;
+  bookmarks?: ProgressMapPatch;
+  flags?: ProgressMapPatch;
+  questionTimes?: ProgressMapPatch;
+  timers?: ProgressMapPatch;
+  currentQuestionId?: string;
+}
+
+function mergeProgressChanges(
+  older: ProgressChanges,
+  newer: ProgressChanges,
+): ProgressChanges {
+  const merged: ProgressChanges = {};
+  for (const field of [
+    "answers", "bookmarks", "flags", "questionTimes", "timers",
+  ] as const) {
+    if (older[field] || newer[field]) {
+      merged[field] = {...(older[field] || {}), ...(newer[field] || {})};
+    }
+  }
+  merged.currentQuestionId = newer.currentQuestionId ??
+    older.currentQuestionId;
+  if (merged.currentQuestionId === undefined) delete merged.currentQuestionId;
+  return merged;
+}
+
 export default function QuestionRunner({ sessionId }: { sessionId: string }) {
   const router = useRouter();
   const { user, loading, updateStreak } = useAuth();
@@ -60,6 +88,34 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
     index,
   });
   const timeoutHandledForSubject = useRef("");
+  const dirtyRef = useRef<ProgressChanges>({});
+  const saveInFlightRef = useRef<Promise<void> | null>(null);
+  const inFlightChangesRef = useRef<ProgressChanges>({});
+  const clientIdRef = useRef("");
+  const sequenceRef = useRef(0);
+  const lastSaveAttemptRef = useRef(Date.now());
+
+  if (!clientIdRef.current && typeof window !== "undefined") {
+    const storageKey = `di.progressClient.${sessionId}`;
+    try {
+      clientIdRef.current = sessionStorage.getItem(storageKey) ||
+        window.crypto.randomUUID();
+      sessionStorage.setItem(storageKey, clientIdRef.current);
+    } catch {
+      clientIdRef.current = window.crypto.randomUUID();
+    }
+  }
+
+  function markMapDirty(
+    field: "answers" | "bookmarks" | "flags" | "questionTimes" | "timers",
+    key: string,
+    value: number | boolean | null,
+  ) {
+    dirtyRef.current[field] = {
+      ...(dirtyRef.current[field] || {}),
+      [key]: value,
+    };
+  }
 
   useEffect(() => {
     stateRef.current = {
@@ -145,30 +201,77 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
       .catch((reason) => setError((reason as Error).message));
   }, [router, sessionId, user]);
 
-  const save = useCallback(async () => {
+  const save = useCallback(async (keepalive = false) => {
     if (!user || !session) return;
-    const state = stateRef.current;
-    setSaveState("saving");
-    try {
-      await callFunction(user, "saveStudentDrillProgressHttps", {
-        sessionId,
-        answers: state.answers,
-        bookmarks: state.bookmarks,
-        flags: state.flags,
-        questionTimes: state.questionTimes,
-        timers: state.timers,
-        currentQuestionId: session.questions[state.index]?.id || "",
-      });
-      setSaveState("saved");
-    } catch {
-      setSaveState("offline");
+    const existingRequest = saveInFlightRef.current;
+    if (existingRequest && !keepalive) {
+      await existingRequest;
     }
+    const dirty = dirtyRef.current;
+    if (!Object.keys(dirty).length && !(keepalive && existingRequest)) return;
+    // A page-hide flush cannot wait for an ordinary request that the browser
+    // may cancel during teardown. Supersede it with a keepalive request that
+    // contains both the in-flight patch and every newer dirty value.
+    const changes = keepalive && existingRequest ?
+      mergeProgressChanges(inFlightChangesRef.current, dirty) : dirty;
+    dirtyRef.current = {};
+    const sequence = ++sequenceRef.current;
+    lastSaveAttemptRef.current = Date.now();
+    setSaveState("saving");
+    const request = callFunction(user, "saveStudentDrillProgressHttps", {
+        sessionId,
+        clientId: clientIdRef.current,
+        sequence,
+        changes,
+      }, {keepalive}).then(() => {
+        setSaveState("saved");
+      }).catch(() => {
+        Object.entries(changes).forEach(([field, value]) => {
+          if (field === "currentQuestionId") {
+            if (!dirtyRef.current.currentQuestionId) {
+              dirtyRef.current.currentQuestionId = String(value || "");
+            }
+            return;
+          }
+          const mapField = field as keyof Pick<ProgressChanges,
+            "answers" | "bookmarks" | "flags" | "questionTimes" | "timers">;
+          dirtyRef.current[mapField] = {
+            ...(value as ProgressMapPatch),
+            ...(dirtyRef.current[mapField] || {}),
+          };
+        });
+        setSaveState("offline");
+      }).finally(() => {
+        if (saveInFlightRef.current === request) {
+          saveInFlightRef.current = null;
+          inFlightChangesRef.current = {};
+        }
+      });
+    saveInFlightRef.current = request;
+    inFlightChangesRef.current = changes;
+    await request;
   }, [session, sessionId, user]);
 
   useEffect(() => {
     if (!session) return;
-    const interval = window.setInterval(save, 12000);
+    const interval = window.setInterval(() => {
+      if (Date.now() - lastSaveAttemptRef.current >= 45000) void save();
+    }, 5000);
     return () => window.clearInterval(interval);
+  }, [save, session]);
+
+  useEffect(() => {
+    if (!session) return;
+    const flushHidden = () => {
+      if (document.visibilityState === "hidden") void save(true);
+    };
+    const flushPage = () => void save(true);
+    document.addEventListener("visibilitychange", flushHidden);
+    window.addEventListener("pagehide", flushPage);
+    return () => {
+      document.removeEventListener("visibilitychange", flushHidden);
+      window.removeEventListener("pagehide", flushPage);
+    };
   }, [save, session]);
 
   const current = session?.questions[index];
@@ -186,6 +289,7 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
           ),
         };
         stateRef.current.timers = next;
+        markMapDirty("timers", current.subject, next[current.subject]);
         return next;
       });
       setQuestionTimes((value) => {
@@ -194,6 +298,7 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
           [current.id]: Number(value[current.id] || 0) + 1,
         };
         stateRef.current.questionTimes = next;
+        markMapDirty("questionTimes", current.id, next[current.id]);
         return next;
       });
     }, 1000);
@@ -216,14 +321,16 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
     );
     setIndex(safeIndex);
     stateRef.current.index = safeIndex;
-    window.setTimeout(save, 0);
+    dirtyRef.current.currentQuestionId =
+      session.questions[safeIndex]?.id || "";
+    window.setTimeout(() => void save(), 0);
   }
 
   function answerQuestion(questionId: string, optionIndex: number) {
     setAnswers((value) => {
       const next = { ...value, [questionId]: optionIndex };
       stateRef.current.answers = next;
-      window.setTimeout(save, 0);
+      markMapDirty("answers", questionId, optionIndex);
       return next;
     });
   }
@@ -234,7 +341,7 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
       if (next[questionId]) delete next[questionId];
       else next[questionId] = true;
       stateRef.current.flags = next;
-      window.setTimeout(save, 0);
+      markMapDirty("flags", questionId, next[questionId] ? true : null);
       return next;
     });
   }
@@ -248,6 +355,7 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
     const bookmarked = !bookmarks[questionId];
     setBookmarks((value) => {
       const next = { ...value, [questionId]: bookmarked };
+      if (!bookmarked) delete next[questionId];
       stateRef.current.bookmarks = next;
       return next;
     });
@@ -261,6 +369,7 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
     } catch (reason) {
       setBookmarks((value) => {
         const next = { ...value, [questionId]: !bookmarked };
+        if (bookmarked) delete next[questionId];
         stateRef.current.bookmarks = next;
         return next;
       });
@@ -310,6 +419,11 @@ export default function QuestionRunner({ sessionId }: { sessionId: string }) {
         );
       }
       localStorage.removeItem(`di.activeSession.${session.bootcamp}`);
+      try {
+        sessionStorage.removeItem(`di.progressClient.${sessionId}`);
+      } catch {
+        // Storage can be disabled independently of a successful submission.
+      }
       const destination = `/app/drills/${sessionId}/results${
         session.challengeId || response.challengeId ? "?from=challenges" : ""
       }`;

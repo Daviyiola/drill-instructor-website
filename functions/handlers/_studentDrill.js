@@ -39,6 +39,26 @@ function cleanSegment(value, maxLength = 120) {
  * @return {Promise<Object>} Student context
  */
 async function resolveStudent(db, uid) {
+  const studentId = await resolveStudentId(db, uid);
+  const user = (await db.ref(`users/${studentId}`).once("value")).val();
+  if (!user || typeof user !== "object") {
+    const error = new Error("Student profile was not found");
+    error.code = 404;
+    throw error;
+  }
+  return {studentId, user};
+}
+
+/**
+ * Resolve only the compact UID mapping for endpoints that do not need a full
+ * student profile. This prevents autosave from downloading the user's stats,
+ * bookmarks, licenses, and history on every request.
+ *
+ * @param {Object} db Firebase database
+ * @param {string} uid Firebase Auth UID
+ * @return {Promise<string>} Student custom id
+ */
+async function resolveStudentId(db, uid) {
   const value = (await db.ref(`uidToCustom/${uid}`).once("value")).val();
   const studentId = cleanSegment(
       typeof value === "string" ? value : value && value.student,
@@ -48,13 +68,7 @@ async function resolveStudent(db, uid) {
     error.code = 403;
     throw error;
   }
-  const user = (await db.ref(`users/${studentId}`).once("value")).val();
-  if (!user || typeof user !== "object") {
-    const error = new Error("Student profile was not found");
-    error.code = 404;
-    throw error;
-  }
-  return {studentId, user};
+  return studentId;
 }
 
 /**
@@ -629,6 +643,7 @@ function publicSession(session) {
     questionTimes: session.questionTimes || {},
     timers: publicTimerMap(session.config, session.timers),
     currentQuestionId: session.currentQuestionId || "",
+    progressRevision: Number(session.progressRevision || 0),
   };
 }
 
@@ -762,6 +777,71 @@ function gradeSession(session, answers, timers, endedAt = Date.now()) {
     modules,
     answers: feedback,
   };
+}
+
+/**
+ * Remove immutable question content from a result before persistence. The
+ * pinned dataset/correction coordinates on the result are sufficient to
+ * reconstruct review content later.
+ *
+ * @param {Object} result Full server-graded result
+ * @param {Object=} attemptState Attempt-specific bookmark/flag state
+ * @return {Object} Compact durable result
+ */
+function compactResult(result, attemptState = {}) {
+  return {
+    ...result,
+    v: 3,
+    answers: collectionValues(result && result.answers).map((answer) => ({
+      id: String(answer.id || ""),
+      position: Number(answer.position || 0),
+      selectedIndex: Number.isInteger(answer.selectedIndex) ?
+        answer.selectedIndex : null,
+      correctIndex: Number(answer.correctIndex),
+      isCorrect: answer.isCorrect === true,
+      timeSpentSec: Math.max(0, Number(answer.timeSpentSec || 0)),
+      ...(attemptState.bookmarks && attemptState.bookmarks[answer.id] ?
+        {bookmarked: true} : {}),
+      ...(attemptState.flags && attemptState.flags[answer.id] ?
+        {flagged: true} : {}),
+    })),
+  };
+}
+
+/**
+ * Join a compact v3 result to the exact immutable question rows selected for
+ * the attempt. Legacy v2 results already contain their own review payload.
+ *
+ * @param {Object} result Stored result
+ * @param {Object[]} questions Pinned question bank rows
+ * @return {Object} Public review result
+ */
+function hydrateResult(result, questions) {
+  if (!result || Number(result.v || 0) < 3) return result;
+  const byId = new Map((Array.isArray(questions) ? questions : [])
+      .map((question) => [String(question.id || ""), question]));
+  const answers = collectionValues(result.answers).map((answer) => {
+    const question = byId.get(String(answer.id || ""));
+    if (!question) return null;
+    return {
+      position: Number(answer.position || 0),
+      ...publicQuestion(question),
+      selectedIndex: Number.isInteger(answer.selectedIndex) ?
+        answer.selectedIndex : null,
+      correctIndex: Number(question.correctIndex),
+      isCorrect: answer.isCorrect === true,
+      timeSpentSec: Math.max(0, Number(answer.timeSpentSec || 0)),
+      explanation: String(question.explanation || ""),
+      ...(answer.bookmarked ? {bookmarked: true} : {}),
+      ...(answer.flagged ? {flagged: true} : {}),
+    };
+  }).filter(Boolean);
+  if (answers.length !== collectionValues(result.answers).length) {
+    const error = new Error("Pinned drill content is incomplete");
+    error.code = 409;
+    throw error;
+  }
+  return {...result, answers};
 }
 
 /**
@@ -948,7 +1028,9 @@ module.exports = {
   hasUsableAuthoredActTestLabels,
   cleanSegment,
   correctionRevisionFor,
+  compactResult,
   gradeSession,
+  hydrateResult,
   loadDataset,
   datasetVersionFor,
   normalizedQuestions,
@@ -958,6 +1040,7 @@ module.exports = {
   orderedSelectQuestions,
   questionStimulusKey,
   resolveStudent,
+  resolveStudentId,
   smartSelectQuestions,
   subjectTimerKey,
   subjectTimerValue,

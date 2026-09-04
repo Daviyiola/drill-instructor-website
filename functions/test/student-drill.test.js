@@ -2,7 +2,7 @@
 
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const {readFileSync} = require("node:fs");
+const {existsSync, readFileSync} = require("node:fs");
 const {join} = require("node:path");
 const {
   DATASET_VERSION,
@@ -229,15 +229,11 @@ test("re-inviting resets only declined invitation metadata", () => {
 });
 
 test("mobile challenges use the shared cloud session", () => {
-  const qmlRoot = join(
-      __dirname,
-      "..",
-      "..",
-      "Drill_Instructor",
-      "qml",
-      "Student",
-      "Bootcamps",
-  );
+  const root = join(__dirname, "..", "..");
+  const nested = join(root, "Drill_Instructor");
+  const nativeRoot = existsSync(nested) ? nested :
+    join(root, "..", "drill_instructor_app");
+  const qmlRoot = join(nativeRoot, "qml", "Student", "Bootcamps");
   const squad = readFileSync(join(qmlRoot, "SquadDrills.qml"), "utf8");
   const questions = readFileSync(join(qmlRoot, "Questions.qml"), "utf8");
 
@@ -374,8 +370,9 @@ test("submission transaction survives an uncached initial value", () => {
       5000,
   );
   assert.equal(claimed.status, "submitted");
-  assert.deepEqual(claimed.result, result);
-  assert.deepEqual(claimed.answers, {question_1: 2});
+  assert.equal(claimed.result.v, 3);
+  assert.deepEqual(claimed.result.summary, result.summary);
+  assert.equal("answers" in claimed, false);
 
   assert.equal(submittedSessionValue(
       {...session, status: "submitted"},

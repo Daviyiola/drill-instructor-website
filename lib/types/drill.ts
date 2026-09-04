@@ -173,6 +173,7 @@ export interface DrillSession {
   questionTimes: Record<string, number>;
   timers: Record<string, number>;
   currentQuestionId: string;
+  progressRevision: number;
 }
 
 export type ChallengeStage = "incoming" | "accepted" | "completed";

@@ -1,6 +1,7 @@
 "use client";
 
 import type { User } from "firebase/auth";
+import {getFirebaseAppCheckToken} from "@/lib/firebase/client";
 
 const TRANSIENT_STATUSES = new Set([408, 425, 429, 500, 502, 503, 504]);
 const inFlightAccountResolutions = new Map<string, Promise<unknown>>();
@@ -39,7 +40,11 @@ async function performFunctionCall<ResponseBody, RequestBody = object>(
   user: User,
   name: string,
   body: RequestBody,
-  options: { retryTransient?: boolean; signal?: AbortSignal } = {},
+  options: {
+    retryTransient?: boolean;
+    signal?: AbortSignal;
+    keepalive?: boolean;
+  } = {},
 ): Promise<ResponseBody> {
   // Gen 2 can briefly reject a request while a cold instance is starting.
   // That platform-level 429 has no CORS headers, so browsers surface it as a
@@ -52,15 +57,20 @@ async function performFunctionCall<ResponseBody, RequestBody = object>(
   for (let attempt = 0; attempt < attempts; attempt += 1) {
     let response: Response;
     try {
-      const token = await user.getIdToken(attempt > 0);
+      const [token, appCheckToken] = await Promise.all([
+        user.getIdToken(attempt > 0),
+        getFirebaseAppCheckToken(),
+      ]);
       response = await fetch(functionUrl(name), {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
+          ...(appCheckToken ? {"X-Firebase-AppCheck": appCheckToken} : {}),
         },
         body: JSON.stringify(body),
         signal: options.signal,
+        keepalive: options.keepalive,
       });
     } catch (reason) {
       if ((reason as Error).name === "AbortError") throw reason;
@@ -114,7 +124,11 @@ export function callFunction<ResponseBody, RequestBody = object>(
   user: User,
   name: string,
   body: RequestBody,
-  options: { retryTransient?: boolean; signal?: AbortSignal } = {},
+  options: {
+    retryTransient?: boolean;
+    signal?: AbortSignal;
+    keepalive?: boolean;
+  } = {},
 ): Promise<ResponseBody> {
   // Every authenticated page needs the same account shell. In development,
   // React intentionally mounts effects twice, and pages used to issue a

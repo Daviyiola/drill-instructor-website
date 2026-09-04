@@ -14,6 +14,8 @@ const {
   resolveStudent,
   subjectTimerKey,
 } = require("./_studentDrill");
+const {progressForSession, sessionStorageUpdates} =
+  require("./_studentDrillProgress");
 const {normalizeRelease} = require("./_analytics");
 
 function releaseFromDrill(drill) {
@@ -125,7 +127,13 @@ async function createAssignmentSession(req, res) {
     const ref = db.ref(`studentDrills/${studentId}/${sessionId}`);
     const existing = (await ref.once("value")).val();
     if (existing) {
-      return res.status(200).json({ok: true, session: publicSession(existing)});
+      const progress = (await db.ref(
+          `studentDrillProgress/${studentId}/${sessionId}`,
+      ).once("value")).val();
+      return res.status(200).json({
+        ok: true,
+        session: publicSession(progressForSession(existing, progress)),
+      });
     }
     const paper = assignmentPaper(drill);
     const createdAt = Date.now();
@@ -162,7 +170,7 @@ async function createAssignmentSession(req, res) {
     };
     const nowIso = new Date(createdAt).toISOString();
     const updates = {};
-    updates[`studentDrills/${studentId}/${sessionId}`] = session;
+    Object.assign(updates, sessionStorageUpdates(studentId, session));
     updates[`users/${studentId}/assignedDrills/${drillId}/status`] = "started";
     updates[`users/${studentId}/assignedDrills/${drillId}/startedAt`] = nowIso;
     updates[`users/${studentId}/assignedDrills/${drillId}/sessionId`] =
